@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstring>
 #include "turno.h"
-#include "gestorTurnos.h"
+#include "turnosArchivo.h"
 #include "paciente.h"
-#include "ObraSociales.h"
+#include "obrasSociales.h"
 #include "arancel.h"
-#include "Medicos.h"
+#include "medicos.h"
 
 using namespace std;
 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "gestorObraSociales.h"
-#include "ObraSociales.h"
+#include "obraSocialArchivo.h"
+#include "obrasSociales.h"
 using namespace std;
 
 void altaObraSocial(){

@@ -95,3 +95,32 @@
 1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
 	"fecha.h"
 
+1779300245 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancel.cpp
+	<iostream>
+	<cstring>
+	"arancel.h"
+	"obraSocialArchivo.h"
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancel.h
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialarchivo.h
+
+1779301094 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelarchivo.cpp
+	<iostream>
+	"arancelArchivo.h"
+	"arancel.h"
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelarchivo.h
+
+1779301146 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialarchivo.cpp
+	<iostream>
+	"obraSocialArchivo.h"
+	"obrasSociales.h"
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrassociales.h
+
+1779301158 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrassociales.cpp
+	<iostream>
+	<cstring>
+	"obrasSociales.h"
+

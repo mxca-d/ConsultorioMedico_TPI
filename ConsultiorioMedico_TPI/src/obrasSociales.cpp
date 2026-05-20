@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include "ObraSociales.h"
+#include "obrasSociales.h"
 
 using namespace std;
 
