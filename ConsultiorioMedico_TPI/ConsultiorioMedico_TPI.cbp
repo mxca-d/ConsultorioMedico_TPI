@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ConsultiorioMedico_TPI" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ConsultiorioMedico_TPI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ConsultiorioMedico_TPI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="include/arancel.h" />
+		<Unit filename="include/arancelArchivo.h" />
+		<Unit filename="include/fecha.h" />
+		<Unit filename="include/historial.h" />
+		<Unit filename="include/historialArchivo.h" />
+		<Unit filename="include/medicos.h" />
+		<Unit filename="include/medicosArchivo.h" />
+		<Unit filename="include/medicosManager.h" />
+		<Unit filename="include/menu.h" />
+		<Unit filename="include/obraSocialArchivo.h" />
+		<Unit filename="include/obrasSociales.h" />
+		<Unit filename="include/paciente.h" />
+		<Unit filename="include/pacienteArchivo.h" />
+		<Unit filename="include/pacienteManager.h" />
+		<Unit filename="include/turno.h" />
+		<Unit filename="include/turnosArchivo.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/arancel.cpp" />
+		<Unit filename="src/arancelArchivo.cpp" />
+		<Unit filename="src/fecha.cpp" />
+		<Unit filename="src/historial.cpp" />
+		<Unit filename="src/historialArchivo.cpp" />
+		<Unit filename="src/medicos.cpp" />
+		<Unit filename="src/medicosArchivo.cpp" />
+		<Unit filename="src/medicosManager.cpp" />
+		<Unit filename="src/menu.cpp" />
+		<Unit filename="src/obraSocialArchivo.cpp" />
+		<Unit filename="src/obrasSociales.cpp" />
+		<Unit filename="src/paciente.cpp" />
+		<Unit filename="src/pacienteArchivo.cpp" />
+		<Unit filename="src/pacienteManager.cpp" />
+		<Unit filename="src/turno.cpp" />
+		<Unit filename="src/turnosArchivo.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

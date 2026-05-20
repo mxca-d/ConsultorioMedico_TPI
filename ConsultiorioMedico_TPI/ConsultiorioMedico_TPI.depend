@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1584205420 source:m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\main.cpp
+	<iostream>
+
+1779296855 source:m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\src\fecha.cpp
+	<iostream>
+	"fecha.h"
+	<string>
+	<chrono>
+
+1779296855 m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\include\fecha.h
+	<string>
+
+1779296743 source:m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\src\historial.cpp
+	<iostream>
+	<cstring>
+	"Historial.h"
+
+1779296743 m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\include\historial.h
+	"fecha.h"
+
+1779296720 source:m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\src\historialarchivo.cpp
+	<iostream>
+	<cstring>
+	"historialArchivo.h"
+
+1779296720 m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\include\historialarchivo.h
+	"Historial.h"
+
+1779296479 source:m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\src\medicos.cpp
+	<iostream>
+	"Medicos.h"
+	<cstring>
+
+1779296479 m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\include\medicos.h
+	<string>
+
+1779296198 source:m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\src\turno.cpp
+	<iostream>
+	<cstring>
+	"turno.h"
+
+1779296198 m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\include\turno.h
+	"fecha.h"
+
