@@ -2,10 +2,10 @@
 #include "menu.h"
 #include "pacienteArchivo.h"
 #include "historialArchivo.h"
-#include "MedicosArchivos.h"
-#include "gestorTurnos.h"
-#include "gestorObraSociales.h"
-#include "gestorArancel.h"
+#include "medicosArchivo.h"
+#include "turnosArchivo.h"
+#include "obraSocialArchivo.h"
+#include "arancelArchivo.h"
 
 using namespace std;
 
