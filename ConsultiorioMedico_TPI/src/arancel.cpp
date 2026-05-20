@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "arancel.h"
-#include "gestorObraSociales.h"
+#include "obraSocialArchivo.h"
 
 using namespace std;
 
