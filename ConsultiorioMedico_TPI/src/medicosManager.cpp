@@ -1,5 +1,5 @@
 #include "medicosManager.h"
-#include "medicosArchivo.h"
+#include "MedicosArchivos.h"
 #include <iostream>
 
 using namespace std;
