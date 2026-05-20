@@ -87,3 +87,11 @@
 	"Medicos.h"
 	<string>
 
+1779299295 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
+	<iostream>
+	<cstring>
+	"turno.h"
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
+	"fecha.h"
+
