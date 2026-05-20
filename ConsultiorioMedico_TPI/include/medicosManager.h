@@ -1,8 +1,8 @@
 #ifndef MANAGGERMEDICOS_H
 #define MANAGGERMEDICOS_H
-#include "MedicosArchivos.h"
+#include "medicosArchivo.h"
 
-class ManaggerMedicos
+class MedicosManager
 {
 public:
     void Cargar();
