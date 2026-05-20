@@ -1,4 +1,4 @@
-#include "ManaggerMedicos.h"
+#include "medicosManager.h"
 #include "MedicosArchivos.h"
 #include <iostream>
 
@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-void ManaggerMedicos::Cargar()
+void MedicosManager::Cargar()
 {
 
     int idMedico,
@@ -46,7 +46,7 @@ void ManaggerMedicos::Cargar()
     _archivo.guardar (medicos);
 }
 
-void ManaggerMedicos::ListarTodos()
+void MedicosManager::ListarTodos()
 {
     int cantidadRegistros = _archivo.getCantidadRegistros();
 
@@ -61,7 +61,7 @@ void ManaggerMedicos::ListarTodos()
     }
 }
 
-void ManaggerMedicos::ListarXId()
+void MedicosManager::ListarXId()
 {
     int id;
 
@@ -80,7 +80,7 @@ void ManaggerMedicos::ListarXId()
     }
 }
 
-void ManaggerMedicos::Listar(Medicos medicos)
+void MedicosManager::Listar(Medicos medicos)
 {
     cout << "-------------------MEDICOS-------------------" << endl;
     cout << endl;
@@ -92,17 +92,17 @@ void ManaggerMedicos::Listar(Medicos medicos)
 
 }
 
-bool ManaggerMedicos::ExisteId(int id)
+bool MedicosManager::ExisteId(int id)
 {
     return _archivo.buscar(id) >= 0;
 }
 
-int ManaggerMedicos::GenerarId()
+int MedicosManager::GenerarId()
 {
     return _archivo.getCantidadRegistros() + 1;
 }
 
-void ManaggerMedicos::HacerCopiaDeSeguridad()
+void MedicosManager::HacerCopiaDeSeguridad()
 {
     int cantidadRegistros = _archivo.getCantidadRegistros();
     Medicos *vec = new Medicos[cantidadRegistros];
@@ -127,7 +127,7 @@ void ManaggerMedicos::HacerCopiaDeSeguridad()
     delete []vec;
 }
 
-void ManaggerMedicos::RestaurarCopiaDeSeguridad()
+void MedicosManager::RestaurarCopiaDeSeguridad()
 {
 
     int cantidadRegistros = _archivoBkp.getCantidadRegistros();

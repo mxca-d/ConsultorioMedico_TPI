@@ -2,7 +2,7 @@
 #define MANAGGERMEDICOS_H
 #include "MedicosArchivos.h"
 
-class ManaggerMedicos
+class MedicosManager:
 {
 public:
     void Cargar();
