@@ -1,4 +1,4 @@
-#include "ManaggerMedicos.h"
+#include "medicosManager.h"
 #include "MedicosArchivos.h"
 #include <iostream>
 

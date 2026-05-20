@@ -43,3 +43,55 @@
 1779296198 m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\include\turno.h
 	"fecha.h"
 
+1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\main.cpp
+	<iostream>
+
+1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\fecha.cpp
+	<iostream>
+	"fecha.h"
+	<string>
+	<chrono>
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\fecha.h
+	<string>
+
+1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historial.cpp
+	<iostream>
+	<cstring>
+	"Historial.h"
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historial.h
+	"fecha.h"
+
+1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialarchivo.cpp
+	<iostream>
+	<cstring>
+	"historialArchivo.h"
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialarchivo.h
+	"Historial.h"
+
+1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicos.cpp
+	<iostream>
+	"Medicos.h"
+	<cstring>
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicos.h
+	<string>
+
+1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicosarchivo.cpp
+	"medicosArchivo.h"
+	<cstdio>
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicosarchivo.h
+	"Medicos.h"
+	<string>
+
+1779299295 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
+	<iostream>
+	<cstring>
+	"turno.h"
+
+1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
+	"fecha.h"
+
