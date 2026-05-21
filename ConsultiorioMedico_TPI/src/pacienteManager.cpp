@@ -1,6 +1,8 @@
 #include <iostream>
-#include "PacienteManager.h"
 #include <cstdio>
+#include "PacienteManager.h"
+
+using namespace std;
 
 
 
@@ -13,7 +15,7 @@ void PacienteManager::altaPaciente(){
 
 
 
-
+    cout << "-------------------PACIENTES-------------------" << endl;
     cout << "Nombre: ";
     cin.getline(nombre,30);
     cout << "Apellido: ";
@@ -191,31 +193,108 @@ void PacienteManager::modificarPaciente(){
 
 
 void PacienteManager::listarPacientes(){
-    int cantidad= _repoTarea.getCantidadRegistros();
+    int cantidad= repoPaciente.getCantidadRegistros();
     Paciente reg;
-    for(int i=0;i<cantidad, i++){
-        reg=_repoTarea.leer(i);
+    for(int i=0;i<cantidad; i++){
+        reg=repoPaciente.leer(i);
 
-        mostrarPaciente(reg);
+        if(reg.getEliminado()!=true){
+
+            mostrarPaciente(reg);
+            cout << endl;
+        }
 
     }
 
 
 }
+void PacienteManager::listarXId()//
+{
+    int id;
+
+    cout << "Ingrese el ID: ";
+    cin >> id;
+
+    int posicion = repoPaciente.buscarPorId(id);
+    if (posicion >= 0)
+    {
+        Paciente reg = repoPaciente.leer(posicion);
+        mostrarPaciente(reg);
+    }
+    else
+    {
+        cout << "No existe el registro con ID #" << id << endl;
+    }
+}
 
 
 void PacienteManager::mostrarPaciente(Paciente reg){
 
-    cout << "ID: " <<reg.getIdPaciente <<endl;
-    cout << "Nombre: " <<reg.getNombre<< endl;
-    cout << "Apellido: " <<reg.getApellido<< endl;
-    cout << "Fecha de nacimiento: "<<reg.getFechaNacimiento() << endl;
-    cout << "DNI: " <<reg.getDni<< endl;
-    cout << "Obra social: " << reg.getObraSocial<< endl;
+    cout << "ID: " << reg.getIdPaciente() <<endl;
+    cout << "Nombre: " <<reg.getNombre()<< endl;
+    cout << "Apellido: " <<reg.getApellido()<< endl;
+    cout << "Fecha de nacimiento: "<< reg.getFechaNacimiento().getDia()
+    << "/" << reg.getFechaNacimiento().getMes()
+    << "/" << reg.getFechaNacimiento().getAnio() <<endl;
+    cout << "DNI: " <<reg.getDni()<< endl;
+    cout << "Obra social: " << reg.getObraSocial()<< endl;
     cout << "Estado: ";
     if(reg.getEliminado()){
         cout << "Inactivo" << endl;
     }else{
         cout << "Activo" << endl;
     }
+}
+
+void PacienteManager::hacerCopiaDeSeguridad()
+{
+    int cantidadRegistros = repoPaciente.getCantidadRegistros();
+    Paciente *vec = new Paciente[cantidadRegistros];
+
+    if (vec == nullptr)
+    {
+        cout << "Falla al realizar backup" << endl;
+        return;
+    }
+
+    repoPaciente.leer(vec, cantidadRegistros);
+    _archivoBkp.vaciar();
+    if (_archivoBkp.guardar(vec, cantidadRegistros))
+    {
+        cout << "Backup realizado correctamente" << endl;
+    }
+    else
+    {
+        cout << "Falla al realizar backup" << endl;
+    }
+
+    delete []vec;
+}
+
+void PacienteManager::restaurarCopiaDeSeguridad()
+{
+
+    int cantidadRegistros = _archivoBkp.getCantidadRegistros();
+    Paciente *vec = new Paciente[cantidadRegistros];
+
+    if (vec == nullptr)
+    {
+        cout << "Falla al restaurar backup" << endl;
+        return;
+    }
+
+    _archivoBkp.leer(vec, cantidadRegistros);
+    repoPaciente.vaciar();
+    if (_archivoBkp.guardar(vec, cantidadRegistros))
+    {
+        cout << "Backup restaurado correctamente" << endl;
+    }
+    else
+    {
+        cout << "Falla al restaurar backup" << endl;
+    }
+
+    delete []vec;
+
+
 }

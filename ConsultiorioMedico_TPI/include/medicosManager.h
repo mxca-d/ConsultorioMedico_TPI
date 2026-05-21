@@ -1,23 +1,28 @@
-#ifndef MANAGGERMEDICOS_H
-#define MANAGGERMEDICOS_H
+#pragma once
 #include "medicosArchivo.h"
+#include "medicos.h"
 
 class MedicosManager
 {
 public:
-    void Cargar();
-    void ListarTodos();
-    void ListarXId();
-    void Listar(Medicos medicos);
-    void HacerCopiaDeSeguridad();
-    void RestaurarCopiaDeSeguridad();
+
+    void altaMedico();
+    void bajaMedico();
+    void listarTodos();
+    void listarXId();
+    void mostrarMedico(Medicos medicos);
+    void hacerCopiaDeSeguridad();
+    void restaurarCopiaDeSeguridad();
+
+
+    //QUEDA PENDIENTE EL MODIFICAR-ESTILO PACIENTEMANAGER(CON LAS RESPECTIVAS VALIDACIONES)
 
 private:
-    MedicosArchivos _archivo;
-    MedicosArchivos _archivoBkp = MedicosArchivos("Medicos.bkp");
+    MedicosArchivos _repoMedicos;
+    MedicosArchivos _archivoBkp = MedicosArchivos("medicos.bkp");
 
-    bool ExisteId(int id);
-    int GenerarId();
+    bool existeId(int id);
+    int generarId();
 };
 
-#endif // MANAGGERMEDICOS_H
+

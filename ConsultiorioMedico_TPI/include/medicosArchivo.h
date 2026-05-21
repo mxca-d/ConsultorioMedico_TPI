@@ -1,26 +1,30 @@
-#ifndef MEDICOSARCHIVOS_H
-#define MEDICOSARCHIVOS_H
-
+#pragma once
 #include "Medicos.h"
 #include <string>
 
 class MedicosArchivos
 {
 public:
-    int getCantidadRegistros();
-    bool guardar(Medicos reg);
-    bool guardar(Medicos reg, int posicionAReemplazar);
-    bool guardar(Medicos *vec, int cantidadRegistrosAEscribir);
-
-    Medicos leer(int nroRegistro);
-    void leer(Medicos *vec, int cantidadRegistrosALeer);
-    int buscar(int ID);
-    void vaciar();
 
     MedicosArchivos();
     MedicosArchivos(std::string ruta);
+
+
+
+    bool guardar(Medicos reg);
+    int getCantidadRegistros();
+    Medicos leer(int pos);
+    bool modificar(Medicos reg, int pos);
+    int buscarPorId(int id);
+
+
+
+    bool guardar(Medicos *vec, int cantidadRegistrosAEscribir);
+    void leer(Medicos *vec, int cantidadRegistrosALeer);
+    void vaciar();
+
 private:
     std::string _ruta;
 };
 
-#endif // MEDICOSARCHIVOS_H
+

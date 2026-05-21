@@ -10,7 +10,7 @@
 using namespace std;
 
 
-void menuTurnos(){
+/*void menuTurnos(){
     int opcion;
 do {
     cout<< "--SUBMENU TURNOS-- " <<endl << endl;
@@ -155,3 +155,4 @@ do {
         }
 }  while(opcion!=0);
 }
+*/

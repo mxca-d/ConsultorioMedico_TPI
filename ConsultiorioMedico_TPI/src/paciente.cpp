@@ -56,5 +56,5 @@ int Paciente::getIdPaciente(){return _idPaciente;}
 bool Paciente::getEliminado(){return _eliminado;}
 
 Fecha Paciente::getFechaNacimiento(){
-return _fechaNacimiento.toString();
+//return _fechaNacimiento.();
 }

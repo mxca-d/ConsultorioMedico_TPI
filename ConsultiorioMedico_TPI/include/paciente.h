@@ -20,6 +20,7 @@ public:
     void setObraSocial(const char* obraSocial);
     void setFechaNacimiento(Fecha fecha);
 
+
     const char* getNombre();
     const char* getApellido();
     const char* getDni();

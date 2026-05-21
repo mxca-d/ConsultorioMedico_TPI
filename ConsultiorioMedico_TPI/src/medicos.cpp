@@ -5,19 +5,19 @@
 using namespace std;
 
 Medicos::Medicos(){
-    strcpy(nombre, "N/A");
-    strcpy(apellido, "N/A");
-    strcpy(dni, "N/A");
-    strcpy(especialidad, "N/A");
-    strcpy (matricula, "N/A");
-    strcpy (telefono, "N/A");
-    idMedico = 0;
-    eliminado = false;
+    strcpy(_nombre, "N/A");
+    strcpy(_apellido, "N/A");
+    strcpy(_dni, "N/A");
+    strcpy(_especialidad, "N/A");
+    strcpy (_matricula, "N/A");
+    strcpy (_telefono, "N/A");
+    _idMedico = 0;
+    _eliminado = false;
 
 
 }
 
-void Medicos::cargar(){
+/*void Medicos::cargar(){
     cout << "Nombre: ";
     cin.getline(nombre, 30);
     cout << "Apellido: ";
@@ -39,21 +39,59 @@ void Medicos::mostrar(){
     cout << "Especialidad: " << especialidad << endl;
     cout << "Matricula: " << matricula << endl;
     cout << "Telefono: " << telefono << endl;
-}
+}*/ //MANAGER
 
-void Medicos::setEliminado(bool e){
-    eliminado = e;
-}
-void Medicos::setIdMedico(int idm){
-    idMedico = idm;
+
+void Medicos::setNombre(const char* nombre){
+    strcpy(_nombre,nombre);
 }
 
 
-const char* Medicos::getNombre(){return nombre;}
-const char* Medicos::getApellido(){return apellido;}
-const char* Medicos::getDni(){return dni;}
-const char* Medicos::getEspecialidad(){return especialidad;}
-const char* Medicos::getMatricula(){return matricula;}
-const char* Medicos::getTelefono(){return telefono;}
-int Medicos::getIdMedico(){return idMedico;}
-bool Medicos::getEliminado(){return eliminado;}
+void Medicos::setApellido(const char* apellido){
+    strcpy(_apellido,apellido);
+
+}
+
+
+void Medicos::setEspecialidad(const char* especialidad){
+    strcpy(_especialidad,especialidad);
+
+}
+
+
+void Medicos::setDni(const char* dni){
+    strcpy(_dni,dni);
+
+}
+
+
+void Medicos::setMatricula(const char* matricula){
+    strcpy(_matricula,matricula);
+
+}
+
+
+void Medicos::setTelefono(const char* telefono){
+    strcpy(_telefono,telefono);
+
+}
+
+
+void Medicos::setEliminado(bool eliminado){
+    _eliminado = eliminado;
+}
+
+
+void Medicos::setIdMedico(int id){
+    _idMedico = id;
+}
+
+
+const char* Medicos::getNombre(){return _nombre;}
+const char* Medicos::getApellido(){return _apellido;}
+const char* Medicos::getDni(){return _dni;}
+const char* Medicos::getEspecialidad(){return _especialidad;}
+const char* Medicos::getMatricula(){return _matricula;}
+const char* Medicos::getTelefono(){return _telefono;}
+int Medicos::getIdMedico(){return _idMedico;}
+bool Medicos::getEliminado(){return _eliminado;}

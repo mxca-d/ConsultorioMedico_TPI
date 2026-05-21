@@ -1,5 +1,4 @@
 #include "medicosManager.h"
-#include "medicosArchivo.h"
 #include <iostream>
 
 using namespace std;
@@ -7,72 +6,112 @@ using namespace std;
 
 
 
-void MedicosManager::Cargar()
+void MedicosManager::altaMedico()
 {
 
-    int idMedico,
-        matricula,
-        telefono;
-    string apellido,
-           nombre,
-           especialidad;
+    char nombre[30],apellido[30],especialidad[30],dni[12],matricula[15],telefono[15];
+    int idMedico;
     bool eliminado;
+
+    Medicos m;
 
     cout << "-------------------MEDICOS-------------------" << endl;
     cout << endl;
-    cout << " Ingrese apellido: " ;
-    cin >> apellido;
+    cout << "Nombre: ";
+    cin.getline(nombre,30);
+     cout << endl;
+    cout << "Apellido: ";
+    cin.getline (apellido, 30);
     cout << endl;
-    cout << " Ingrese nombre: " ;
-    cin >> nombre;
+    cout << "DNI: ";
+    cin.getline (dni, 12);
     cout << endl;
     cout << " Ingrese especialidad: " ;
-    cin >> especialidad;
+    cin.getline(especialidad,30);
     cout << endl;
     cout << " Ingrese telefono; " ;
-    cin >> telefono;
+    cin.getline(telefono,15);
     cout << endl;
     cout << " Ingrese matricula; " ;
-    cin >> matricula;
+    cin.getline(matricula,15);
     cout << endl;
 
-    idMedico = GenerarId ();
+    m.setNombre(nombre);
+    m.setApellido(apellido);
+    m.setDni(dni);
+    m.setEspecialidad(especialidad);
+    m.setTelefono(telefono);
+    m.setMatricula(matricula);
+    m.setIdMedico(generarId());
+    eliminado = false;
 
 
-                eliminado = 0;
-
-    Medicos medicos( idMedico,  matricula,  telefono, apellido, nombre,
-                     especialidad, eliminado);
-    _archivo.guardar (medicos);
+    if(_repoMedicos.guardar (m)){
+        cout << "Se guardo el medico exitosamente!" << endl;
+    }else{
+        cout << "No se pudo guardar el medico..." << endl;
+    }
 }
 
-void MedicosManager::ListarTodos()
+void MedicosManager::bajaMedico(){
+    Medicos reg;
+
+    int id, pos;
+
+    cout << "Ingrese el ID del medico a dar de baja:";
+    cin>>id;
+    cout << endl;
+
+    pos=_repoMedicos.buscarPorId(id);
+
+    if(pos==-1){
+        cout << "El id ingresado no existe." << endl;
+        return;
+    }
+
+    reg= _repoMedicos.leer(pos);
+    reg.setEliminado(true);
+
+    bool eliminado=_repoMedicos.modificar(reg,pos);
+
+    if(eliminado){
+        cout << "El medico se ha dado de baja exitosamente." << endl;
+    }else{
+        cout << "No se pudo dar de baja el medico." << endl;
+    }
+
+
+
+
+}
+
+void MedicosManager::listarTodos()
 {
-    int cantidadRegistros = _archivo.getCantidadRegistros();
+    int cantidadRegistros = _repoMedicos.getCantidadRegistros();
 
     for (int i = 0; i<cantidadRegistros; i++)
     {
-        Medicos reg = _archivo.leer(i);
+        Medicos reg = _repoMedicos.leer(i);
         if (!reg.getEliminado())
         {
-            Listar(reg);
+            mostrarMedico(reg);
             cout << endl;
         }
     }
 }
 
-void MedicosManager::ListarXId()
+void MedicosManager::listarXId()
 {
     int id;
 
     cout << "Ingrese el ID: ";
     cin >> id;
 
-    int posicion = _archivo.buscar(id);
+    int posicion = _repoMedicos.buscarPorId(id);
     if (posicion >= 0)
     {
-        Medicos reg = _archivo.leer(posicion);
-        Listar(reg);
+        Medicos reg = _repoMedicos.leer(posicion);
+        mostrarMedico(reg);
     }
     else
     {
@@ -80,31 +119,33 @@ void MedicosManager::ListarXId()
     }
 }
 
-void MedicosManager::Listar(Medicos medicos)
+void MedicosManager::mostrarMedico(Medicos medicos)
 {
     cout << "-------------------MEDICOS-------------------" << endl;
     cout << endl;
-    cout << " Ingrese apellido: " << medicos.getApellidos()<< endl;
-    cout << " Ingrese nombre: " << medicos.getNombres()<< endl;
-    cout << " Ingrese especialidad: " << medicos.getEspecialidad()<< endl;
-    cout << " Ingrese telefono; " << medicos.getTelefono()<< endl;
-    cout << " Ingrese matricula; " << medicos.getMatricula()<< endl;
+    cout << "ID: " << medicos.getIdMedico()<< endl;
+    cout << "Nombre: " << medicos.getNombre()<< endl;
+    cout << "Apellido: " << medicos.getApellido()<< endl;
+    cout << "DNI: " << medicos.getDni()<< endl;
+    cout << "Especialidad: " << medicos.getEspecialidad()<< endl;
+    cout << "Telefono; " << medicos.getTelefono()<< endl;
+    cout << "Matricula; " << medicos.getMatricula()<< endl;
 
 }
 
-bool MedicosManager::ExisteId(int id)
+bool MedicosManager::existeId(int id)
 {
-    return _archivo.buscar(id) >= 0;
+    return _repoMedicos.buscarPorId(id) > 0;//mayor a 0 no? o vamos a hacer que 0 sea un nro posible de id?
 }
 
-int MedicosManager::GenerarId()
+int MedicosManager::generarId()
 {
-    return _archivo.getCantidadRegistros() + 1;
+    return _repoMedicos.getCantidadRegistros() + 1;
 }
 
-void MedicosManager::HacerCopiaDeSeguridad()
+void MedicosManager::hacerCopiaDeSeguridad()
 {
-    int cantidadRegistros = _archivo.getCantidadRegistros();
+    int cantidadRegistros = _repoMedicos.getCantidadRegistros();
     Medicos *vec = new Medicos[cantidadRegistros];
 
     if (vec == nullptr)
@@ -113,7 +154,7 @@ void MedicosManager::HacerCopiaDeSeguridad()
         return;
     }
 
-    _archivo.leer(vec, cantidadRegistros);
+    _repoMedicos.leer(vec, cantidadRegistros);
     _archivoBkp.vaciar();
     if (_archivoBkp.guardar(vec, cantidadRegistros))
     {
@@ -127,7 +168,7 @@ void MedicosManager::HacerCopiaDeSeguridad()
     delete []vec;
 }
 
-void MedicosManager::RestaurarCopiaDeSeguridad()
+void MedicosManager::restaurarCopiaDeSeguridad()
 {
 
     int cantidadRegistros = _archivoBkp.getCantidadRegistros();
@@ -140,8 +181,8 @@ void MedicosManager::RestaurarCopiaDeSeguridad()
     }
 
     _archivoBkp.leer(vec, cantidadRegistros);
-    _archivo.vaciar();
-    if (_archivo.guardar(vec, cantidadRegistros))
+    _repoMedicos.vaciar();
+    if (_repoMedicos.guardar(vec, cantidadRegistros))
     {
         cout << "Backup restaurado correctamente" << endl;
     }
