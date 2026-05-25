@@ -29,7 +29,7 @@ void Paciente::setNombre(const char* nombre){
     strcpy(_nombre,nombre);
 
 }
-
+//hola
 
 void Paciente::setApellido(const char* apellido){
     strcpy(_apellido,apellido);
@@ -56,5 +56,5 @@ int Paciente::getIdPaciente(){return _idPaciente;}
 bool Paciente::getEliminado(){return _eliminado;}
 
 Fecha Paciente::getFechaNacimiento(){
-return _fechaNacimiento.toString();
+//return _fechaNacimiento.();
 }

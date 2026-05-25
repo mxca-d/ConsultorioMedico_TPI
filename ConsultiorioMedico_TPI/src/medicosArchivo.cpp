@@ -3,7 +3,7 @@
 
 MedicosArchivos::MedicosArchivos()
 {
-    _ruta = "Medicos.dat";
+    _ruta = "medicos.dat";
 }
 
 MedicosArchivos::MedicosArchivos(std::string ruta)
@@ -11,7 +11,7 @@ MedicosArchivos::MedicosArchivos(std::string ruta)
     _ruta = ruta;
 }
 
-int MedicosArchivos::getCantidadRegistros()
+int MedicosArchivos::getCantidadRegistros()//
 {
     FILE *p = fopen(_ruta.c_str(), "rb");
 
@@ -41,7 +41,7 @@ bool MedicosArchivos::guardar(Medicos reg)
     return pudoEscribir;
 }
 
-bool MedicosArchivos::guardar(Medicos reg, int posicionAReemplazar)
+bool MedicosArchivos::modificar(Medicos reg, int posicionAReemplazar)
 {
     FILE *p = fopen(_ruta.c_str(), "rb+");
 
@@ -70,7 +70,7 @@ bool MedicosArchivos::guardar(Medicos *vec, int cantidadRegistrosAEscribir)
 }
 
 
-Medicos MedicosArchivos::leer(int nroRegistro)
+Medicos MedicosArchivos::leer(int pos)
 {
     Medicos aux;
     FILE *p = fopen(_ruta.c_str(), "rb");
@@ -79,7 +79,7 @@ Medicos MedicosArchivos::leer(int nroRegistro)
         return aux;
     }
 
-    fseek(p, nroRegistro * sizeof(Medicos), SEEK_SET);
+    fseek(p, pos * sizeof(Medicos), SEEK_SET);
     fread(&aux, sizeof(Medicos), 1, p);
     fclose(p);
     return aux;
@@ -97,15 +97,15 @@ void MedicosArchivos::leer(Medicos *vec, int cantidadRegistrosALeer)
     fclose(p);
 }
 
-int MedicosArchivos::buscar(int ID)
+int MedicosArchivos::buscarPorId(int id)
 {
-    int i, cantidadRegistros = this->getCantidadRegistros();
     Medicos aux;
+    int cantidadRegistros = getCantidadRegistros();
 
-    for(i=0; i<cantidadRegistros; i++)
+    for(int i=0; i<cantidadRegistros; i++)
     {
-        aux = this->leer(i);
-        if (aux.getIdMedico() == ID)
+        aux = leer(i);
+        if (aux.getIdMedico() == id && aux.getEliminado()==false)
         {
             return i;
         }

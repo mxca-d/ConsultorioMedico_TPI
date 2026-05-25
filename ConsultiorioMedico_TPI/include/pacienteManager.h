@@ -12,12 +12,13 @@ public:
     void modificarPaciente();
     void listarPacientes();
     void mostrarPaciente(Paciente reg);
-
-
+    void listarXId();
+    void hacerCopiaDeSeguridad();
+    void restaurarCopiaDeSeguridad();
 
 
 private:
     PacienteArchivo repoPaciente;
-
+    PacienteArchivo _archivoBkp = PacienteArchivo("pacientes.bkp");
 
 };

@@ -50,6 +50,7 @@
 		<Unit filename="include/pacienteManager.h" />
 		<Unit filename="include/turno.h" />
 		<Unit filename="include/turnosArchivo.h" />
+		<Unit filename="include/utils.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/arancel.cpp" />
 		<Unit filename="src/arancelArchivo.cpp" />
@@ -67,6 +68,7 @@
 		<Unit filename="src/pacienteManager.cpp" />
 		<Unit filename="src/turno.cpp" />
 		<Unit filename="src/turnosArchivo.cpp" />
+		<Unit filename="src/utils.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

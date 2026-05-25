@@ -1,11 +1,12 @@
 #include <iostream>
 #include "paciente.h"
 #include "PacienteArchivo.h"
+#include <cstring>
 
 using namespace std;
 
 PacienteArchivo::PacienteArchivo(){
-_nombreArchivo="pacientes.dat";
+strcpy(_nombreArchivo,"pacientes.dat");
 
 }
 
@@ -61,10 +62,10 @@ bool PacienteArchivo::guardar(Paciente p){
 
     }
 
-    fwrite(&p,sizeof(Paciente),1,pFile);
+    bool pudoEscribir=fwrite(&p,sizeof(Paciente),1,pFile);
     fclose(pFile);
 
-    return true;
+    return pudoEscribir;
 
 }
 
@@ -84,6 +85,42 @@ Paciente PacienteArchivo::leer(int pos){
     return reg;
 
 }
+void PacienteArchivo::leer(Paciente *vec, int cantidadRegistrosALeer)
+{
+    FILE *p = fopen(_nombreArchivo, "rb");
+    if (p == NULL)
+    {
+        return ;
+    }
+
+    fread(vec, sizeof(Paciente), cantidadRegistrosALeer, p);
+    fclose(p);
+}
+
+
+bool PacienteArchivo::guardar(Paciente *vec, int cantidadRegistrosAEscribir)
+{
+    FILE *p = fopen(_nombreArchivo, "ab");
+    if (p == NULL)
+    {
+        return false;
+    }
+
+    int cantidadRegistrosEscritos = fwrite(vec, sizeof(Paciente), cantidadRegistrosAEscribir, p);
+    fclose(p);
+    return cantidadRegistrosEscritos == cantidadRegistrosAEscribir;
+}
+
+void PacienteArchivo::vaciar()
+{
+    FILE *p = fopen(_nombreArchivo, "wb");
+    if (p == NULL)
+    {
+        return ;
+    }
+    fclose(p);
+}
+
 
 
 int PacienteArchivo::getCantidadRegistros(){

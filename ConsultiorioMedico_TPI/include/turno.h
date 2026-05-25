@@ -1,22 +1,28 @@
-#ifndef TURNO_H_INCLUDED
-#define TURNO_H_INCLUDED
+#pragma once
 #include "fecha.h"
 
 class Turno{
 private:
-    int idTurno, idPaciente, idMedico;
-    Fecha fechaTurno;
-    char hora[5];
-    char estado[15];
-    bool eliminado;
+    int _idTurno;
+    int _idPaciente;
+    int _idMedico;
+    Fecha _fechaTurno;
+    char _hora[6];//agregue un espacio mas por los :
+    char _estado[15];
+    bool _eliminado;
 
 public:
+    void setIdTurno(int id);
+    void setIdPaciente(int id);
+    void setIdMedico(int id);
+    void setFechaTurno(Fecha fecha);
+    void setHora(const char* hora);
+    void setEstado(const char* estado);
+    void setEliminado(bool eliminado);
+
     Turno();
     void cargar();
     void mostrar();
-    void setEliminado(bool e);
-    void setIdTurno(int idt);
-    void setEstado(char es[15]);
 
     const char* getHora();
     const char* getEstado();
@@ -24,10 +30,10 @@ public:
     int getIdPaciente();
     int getIdMedico();
     bool getEliminado();
+    Fecha getFechaTurno();
 
 
 
 };
 
-#endif // TURNO_H_INCLUDED
 
