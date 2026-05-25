@@ -17,7 +17,7 @@ public:
     const char* getNombre();
     int getIdObraSocial();
     bool getEliminado();
-
+    //hola
 
 
 };
