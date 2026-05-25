@@ -1,12 +1,95 @@
 #include <iostream>
 #include "arancelArchivo.h"
 #include "arancel.h"
+#include <cstring>
 
 using namespace std;
 
+ArancelArchivo::ArancelArchivo(){
+    strcpy(_nombreArchivo,"arancel.dat");
+}
 
 
-void altaArancel(){
+ArancelArchivo::ArancelArchivo( const char* nombreArchivo){
+    strcpy(_nombreArchivo,nombreArchivo);
+}
+
+
+
+/*bool ArancelArchivo::guardar(Historial reg){
+    FILE *p = fopen(_nombreArchivo, "ab");
+    if(p==nullptr){
+        return false;
+    }
+
+    bool pudoEscribir= fwrite(&reg,sizeof(Arancel),1,p);
+    fclose(p);
+
+    return pudoEscribir;
+
+
+
+
+}
+
+
+Arancel ArancelArchivo::leer(int pos){
+    Arancel reg;
+    FILE *p;
+
+    p= fopen(_nombreArchivo,"rb");
+
+    if(p==nullptr){
+        return reg;
+    }
+    fseek(p,pos*sizeof(Arancel),0);
+    fread(&reg,sizeof(Arancel),1,p);
+    fclose(p);
+    return reg;
+
+
+
+}
+
+*/
+int ArancelArchivo::getCantidadRegistros(){
+    int bytes;
+    int total;
+    FILE *p= fopen(_nombreArchivo,"rb");
+    if(p==nullptr){
+        return 0;
+    }
+
+    fseek(p,0,2);
+    bytes=ftell(p);
+    fclose(p);
+
+    total=bytes/sizeof(Arancel);
+
+    return total;
+
+
+}
+
+
+/*bool ArancelArchivo::modificar(Arancel reg, int pos){
+
+    FILE *p = fopen(_nombreArchivo, "rb+");
+
+    if (p == nullptr){
+    return false;
+    }
+
+    fseek(p, pos * sizeof(Arancel), 0);
+    bool pudoEscribir = fwrite(&reg, sizeof(Arancel), 1, p);
+    fclose(p);
+    return pudoEscribir;
+}
+
+*/
+
+
+/*void altaArancel(){
   Arancel a;
     a.cargar();
     int nuevoId = contarArancel() + 1;
@@ -108,3 +191,4 @@ int contarArancel(){
 
 
 }
+*/

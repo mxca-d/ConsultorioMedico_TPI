@@ -3,7 +3,7 @@
 #include "obrasSociales.h"
 using namespace std;
 
-void altaObraSocial(){
+/*void altaObraSocial(){
   ObraSociales o;
     o.cargar();
     int nuevoId = contarObraSocial() + 1;
@@ -87,7 +87,7 @@ void modificarObraSocial(){
 
 
 }
-
+*/
 int contarObraSocial(){
     ObraSociales o;
     int contador = 0;

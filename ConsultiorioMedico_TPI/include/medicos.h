@@ -5,16 +5,18 @@
 class Medicos
 {
 private:
-    char _nombre[30], _apellido[30], _especialidad[30];
+    char _nombre[30];
+    char _apellido[30];
+    char _especialidad[30];
     char _dni[12];
-    char  _matricula[15], _telefono[15];
+    char  _matricula[15];
+    char _telefono[15];
     int _idMedico;
     bool _eliminado;
+    float _honorarios;
 
 public:
     Medicos();
-    void cargar();//MANAGER
-    void mostrar();//MANAGER
 
     void setNombre(const char* nombre);
     void setApellido(const char* apellido);
@@ -24,6 +26,7 @@ public:
     void setTelefono(const char* telefono);
     void setEliminado(bool eliminado);
     void setIdMedico(int id);
+    void setHonorarios(float honorarios);
 
     const char* getNombre();
     const char* getApellido();
@@ -32,6 +35,7 @@ public:
     const char* getMatricula();
     const char* getTelefono();
     int getIdMedico();
+    float getHonorarios();
     bool getEliminado();
 
 

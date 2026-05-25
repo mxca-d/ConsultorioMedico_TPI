@@ -7,15 +7,15 @@ using namespace std;
 
 Arancel::Arancel(){
 
-    idObraSocial = 0;
-    idArancel = 0;
-    strcpy(especialidad, "N/A");
-    precio = 0;
-    eliminado = false;
+    _idObraSocial = 0;
+     _idArancel = 0;
+    strcpy( _especialidad, "N/A");
+     _precio = 0;
+     _eliminado = false;
 
 }
 
-void Arancel::cargar(){
+/*void Arancel::cargar(){
 
     listarObraSocial();
     cout << "Ingrese obra social: ";
@@ -35,20 +35,20 @@ void Arancel::mostrar(){
 
 
 
+}*/
+
+void Arancel::setIdArancel(int id){
+     _idArancel = id;
 }
 
-void Arancel::setIdArancel(int ida){
-    idArancel = ida;
-}
-
-void Arancel::setEliminado(bool e){
-    eliminado = e;
+void Arancel::setEliminado(bool eliminado){
+     _eliminado = eliminado;
 }
 
 
 
-int Arancel::getIdArancel(){return idArancel;}
-    int Arancel::getIdObraSocial(){return idObraSocial;}
-    const char* Arancel::getEspecialidad(){return especialidad;}
-    float Arancel::getPrecio(){return precio;}
-    bool Arancel::getEliminado(){return eliminado;}
+int Arancel::getIdArancel(){return  _idArancel;}
+    int Arancel::getIdObraSocial(){return  _idObraSocial;}
+    const char* Arancel::getEspecialidad(){return  _especialidad;}
+    float Arancel::getPrecio(){return  _precio;}
+    bool Arancel::getEliminado(){return  _eliminado;}

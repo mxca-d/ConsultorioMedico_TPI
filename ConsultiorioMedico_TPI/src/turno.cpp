@@ -83,9 +83,15 @@ void Turno::setEliminado(bool eliminado){
 
 }
 
+
+void Turno::setCostoConsulta(float costo){
+    _costoConsulta=costo;
+
+}
 const char* Turno::getHora(){return _hora;}
 const char* Turno::getEstado(){return _estado;}
 int Turno::getIdTurno(){return _idTurno;}
 int Turno::getIdPaciente(){return _idPaciente;}
 int Turno::getIdMedico(){return _idMedico;}
 bool Turno::getEliminado(){return _eliminado;}
+float Turno::getCostoConsulta(){return _costoConsulta;}

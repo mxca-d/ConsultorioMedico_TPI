@@ -1,19 +1,20 @@
 #include "medicosArchivo.h"
 #include <cstdio>
+#include <cstring>
 
 MedicosArchivos::MedicosArchivos()
 {
-    _ruta = "medicos.dat";
+    strcpy(_nombreArchivo,"medicos.dat");
 }
 
-MedicosArchivos::MedicosArchivos(std::string ruta)
+MedicosArchivos:: MedicosArchivos(const char* nombre)
 {
-    _ruta = ruta;
+    strcpy(_nombreArchivo,nombre);
 }
 
 int MedicosArchivos::getCantidadRegistros()//
 {
-    FILE *p = fopen(_ruta.c_str(), "rb");
+    FILE *p = fopen(_nombreArchivo, "rb");
 
     if (p == NULL)
     {
@@ -29,7 +30,7 @@ int MedicosArchivos::getCantidadRegistros()//
 
 bool MedicosArchivos::guardar(Medicos reg)
 {
-    FILE *p = fopen(_ruta.c_str(), "ab");
+    FILE *p = fopen(_nombreArchivo, "ab");
 
     if (p == NULL)
     {
@@ -43,7 +44,7 @@ bool MedicosArchivos::guardar(Medicos reg)
 
 bool MedicosArchivos::modificar(Medicos reg, int posicionAReemplazar)
 {
-    FILE *p = fopen(_ruta.c_str(), "rb+");
+    FILE *p = fopen(_nombreArchivo, "rb+");
 
     if (p == NULL)
     {
@@ -58,7 +59,7 @@ bool MedicosArchivos::modificar(Medicos reg, int posicionAReemplazar)
 
 bool MedicosArchivos::guardar(Medicos *vec, int cantidadRegistrosAEscribir)
 {
-    FILE *p = fopen(_ruta.c_str(), "ab");
+    FILE *p = fopen(_nombreArchivo, "ab");
     if (p == NULL)
     {
         return false;
@@ -73,7 +74,7 @@ bool MedicosArchivos::guardar(Medicos *vec, int cantidadRegistrosAEscribir)
 Medicos MedicosArchivos::leer(int pos)
 {
     Medicos aux;
-    FILE *p = fopen(_ruta.c_str(), "rb");
+    FILE *p = fopen(_nombreArchivo, "rb");
     if (p == NULL)
     {
         return aux;
@@ -87,7 +88,7 @@ Medicos MedicosArchivos::leer(int pos)
 
 void MedicosArchivos::leer(Medicos *vec, int cantidadRegistrosALeer)
 {
-    FILE *p = fopen(_ruta.c_str(), "rb");
+    FILE *p = fopen(_nombreArchivo, "rb");
     if (p == NULL)
     {
         return ;
@@ -115,7 +116,7 @@ int MedicosArchivos::buscarPorId(int id)
 
 void MedicosArchivos::vaciar()
 {
-    FILE *p = fopen(_ruta.c_str(), "wb");
+    FILE *p = fopen(_nombreArchivo, "wb");
     if (p == NULL)
     {
         return ;

@@ -1,13 +1,18 @@
-#ifndef MENU_H_INCLUDED
-#define MENU_H_INCLUDED
+#pragma once
+class Menu
+{
+public:
+    Menu();
+    void run();
 
-void menuTurnos();
-void menuPacientes();
-void menuMedicos();
-void menuAdministracion();
-void menuPrincipal();
-void menuObrasSociales();
-void menuAranceles();
+    virtual void mostrarOpciones() = 0;
+    int seleccionarOpcion();
+    virtual void ejecutarOpcion(int opcion) = 0;
 
+protected:
+    void setCantidadOpciones(int cantidad);
+    int getCantidadOpciones();
 
-#endif // MENU_H_INCLUDED
+private:
+    int _cantidadOpciones;
+};

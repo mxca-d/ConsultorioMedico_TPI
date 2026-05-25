@@ -1,15 +1,12 @@
 #pragma once
 #include "Medicos.h"
-#include <string>
 
 class MedicosArchivos
 {
 public:
 
     MedicosArchivos();
-    MedicosArchivos(std::string ruta);
-
-
+    MedicosArchivos(const char* nombre);
 
     bool guardar(Medicos reg);
     int getCantidadRegistros();
@@ -17,14 +14,12 @@ public:
     bool modificar(Medicos reg, int pos);
     int buscarPorId(int id);
 
-
-
     bool guardar(Medicos *vec, int cantidadRegistrosAEscribir);
     void leer(Medicos *vec, int cantidadRegistrosALeer);
     void vaciar();
 
 private:
-    std::string _ruta;
+    char _nombreArchivo[30];
 };
 
 

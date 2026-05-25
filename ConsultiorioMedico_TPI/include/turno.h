@@ -7,11 +7,13 @@ private:
     int _idPaciente;
     int _idMedico;
     Fecha _fechaTurno;
-    char _hora[6];//agregue un espacio mas por los :
+    char _hora[6]; //agregue un espacio mas por los :
     char _estado[15];
     bool _eliminado;
+    float _costoConsulta;
 
 public:
+    Turno();
     void setIdTurno(int id);
     void setIdPaciente(int id);
     void setIdMedico(int id);
@@ -19,10 +21,7 @@ public:
     void setHora(const char* hora);
     void setEstado(const char* estado);
     void setEliminado(bool eliminado);
-
-    Turno();
-    void cargar();
-    void mostrar();
+    void setCostoConsulta(float costo);
 
     const char* getHora();
     const char* getEstado();
@@ -31,6 +30,7 @@ public:
     int getIdMedico();
     bool getEliminado();
     Fecha getFechaTurno();
+    float getCostoConsulta();
 
 
 

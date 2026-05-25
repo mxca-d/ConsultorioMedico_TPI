@@ -3,9 +3,12 @@
 
 class Paciente{
 private:
-    char _nombre[30], _apellido[30], _obraSocial[30];
+    char _nombre[30];
+    char _apellido[30];
+    char _obraSocial[30];
     char _dni [12];
     int _idPaciente;
+    int _idObraSocial;
     Fecha _fechaNacimiento;
     bool _eliminado;
 
@@ -13,6 +16,7 @@ public:
     Paciente();
     void setEliminado(bool eliminado);
     void setIdPaciente(int ID);
+    void setIdObrasocial(int ID);
 
     void setNombre(const char* nombre);
     void setApellido(const char* apellido);
@@ -26,6 +30,7 @@ public:
     const char* getDni();
     const char* getObraSocial();
     int getIdPaciente();
+    int getIdObraSocial();
     bool getEliminado();
     Fecha getFechaNacimiento();
 

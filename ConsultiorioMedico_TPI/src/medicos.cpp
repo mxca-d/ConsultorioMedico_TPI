@@ -86,6 +86,10 @@ void Medicos::setIdMedico(int id){
     _idMedico = id;
 }
 
+void Medicos::setHonorarios(float honorarios){
+    _honorarios=honorarios;
+}
+
 
 const char* Medicos::getNombre(){return _nombre;}
 const char* Medicos::getApellido(){return _apellido;}
@@ -95,3 +99,4 @@ const char* Medicos::getMatricula(){return _matricula;}
 const char* Medicos::getTelefono(){return _telefono;}
 int Medicos::getIdMedico(){return _idMedico;}
 bool Medicos::getEliminado(){return _eliminado;}
+float Medicos::getHonorarios(){ return _honorarios;}

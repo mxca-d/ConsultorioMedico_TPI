@@ -1,10 +1,25 @@
-#ifndef GESTOROBRASOCIALES_H_INCLUDED
-#define GESTOROBRASOCIALES_H_INCLUDED
+#pragma once
+#include "obrasSociales.h"
 
-void altaObraSocial();
-void bajaObraSocial();
-void modificarObraSocial();
-int contarObraSocial();
-void listarObraSocial();
+class ObraSocialArchivo{
 
-#endif // GESTOROBRASOCIALES_H_INCLUDED
+
+public:
+    ObraSocialArchivo();
+    ObraSocialArchivo(const char* nombre);
+
+    bool guardar(ObraSociales p);
+    int getCantidadRegistros();
+    ObraSociales leer(int pos);
+    bool modificar(ObraSociales reg, int pos);
+    int buscarPorId(int id);
+
+    bool guardar(ObraSociales*vec, int cantidadRegistrosAEscribir);
+    void leer(ObraSociales *vec, int cantidadRegistrosALeer);
+     void vaciar();
+
+private:
+    char _nombreArchivo[30];
+
+};
+

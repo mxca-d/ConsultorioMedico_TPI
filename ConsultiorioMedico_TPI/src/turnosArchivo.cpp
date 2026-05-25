@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void altaTurno(){
+/*void altaTurno(){
     Turno t;
     t.cargar();
 
@@ -131,6 +131,7 @@ void modificarTurno(){
 
 
 }
+*/
 int contarTurnos(){
     Turno t;
     int contador = 0;

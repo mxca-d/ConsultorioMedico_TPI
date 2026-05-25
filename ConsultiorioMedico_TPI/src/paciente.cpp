@@ -20,9 +20,13 @@ void Paciente::setEliminado(bool eliminado){
 }
 
 void Paciente::setIdPaciente(int id){
-    if(id>0){
     _idPaciente=id;
-    }
+
+
+}
+void Paciente::setIdObrasocial(int id){
+    _idObraSocial=id;
+
 
 }
 void Paciente::setNombre(const char* nombre){
@@ -53,8 +57,8 @@ const char* Paciente::getApellido(){return _apellido;}
 const char* Paciente::getDni(){return _dni;}
 const char* Paciente::getObraSocial(){return _obraSocial;}
 int Paciente::getIdPaciente(){return _idPaciente;}
+int Paciente::getIdObraSocial(){return _idObraSocial;}
 bool Paciente::getEliminado(){return _eliminado;}
-
 Fecha Paciente::getFechaNacimiento(){
-//return _fechaNacimiento.();
+    return _fechaNacimiento;
 }

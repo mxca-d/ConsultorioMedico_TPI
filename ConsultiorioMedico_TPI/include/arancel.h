@@ -1,21 +1,20 @@
-#ifndef ARANCEL_H_INCLUDED
-#define ARANCEL_H_INCLUDED
+#pragma once
 
 class Arancel{
 private:
-    int idArancel, idObraSocial;
-    char especialidad[30];
-    float precio;
-    bool eliminado;
+    int _idArancel, _idObraSocial;
+    char _especialidad[30];
+    float _precio;
+    bool _eliminado;
 
 public:
     Arancel();
-    void cargar();
-    void mostrar();
-    void setEliminado(bool e);
-    void setIdArancel(int ida);
-    void setIdObraSocial(int idos);
-    void setPrecio(float p);
+
+    void setIdArancel(int id);
+    void setIdObraSocial(int id);
+    void setEspecialidad(const char*especialidad);
+    void setPrecio(float precio);
+    void setEliminado(bool eliminado);
 
     int getIdArancel();
     int getIdObraSocial();
@@ -24,6 +23,7 @@ public:
     bool getEliminado();
 
 
+
 };
 
-#endif // ARANCEL_H_INCLUDED
+

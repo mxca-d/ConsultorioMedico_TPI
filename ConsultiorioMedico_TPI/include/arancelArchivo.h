@@ -1,11 +1,27 @@
-#ifndef GESTORARANCEL_H_INCLUDED
-#define GESTORARANCEL_H_INCLUDED
-
-void altaArancel();
-void listarArancel();
-void bajaArancel();
-int contarArancel();
-void modificarArancel();
+#pragma once
+#include "arancel.h"
 
 
-#endif // GESTORARANCEL_H_INCLUDED
+class ArancelArchivo{
+
+public:
+
+    ArancelArchivo();
+    ArancelArchivo(const char* nombre);
+
+    bool guardar(Arancel p);
+    int getCantidadRegistros();
+    Arancel leer(int pos);
+    bool modificar(Arancel reg, int pos);
+    int buscarPorId(int id);
+
+    bool guardar(Arancel*vec, int cantidadRegistrosAEscribir);
+    void leer(Arancel *vec, int cantidadRegistrosALeer);
+    void vaciar();
+
+private:
+    char _nombreArchivo[30];
+
+};
+
+
