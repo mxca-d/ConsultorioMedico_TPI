@@ -12,7 +12,10 @@ public:
     void modificarPaciente();
     void listarPacientes();
     void mostrarPaciente(Paciente reg);
-    void listarXId();
+    void listarBuscarPorId();
+    void listarPacientesPorApellido();
+    void listarPacientesPorObraSocial();
+    void listarPacientesPorDni();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 

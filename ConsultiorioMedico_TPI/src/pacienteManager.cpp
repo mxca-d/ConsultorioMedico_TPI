@@ -18,8 +18,10 @@ void PacienteManager::altaPaciente(){
     cout << "-------------------PACIENTES-------------------" << endl;
     cout << "Nombre: ";
     cin.getline(nombre,30);
+    cout << endl;
     cout << "Apellido: ";
     cin.getline (apellido, 30);
+    cout << endl;
     do{
 
     cout << "Fecha de nacimiento: " <<endl;
@@ -30,11 +32,14 @@ void PacienteManager::altaPaciente(){
         system("cls");
     }
     }while(!fechaValida);
+    cout << endl;
     cout << "DNI: ";
     cin.ignore();
     cin.getline (dni, 12);
+    cout << endl;
     cout << "Obra Social: ";
     cin.getline (obraSocial, 30);
+    cout << endl <<endl;
 
 
     p.setNombre(nombre);
@@ -208,7 +213,7 @@ void PacienteManager::listarPacientes(){
 
 
 }
-void PacienteManager::listarXId()//
+void PacienteManager::buscarPorId()
 {
     int id;
 
@@ -226,6 +231,127 @@ void PacienteManager::listarXId()//
         cout << "No existe el registro con ID #" << id << endl;
     }
 }
+
+void PacienteManager::listarPacientesPorApellido(){
+    Paciente reg;
+
+    int cantidad= repoPaciente.getCantidadActivos();
+
+    Paciente *pacientesOrdenados;
+    pacientesOrdenados= new Paciente [cantidad];
+    Paciente aux;
+
+    for(int i=0;i <cantidad-1;i++){
+
+        for (int j=i+1;j<cantidad;j++){
+
+            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j]>0)){//evalua valor A-Z con ASCII
+
+                aux=pacientesOrdenados[i];
+                pacientesOrdenados[i]=pacientesOrdenados[j];
+                pacientesOrdenados[j]=aux;
+
+            }
+
+        }
+
+    }
+
+    for(int i=0;i<cantidad;i++){
+
+        mostrarPaciente(pacientesOrdenados[i]);//estaria bueno implementar un metodo que muestre por filas
+        cout << endl;
+
+    }
+
+
+
+}
+
+
+void PacienteManager::listarPacientesPorObraSocial(){
+
+    Paciente reg;
+    int cantidad= repoPaciente.getCantidadActivos();
+
+    Paciente *pacientesOrdenados;
+
+    pacientesOrdenados= new pacientesOrdenados[cantidad];
+    Paciente aux;
+
+
+    for(int i=0;i<cantidad-1;i++){
+
+
+        for(int j=i+1;j<cantidad;j++){
+
+            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j]>0)){
+                aux=pacientesOrdenados[i];
+                pacientesOrdenados[i]=pacientesOrdenados[j];
+                pacientesOrdenados[j]=aux;
+
+            }
+
+        }
+
+
+    }
+
+    for(int i=0;i<cantidad;i++){
+
+        mostrarPaciente(pacientesOrdenados[i]);
+        cout << endl;
+    }
+
+
+
+
+}
+
+
+void PacienteManager::listarPacientesPorDni(){
+
+    Paciente reg;
+    int cantidad = repoPaciente.getCantidadActivos();
+
+    Paciente *pacientesOrdenados;
+
+    pacientesOrdenados= new Paciente [cantidad];
+    Paciente aux;
+
+    for(int i=0;i<cantidad-1;i++){
+
+        for(int j=i+1;j<cantidad;j++){
+
+            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j])>0){
+
+                aux= pacientesOrdenados[i];
+                pacientesOrdenados[i]=pacientesOrdenados[j];
+                pacientesOrdenados[j]=aux;
+
+            }
+
+        }
+    }
+
+
+
+    for(int i=0;i<cantidad;i++){
+
+        mostrarPaciente(pacientesOrdenados[i]);
+        cout << endl;
+
+
+    }
+
+
+
+
+}
+
+
+
+
 
 
 void PacienteManager::mostrarPaciente(Paciente reg){

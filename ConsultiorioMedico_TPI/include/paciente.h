@@ -7,6 +7,9 @@ private:
     char _apellido[30];
     char _obraSocial[30];
     char _dni [12];
+    char _email[30];//agregue datos de contacto
+    char _telefono[15];//agregue datos de contacto
+    char _domicilio[30];//agregue datos de contacto
     int _idPaciente;
     int _idObraSocial;
     Fecha _fechaNacimiento;
