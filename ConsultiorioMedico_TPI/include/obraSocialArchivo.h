@@ -1,7 +1,8 @@
 #pragma once
 #include "obrasSociales.h"
 
-class ObraSocialArchivo{
+class ObraSocialArchivo
+{
 
 
 public:
@@ -14,9 +15,10 @@ public:
     bool modificar(ObraSociales reg, int pos);
     int buscarPorId(int id);
 
+
     bool guardar(ObraSociales*vec, int cantidadRegistrosAEscribir);
     void leer(ObraSociales *vec, int cantidadRegistrosALeer);
-     void vaciar();
+    void vaciar();
 
 private:
     char _nombreArchivo[30];

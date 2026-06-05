@@ -4,14 +4,16 @@
 
 
 
-class ObraSocialManager{
+class ObraSocialManager
+{
 
 public:
     void altaPaciente();
     void bajaPaciente();
     void modificarPaciente();
-    void listarPacientes();
-    void mostrarPaciente(ObraSociales reg);
+    void listarObraSocial();
+    void mostrarIdObraSocial();
+    void mostrarObraSocial(ObraSociales reg);
     void listarXId();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();

@@ -131,7 +131,7 @@ void modificarTurno(){
 
 
 }
-*/
+
 int contarTurnos(){
     Turno t;
     int contador = 0;
@@ -181,4 +181,128 @@ void cambiarEstadoTurno(){
     }
     fclose(archivo);
 
+} */
+
+
+TurnoArchivo::TurnoArchivo()
+{
+    strcpy(_nombreArchivo,"turnos.dat");
 }
+
+TurnoArchivo:: TurnoArchivo(const char* nombre)
+{
+    strcpy(_nombreArchivo,nombre);
+}
+
+int TurnoArchivo::getCantidadRegistros()//
+{
+    FILE *p = fopen(_nombreArchivo, "rb");
+
+    if (p == NULL)
+    {
+        return 0;
+    }
+
+    fseek(p, 0, SEEK_END);
+    int bytes = ftell(p);
+    fclose(p);
+
+    return bytes / sizeof(Medicos);
+}
+
+bool TurnoArchivo::guardar(Turno reg)
+{
+    FILE *p = fopen(_nombreArchivo, "ab");
+
+    if (p == NULL)
+    {
+        return false;
+    }
+
+    bool pudoEscribir = fwrite(&reg, sizeof(Turno), 1, p);
+    fclose(p);
+    return pudoEscribir;
+}
+
+bool TurnoArchivo::modificar(Turno reg, int posicionAReemplazar)
+{
+    FILE *p = fopen(_nombreArchivo, "rb+");
+
+    if (p == NULL)
+    {
+        return false;
+    }
+
+    fseek(p, posicionAReemplazar * sizeof(Turno), SEEK_SET);
+    bool pudoEscribir = fwrite(&reg, sizeof(Turno), 1, p);
+    fclose(p);
+    return pudoEscribir;
+}
+
+bool TurnoArchivo::guardar(Turno *vec, int cantidadRegistrosAEscribir)
+{
+    FILE *p = fopen(_nombreArchivo, "ab");
+    if (p == NULL)
+    {
+        return false;
+    }
+
+    int cantidadRegistrosEscritos = fwrite(vec, sizeof(Turno), cantidadRegistrosAEscribir, p);
+    fclose(p);
+    return cantidadRegistrosEscritos == cantidadRegistrosAEscribir;
+}
+
+
+Turno TurnoArchivo::leer(int pos)
+{
+    Turno aux;
+    FILE *p = fopen(_nombreArchivo, "rb");
+    if (p == NULL)
+    {
+        return aux;
+    }
+
+    fseek(p, pos * sizeof(Turno), SEEK_SET);
+    fread(&aux, sizeof(Turno), 1, p);
+    fclose(p);
+    return aux;
+}
+
+void TurnoArchivo::leer(Turno *vec, int cantidadRegistrosALeer)
+{
+    FILE *p = fopen(_nombreArchivo, "rb");
+    if (p == NULL)
+    {
+        return ;
+    }
+
+    fread(vec, sizeof(Turno), cantidadRegistrosALeer, p);
+    fclose(p);
+}
+
+int TurnoArchivo::buscarPorId(int id)
+{
+    Turno aux;
+    int cantidadRegistros = getCantidadRegistros();
+
+    for(int i=0; i<cantidadRegistros; i++)
+    {
+        aux = leer(i);
+        if (aux.getIdTurno() == id && aux.getEliminado()==false)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void TurnoArchivo::vaciar()
+{
+    FILE *p = fopen(_nombreArchivo, "wb");
+    if (p == NULL)
+    {
+        return ;
+    }
+    fclose(p);
+}
+

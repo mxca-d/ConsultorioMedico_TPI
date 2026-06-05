@@ -13,6 +13,8 @@ public:
     Paciente leer(int pos);
     bool modificar(Paciente reg, int pos);
     int buscarPorId(int id);
+    bool buscarCoincidenciaId(int id);
+    bool buscarPorDni(int dni);
 
     bool guardar(Paciente*vec, int cantidadRegistrosAEscribir);
     void leer(Paciente *vec, int cantidadRegistrosALeer);

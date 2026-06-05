@@ -50,6 +50,41 @@ int PacienteArchivo::buscarPorId(int id){
     return -1;
 
 }
+bool PacienteArchivo::buscarCoincidenciaId(int id){
+    Paciente reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0;i<cantidad;i++){
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && reg.getIdPaciente()==id){
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
+bool PacienteArchivo::buscarPorDni(int dni){
+    Paciente reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0;i<cantidad;i++){
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && reg.getDni()==dni){
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
 
 bool PacienteArchivo::guardar(Paciente p){
 

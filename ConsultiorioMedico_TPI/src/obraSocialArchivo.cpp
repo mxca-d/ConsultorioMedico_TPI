@@ -1,6 +1,7 @@
 #include <iostream>
 #include "obraSocialArchivo.h"
 #include "obrasSociales.h"
+
 using namespace std;
 
 /*void altaObraSocial(){
@@ -87,7 +88,7 @@ void modificarObraSocial(){
 
 
 }
-*/
+
 int contarObraSocial(){
     ObraSociales o;
     int contador = 0;
@@ -105,3 +106,29 @@ int contarObraSocial(){
 
 
 }
+*/
+int ObraSocialArchivo::getCantidadRegistros(){
+    int bytes;
+    int total;
+    FILE *p= fopen(_nombreArchivo,"rb");
+    if(p==nullptr){
+        return 0;
+    }
+
+    fseek(p,0,2);
+    bytes=ftell(p);
+    fclose(p);
+
+    total=bytes/sizeof(ObraSociales);
+
+    return total;
+
+
+}
+/*
+ObraSociales ObraSocialArchivo::leer(int pos)
+{
+
+}
+
+*/

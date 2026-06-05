@@ -1,13 +1,14 @@
 #pragma once
 #include "arancelArchivo.h"
 #include "arancel.h"
+#include "obraSocialArchivo.h"
 
 
 class arancelManager
 {
-    public:
-    void altaPaciente();
-    void bajaPaciente();
+public:
+    void altaArancel();
+    void bajaArancel();
     void modificarArancel();
     void listarAranceles();
     void mostrarArancel(Arancel reg);
@@ -17,8 +18,13 @@ class arancelManager
 
 
 private:
-    ArancelArchivo repoArancel;
+    ObraSocialArchivo _repoObrasocial;
+    ArancelArchivo _repoArancel;
     ArancelArchivo _archivoBkp = ArancelArchivo("aranceles.bkp");
+
+    int generarId();
+
+
 };
 
 

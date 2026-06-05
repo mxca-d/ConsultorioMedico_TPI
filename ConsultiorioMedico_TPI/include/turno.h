@@ -1,7 +1,9 @@
 #pragma once
 #include "fecha.h"
+//#include "turnosArchivo.h"
 
-class Turno{
+class Turno
+{
 private:
     int _idTurno;
     int _idPaciente;
@@ -12,8 +14,11 @@ private:
     bool _eliminado;
     float _costoConsulta;
 
+    //TurnoArchivo _repoTurno;
+
 public:
     Turno();
+    Turno (int idMedico, int dni, int turno,int idTurno);
     void setIdTurno(int id);
     void setIdPaciente(int id);
     void setIdMedico(int id);
@@ -31,6 +36,7 @@ public:
     bool getEliminado();
     Fecha getFechaTurno();
     float getCostoConsulta();
+
 
 
 

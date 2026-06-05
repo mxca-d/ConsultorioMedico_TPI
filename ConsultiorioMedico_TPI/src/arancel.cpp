@@ -5,13 +5,14 @@
 
 using namespace std;
 
-Arancel::Arancel(){
+Arancel::Arancel()
+{
 
     _idObraSocial = 0;
-     _idArancel = 0;
+    _idArancel = 0;
     strcpy( _especialidad, "N/A");
-     _precio = 0;
-     _eliminado = false;
+    _precio = 0;
+    _eliminado = false;
 
 }
 
@@ -37,18 +38,49 @@ void Arancel::mostrar(){
 
 }*/
 
-void Arancel::setIdArancel(int id){
-     _idArancel = id;
+void Arancel::setIdArancel(int id)
+{
+    _idArancel = id;
+}
+void Arancel::setIdObraSocial(int id)
+{
+    _idObraSocial = id;
 }
 
-void Arancel::setEliminado(bool eliminado){
-     _eliminado = eliminado;
+void Arancel::setEspecialidad(const char* especialidad)
+{
+    strcpy (_especialidad,especialidad);
+}
+
+void Arancel::setPrecio(float precio)
+{
+    _precio = precio;
+}
+
+void Arancel::setEliminado(bool eliminado)
+{
+    _eliminado = eliminado;
 }
 
 
 
-int Arancel::getIdArancel(){return  _idArancel;}
-    int Arancel::getIdObraSocial(){return  _idObraSocial;}
-    const char* Arancel::getEspecialidad(){return  _especialidad;}
-    float Arancel::getPrecio(){return  _precio;}
-    bool Arancel::getEliminado(){return  _eliminado;}
+int Arancel::getIdArancel()
+{
+    return  _idArancel;
+}
+int Arancel::getIdObraSocial()
+{
+    return  _idObraSocial;
+}
+const char* Arancel::getEspecialidad()
+{
+    return  _especialidad;
+}
+float Arancel::getPrecio()
+{
+    return  _precio;
+}
+bool Arancel::getEliminado()
+{
+    return  _eliminado;
+}
