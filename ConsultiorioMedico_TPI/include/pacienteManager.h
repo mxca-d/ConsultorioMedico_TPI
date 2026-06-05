@@ -4,7 +4,8 @@
 
 
 
-class PacienteManager{
+class PacienteManager
+{
 
 public:
     void altaPaciente();

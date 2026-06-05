@@ -8,9 +8,13 @@ public:
 
     void altaMedico();
     void bajaMedico();
-    void listarTodos();
+    void listarMedico(); //listarTodos();
     void listarXId();
     void mostrarMedico(Medicos medicos);
+    void listarMedicoPorApellido(); //
+    void listarMedicoEspecialidad();//
+    void listarMedicoPorEspecialidad();
+    //void buscarMedicoPorId();//
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
@@ -23,6 +27,13 @@ private:
 
     bool existeId(int id);
     int generarId();
+
+    struct Carga
+    {
+        const char* texto;
+        char* pDestino;
+        int tamanio;
+    };
 };
 
 

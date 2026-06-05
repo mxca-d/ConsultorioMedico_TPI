@@ -40,7 +40,7 @@ void PacienteManager::altaPaciente(){
     p.setNombre(nombre);
     p.setApellido(apellido);
     p.setFechaNacimiento(fechaNacimiento);
-    p.setDni(dni);
+//    p.setDni(dni);
     p.setObraSocial(obraSocial);
     p.setIdPaciente(repoPaciente.getCantidadRegistros()+1);
     p.setEliminado(false);
@@ -91,7 +91,8 @@ void PacienteManager::bajaPaciente(){
 
 
 void PacienteManager::modificarPaciente(){
-    char nombre[30], apellido[30], obraSocial[30],dni [12];
+    char nombre[30], apellido[30], obraSocial[30];
+    int dni;
     Fecha fechaNacimiento;
     bool fechaValida;
     int id, pos;
@@ -157,7 +158,7 @@ void PacienteManager::modificarPaciente(){
             break;
             case 4:
                 cout << "DNI: ";
-                cin.getline (dni, 12);
+                cin >> dni;
                 p.setDni(dni);
                 break;
             case 5:

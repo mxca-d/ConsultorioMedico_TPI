@@ -9,5 +9,5 @@ public:
    void ejecutarOpcion(int opcion);
 
 private:
-   turnoManager _managerTurno;
+   TurnoManager _managerTurno;
 };

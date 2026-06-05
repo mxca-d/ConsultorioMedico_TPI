@@ -16,13 +16,13 @@ ArancelArchivo::ArancelArchivo( const char* nombreArchivo){
 
 
 
-/*bool ArancelArchivo::guardar(Historial reg){
+bool ArancelArchivo::guardar(Arancel *vec, int cantidadRegistrosAEscribir){
     FILE *p = fopen(_nombreArchivo, "ab");
     if(p==nullptr){
         return false;
     }
 
-    bool pudoEscribir= fwrite(&reg,sizeof(Arancel),1,p);
+    bool pudoEscribir= fwrite(&vec,sizeof(Arancel),1,p);
     fclose(p);
 
     return pudoEscribir;
@@ -51,7 +51,7 @@ Arancel ArancelArchivo::leer(int pos){
 
 }
 
-*/
+
 int ArancelArchivo::getCantidadRegistros(){
     int bytes;
     int total;
@@ -72,7 +72,7 @@ int ArancelArchivo::getCantidadRegistros(){
 }
 
 
-/*bool ArancelArchivo::modificar(Arancel reg, int pos){
+bool ArancelArchivo::modificar(Arancel reg, int pos){
 
     FILE *p = fopen(_nombreArchivo, "rb+");
 
@@ -85,11 +85,59 @@ int ArancelArchivo::getCantidadRegistros(){
     fclose(p);
     return pudoEscribir;
 }
+bool ArancelArchivo::guardar(Arancel reg)
+{
+    FILE *p = fopen(_nombreArchivo, "ab");
 
-*/
+    if (p == NULL)
+    {
+        return false;
+    }
 
+    bool pudoEscribir = fwrite(&reg, sizeof(Arancel), 1, p);
+    fclose(p);
+    return pudoEscribir;
+}
 
-/*void altaArancel(){
+int ArancelArchivo::buscarPorId(int id)
+{
+    Arancel aux;
+    int cantidadRegistros = getCantidadRegistros();
+
+    for(int i=0; i<cantidadRegistros; i++)
+    {
+        aux = leer(i);
+        if (aux.getIdArancel() == id && aux.getEliminado()==false)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+void ArancelArchivo::leer(Arancel *vec, int cantidadRegistrosALeer)
+{
+    FILE *p = fopen(_nombreArchivo, "rb");
+    if (p == NULL)
+    {
+        return ;
+    }
+
+    fread(vec, sizeof(Arancel), cantidadRegistrosALeer, p);
+    fclose(p);
+}
+void ArancelArchivo::vaciar()
+{
+    FILE *p = fopen(_nombreArchivo, "wb");
+    if (p == NULL)
+    {
+        return ;
+    }
+    fclose(p);
+}
+
+/*
+
+void altaArancel(){
   Arancel a;
     a.cargar();
     int nuevoId = contarArancel() + 1;

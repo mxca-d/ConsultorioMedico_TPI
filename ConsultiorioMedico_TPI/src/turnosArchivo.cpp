@@ -108,30 +108,7 @@ void bajaTurno(){
 
 }
 
-void modificarTurno(){
-    Turno t;
-    int id;
-    cout << "Ingrese el id del turno: " << endl;
-    cin >> id;
 
-    FILE* archivo = fopen("Turnos.dat", "r+b");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&t, sizeof(t), 1, archivo) == 1){
-        if(t.getIdTurno() == id){
-            t.cargar();
-            fseek(archivo, -sizeof(t), SEEK_CUR);
-            fwrite(&t, sizeof(t), 1, archivo);
-            break;
-        }
-    }
-    fclose(archivo);
-
-
-}
-*/
 int contarTurnos(){
     Turno t;
     int contador = 0;
@@ -181,4 +158,144 @@ void cambiarEstadoTurno(){
     }
     fclose(archivo);
 
+} */
+
+
+TurnoArchivo::TurnoArchivo()
+{
+    strcpy(_nombreArchivo,"turnos.dat");
 }
+
+TurnoArchivo:: TurnoArchivo(const char* nombre)
+{
+    strcpy(_nombreArchivo,nombre);
+}
+
+int TurnoArchivo::getCantidadRegistros()//
+{
+    FILE *p = fopen(_nombreArchivo, "rb");
+
+    if (p == NULL)
+    {
+        return 0;
+    }
+
+    fseek(p, 0, SEEK_END);
+    int bytes = ftell(p);
+    fclose(p);
+
+    return bytes / sizeof(Turno);
+}
+
+bool TurnoArchivo::guardar(Turno reg)
+{
+    FILE *p = fopen(_nombreArchivo, "ab");
+
+    if (p == NULL)
+    {
+        return false;
+    }
+
+    bool pudoEscribir = fwrite(&reg, sizeof(Turno), 1, p);
+    fclose(p);
+    return pudoEscribir;
+}
+
+bool TurnoArchivo::modificar(Turno reg, int posicionAReemplazar)
+{
+    FILE *p = fopen(_nombreArchivo, "rb+");
+
+    if (p == NULL)
+    {
+        return false;
+    }
+
+    fseek(p, posicionAReemplazar * sizeof(Turno), SEEK_SET);
+    bool pudoEscribir = fwrite(&reg, sizeof(Turno), 1, p);
+    fclose(p);
+    return pudoEscribir;
+}
+
+bool TurnoArchivo::guardar(Turno *vec, int cantidadRegistrosAEscribir)
+{
+    FILE *p = fopen(_nombreArchivo, "ab");
+    if (p == NULL)
+    {
+        return false;
+    }
+
+    int cantidadRegistrosEscritos = fwrite(vec, sizeof(Turno), cantidadRegistrosAEscribir, p);
+    fclose(p);
+    return cantidadRegistrosEscritos == cantidadRegistrosAEscribir;
+}
+
+
+Turno TurnoArchivo::leer(int pos)
+{
+    Turno aux;
+    FILE *p = fopen(_nombreArchivo, "rb");
+    if (p == NULL)
+    {
+        return aux;
+    }
+
+    fseek(p, pos * sizeof(Turno), SEEK_SET);
+    fread(&aux, sizeof(Turno), 1, p);
+    fclose(p);
+    return aux;
+}
+
+void TurnoArchivo::leer(Turno *vec, int cantidadRegistrosALeer)
+{
+    FILE *p = fopen(_nombreArchivo, "rb");
+    if (p == NULL)
+    {
+        return ;
+    }
+
+    fread(vec, sizeof(Turno), cantidadRegistrosALeer, p);
+    fclose(p);
+}
+
+int TurnoArchivo::buscarPorId(int id)
+{
+    Turno aux;
+    int cantidadRegistros = getCantidadRegistros();
+
+    for(int i=0; i<cantidadRegistros; i++)
+    {
+        aux = leer(i);
+        if (aux.getIdTurno() == id && aux.getEliminado()==false)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int TurnoArchivo::buscarPorDni(int dni)
+{
+    Turno aux;
+    int cantidadRegistros = getCantidadRegistros();
+
+    for(int i=0; i<cantidadRegistros; i++)
+    {
+        aux = leer(i);
+        if (aux.getDniPaciente() == dni && aux.getEliminado()==false && aux.getEstado() == "PENDIENTE")
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void TurnoArchivo::vaciar()
+{
+    FILE *p = fopen(_nombreArchivo, "wb");
+    if (p == NULL)
+    {
+        return ;
+    }
+    fclose(p);
+}
+
