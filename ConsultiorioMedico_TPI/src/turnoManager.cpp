@@ -174,7 +174,7 @@ void TurnoManager::cancelarTurno()
 void TurnoManager::mostrarTurno(Turno turno)
 {
     cout << "+-----------------------------------------------------" << endl;
-    cout << "hola"
+    cout << "hola, como estas"
 }
 /*
 void TurnoManager::atenderTurno()
