@@ -6,37 +6,34 @@ using namespace std;
 
 ObraSociales::ObraSociales(){
 
-    IdObraSocial = 0;
-    strcpy(nombre, "N/A");
-    eliminado = false;
+    _idObraSocial = 0;
+    strcpy(_nombre, "N/A");
+    _eliminado = false;
 
 }
 
-void ObraSociales::cargar(){
-
-    cout << "Nombre de la obra social: ";
-    cin.getline(nombre, 30);
 
 
-}
-
-void ObraSociales::mostrar(){
-    cout<< "Obra social: " << nombre<<endl;
+void ObraSociales::setIdObraSocial(int id){
+    _idObraSocial = id;
 
 }
 
-void ObraSociales::setIdObraSocial(int idos){
-    IdObraSocial = idos;
+void ObraSociales::setEliminado(bool eliminado){
+    _eliminado = eliminado;
 
 }
 
-void ObraSociales::setEliminado(bool e){
-    eliminado = e;
+void ObraSociales::setNombre(const char *nombre){
+
+    strcpy(_nombre,nombre);
 
 }
-const char* ObraSociales::getNombre(){return nombre;}
-bool ObraSociales::getEliminado(){return eliminado;}
-int ObraSociales::getIdObraSocial(){return IdObraSocial;}
+
+
+const char* ObraSociales::getNombre(){return _nombre;}
+bool ObraSociales::getEliminado(){return _eliminado;}
+int ObraSociales::getIdObraSocial(){return _idObraSocial;}
 
 
 

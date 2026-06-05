@@ -99,7 +99,11 @@
 
 1779376694 D
 
+<<<<<<< Updated upstream
 1779661237 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancel.cpp
+=======
+1780578053 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancel.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"arancel.h"
@@ -107,7 +111,11 @@
 
 1779661267 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancel.h
 
+<<<<<<< Updated upstream
 1779660155 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialarchivo.h
+=======
+1780678907 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialarchivo.h
+>>>>>>> Stashed changes
 	"obrasSociales.h"
 
 1779661498 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelarchivo.cpp
@@ -119,14 +127,23 @@
 1779661459 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelarchivo.h
 	"arancel.h"
 
+<<<<<<< Updated upstream
 1779661625 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialarchivo.cpp
+=======
+1780678944 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialarchivo.cpp
+>>>>>>> Stashed changes
 	<iostream>
+	<cstring>
 	"obraSocialArchivo.h"
 	"obrasSociales.h"
 
+<<<<<<< Updated upstream
 1779299294 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrassociales.h
+=======
+1780679086 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrassociales.h
+>>>>>>> Stashed changes
 
-1779301158 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrassociales.cpp
+1780679086 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrassociales.cpp
 	<iostream>
 	<cstring>
 	"obrasSociales.h"
@@ -153,15 +170,22 @@
 
 1779662531 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menu.h
 
+<<<<<<< Updated upstream
 1779401016 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientearchivo.h
 	"paciente.h"
 
 1779659819 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\paciente.h
+=======
+1780670514 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientearchivo.h
+	"paciente.h"
+
+1780670514 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\paciente.h
+>>>>>>> Stashed changes
 	"fecha.h"
 
 1779401016 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnosarchivo.h
 
-1779659819 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
+1780670514 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
 	<iostream>
 	<cstring>
 	"paciente.h"
@@ -176,7 +200,7 @@
 	"arancel.h"
 	"medicos.h"
 
-1779401016 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
+1780670514 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
 	<iostream>
 	"paciente.h"
 	"PacienteArchivo.h"
@@ -187,7 +211,11 @@
 	<cstdio>
 	"PacienteManager.h"
 
+<<<<<<< Updated upstream
 1779401016 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientemanager.h
+=======
+1780670514 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientemanager.h
+>>>>>>> Stashed changes
 	"paciente.h"
 	"pacienteArchivo.h"
 

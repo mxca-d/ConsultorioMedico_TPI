@@ -16,7 +16,7 @@ public:
 
     bool guardar(ObraSociales*vec, int cantidadRegistrosAEscribir);
     void leer(ObraSociales *vec, int cantidadRegistrosALeer);
-     void vaciar();
+    void vaciar();
 
 private:
     char _nombreArchivo[30];

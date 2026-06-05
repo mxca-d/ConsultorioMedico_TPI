@@ -3,21 +3,19 @@
 class ObraSociales{
 
 private:
-    int IdObraSocial;
-    char nombre[30];
-    bool eliminado;
+    int _idObraSocial;
+    char _nombre[30];
+    bool _eliminado;
 
 public:
     ObraSociales();
-    void setIdObraSocial(int idos);
-    void setEliminado(bool e);
-    void cargar();
-    void mostrar();
+    void setIdObraSocial(int id);
+    void setEliminado(bool eliminado);
+    void setNombre(const char *nombre);
 
     const char* getNombre();
     int getIdObraSocial();
     bool getEliminado();
-    //hola
 
 
 };
