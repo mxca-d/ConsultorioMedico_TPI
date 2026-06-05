@@ -1,16 +1,35 @@
-#ifndef TURNOMANAGER_H
-#define TURNOMANAGER_H
+#pragma once
+#include "turno.h"
+#include "turnosArchivo.h"
+#include "pacienteArchivo.h"
+#include "medicosArchivo.h"
 
-
-class turnoManager
+class TurnoManager
 {
-    public:
-        turnoManager();
-        virtual ~turnoManager();
 
-    protected:
+public:
+    void altaTurno();
+    //void bajaTurno();
+    void cancelarTurno();
+    void atenderTurno();
+    void modificarTurno();
+    void listarTurnos();
+    void mostrarTurno(Turno reg);
+    void listarPorPaciente();
+    void listarPorMedico();
+    void listarPorEstado();
+    void listarPorFecha();
+    void listarPorRangoFechas();
+    void listarXId();
+    void hacerCopiaDeSeguridad();
+    void restaurarCopiaDeSeguridad();
 
-    private:
+
+private:
+    TurnoArchivo _repoTurno;
+    TurnoArchivo _archivoBkp = TurnoArchivo("Turno.bkp");
+    PacienteArchivo _repoPaciente;
+    MedicosArchivos _repoMedico;
+
+
 };
-
-#endif // TURNOMANAGER_H

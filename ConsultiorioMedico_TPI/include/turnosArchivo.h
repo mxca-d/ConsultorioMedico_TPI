@@ -1,10 +1,27 @@
 #pragma once
+#include "turno.h"
 
-void altaTurno();
-void bajaTurno();
-void modificarTurno();
-void listarTurnos();
-void cambiarEstadoTurno();
-int contarTurnos();
+class TurnoArchivo
+{
+
+
+public:
+    TurnoArchivo();
+    TurnoArchivo(const char* nombre);
+
+    bool guardar(Turno reg);
+    int getCantidadRegistros();
+    Turno leer(int pos);
+    bool modificar(Turno reg, int pos);
+    int buscarPorId(int id);
+
+    bool guardar(Turno*vec, int cantidadRegistrosAEscribir);
+    void leer(Turno *vec, int cantidadRegistrosALeer);
+    void vaciar();
+
+private:
+    char _nombreArchivo[30];
+
+};
 
 

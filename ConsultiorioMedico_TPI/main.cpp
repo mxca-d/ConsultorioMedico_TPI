@@ -1,9 +1,12 @@
 #include <iostream>
+#include "medicosManager.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
-    return 0;
+    MedicosManager medico;
+
+    medico.altaMedico()
+;    return 0;
 }

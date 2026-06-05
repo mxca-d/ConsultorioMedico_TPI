@@ -7,7 +7,7 @@ using namespace std;
 Paciente::Paciente(){
     strcpy(_nombre, "N/A");
     strcpy(_apellido, "N/A");
-    strcpy(_dni, "N/A");
+    int _dni = 0;
     strcpy(_obraSocial, "N/A");
     _idPaciente = 0;
     _eliminado = false;
@@ -40,8 +40,8 @@ void Paciente::setApellido(const char* apellido){
 }
 
 
-void Paciente::setDni(const char* dni){
-    strcpy(_dni,dni);
+void Paciente::setDni(int dni){
+    _dni = dni;
 }
 
 
@@ -54,8 +54,9 @@ void Paciente::setFechaNacimiento(Fecha fecha){
 }
 const char* Paciente::getNombre(){return _nombre;}
 const char* Paciente::getApellido(){return _apellido;}
-const char* Paciente::getDni(){return _dni;}
+//const char* Paciente::getDni(){return _dni;}
 const char* Paciente::getObraSocial(){return _obraSocial;}
+int Paciente::getDni(){return _dni;}
 int Paciente::getIdPaciente(){return _idPaciente;}
 int Paciente::getIdObraSocial(){return _idObraSocial;}
 bool Paciente::getEliminado(){return _eliminado;}
