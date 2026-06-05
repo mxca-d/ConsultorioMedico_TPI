@@ -3,6 +3,7 @@
 #include "turnosArchivo.h"
 #include "pacienteArchivo.h"
 #include "medicosArchivo.h"
+#include "historialArchivo.h"
 
 class TurnoManager
 {
@@ -30,6 +31,7 @@ private:
     TurnoArchivo _archivoBkp = TurnoArchivo("Turno.bkp");
     PacienteArchivo _repoPaciente;
     MedicosArchivos _repoMedico;
+    historialArchivo _repoHistorial;
 
 
 };

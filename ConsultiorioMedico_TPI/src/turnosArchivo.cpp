@@ -108,29 +108,6 @@ void bajaTurno(){
 
 }
 
-void modificarTurno(){
-    Turno t;
-    int id;
-    cout << "Ingrese el id del turno: " << endl;
-    cin >> id;
-
-    FILE* archivo = fopen("Turnos.dat", "r+b");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&t, sizeof(t), 1, archivo) == 1){
-        if(t.getIdTurno() == id){
-            t.cargar();
-            fseek(archivo, -sizeof(t), SEEK_CUR);
-            fwrite(&t, sizeof(t), 1, archivo);
-            break;
-        }
-    }
-    fclose(archivo);
-
-
-}
 
 int contarTurnos(){
     Turno t;
@@ -207,7 +184,7 @@ int TurnoArchivo::getCantidadRegistros()//
     int bytes = ftell(p);
     fclose(p);
 
-    return bytes / sizeof(Medicos);
+    return bytes / sizeof(Turno);
 }
 
 bool TurnoArchivo::guardar(Turno reg)
@@ -289,6 +266,22 @@ int TurnoArchivo::buscarPorId(int id)
     {
         aux = leer(i);
         if (aux.getIdTurno() == id && aux.getEliminado()==false)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int TurnoArchivo::buscarPorDni(int dni)
+{
+    Turno aux;
+    int cantidadRegistros = getCantidadRegistros();
+
+    for(int i=0; i<cantidadRegistros; i++)
+    {
+        aux = leer(i);
+        if (aux.getDniPaciente() == dni && aux.getEliminado()==false && aux.getEstado() == "PENDIENTE")
         {
             return i;
         }

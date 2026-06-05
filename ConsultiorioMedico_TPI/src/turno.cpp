@@ -10,18 +10,20 @@ Turno::Turno()
     _idTurno = 0;
     _idMedico = 0;
     _idPaciente = 0;
+    _dniPaciente = 0;
     strcpy (_hora, "N/A");
     strcpy (_estado, "N/A");
     _eliminado = false;
 
 }
 
-Turno::Turno (int idMedico, int dni, int turno,int idTurno)
+Turno::Turno (int idMedico, int dni, int turno,int idTurno, int idPaciente)
 {
 
     _idTurno = idTurno;
     _idMedico = idMedico;
-    _idPaciente = dni;
+    _idPaciente = idPaciente;
+    _dniPaciente = dni;
     strcpy (_estado, "PENDIENTE");
     _eliminado = false;
 }
@@ -41,6 +43,12 @@ void Turno::setIdTurno(int id)
 void Turno::setIdPaciente(int id)
 {
     _idPaciente=id;
+
+}
+
+void Turno::setDniPaciente(int dni)
+{
+    _dniPaciente=dni;
 
 }
 
@@ -106,6 +114,11 @@ int Turno::getIdTurno()
 int Turno::getIdPaciente()
 {
     return _idPaciente;
+}
+
+int Turno::getDniPaciente()
+{
+    return _dniPaciente;
 }
 int Turno::getIdMedico()
 {
