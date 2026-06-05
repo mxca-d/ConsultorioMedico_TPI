@@ -7,6 +7,7 @@ class Turno
 private:
     int _idTurno;
     int _idPaciente;
+    int _dniPaciente;
     int _idMedico;
     Fecha _fechaTurno;
     char _hora[6]; //agregue un espacio mas por los :
@@ -18,9 +19,10 @@ private:
 
 public:
     Turno();
-    Turno (int idMedico, int dni, int turno,int idTurno);
+    Turno (int idMedico, int dni, int turno,int idTurno,int idPaciente);
     void setIdTurno(int id);
     void setIdPaciente(int id);
+    void setDniPaciente(int dni);
     void setIdMedico(int id);
     void setFechaTurno(Fecha fecha);
     void setHora(const char* hora);
@@ -32,6 +34,7 @@ public:
     const char* getEstado();
     int getIdTurno();
     int getIdPaciente();
+    int getDniPaciente();
     int getIdMedico();
     bool getEliminado();
     Fecha getFechaTurno();
