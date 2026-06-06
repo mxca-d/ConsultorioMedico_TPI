@@ -110,6 +110,31 @@ bool validacionCaracteres (const char* cadena)
 
 
 }
+
+bool validacionCaracteres (const char* cadena, int tamanio)
+{
+
+    int caracteres = strlen (cadena);
+
+    if (caracteres == 0)
+    {
+        cout << ">> Error: no puede quedar vacio.\n" << endl;
+        return false;
+    }
+    else if (caracteres <= tamanio && caracteres > 2)
+    {
+        return true;
+    }
+    else
+    {
+        cout << "Fuera de rango, recuerde ingresar hasta " << tamanio<< "caracteres..." << endl;
+        cin.clear();
+        cin.ignore(30, '\n');
+        return false;
+    }
+
+
+}
 bool validacionCaracteres (int num)
 {
 

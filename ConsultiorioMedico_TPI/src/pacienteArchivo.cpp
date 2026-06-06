@@ -33,7 +33,7 @@ bool PacienteArchivo::modificar(Paciente reg, int pos){
 }
 
 
-int PacienteArchivo::buscarPorId(int id){
+int PacienteArchivo::buscarPorDni(const char* dni){
     Paciente reg;
 
     int cantidad= getCantidadRegistros();
@@ -41,7 +41,7 @@ int PacienteArchivo::buscarPorId(int id){
     for(int i=0;i<cantidad;i++){
         reg= leer(i);
 
-        if(reg.getEliminado()==false && reg.getIdPaciente()==id){
+        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni)==0){
             return i;
         }
 
@@ -50,6 +50,7 @@ int PacienteArchivo::buscarPorId(int id){
     return -1;
 
 }
+/*
 bool PacienteArchivo::buscarCoincidenciaId(int id){
     Paciente reg;
 
@@ -58,7 +59,7 @@ bool PacienteArchivo::buscarCoincidenciaId(int id){
     for(int i=0;i<cantidad;i++){
         reg= leer(i);
 
-        if(reg.getEliminado()==false && reg.getIdPaciente()==id){
+        if(reg.getEliminado()==false && reg.get()==id){
             return true;
         }
 
@@ -66,9 +67,9 @@ bool PacienteArchivo::buscarCoincidenciaId(int id){
 
     return false;
 
-}
+}*/
 
-bool PacienteArchivo::buscarPorDni(int dni){
+bool PacienteArchivo::buscarCoincidenciaDni(const char* dni){
     Paciente reg;
 
     int cantidad= getCantidadRegistros();
@@ -76,7 +77,7 @@ bool PacienteArchivo::buscarPorDni(int dni){
     for(int i=0;i<cantidad;i++){
         reg= leer(i);
 
-        if(reg.getEliminado()==false && reg.getDni()==dni){
+        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni) ==0){
             return true;
         }
 

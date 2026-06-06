@@ -13,6 +13,7 @@ public:
     Medicos leer(int pos);
     bool modificar(Medicos reg, int pos);
     int buscarPorId(int id);
+    bool buscarCoincidenciaId(int id);
 
     bool guardar(Medicos *vec, int cantidadRegistrosAEscribir);
     void leer(Medicos *vec, int cantidadRegistrosALeer);

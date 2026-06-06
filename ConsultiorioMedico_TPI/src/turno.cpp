@@ -10,7 +10,7 @@ Turno::Turno()
     _idTurno = 0;
     _idMedico = 0;
     _idPaciente = 0;
-    _dniPaciente = 0;
+    strcpy (_dniPaciente, "N/A");
     strcpy (_hora, "N/A");
     strcpy (_estado, "N/A");
     _eliminado = false;
@@ -23,7 +23,7 @@ Turno::Turno (int idMedico, int dni, int turno,int idTurno, int idPaciente)
     _idTurno = idTurno;
     _idMedico = idMedico;
     _idPaciente = idPaciente;
-    _dniPaciente = dni;
+    strcpy (_dniPaciente, "N/A");
     strcpy (_estado, "PENDIENTE");
     _eliminado = false;
 }
@@ -46,9 +46,9 @@ void Turno::setIdPaciente(int id)
 
 }
 
-void Turno::setDniPaciente(int dni)
+void Turno::setDniPaciente(const char* dni)
 {
-    _dniPaciente=dni;
+    strcpy(_dniPaciente,dni);
 
 }
 
@@ -116,7 +116,7 @@ int Turno::getIdPaciente()
     return _idPaciente;
 }
 
-int Turno::getDniPaciente()
+const char* Turno::getDniPaciente()
 {
     return _dniPaciente;
 }
@@ -131,4 +131,14 @@ bool Turno::getEliminado()
 float Turno::getCostoConsulta()
 {
     return _costoConsulta;
+}
+Fecha Turno::getFechaTurno()
+{
+    return _fechaTurno;
+}
+
+int Turno::getFechaint()
+{
+    int fecha = _fechaTurno.getAnio()*10000 + _fechaTurno.getMes() * 100 + _fechaTurno.getDia();
+    return fecha;
 }

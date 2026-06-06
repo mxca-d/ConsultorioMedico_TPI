@@ -114,6 +114,24 @@ int MedicosArchivos::buscarPorId(int id)
     return -1;
 }
 
+bool MedicosArchivos::buscarCoincidenciaId(int id){
+    Medicos reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0;i<cantidad;i++){
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && reg.getIdMedico()==id){
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
 void MedicosArchivos::vaciar()
 {
     FILE *p = fopen(_nombreArchivo, "wb");

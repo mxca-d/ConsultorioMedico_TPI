@@ -12,9 +12,9 @@ public:
     int getCantidadRegistros();
     Paciente leer(int pos);
     bool modificar(Paciente reg, int pos);
-    int buscarPorId(int id);
+    int buscarPorDni(const char* dni);
     bool buscarCoincidenciaId(int id);
-    bool buscarPorDni(int dni);
+    bool buscarCoincidenciaDni(const char* dni);
 
     bool guardar(Paciente*vec, int cantidadRegistrosAEscribir);
     void leer(Paciente *vec, int cantidadRegistrosALeer);

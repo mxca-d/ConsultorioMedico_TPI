@@ -12,8 +12,8 @@ using namespace std;
 void TurnoManager::altaTurno()
 {
 
-    char hora[6],estado[15];
-    int dniPaciente, idTurno, idMedico;
+    char hora[6],dniPaciente[8],estado[15];
+    int  idTurno, idMedico;
     float costoConsulta;
     Fecha f;
     bool valido;
@@ -32,12 +32,15 @@ void TurnoManager::altaTurno()
     {
 
         cout << "DNI paciente:  ";
-        cin >> dniPaciente;
+        controlBufferEnter();
+        cin.getline(dniPaciente,8);
 
-        if (cancelacionUsuario(dniPaciente) )
+
+        if (cancelacionUsuario(dniPaciente) && validacionCaracteres (dniPaciente,8))
         {
             return;
         }
+
 
         if (_repoPaciente.buscarPorDni(dniPaciente) && validacionCaracteres (dniPaciente))
         {
@@ -62,7 +65,7 @@ void TurnoManager::altaTurno()
             return;
         }
 
-        if (_repoPaciente.buscarCoincidenciaId(idMedico) && validacionCaracteres (idMedico))
+        if (_repoMedico.buscarCoincidenciaId(idMedico) && validacionCaracteres (idMedico))
         {
             valido = true;
         }
@@ -99,23 +102,26 @@ void TurnoManager::altaTurno()
 
 void TurnoManager::cancelarTurno()
 {
-    Turno reg;
+    Turno turno;
     bool guardar = false,
          bandDNI = false;
-    int dni,id, pos, opcion;
+    char dni[8];
+    int  pos, opcion;
 
     do
     {
 
         cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
         cout << "INGRESE DNI DEL PACIENTE: ";
-        cin>>dni;
-        cout << endl;
+        controlBufferEnter();
+        cin.getline(dni,8);
 
-        if (dni ==0)
+
+        if (cancelacionUsuario(dni) && validacionCaracteres (dni,8))
         {
             return;
         }
+
 
 
         pos = _repoTurno.buscarPorDni (dni);
@@ -127,9 +133,9 @@ void TurnoManager::cancelarTurno()
         else
         {
             bandDNI = true;
-            reg= _repoTurno.leer(pos);
+            turno = _repoTurno.leer(pos);
 
-            mostrarTurno (reg);
+            mostrarTurno (turno);
 
             do
             {
@@ -140,9 +146,9 @@ void TurnoManager::cancelarTurno()
 
                 if (opcion == 1)
                 {
-                    reg.setEliminado(true);
-                    reg.setEstado ("CANCELADO");
-                    bool eliminado=_repoTurno.modificar(reg,pos);
+                    turno.setEliminado(true);
+                    turno.setEstado ("CANCELADO");
+                    bool eliminado= _repoTurno.modificar(turno,pos);
 
                     if(eliminado)
                     {
@@ -173,8 +179,263 @@ void TurnoManager::cancelarTurno()
 
 void TurnoManager::mostrarTurno(Turno turno)
 {
-    cout << "+-----------------------------------------------------" << endl;
-    cout << "hola, como estas"
+    Paciente paciente;
+    Medicos medico;
+
+    int posPac, posMedico;
+
+    posPac = _repoPaciente.buscarPorDni(turno.getDniPaciente());
+    paciente = _repoPaciente.leer(posPac);
+
+    posMedico = _repoMedico.buscarPorId(turno.getIdMedico());
+    medico = _repoMedico.leer(posMedico);
+
+    cout << "+-----------------------------------------------------+" << endl;
+    cout << "PACIENTE: " << paciente.getApellido() << ", "<< paciente.getNombre() << endl;
+    cout << "DNI: " << turno.getDniPaciente() << endl;
+    cout << "MEDICO: " << medico.getApellido() << ", " << medico.getNombre() << endl;
+    cout << "FECHA: " << endl; // completar
+    cout << "ESTADO: "<< turno.getEstado() << endl;
+    cout << "COSTO: " << endl; // completar
+    cout << "+-----------------------------------------------------+" << endl;
+
+}
+
+void TurnoManager::listarTurnos()
+{
+    int cantidad= _repoTurno.getCantidadRegistros();
+    Turno reg;
+    for(int i=0; i<cantidad; i++)
+    {
+        reg= _repoTurno.leer(i);
+
+        if(reg.getEliminado()==false)
+        {
+
+            mostrarTurno(reg);
+            cout << endl;
+        }
+
+    }
+
+}
+
+/*
+void TurnoManager::listarPorPaciente()
+{
+    int cantidadRegistros = _repoTurno.getCantidadRegistros();
+    Turno *vec = new Medicos[cantidadRegistros];
+    Turno aux;
+
+
+    if (vec == nullptr)
+    {
+        cout << "Falla asignacion de memoria" << endl;
+        return;
+    }
+    _repoTurno.leer(vec, cantidadRegistros);
+
+
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+        for (int x=0; x<cantidadRegistros -1; x++)
+        {
+
+            if (strcmp (vec[x].getApellido(), vec[x+1].getApellido())> 0 ||
+                    (strcmp(vec[x].getApellido(), vec[x+1].getApellido()) == 0
+                     && strcmp(vec[x].getNombre(), vec[x+1].getNombre()) > 0))
+            {
+                aux = vec[x];
+                vec [x] = vec[x+1];
+                vec[x+1]= aux;
+            }
+        }
+    }
+
+    cout <<               "Turno listados por apellido"                << endl;
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+
+        mostrarTurno(vec[i]);
+
+        cout << "---------------------------------------------------------------"<< endl;
+    }
+
+    delete []vec;
+*/
+
+void TurnoManager::listarPorPaciente()
+{
+    int cantidadRegistros = _repoTurno.getCantidadRegistros();
+    Turno *vec = new Turno[cantidadRegistros];
+    Turno aux;
+
+
+    if (vec == nullptr)
+    {
+        cout << "Falla asignacion de memoria" << endl;
+        return;
+    }
+    _repoTurno.leer(vec, cantidadRegistros);
+
+
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+        for (int x=0; x<cantidadRegistros -1; x++)
+        {
+
+            if (strcmp (vec[x].getDniPaciente(), vec[x+1].getDniPaciente())> 0 )
+            {
+                aux = vec[x];
+                vec [x] = vec[x+1];
+                vec[x+1]= aux;
+            }
+        }
+    }
+
+    cout <<               "Turno listados por paciente"                << endl;
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+
+        mostrarTurno(vec[i]);
+
+        cout << "---------------------------------------------------------------"<< endl;
+    }
+
+    delete []vec;
+}
+
+void TurnoManager::listarPorMedico()
+{
+    int cantidadRegistros = _repoTurno.getCantidadRegistros();
+    Turno *vec = new Turno[cantidadRegistros];
+    Turno aux;
+
+
+    if (vec == nullptr)
+    {
+        cout << "Falla asignacion de memoria" << endl;
+        return;
+    }
+    _repoTurno.leer(vec, cantidadRegistros);
+
+
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+        for (int x=0; x<cantidadRegistros -1; x++)
+        {
+
+            if (vec[x].getIdMedico() > vec[x+1].getIdMedico())
+            {
+                aux = vec[x];
+                vec [x] = vec[x+1];
+                vec[x+1]= aux;
+            }
+        }
+    }
+
+    cout <<               "Turno listados por Medico"                << endl;
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+
+        mostrarTurno(vec[i]);
+
+        cout << "---------------------------------------------------------------"<< endl;
+    }
+
+    delete []vec;
+}
+
+void TurnoManager::listarPorEstado()
+{
+    int cantidadRegistros = _repoTurno.getCantidadRegistros();
+    Turno *vec = new Turno[cantidadRegistros];
+    Turno aux;
+
+
+    if (vec == nullptr)
+    {
+        cout << "Falla asignacion de memoria" << endl;
+        return;
+    }
+    _repoTurno.leer(vec, cantidadRegistros);
+
+
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+        for (int x=0; x<cantidadRegistros -1; x++)
+        {
+
+            if (strcmp (vec[x].getEstado(), vec[x+1].getEstado())> 0 )
+            {
+                aux = vec[x];
+                vec [x] = vec[x+1];
+                vec[x+1]= aux;
+            }
+        }
+    }
+
+    cout <<               "Turno listados por estado"                << endl;
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+
+        mostrarTurno(vec[i]);
+
+        cout << "---------------------------------------------------------------"<< endl;
+    }
+
+    delete []vec;
+}
+
+void TurnoManager::listarPorFecha()
+{
+    int cantidadRegistros = _repoTurno.getCantidadRegistros();
+    Turno *vec = new Turno[cantidadRegistros];
+    Turno aux;
+
+
+    if (vec == nullptr)
+    {
+        cout << "Falla asignacion de memoria" << endl;
+        return;
+    }
+    _repoTurno.leer(vec, cantidadRegistros);
+
+
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+        for (int x=0; x<cantidadRegistros -1; x++)
+        {
+
+            if (vec[x].getFechaint() > vec[x+1].getFechaint())
+            {
+                aux = vec[x];
+                vec [x] = vec[x+1];
+                vec[x+1]= aux;
+            }
+        }
+    }
+
+    cout <<               "Turno listados por Fecha"                << endl;
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+
+        mostrarTurno(vec[i]);
+
+        cout << "---------------------------------------------------------------"<< endl;
+    }
+
+    delete []vec;
 }
 /*
 void TurnoManager::atenderTurno()

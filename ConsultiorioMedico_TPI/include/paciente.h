@@ -6,8 +6,8 @@ private:
     char _nombre[30];
     char _apellido[30];
     char _obraSocial[30];
-    int _dni;
-    int _idPaciente;
+    char _dni[8];
+
     int _idObraSocial;
     Fecha _fechaNacimiento;
     bool _eliminado;
@@ -20,16 +20,16 @@ public:
 
     void setNombre(const char* nombre);
     void setApellido(const char* apellido);
-    void setDni(int dni);
+    void setDni(const char* dni);
     void setObraSocial(const char* obraSocial);
     void setFechaNacimiento(Fecha fecha);
 
 
     const char* getNombre();
     const char* getApellido();
-    //const char* getDni();
+    const char* getDni();
     const char* getObraSocial();
-    int getDni();
+
     int getIdPaciente();
     int getIdObraSocial();
     bool getEliminado();

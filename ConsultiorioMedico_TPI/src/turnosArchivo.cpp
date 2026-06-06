@@ -273,7 +273,7 @@ int TurnoArchivo::buscarPorId(int id)
     return -1;
 }
 
-int TurnoArchivo::buscarPorDni(int dni)
+int TurnoArchivo::buscarPorDni(const char* dni)
 {
     Turno aux;
     int cantidadRegistros = getCantidadRegistros();
@@ -281,7 +281,7 @@ int TurnoArchivo::buscarPorDni(int dni)
     for(int i=0; i<cantidadRegistros; i++)
     {
         aux = leer(i);
-        if (aux.getDniPaciente() == dni && aux.getEliminado()==false && aux.getEstado() == "PENDIENTE")
+        if (strcmp (aux.getDniPaciente(), dni) == 0 && aux.getEliminado()==false && aux.getEstado() == "PENDIENTE")
         {
             return i;
         }

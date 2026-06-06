@@ -7,7 +7,7 @@ using namespace std;
 
 
 void PacienteManager::altaPaciente(){
-    char nombre[30], apellido[30], obraSocial[30],dni [12];
+    char nombre[30], apellido[30], obraSocial[30],dni [8];
     Fecha fechaNacimiento;
     bool fechaValida;
 
@@ -32,7 +32,7 @@ void PacienteManager::altaPaciente(){
     }while(!fechaValida);
     cout << "DNI: ";
     cin.ignore();
-    cin.getline (dni, 12);
+    cin.getline (dni, 8);
     cout << "Obra Social: ";
     cin.getline (obraSocial, 30);
 
@@ -40,9 +40,9 @@ void PacienteManager::altaPaciente(){
     p.setNombre(nombre);
     p.setApellido(apellido);
     p.setFechaNacimiento(fechaNacimiento);
-//    p.setDni(dni);
+    p.setDni(dni);
     p.setObraSocial(obraSocial);
-    p.setIdPaciente(repoPaciente.getCantidadRegistros()+1);
+//    p.setIdPaciente(repoPaciente.getCantidadRegistros()+1);
     p.setEliminado(false);
 
     if(repoPaciente.guardar(p)){
@@ -60,14 +60,14 @@ void PacienteManager::altaPaciente(){
 
 void PacienteManager::bajaPaciente(){
     Paciente reg;
+    char dni [8];
+    int  pos;
 
-    int id, pos;
-
-    cout << "Ingrese el ID del paciente a dar de baja:";
-    cin>>id;
+    cout << "Ingrese el DNI del paciente a dar de baja:";
+    cin.getline(dni,8);
     cout << endl;
 
-    pos=repoPaciente.buscarPorId(id);
+    pos=repoPaciente.buscarPorDni(dni);
 
     if(pos==-1){
         cout << "El id ingresado no existe." << endl;
@@ -92,7 +92,7 @@ void PacienteManager::bajaPaciente(){
 
 void PacienteManager::modificarPaciente(){
     char nombre[30], apellido[30], obraSocial[30];
-    int dni;
+    char dni[8];
     Fecha fechaNacimiento;
     bool fechaValida;
     int id, pos;
@@ -100,11 +100,11 @@ void PacienteManager::modificarPaciente(){
     Paciente p;
     PacienteArchivo repoPaciente;
 
-    cout << "Ingrese el ID del paciente a modificar:";
-    cin>>id;
+    cout << "Ingrese el DNI del paciente a dar de baja:";
+    cin.getline(dni,8);
     cout << endl;
 
-    pos=repoPaciente.buscarPorId(id);
+    pos=repoPaciente.buscarPorDni(dni);
 
     if(pos==-1){
         cout << "El id ingresado no existe." << endl;
@@ -209,7 +209,7 @@ void PacienteManager::listarPacientes(){
 
 
 }
-void PacienteManager::listarXId()//
+/*void PacienteManager::listarXId()//
 {
     int id;
 
@@ -227,11 +227,11 @@ void PacienteManager::listarXId()//
         cout << "No existe el registro con ID #" << id << endl;
     }
 }
-
+*/
 
 void PacienteManager::mostrarPaciente(Paciente reg){
 
-    cout << "ID: " << reg.getIdPaciente() <<endl;
+ //   cout << "DNI: " << reg.getDni() <<endl;
     cout << "Nombre: " <<reg.getNombre()<< endl;
     cout << "Apellido: " <<reg.getApellido()<< endl;
     cout << "Fecha de nacimiento: "<< reg.getFechaNacimiento().getDia()
