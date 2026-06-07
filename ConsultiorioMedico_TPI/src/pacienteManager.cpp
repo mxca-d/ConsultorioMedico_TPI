@@ -286,7 +286,7 @@ void PacienteManager::restaurarCopiaDeSeguridad()
 
     _archivoBkp.leer(vec, cantidadRegistros);
     repoPaciente.vaciar();
-    if (_archivoBkp.guardar(vec, cantidadRegistros))
+    if (repoPaciente.guardar(vec, cantidadRegistros))
     {
         cout << "Backup restaurado correctamente" << endl;
     }
