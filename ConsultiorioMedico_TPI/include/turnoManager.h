@@ -4,6 +4,7 @@
 #include "pacienteArchivo.h"
 #include "medicosArchivo.h"
 #include "historialArchivo.h"
+#include "medicosManager.h"
 
 class TurnoManager
 {
@@ -32,6 +33,8 @@ private:
     PacienteArchivo _repoPaciente;
     MedicosArchivos _repoMedico;
     historialArchivo _repoHistorial;
+
+    MedicosManager _managerMedico;
 
 
 };

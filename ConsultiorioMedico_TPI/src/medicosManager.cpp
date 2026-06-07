@@ -13,8 +13,11 @@ void MedicosManager::altaMedico()
 {
 
     char nombre[30],apellido[30],especialidad[30],dni[12],matricula[15],telefono[15];
+    float honorarios;
+    int opcion;
     bool eliminado,
-         valido;
+         valido,
+         diasAgenda [5] = {false};
 
     Carga cargar [] =
     {
@@ -23,7 +26,7 @@ void MedicosManager::altaMedico()
         {"DNI: ", dni, 12},
         {"Especialidad: ", especialidad, 30},
         {"Matricula: ", matricula, 15},
-        { "telefono: ", especialidad, 15}
+        { "telefono: ", telefono, 15}
     };
 
     Medicos m;
@@ -33,10 +36,7 @@ void MedicosManager::altaMedico()
     cout << "Ingrese '0' en caso de querer cancelar la carga" << endl;
     cout << endl;
 
-    if (std::cin.peek() == '\n')
-    {
-        std::cin.ignore();
-    }
+    controlBufferEnter ();
 
     for (int i=0; i < 6; i++)
     {
@@ -47,6 +47,14 @@ void MedicosManager::altaMedico()
             cout << cargar [i].texto;
             cin.getline(cargar[i].pDestino,cargar[i].tamanio);
 
+            if (i == 2)
+            {
+                if (_repoMedicos.buscarCoincidenciaDni (cargar[i].pDestino))
+                {
+                    cout << "DNI ya existente" << endl;
+                    return;
+                }
+            }
             if (cancelacionUsuario(cargar[i].pDestino) )
             {
                 return;
@@ -58,56 +66,58 @@ void MedicosManager::altaMedico()
         }
         while (!valido);
     }
-    /*
+
+    do
+    {
+        cout << "Valor consulta: " ;
+        cin >> honorarios;
+
+        if (cancelacionUsuario (honorarios))
+        {
+            return;
+        }
+
+        valido = validacionImportes (honorarios);
+
+    }
+    while (!valido);
+    system("cls");
+    cout << "           DIAS DE ATENCION        " << endl;
+    for (int i=0; i<5; i++)
+    {
         do
         {
 
-            cout << endl;
-            cout << "Apellido: ";
-            cin.getline (apellido, 30);
-            cout << endl;
+            cout << "Presione 1. para habilitar agenda." << endl;
+            cout << "Presione 2. para no agregar dia." << endl;
+            cout << "0. para cancelar carga. " << endl;
+            mostrarDiaAgenda(i);
+            cin >> opcion;
 
-            if (cancelacionUsuario(apellido) )
+            switch (opcion)
             {
+            case 1:
+                cout << "agregado.." << endl;
+                system ("pause");
+                diasAgenda [i] = true;
+                valido = true;
+                break;
+            case 2:
+                valido = true;
+                break;
+            case 0:
                 return;
+            default:
+                cout << "OPCION INCORRECTA..." << endl;
+                system ("pause");
+                valido = false;
+                break;
             }
-            valido = validacionCaracteres (apellido);
-
-
         }
         while (!valido);
+        system("cls");
+    }
 
-        do
-        {
-
-            cout << endl;
-            cout << "DNI: ";
-            cin.getline (dni, 12);
-            cout << endl;
-
-            if (cancelacionUsuario(dni) )
-            {
-                return;
-            }
-            valido = validacionCaracteres (dni);
-
-
-        }
-        while (!valido);
-
-
-
-
-        cout << endl;
-        cout << " Ingrese especialidad: " ;
-        cin.getline(especialidad,30);
-        cout << endl;
-        cout << " Ingrese telefono; " ;
-        cin.getline(telefono,15);
-        cout << endl;
-        cout << " Ingrese matricula; " ;
-        cin.getline(matricula,15);
-        cout << endl; */
 
     eliminado = false;
     m.setNombre(nombre);
@@ -116,8 +126,12 @@ void MedicosManager::altaMedico()
     m.setEspecialidad(especialidad);
     m.setTelefono(telefono);
     m.setMatricula(matricula);
+    m.setHonorarios(honorarios);
     m.setIdMedico(generarId());
     m.setEliminado(eliminado);
+    m.setDiasAgenda(diasAgenda);
+
+    mostrarMedico (m);
 
 
 
@@ -203,27 +217,30 @@ void MedicosManager::listarXId()
     }
 }
 
-void MedicosManager::listarMedicoEspecialidad()
+void MedicosManager::listarMedicoEspecialidad(const char* especialidad)
 {
+    int coincidencias = 0;
     int cantidadRegistros = _repoMedicos.getCantidadRegistros();
 
-    bool band = false;
     Medicos m;
 
     for (int i = 0; i<cantidadRegistros; i++)
     {
-        Medicos reg = _repoMedicos.leer(i);
-        if (!reg.getEliminado() && !band)
+        m = _repoMedicos.leer(i);
+        if (!m.getEliminado() && strcmp(especialidad, m.getEspecialidad())==0)
         {
-            band = true;
-            m = reg;
-            cout << reg.getEspecialidad() << endl;
+            cout << "idMedico: " << m.getIdMedico() << endl;
+            cout << "Medico: " << m.getApellido() << ", " << m.getNombre() << endl;
+            cout << "-------------------------------------------------------------" << endl;
+            coincidencias ++;
 
-        } else if (!reg.getEliminado() && strcmp (m.getEspecialidad(),reg.getEspecialidad())==0)
-        {
-            m = reg;
-            cout << reg.getEspecialidad() << endl;
         }
+
+    }
+
+    if (coincidencias ==0)
+    {
+        cout << "NO HAY COINCIDENCIAS PARA LA ESPECIALIDAD EN CONSULTA..." << endl;
     }
 }
 
@@ -238,6 +255,17 @@ void MedicosManager::mostrarMedico(Medicos medicos)
     cout << "Especialidad: " << medicos.getEspecialidad()<< endl;
     cout << "Telefono; " << medicos.getTelefono()<< endl;
     cout << "Matricula; " << medicos.getMatricula()<< endl;
+    cout << "Valor consulta: " << medicos.getHonorarios() << endl;
+    cout << "Dias Atencion: " << endl;
+    const bool* diasAgenda = medicos.getDiasAgenda();
+    for (int i=0; i<5; i++)
+    {
+
+        if(diasAgenda [i]== true)
+        {
+            mostrarDiaAgenda(i);
+        }
+    }
 
 }
 
@@ -376,4 +404,68 @@ void MedicosManager::listarMedicoPorEspecialidad()
             cout << endl;
         }
     }
+}
+
+void MedicosManager::mostrarEspecialidades()
+{
+    int cantidadRegistros = _repoMedicos.getCantidadRegistros();
+    Medicos *vec = new Medicos[cantidadRegistros],
+    *vecAux = new Medicos[cantidadRegistros];
+    int cantidadMostrar = 0;
+
+
+
+    if (vec == nullptr || vecAux == nullptr)
+    {
+        cout << "Falla asignacion de memoria" << endl;
+        delete[] vec;
+        delete[] vecAux;
+        return;
+    }
+
+    if (cantidadRegistros ==0)
+    {
+        cout << "Sin registros" << endl;
+        return;
+    }
+    _repoMedicos.leer(vec, cantidadRegistros);
+
+
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+
+        if (!vec[i].getEliminado()&& cantidadMostrar==0)
+        {
+            vecAux[cantidadMostrar] = vec[i];
+            cantidadMostrar ++;
+        }
+        else if (!vec[i].getEliminado())
+        {
+            bool repetido = false;
+            for (int x=0; x<cantidadMostrar; x++)
+            {
+                if (strcmp (vec[i].getEspecialidad(),vecAux[x].getEspecialidad())==0)
+                {
+                    repetido = true;
+                    break;
+                }
+            }
+
+            if (!repetido)
+            {
+                vecAux[cantidadMostrar] = vec[i];
+                cantidadMostrar ++;
+            }
+        }
+    }
+
+    cout << "--- LISTADO DE ESPECIALIDADES ---" << endl;
+
+    for (int i=0; i<cantidadMostrar; i++)
+    {
+        cout << vecAux[i].getEspecialidad() << endl;
+    }
+
+    delete[] vec;
+    delete[] vecAux;
 }

@@ -76,6 +76,7 @@ bool cancelacionUsuario (int num)
     return false;
 }
 
+
 bool cancelacionUsuario (float num)
 {
     if (num == 0)
@@ -139,7 +140,7 @@ bool validacionCaracteres (int num)
 {
 
 
- if (num < 10000 && num > 0)
+    if (num < 10000 && num > 0)
     {
         return true;
     }
@@ -180,3 +181,59 @@ bool validacionImportes (float precio)
         return false;
     }
 }
+
+void mostrarDiaAgenda (int indice)
+{
+    switch (indice)
+    {
+    case 0 :
+        cout << "LUNES" << endl;
+        break;
+
+    case 1:
+        cout << "MARTES" << endl;
+        break;
+
+    case 2:
+        cout << "MIERCOLES" << endl;
+        break;
+    case 3:
+        cout << "JUEVES" << endl;
+        break;
+    case 4:
+        cout << "VIERNES" << endl;
+        break;
+    default:
+        cout << "INCORRECTO"<< endl;
+        break;
+
+    }
+}
+void mostrarTrunoAgenda (int indice)
+{
+    switch (indice)
+    {
+    case 0 :
+        cout << "1. 08:00 Hs" << endl;
+        break;
+
+    case 1:
+        cout << "2. 09:00 Hs" << endl;
+        break;
+
+    case 2:
+        cout << "3. 10:00 Hs" << endl;
+        break;
+    case 3:
+        cout << "4. 11:00 Hs" << endl;
+        break;
+    case 4:
+        cout << "5. 12:00 Hs" << endl;
+        break;
+    default:
+        cout << "INCORRECTO"<< endl;
+        break;
+
+    }
+}
+

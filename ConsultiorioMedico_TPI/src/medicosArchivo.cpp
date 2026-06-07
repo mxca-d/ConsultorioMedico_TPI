@@ -132,6 +132,42 @@ bool MedicosArchivos::buscarCoincidenciaId(int id){
 
 }
 
+bool MedicosArchivos::buscarCoincidenciaDni(const char* dni){
+    Medicos reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0;i<cantidad;i++){
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni)==0){
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
+bool MedicosArchivos::buscarCoincidenciaEspecialidad(const char* especialidad){
+    Medicos reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0;i<cantidad;i++){
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && strcmp(reg.getEspecialidad(),especialidad)==0){
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
 void MedicosArchivos::vaciar()
 {
     FILE *p = fopen(_nombreArchivo, "wb");

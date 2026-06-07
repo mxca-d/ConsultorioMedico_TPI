@@ -2,6 +2,7 @@
 #include <cstring>
 #include "turnoManager.h"
 #include "pacienteArchivo.h"
+#include "medicosManager.h"
 #include "utils.h"
 
 using namespace std;
@@ -12,10 +13,11 @@ using namespace std;
 void TurnoManager::altaTurno()
 {
 
-    char hora[6],dniPaciente[8],estado[15];
-    int  idTurno, idMedico;
+    char hora[6],dniPaciente[8],estado[15], especialidad [30];
+    int  idTurno, idMedico, posMed;
     float costoConsulta;
     Fecha f;
+    Medicos medico;
     bool valido;
 
 
@@ -26,14 +28,17 @@ void TurnoManager::altaTurno()
     cout << "Ingrese '0' en caso de querer cancelar la carga" << endl;
     cout << endl;
 
-    controlBufferEnter ();
-
     do
     {
 
         cout << "DNI paciente:  ";
         controlBufferEnter();
         cin.getline(dniPaciente,8);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
 
 
         if (cancelacionUsuario(dniPaciente) && validacionCaracteres (dniPaciente,8))
@@ -44,6 +49,7 @@ void TurnoManager::altaTurno()
 
         if (_repoPaciente.buscarPorDni(dniPaciente) && validacionCaracteres (dniPaciente))
         {
+
             valido = true;
         }
         else
@@ -56,7 +62,37 @@ void TurnoManager::altaTurno()
 
     do
     {
+        valido = false;
+        _managerMedico.mostrarEspecialidades();
+        cout << "Ingrese Especilidad que desea: " ;
+        cin.getline(especialidad,30);
+        if (cancelacionUsuario(especialidad) )
+        {
+            return;
+        }
+        todoMayuscula(especialidad);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
 
+        if (_repoMedico.buscarCoincidenciaEspecialidad(especialidad))
+        {
+            valido=true;
+        } else
+        {
+            cout << "ESPECIALIDAD INCORRECTA" ;
+            valido=false;
+        }
+
+
+    } while(!valido);
+
+    do
+    {
+
+        _managerMedico.listarMedicoEspecialidad(especialidad);
         cout << "ID Medico:  ";
         cin >> idMedico;
 
@@ -67,6 +103,7 @@ void TurnoManager::altaTurno()
 
         if (_repoMedico.buscarCoincidenciaId(idMedico) && validacionCaracteres (idMedico))
         {
+            posMed=_repoMedico.buscarPorId(idMedico);
             valido = true;
         }
         else
@@ -77,6 +114,8 @@ void TurnoManager::altaTurno()
     }
     while (!valido);
 }
+
+
 /*
    fecha, craar al medico dias que atienden con un vector de turnos disponibles para asignar turno desde
    una lista que se muestre

@@ -1,5 +1,4 @@
 #pragma once
-#include "medicos.h"
 #include <string>
 
 class Medicos
@@ -14,6 +13,10 @@ private:
     int _idMedico;
     bool _eliminado;
     float _honorarios;
+    bool _diasAgenda [5];
+    bool _turnos [5];
+
+
 
 public:
     Medicos();
@@ -27,6 +30,9 @@ public:
     void setEliminado(bool eliminado);
     void setIdMedico(int id);
     void setHonorarios(float honorarios);
+    void setDiasAgenda (const bool* diasAgenda);
+    void setTurnosAgenda (const bool* turnosAgenda);
+
 
     const char* getNombre();
     const char* getApellido();
@@ -37,6 +43,8 @@ public:
     int getIdMedico();
     float getHonorarios();
     bool getEliminado();
+    const bool* getDiasAgenda();
+    const bool* getTurnosAgenda();
 
 
 };

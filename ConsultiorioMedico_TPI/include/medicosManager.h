@@ -12,11 +12,13 @@ public:
     void listarXId();
     void mostrarMedico(Medicos medicos);
     void listarMedicoPorApellido(); //
-    void listarMedicoEspecialidad();//
+    void listarMedicoEspecialidad(const char* especialidad);
     void listarMedicoPorEspecialidad();
     //void buscarMedicoPorId();//
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
+
+    void mostrarEspecialidades();
 
 
     //QUEDA PENDIENTE EL MODIFICAR-ESTILO PACIENTEMANAGER(CON LAS RESPECTIVAS VALIDACIONES)

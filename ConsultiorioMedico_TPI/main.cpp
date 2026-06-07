@@ -7,6 +7,7 @@ int main()
 {
     MedicosManager medico;
 
-    medico.altaMedico()
-;    return 0;
+    medico.altaMedico();
+
+    return 0;
 }
