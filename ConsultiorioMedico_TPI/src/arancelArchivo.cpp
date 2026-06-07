@@ -17,16 +17,19 @@ ArancelArchivo::ArancelArchivo( const char* nombreArchivo){
 
 
 bool ArancelArchivo::guardar(Arancel *vec, int cantidadRegistrosAEscribir){
-    FILE *p = fopen(_nombreArchivo, "ab");
-    if(p==nullptr){
+    FILE *pFile = fopen(_nombreArchivo, "ab");
+    if(pFile==nullptr){
         return false;
     }
 
-    bool pudoEscribir= fwrite(&vec,sizeof(Arancel),1,p);
-    fclose(p);
+    int pudoEscribir= fwrite(vec,sizeof(Arancel),cantidadRegistrosAEscribir,pFile);
+    fclose(pFile);
 
-    return pudoEscribir;
-
+    if(pudoEscribir==cantidadRegistrosAEscribir){
+        return true;
+    }else{
+        return false;
+    }
 
 
 
@@ -35,16 +38,16 @@ bool ArancelArchivo::guardar(Arancel *vec, int cantidadRegistrosAEscribir){
 
 Arancel ArancelArchivo::leer(int pos){
     Arancel reg;
-    FILE *p;
+    FILE *pFile;
 
-    p= fopen(_nombreArchivo,"rb");
+    pFile= fopen(_nombreArchivo,"rb");
 
-    if(p==nullptr){
+    if(pFile==nullptr){
         return reg;
     }
-    fseek(p,pos*sizeof(Arancel),0);
-    fread(&reg,sizeof(Arancel),1,p);
-    fclose(p);
+    fseek(pFile,pos*sizeof(Arancel),0);
+    fread(&reg,sizeof(Arancel),1,pFile);
+    fclose(pFile);
     return reg;
 
 
@@ -55,14 +58,14 @@ Arancel ArancelArchivo::leer(int pos){
 int ArancelArchivo::getCantidadRegistros(){
     int bytes;
     int total;
-    FILE *p= fopen(_nombreArchivo,"rb");
-    if(p==nullptr){
+    FILE *pFile= fopen(_nombreArchivo,"rb");
+    if(pFile==nullptr){
         return 0;
     }
 
-    fseek(p,0,2);
-    bytes=ftell(p);
-    fclose(p);
+    fseek(pFile,0,2);
+    bytes=ftell(pFile);
+    fclose(pFile);
 
     total=bytes/sizeof(Arancel);
 
@@ -74,28 +77,28 @@ int ArancelArchivo::getCantidadRegistros(){
 
 bool ArancelArchivo::modificar(Arancel reg, int pos){
 
-    FILE *p = fopen(_nombreArchivo, "rb+");
+    FILE *pFile = fopen(_nombreArchivo, "rb+");
 
-    if (p == nullptr){
+    if (pFile == nullptr){
     return false;
     }
 
-    fseek(p, pos * sizeof(Arancel), 0);
-    bool pudoEscribir = fwrite(&reg, sizeof(Arancel), 1, p);
-    fclose(p);
+    fseek(pFile, pos * sizeof(Arancel), 0);
+    bool pudoEscribir = fwrite(&reg, sizeof(Arancel), 1, pFile);
+    fclose(pFile);
     return pudoEscribir;
 }
 bool ArancelArchivo::guardar(Arancel reg)
 {
-    FILE *p = fopen(_nombreArchivo, "ab");
+    FILE *pFile = fopen(_nombreArchivo, "ab");
 
-    if (p == NULL)
+    if (pFile == NULL)
     {
         return false;
     }
 
-    bool pudoEscribir = fwrite(&reg, sizeof(Arancel), 1, p);
-    fclose(p);
+    bool pudoEscribir = fwrite(&reg, sizeof(Arancel), 1, pFile);
+    fclose(pFile);
     return pudoEscribir;
 }
 
@@ -116,127 +119,23 @@ int ArancelArchivo::buscarPorId(int id)
 }
 void ArancelArchivo::leer(Arancel *vec, int cantidadRegistrosALeer)
 {
-    FILE *p = fopen(_nombreArchivo, "rb");
-    if (p == NULL)
+    FILE *pFile = fopen(_nombreArchivo, "rb");
+    if (pFile == NULL)
     {
         return ;
     }
 
-    fread(vec, sizeof(Arancel), cantidadRegistrosALeer, p);
-    fclose(p);
+    fread(vec, sizeof(Arancel), cantidadRegistrosALeer, pFile);
+    fclose(pFile);
 }
 void ArancelArchivo::vaciar()
 {
-    FILE *p = fopen(_nombreArchivo, "wb");
-    if (p == NULL)
+    FILE *pFile = fopen(_nombreArchivo, "wb");
+    if (pFile == NULL)
     {
         return ;
     }
-    fclose(p);
-}
-
-/*
-
-void altaArancel(){
-  Arancel a;
-    a.cargar();
-    int nuevoId = contarArancel() + 1;
-
-
-    FILE* archivo = fopen("Aranceles.dat", "ab");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    a.setIdArancel(nuevoId);
-    fwrite(&a, sizeof(a), 1, archivo);
-    fclose(archivo);
-
-    cout << "Arancel guardado con exito. " <<endl;
+    fclose(pFile);
 }
 
 
-void bajaArancel(){
-   Arancel a;
-    int id;
-    cout << "Ingrese el id del arancel: " << endl;
-    cin >> id;
-
-    FILE* archivo = fopen("Aranceles.dat", "r+b");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&a, sizeof(a), 1, archivo)== 1){
-        if (a.getIdArancel() == id){
-            a.setEliminado(true);
-            fseek(archivo, -sizeof(a), SEEK_CUR);
-            fwrite(&a, sizeof(a), 1, archivo);
-            break;
-        }
-    }
-    fclose(archivo);
-
-
-}
-
-void listarArancel(){
-    Arancel a;
-
-    FILE* archivo = fopen("Aranceles.dat", "rb");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&a, sizeof(a), 1, archivo)== 1){
-    if (!a.getEliminado()) {
-    a.mostrar();
-    }
-    }
-    fclose(archivo);
-
-
-}
-
-void modificarArancel(){
-    Arancel a;
-    int id;
-    cout << "Ingrese el id del arancel: " << endl;
-    cin >> id;
-
-    FILE* archivo = fopen("Aranceles.dat", "r+b");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&a, sizeof(a), 1, archivo) == 1){
-        if(a.getIdArancel() == id){
-            a.cargar();
-            fseek(archivo, -sizeof(a), SEEK_CUR);
-            fwrite(&a, sizeof(a), 1, archivo);
-            break;
-        }
-    }
-    fclose(archivo);
-
-
-}
-
-int contarArancel(){
-    Arancel a;
-    int contador = 0;
-
-    FILE* archivo = fopen("Aranceles.dat", "rb");
-    if (archivo == NULL) {
-        return 0;
-    }
-    while (fread(&a, sizeof(a), 1, archivo) == 1){
-        contador++;
-
-    }
-    fclose(archivo);
-    return contador;
-
-
-}
-*/

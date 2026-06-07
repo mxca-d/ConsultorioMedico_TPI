@@ -18,11 +18,9 @@ public:
 
 
 private:
-    ObraSocialArchivo _repoObrasocial;
+
     ArancelArchivo _repoArancel;
     ArancelArchivo _archivoBkp = ArancelArchivo("aranceles.bkp");
-
-    int generarId();
 
 
 };
