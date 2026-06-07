@@ -154,7 +154,7 @@ void ObraSocialArchivo::leer(ObraSociales *vec, int cantidadRegistrosALeer){
         return;
     }
 
-    fread(vec,sizeof(ObraSociales),cantidadRegistrosALeer,pfile);
+    fread(vec,sizeof(ObraSociales),cantidadRegistrosALeer,pFile);
 
     fclose(pFile);
     return;

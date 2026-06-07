@@ -1,6 +1,7 @@
 #include <iostream>
 #include "obraSocialManager.h"
 #include <cstring>
+#include "utils.h"
 
 using namespace std;
 
