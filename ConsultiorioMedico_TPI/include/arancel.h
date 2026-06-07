@@ -4,7 +4,7 @@ class Arancel{
 private:
     int _idArancel, _idObraSocial;
     char _especialidad[30];
-    float _cobertura;
+    int _cobertura;
     bool _eliminado;
 
 public:
@@ -13,13 +13,13 @@ public:
     void setIdArancel(int id);
     void setIdObraSocial(int id);
     void setEspecialidad(const char*especialidad);
-    void setCobertura(float cobertura);
+    void setCobertura(int cobertura);
     void setEliminado(bool eliminado);
 
     int getIdArancel();
     int getIdObraSocial();
     const char* getEspecialidad();
-    float getCobertura();
+    int getCobertura();
     bool getEliminado();
 
 

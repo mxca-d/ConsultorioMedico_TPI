@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cstdio>
 #include "PacienteManager.h"
+#include <cstring>
 
 using namespace std;
 
-
+/*
 
 void PacienteManager::altaPaciente(){
     char nombre[30], apellido[30], obraSocial[30],dni [12];
@@ -63,7 +64,7 @@ void PacienteManager::altaPaciente(){
 }
 
 
-void PacienteManager::bajaPaciente(){
+/*void PacienteManager::bajaPaciente(){
     Paciente reg;
 
     int id, pos;
@@ -92,10 +93,10 @@ void PacienteManager::bajaPaciente(){
 
 
 
-}
+}*////REVISAR
 
 
-void PacienteManager::modificarPaciente(){
+/*void PacienteManager::modificarPaciente(){
     char nombre[30], apellido[30], obraSocial[30],dni [12];
     Fecha fechaNacimiento;
     bool fechaValida;
@@ -194,10 +195,10 @@ void PacienteManager::modificarPaciente(){
         cout << "No se ha podido modificar los datos del paciente." << endl;
     }
 
-}
+}*////REVISAR
 
 
-void PacienteManager::listarPacientes(){
+/*void PacienteManager::listarPacientes(){
     int cantidad= repoPaciente.getCantidadRegistros();
     Paciente reg;
     for(int i=0;i<cantidad; i++){
@@ -213,7 +214,7 @@ void PacienteManager::listarPacientes(){
 
 
 }
-void PacienteManager::buscarPorId()
+void PacienteManager::BuscarPorId()
 {
     int id;
 
@@ -230,9 +231,9 @@ void PacienteManager::buscarPorId()
     {
         cout << "No existe el registro con ID #" << id << endl;
     }
-}
+}*////REVISAR
 
-void PacienteManager::listarPacientesPorApellido(){
+/*void PacienteManager::listarPacientesPorApellido(){
     Paciente reg;
 
     int cantidad= repoPaciente.getCantidadActivos();
@@ -245,7 +246,7 @@ void PacienteManager::listarPacientesPorApellido(){
 
         for (int j=i+1;j<cantidad;j++){
 
-            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j]>0)){//evalua valor A-Z con ASCII
+            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j])>0){//evalua valor A-Z con ASCII
 
                 aux=pacientesOrdenados[i];
                 pacientesOrdenados[i]=pacientesOrdenados[j];
@@ -266,10 +267,10 @@ void PacienteManager::listarPacientesPorApellido(){
 
 
 
-}
+}*/
 
 
-void PacienteManager::listarPacientesPorObraSocial(){
+/*void PacienteManager::listarPacientesPorObraSocial(){
 
     Paciente reg;
     int cantidad= repoPaciente.getCantidadActivos();
@@ -424,3 +425,5 @@ void PacienteManager::restaurarCopiaDeSeguridad()
 
 
 }
+/*
+*/

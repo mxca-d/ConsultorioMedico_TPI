@@ -31,7 +31,7 @@ void Arancel::setEspecialidad(const char* especialidad)
     strcpy (_especialidad,especialidad);
 }
 
-void Arancel::setCobertura(float cobertura)
+void Arancel::setCobertura(int cobertura)
 {
     _cobertura = cobertura;
 }
@@ -55,7 +55,7 @@ const char* Arancel::getEspecialidad()
 {
     return  _especialidad;
 }
-float Arancel::getCobertura()
+int Arancel::getCobertura()
 {
     return  _cobertura;
 }

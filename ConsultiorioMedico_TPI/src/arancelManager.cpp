@@ -2,6 +2,7 @@
 #include "arancelManager.h"
 #include "obraSocialManager.h"
 #include "utils.h"
+#include <cstring>
 
 using namespace std;
 /*
@@ -114,6 +115,7 @@ void arancelManager::altaArancel(){
 
     Arancel reg;
     ObraSocialManager managerObraSocial;
+    ObraSocialArchivo repoObraSocial;
 
     int id, pos, opcion;
 
@@ -165,11 +167,11 @@ void arancelManager::altaArancel(){
 
     }while(cobertura < 0 || cobertura > 100);
 
-    int cantidad = repoArancel.getCantidadRegistros();
+    int cantidad = _repoArancel.getCantidadRegistros();
     Arancel aux;
 
     for(int i = 0; i < cantidad; i++){
-    aux = repoArancel.leer(i);
+    aux = _repoArancel.leer(i);
 
     if(aux.getEliminado() == false &&
        aux.getIdObraSocial() == id &&
@@ -186,7 +188,7 @@ void arancelManager::altaArancel(){
     reg.setCobertura(cobertura);
     reg.setEliminado(false);
 
-    if(repoArancel.guardar(reg)){
+    if(_repoArancel.guardar(reg)){
         cout << "Arancel guardado correctamente." << endl;
     }else{
         cout << "No se pudo guardar el arancel." << endl;
@@ -277,7 +279,8 @@ void arancelManager::mostrarArancel(Arancel aranceles)
     cout << "ID Arancel: " << aranceles.getIdArancel()<< endl;
     cout << "ID Obra Social: " << aranceles.getIdObraSocial() << endl;
     cout << "Especialidad: " << aranceles.getEspecialidad()<< endl;
-    cout << "Valor; " << aranceles.getPrecio()<< endl;
+    cout << "Porcentaje : %" << aranceles.getCobertura()<< endl;
+
 
 
 }

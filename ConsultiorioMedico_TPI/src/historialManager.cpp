@@ -1,5 +1,6 @@
 #include <iostream>
 #include "historialManager.h"
+#include "utils.h"
 using namespace std;
 
 /*void HistorialManager::cargarHistorial(){
@@ -152,14 +153,17 @@ bool HistorialManager::cargarHistorial(Turno turno, Medicos medico, Paciente pac
 
 
 
-void HistorialManager::bajaHistorial();//se deberia dar de baja un historial{
+void HistorialManager::bajaHistorial(){
+
+
+    }//se deberia dar de baja un historial{
 
 
 
 
 
 
-void HistorialManager::modificarHistorial(){
+/*void HistorialManager::modificarHistorial(){
 
     char diagnostico[100];
     Historial historial;
@@ -213,10 +217,10 @@ void HistorialManager::modificarHistorial(){
     }
 
 }
+*////REVISAR
 
 
-
-void HistorialManager::listarHistoriales(){
+/*void HistorialManager::listarHistoriales(){
     Historial historial;
 
     int cantidad = repoHistorial.getCantidadRegistros();
@@ -234,10 +238,10 @@ void HistorialManager::listarHistoriales(){
 
 
 }
+*////REVISAR
 
 
-
-void HistorialManager::mostrarHistorial(Historial reg){
+/*void HistorialManager::mostrarHistorial(Historial reg){
 
     Paciente paciente;
     PacienteArchivo repoPaciente;
@@ -261,7 +265,7 @@ void HistorialManager::mostrarHistorial(Historial reg){
 
 
 }
-
+*////REVISAR
 
 
 void HistorialManager::listarPorPaciente(){

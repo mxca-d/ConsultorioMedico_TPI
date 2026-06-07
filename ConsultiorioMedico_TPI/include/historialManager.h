@@ -1,6 +1,11 @@
 #pragma once
 #include "historial.h"
 #include "historialArchivo.h"
+#include "turnosArchivo.h"
+#include "medicosArchivo.h"
+#include "pacienteArchivo.h"
+
+
 
 
 

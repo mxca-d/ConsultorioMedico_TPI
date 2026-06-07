@@ -13,7 +13,7 @@ public:
     void modificarPaciente();
     void listarPacientes();
     void mostrarPaciente(Paciente reg);
-    void listarBuscarPorId();
+    void BuscarPorId();
     void listarPacientesPorApellido();
     void listarPacientesPorObraSocial();
     void listarPacientesPorDni();
