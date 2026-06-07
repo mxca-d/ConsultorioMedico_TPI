@@ -121,7 +121,8 @@ Paciente PacienteArchivo::leer(int pos){
     return reg;
 
 }
-void PacienteArchivo::leer(Paciente *vec, int cantidadRegistrosALeer)
+
+/*void PacienteArchivo::leer(Paciente *vec, int cantidadRegistrosALeer)
 {
     FILE *p = fopen(_nombreArchivo, "rb");
     if (p == NULL)
@@ -131,7 +132,8 @@ void PacienteArchivo::leer(Paciente *vec, int cantidadRegistrosALeer)
 
     fread(vec, sizeof(Paciente), cantidadRegistrosALeer, p);
     fclose(p);
-}
+}*/
+//ESTA FUNCION NO RECORRE CANTIDAD DE REGISTROS, EL PARAMETRO DE FREAD LO QUE HACE ES SALTEAR LOS BYTES, NO LA CANT QUE VA A LEER
 
 
 bool PacienteArchivo::guardar(Paciente *vec, int cantidadRegistrosAEscribir)
@@ -175,17 +177,17 @@ int PacienteArchivo::getCantidadRegistros(){
     return total;
 }
 
+int PacienteArchivo::getCantidadActivos(){
+    Paciente reg;
+    int cantidad= getCantidadRegistros();
+    int contadorActivos=0;
 
-int PacienteArchivo::buscarPorId(int id){
-    for(int i=0; i<cantidad; i++){
+    for(int i=0;i<cantidad;i++){
+        if(reg.getEliminado()!=true){
+            contadorActivos++;
+        }
 
-        reg = leer(i);
-
-    if(reg.getIdPaciente() == id){
-        return i;
     }
+    return contadorActivos;
 
-    }
-
-    return -1;
 }
