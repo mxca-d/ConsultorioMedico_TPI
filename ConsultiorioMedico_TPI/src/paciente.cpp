@@ -33,7 +33,6 @@ void Paciente::setNombre(const char* nombre){
     strcpy(_nombre,nombre);
 
 }
-//hola
 
 void Paciente::setApellido(const char* apellido){
     strcpy(_apellido,apellido);
