@@ -13,6 +13,7 @@ public:
     Paciente leer(int pos);
     bool modificar(Paciente reg, int pos);
     int buscarPorDni(const char* dni);
+    int buscarPorId(int id);
     bool buscarCoincidenciaId(int id);
     bool buscarCoincidenciaDni(const char* dni);
 

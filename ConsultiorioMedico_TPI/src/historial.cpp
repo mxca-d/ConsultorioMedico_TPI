@@ -18,34 +18,29 @@ Historial::Historial(){
 
 
 void Historial::setIdHistorial(int id){
-    if(id>0){
         _idHistorial=id;
-    }
+
 
 }
 
 
 void Historial::setIdPaciente(int id){
-    if(id>0){
         _idPaciente=id;
-    }
+
 
 }
 
 
 void Historial::setIdMedico(int id){
-    if(id>0){
         _idMedico=id;
 
-    }
+
 
 }
 
 
 void Historial::setIdTurno(int id){
-    if(id>0){
         _idTurno=id;
-    }
 
 }
 

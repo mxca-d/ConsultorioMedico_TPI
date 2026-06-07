@@ -174,3 +174,18 @@ int PacienteArchivo::getCantidadRegistros(){
 
     return total;
 }
+
+
+int PacienteArchivo::buscarPorId(int id){
+    for(int i=0; i<cantidad; i++){
+
+        reg = leer(i);
+
+    if(reg.getIdPaciente() == id){
+        return i;
+    }
+
+    }
+
+    return -1;
+}

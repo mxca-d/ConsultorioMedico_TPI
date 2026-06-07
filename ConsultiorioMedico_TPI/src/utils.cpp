@@ -111,7 +111,7 @@ bool validacionCaracteres (const char* cadena)
 
 }
 
-bool validacionCaracteres (const char* cadena, int tamanio)
+bool validacionCaracteres (const char* cadena, int tamanio)//REPASAR ESTA FUNCION
 {
 
     int caracteres = strlen (cadena);
