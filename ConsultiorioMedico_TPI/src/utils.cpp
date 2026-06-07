@@ -76,7 +76,6 @@ bool cancelacionUsuario (int num)
     return false;
 }
 
-
 bool cancelacionUsuario (float num)
 {
     if (num == 0)
@@ -112,7 +111,7 @@ bool validacionCaracteres (const char* cadena)
 
 }
 
-bool validacionCaracteres (const char* cadena, int tamanio)
+bool validacionCaracteres (const char* cadena, int tamanio)//REPASAR ESTA FUNCION
 {
 
     int caracteres = strlen (cadena);
@@ -140,7 +139,7 @@ bool validacionCaracteres (int num)
 {
 
 
-    if (num < 10000 && num > 0)
+ if (num < 10000 && num > 0)
     {
         return true;
     }
@@ -182,58 +181,35 @@ bool validacionImportes (float precio)
     }
 }
 
-void mostrarDiaAgenda (int indice)
-{
-    switch (indice)
-    {
-    case 0 :
-        cout << "LUNES" << endl;
-        break;
-
-    case 1:
-        cout << "MARTES" << endl;
-        break;
-
-    case 2:
-        cout << "MIERCOLES" << endl;
-        break;
-    case 3:
-        cout << "JUEVES" << endl;
-        break;
-    case 4:
-        cout << "VIERNES" << endl;
-        break;
-    default:
-        cout << "INCORRECTO"<< endl;
-        break;
-
-    }
-}
-void mostrarTrunoAgenda (int indice)
-{
-    switch (indice)
-    {
-    case 0 :
-        cout << "1. 08:00 Hs" << endl;
-        break;
-
-    case 1:
-        cout << "2. 09:00 Hs" << endl;
-        break;
-
-    case 2:
-        cout << "3. 10:00 Hs" << endl;
-        break;
-    case 3:
-        cout << "4. 11:00 Hs" << endl;
-        break;
-    case 4:
-        cout << "5. 12:00 Hs" << endl;
-        break;
-    default:
-        cout << "INCORRECTO"<< endl;
-        break;
-
-    }
+void mostrarEspecialidades(){
+    cout << "1- CLINICA MEDICA" << endl;
+    cout << "2- CARDIOLOGIA" << endl;
+    cout << "3- PEDIATRIA" << endl;
+    cout << "4- TRAUMATOLOGIA" << endl;
+    cout << "5- KINESIOLOGIA" << endl;
 }
 
+bool cargarEspecialidad(int opcion, char* especialidad){
+
+    switch(opcion){
+        case 1:
+            strcpy(especialidad, "CLINICA MEDICA");
+            return true;
+        case 2:
+            strcpy(especialidad, "CARDIOLOGIA");
+            return true;
+        case 3:
+            strcpy(especialidad, "PEDIATRIA");
+            return true;
+        case 4:
+            strcpy(especialidad, "DERMATOLOGIA");
+            return true;
+        case 5:
+            strcpy(especialidad, "KINESIOLOGIA");
+            return true;
+        default:
+            return false;
+
+    }
+
+}

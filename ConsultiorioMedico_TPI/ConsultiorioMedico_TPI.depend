@@ -43,8 +43,9 @@
 1779296198 m:\onedrive\documents\tup\materias\1er cuatri-2026\pr2\tpi\consultioriomedico_tpi\include\turno.h
 	"fecha.h"
 
-1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\main.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\main.cpp
 	<iostream>
+	"medicosManager.h"
 
 1779299294 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\fecha.cpp
 	<iostream>
@@ -68,33 +69,33 @@
 	<cstring>
 	"historialArchivo.h"
 
-1779660156 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialarchivo.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialarchivo.h
 	"Historial.h"
 
-1779661605 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicos.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicos.cpp
 	<iostream>
 	"Medicos.h"
 	<cstring>
 
-1779661514 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicos.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicos.h
 	"medicos.h"
 	<string>
 
-1779661039 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicosarchivo.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicosarchivo.cpp
 	"medicosArchivo.h"
 	<cstdio>
 	<cstring>
 
-1779660156 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicosarchivo.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicosarchivo.h
 	"Medicos.h"
 
-1779659819 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
 	<iostream>
 	<cstring>
 	"turno.h"
 	"utils.h"
 
-1779659819 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
 	"fecha.h"
 
 1779376694 D
@@ -117,9 +118,10 @@
 	"paciente.h"
 	"pacienteArchivo.h"
 
-1779661267 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancel.h
+1780847847 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancel.h
 
-1780678907 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialarchivo.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialarchivo.h
+	"obrasSociales.h"
 
 1779661498 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelarchivo.cpp
 	<iostream>
@@ -127,14 +129,18 @@
 	"arancel.h"
 	<cstring>
 
-1779661459 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelarchivo.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelarchivo.h
 	"arancel.h"
 
-1780678944 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialarchivo.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialarchivo.cpp
+	<iostream>
+	<cstring>
+	"obraSocialArchivo.h"
+	"obrasSociales.h"
 
-1780679086 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrassociales.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrassociales.h
 
-1780679086 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrassociales.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrassociales.cpp
 	<iostream>
 	<cstring>
 	"obrasSociales.h"
@@ -143,38 +149,41 @@
 	"utils.h"
 	<cstring>
 
-1779401016 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
+1780847848 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
 
-1779660663 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicosmanager.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicosmanager.cpp
 	"medicosManager.h"
 	"medicosArchivo.h"
 	<iostream>
+	<cstring>
+	"utils.h"
 
-1779401016 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicosmanager.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicosmanager.h
 	"medicosArchivo.h"
 	"medicos.h"
 
-1779662531 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menu.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menu.cpp
 	<iostream>
 	"menu.h"
 	<cstdio>
 
-1779662531 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menu.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menu.h
 
-1780670514 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientearchivo.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientearchivo.h
 	"paciente.h"
-	"paciente.h"
 
-1780670514 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\paciente.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\paciente.h
+	"fecha.h"
 
-1779401016 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnosarchivo.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnosarchivo.h
+	"turno.h"
 
-1780670514 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
 	<iostream>
 	<cstring>
 	"paciente.h"
 
-1779661656 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnosarchivo.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnosarchivo.cpp
 	<iostream>
 	<cstring>
 	"turno.h"
@@ -184,18 +193,20 @@
 	"arancel.h"
 	"medicos.h"
 
-1780670514 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
 	<iostream>
 	"paciente.h"
 	"PacienteArchivo.h"
 	<cstring>
 
-1779401016 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemanager.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemanager.cpp
 	<iostream>
 	<cstdio>
 	"PacienteManager.h"
 
-1780670514 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientemanager.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientemanager.h
+	"paciente.h"
+	"pacienteArchivo.h"
 
 1779377529 a
 
@@ -203,76 +214,86 @@
 	<iostream>
 	"historialManager.h"
 
-1779660638 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
+1780853690 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
 	"historial.h"
 	"historialArchivo.h"
 
-1779660638 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialmanager.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialmanager.cpp
 	<iostream>
 	"obraSocialManager.h"
+	<cstring>
 
-1779660638 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialmanager.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialmanager.h
 	"obrasSociales.h"
 	"obraSocialArchivo.h"
 
-1779661639 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+1780796588 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
 	<iostream>
+	<cstring>
 	"turnoManager.h"
+	"pacienteArchivo.h"
+	"utils.h"
 
-1779660298 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomanager.h
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomanager.h
+	"turno.h"
+	"turnosArchivo.h"
+	"pacienteArchivo.h"
+	"medicosArchivo.h"
+	"historialArchivo.h"
 
 1779658216 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmanager.cpp
 	<iostream>
 	"arancelManager.h"
 
-1779660638 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelmanager.h
+1780847847 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelmanager.h
 	"arancelArchivo.h"
 	"arancel.h"
+	"obraSocialArchivo.h"
 
-1779662531 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemenu.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemenu.cpp
 	<iostream>
 	"pacienteMenu.h"
 
-1779662776 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientemenu.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientemenu.h
 	"pacienteManager.h"
 	"menu.h"
 
-1779662552 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuinterfaz.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuinterfaz.cpp
 	<iostream>
 	"menuInterfaz.h"
 
-1779662531 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menuinterfaz.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menuinterfaz.h
 	"menu.h"
 
-1779662920 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmenu.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmenu.cpp
 	<iostream>
 	"historialMenu.h"
 
-1779662920 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmenu.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmenu.h
 	"historialManager.h"
 	"menu.h"
 
-1779662776 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicomenu.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicomenu.cpp
 	<iostream>
 	"medicoMenu.h"
 
-1779662776 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicomenu.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicomenu.h
 	"medicosManager.h"
 	"menu.h"
 
-1779662920 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialmenu.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialmenu.cpp
 	<iostream>
 	"obraSocialMenu.h"
 
-1779662920 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialmenu.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrasocialmenu.h
 	"obraSocialManager.h"
 	"menu.h"
 
-1779662927 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmenu.cpp
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmenu.cpp
 	<iostream>
 	"arancelMenu.h"
 
-1779662920 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelmenu.h
+1779740436 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelmenu.h
 	"arancelManager.h"
 	"menu.h"
 
@@ -524,4 +545,12 @@
 	"utils.h"
 	<iostream>
 	<cstring>
+
+1779740436 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomenu.cpp
+	<iostream>
+	"turnoMenu.h"
+
+1780796588 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomenu.h
+	"turnoManager.h"
+	"menu.h"
 

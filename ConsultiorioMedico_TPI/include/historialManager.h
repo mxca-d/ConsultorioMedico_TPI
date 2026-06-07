@@ -7,18 +7,19 @@
 class HistorialManager{
 
 public:
-    void altaPaciente();
-    void bajaPaciente();
-    void modificarPaciente();
-    void listarPacientes();
-    void mostrarPaciente(Historial reg);
-    void listarXId();
+    bool cargarHistorial(Turno turno, Medicos medico, Paciente paciente);
+    void bajaHistorial();//se deberia dar de baja un historial?
+    void modificarHistorial();
+    void listarHistoriales();
+    void mostrarHistorial(Historial reg);
+    void listarPorPaciente();
+    void listarPorMedico();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
 
 private:
-    historialArchivo repoPaciente;
+    historialArchivo repoHistorial;
     historialArchivo _archivoBkp = historialArchivo("historial.bkp");
 
 };

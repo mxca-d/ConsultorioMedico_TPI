@@ -10,5 +10,5 @@ bool validacionCaracteres (int num);
 void todoMayuscula (char *pCadena);
 void controlBufferEnter ();
 bool validacionImportes (float precio);
-void mostrarDiaAgenda (int indice);
-void mostrarTrunoAgenda (int indice);
+void mostrarEspecialidades();
+bool cargarEspecialidad(int opcion, char* especialidad);
