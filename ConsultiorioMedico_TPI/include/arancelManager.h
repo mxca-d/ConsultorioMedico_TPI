@@ -16,6 +16,7 @@ public:
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
+    int generarId();
 
 private:
 
