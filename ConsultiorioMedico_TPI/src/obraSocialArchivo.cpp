@@ -4,91 +4,6 @@
 #include "obrasSociales.h"
 using namespace std;
 
-/*void altaObraSocial(){
-  ObraSociales o;
-    o.cargar();
-    int nuevoId = contarObraSocial() + 1;
-
-
-    FILE* archivo = fopen("ObraSocial.dat", "ab");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    o.setIdObraSocial(nuevoId);
-    fwrite(&o, sizeof(o), 1, archivo);
-    fclose(archivo);
-
-    cout << "Obra social guardada con exito. " <<endl;
-}
-
-
-void bajaObraSocial(){
-   ObraSociales o;
-    int id;
-    cout << "Ingrese el id de la obra social: " << endl;
-    cin >> id;
-
-    FILE* archivo = fopen("ObraSocial.dat", "r+b");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&o, sizeof(o), 1, archivo)== 1){
-        if (o.getIdObraSocial() == id){
-            o.setEliminado(true);
-            fseek(archivo, -sizeof(o), SEEK_CUR);
-            fwrite(&o, sizeof(o), 1, archivo);
-            break;
-        }
-    }
-    fclose(archivo);
-
-
-}
-
-void listarObraSocial(){
-    ObraSociales o;
-
-    FILE* archivo = fopen("ObraSocial.dat", "rb");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&o, sizeof(o), 1, archivo)== 1){
-    if (!o.getEliminado()) {
-    o.mostrar();
-    }
-    }
-    fclose(archivo);
-
-
-}
-
-void modificarObraSocial(){
-    ObraSociales o;
-    int id;
-    cout << "Ingrese el id de la obra social: " << endl;
-    cin >> id;
-
-    FILE* archivo = fopen("ObraSocial.dat", "r+b");
-    if (archivo == NULL){
-        cout << "Error al abrir el archivo. " << endl;
-        return;
-    }
-    while(fread(&o, sizeof(o), 1, archivo) == 1){
-        if(o.getIdObraSocial() == id){
-            o.cargar();
-            fseek(archivo, -sizeof(o), SEEK_CUR);
-            fwrite(&o, sizeof(o), 1, archivo);
-            break;
-        }
-    }
-    fclose(archivo);
-
-
-}
-*/
 
 ObraSocialArchivo::ObraSocialArchivo(){
     strcpy(_nombreArchivo,"obrasocial.dat");
@@ -213,6 +128,17 @@ int ObraSocialArchivo::buscarPorId(int id){
 
 bool ObraSocialArchivo::guardar(ObraSociales*vec, int cantidadRegistrosAEscribir){
 
+    FILE *pfile;
+
+    pfile= fopen(_nombreArchivo,"ab");
+
+    if(pfile==nullptr){
+        return false;
+    }
+
+    bool escribio= fwrite(vec,sizeof(ObraSociales),cantidadRegistrosAEscribir,pfile);
+    fclose(pfile);
+    return escribio;
 
 }
 
@@ -220,12 +146,33 @@ bool ObraSocialArchivo::guardar(ObraSociales*vec, int cantidadRegistrosAEscribir
 
 void ObraSocialArchivo::leer(ObraSociales *vec, int cantidadRegistrosALeer){
 
+    FILE *pFile;
+
+    pFile= fopen(_nombreArchivo,"rb");
+
+    if(pFile==nullptr){
+        return;
+    }
+
+    fread(vec,sizeof(ObraSociales),cantidadRegistrosALeer,pfile);
+
+    fclose(pFile);
+    return;
+
 
 }
 
 
 
 void ObraSocialArchivo::vaciar(){
+    FILE *pFile;
+
+    pFile= fopen(_nombreArchivo, "wb");
+    if(pFile==nullptr){
+        return;
+    }
+    fclose(pFile);
+
 
 
 }

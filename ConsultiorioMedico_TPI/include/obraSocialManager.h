@@ -8,19 +8,18 @@ class ObraSocialManager
 {
 
 public:
-    void altaPaciente();
-    void bajaPaciente();
-    void modificarPaciente();
-    void listarObraSocial();
-    void mostrarIdObraSocial();
+    void altaObraSocial();
+    void bajaObraSocial();
+    void modificarObraSocial();
+    void listarObrasSociales();
     void mostrarObraSocial(ObraSociales reg);
-    void listarXId();
+    void buscarObraSocialPorId();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
 
 private:
-    ObraSocialArchivo repoPaciente;
+    ObraSocialArchivo repoObraSocial;
     ObraSocialArchivo _archivoBkp = ObraSocialArchivo("obraSocial.bkp");
 
 };

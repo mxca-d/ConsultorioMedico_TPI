@@ -6,8 +6,11 @@ private:
     char _nombre[30];
     char _apellido[30];
     char _obraSocial[30];
-    char _dni[8];
-
+    char _dni [12];
+    char _email[30];//agregue datos de contacto
+    char _telefono[15];//agregue datos de contacto
+    char _domicilio[30];//agregue datos de contacto
+    int _idPaciente;
     int _idObraSocial;
     Fecha _fechaNacimiento;
     bool _eliminado;
@@ -29,7 +32,6 @@ public:
     const char* getApellido();
     const char* getDni();
     const char* getObraSocial();
-
     int getIdPaciente();
     int getIdObraSocial();
     bool getEliminado();

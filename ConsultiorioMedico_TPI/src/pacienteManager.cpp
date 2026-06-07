@@ -7,7 +7,7 @@ using namespace std;
 
 
 void PacienteManager::altaPaciente(){
-    char nombre[30], apellido[30], obraSocial[30],dni [8];
+    char nombre[30], apellido[30], obraSocial[30],dni [12];
     Fecha fechaNacimiento;
     bool fechaValida;
 
@@ -18,8 +18,10 @@ void PacienteManager::altaPaciente(){
     cout << "-------------------PACIENTES-------------------" << endl;
     cout << "Nombre: ";
     cin.getline(nombre,30);
+    cout << endl;
     cout << "Apellido: ";
     cin.getline (apellido, 30);
+    cout << endl;
     do{
 
     cout << "Fecha de nacimiento: " <<endl;
@@ -30,11 +32,14 @@ void PacienteManager::altaPaciente(){
         system("cls");
     }
     }while(!fechaValida);
+    cout << endl;
     cout << "DNI: ";
     cin.ignore();
-    cin.getline (dni, 8);
+    cin.getline (dni, 12);
+    cout << endl;
     cout << "Obra Social: ";
     cin.getline (obraSocial, 30);
+    cout << endl <<endl;
 
 
     p.setNombre(nombre);
@@ -42,7 +47,7 @@ void PacienteManager::altaPaciente(){
     p.setFechaNacimiento(fechaNacimiento);
     p.setDni(dni);
     p.setObraSocial(obraSocial);
-//    p.setIdPaciente(repoPaciente.getCantidadRegistros()+1);
+    p.setIdPaciente(repoPaciente.getCantidadRegistros()+1);
     p.setEliminado(false);
 
     if(repoPaciente.guardar(p)){
@@ -60,14 +65,14 @@ void PacienteManager::altaPaciente(){
 
 void PacienteManager::bajaPaciente(){
     Paciente reg;
-    char dni [8];
-    int  pos;
 
-    cout << "Ingrese el DNI del paciente a dar de baja:";
-    cin.getline(dni,8);
+    int id, pos;
+
+    cout << "Ingrese el ID del paciente a dar de baja:";
+    cin>>id;
     cout << endl;
 
-    pos=repoPaciente.buscarPorDni(dni);
+    pos=repoPaciente.buscarPorId(id);
 
     if(pos==-1){
         cout << "El id ingresado no existe." << endl;
@@ -91,8 +96,7 @@ void PacienteManager::bajaPaciente(){
 
 
 void PacienteManager::modificarPaciente(){
-    char nombre[30], apellido[30], obraSocial[30];
-    char dni[8];
+    char nombre[30], apellido[30], obraSocial[30],dni [12];
     Fecha fechaNacimiento;
     bool fechaValida;
     int id, pos;
@@ -100,11 +104,11 @@ void PacienteManager::modificarPaciente(){
     Paciente p;
     PacienteArchivo repoPaciente;
 
-    cout << "Ingrese el DNI del paciente a dar de baja:";
-    cin.getline(dni,8);
+    cout << "Ingrese el ID del paciente a modificar:";
+    cin>>id;
     cout << endl;
 
-    pos=repoPaciente.buscarPorDni(dni);
+    pos=repoPaciente.buscarPorId(id);
 
     if(pos==-1){
         cout << "El id ingresado no existe." << endl;
@@ -158,7 +162,7 @@ void PacienteManager::modificarPaciente(){
             break;
             case 4:
                 cout << "DNI: ";
-                cin >> dni;
+                cin.getline (dni, 12);
                 p.setDni(dni);
                 break;
             case 5:
@@ -209,7 +213,7 @@ void PacienteManager::listarPacientes(){
 
 
 }
-/*void PacienteManager::listarXId()//
+void PacienteManager::buscarPorId()
 {
     int id;
 
@@ -227,11 +231,132 @@ void PacienteManager::listarPacientes(){
         cout << "No existe el registro con ID #" << id << endl;
     }
 }
-*/
+
+void PacienteManager::listarPacientesPorApellido(){
+    Paciente reg;
+
+    int cantidad= repoPaciente.getCantidadActivos();
+
+    Paciente *pacientesOrdenados;
+    pacientesOrdenados= new Paciente [cantidad];
+    Paciente aux;
+
+    for(int i=0;i <cantidad-1;i++){
+
+        for (int j=i+1;j<cantidad;j++){
+
+            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j]>0)){//evalua valor A-Z con ASCII
+
+                aux=pacientesOrdenados[i];
+                pacientesOrdenados[i]=pacientesOrdenados[j];
+                pacientesOrdenados[j]=aux;
+
+            }
+
+        }
+
+    }
+
+    for(int i=0;i<cantidad;i++){
+
+        mostrarPaciente(pacientesOrdenados[i]);//estaria bueno implementar un metodo que muestre por filas
+        cout << endl;
+
+    }
+
+
+
+}
+
+
+void PacienteManager::listarPacientesPorObraSocial(){
+
+    Paciente reg;
+    int cantidad= repoPaciente.getCantidadActivos();
+
+    Paciente *pacientesOrdenados;
+
+    pacientesOrdenados= new pacientesOrdenados[cantidad];
+    Paciente aux;
+
+
+    for(int i=0;i<cantidad-1;i++){
+
+
+        for(int j=i+1;j<cantidad;j++){
+
+            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j]>0)){
+                aux=pacientesOrdenados[i];
+                pacientesOrdenados[i]=pacientesOrdenados[j];
+                pacientesOrdenados[j]=aux;
+
+            }
+
+        }
+
+
+    }
+
+    for(int i=0;i<cantidad;i++){
+
+        mostrarPaciente(pacientesOrdenados[i]);
+        cout << endl;
+    }
+
+
+
+
+}
+
+
+void PacienteManager::listarPacientesPorDni(){
+
+    Paciente reg;
+    int cantidad = repoPaciente.getCantidadActivos();
+
+    Paciente *pacientesOrdenados;
+
+    pacientesOrdenados= new Paciente [cantidad];
+    Paciente aux;
+
+    for(int i=0;i<cantidad-1;i++){
+
+        for(int j=i+1;j<cantidad;j++){
+
+            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j])>0){
+
+                aux= pacientesOrdenados[i];
+                pacientesOrdenados[i]=pacientesOrdenados[j];
+                pacientesOrdenados[j]=aux;
+
+            }
+
+        }
+    }
+
+
+
+    for(int i=0;i<cantidad;i++){
+
+        mostrarPaciente(pacientesOrdenados[i]);
+        cout << endl;
+
+
+    }
+
+
+
+
+}
+
+
+
+
+
 
 void PacienteManager::mostrarPaciente(Paciente reg){
 
- //   cout << "DNI: " << reg.getDni() <<endl;
+    cout << "ID: " << reg.getIdPaciente() <<endl;
     cout << "Nombre: " <<reg.getNombre()<< endl;
     cout << "Apellido: " <<reg.getApellido()<< endl;
     cout << "Fecha de nacimiento: "<< reg.getFechaNacimiento().getDia()
