@@ -12,8 +12,7 @@
 class HistorialManager{
 
 public:
-    bool cargarHistorial(Turno turno, Medicos medico, Paciente paciente);
-    void bajaHistorial();//se deberia dar de baja un historial?
+    bool cargarHistorial(Turno turno);
     void modificarHistorial();
     void listarHistoriales();
     void mostrarHistorial(Historial reg);

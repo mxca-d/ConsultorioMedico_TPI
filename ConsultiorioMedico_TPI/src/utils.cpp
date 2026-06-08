@@ -93,7 +93,6 @@ bool validacionCaracteres (const char* cadena)
 
     if (caracteres == 0)
     {
-        cout << ">> Error: no puede quedar vacio.\n" << endl;
         return false;
     }
     else if (caracteres < 29 && caracteres > 2)
@@ -102,9 +101,6 @@ bool validacionCaracteres (const char* cadena)
     }
     else
     {
-        cout << "Fuera de rango, recuerde ingresar hasta 30 caracteres..." << endl;
-        cin.clear();
-        cin.ignore(30, '\n');
         return false;
     }
 

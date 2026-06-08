@@ -3,118 +3,22 @@
 #include "utils.h"
 using namespace std;
 
-/*void HistorialManager::cargarHistorial(){
 
-    int idPaciente,idMedico,idTurno, posTurno;
+bool HistorialManager::cargarHistorial(Turno turno){
+
     char diagnostico[100];
-
-    Fecha fecha;
-    TurnoManager managerTurno;
-    Turno turno;
-    TurnoArchivo repoTurno;
     Historial historial;
+
     PacienteArchivo repoPaciente;
+    MedicosArchivos repoMedico;
     Paciente paciente;
     Medicos medico;
-    MedicosArchivos repoMedico;
 
-    fecha.setHoy();
+    int idMedico= turno.getIdMedico();
+    int idPaciente= turno.getIdPaciente();
 
-    cout << "------------HISTORIAL------------" << endl;
-    cout << "Ingrese ID del turno:" <<endl;// O BUSCAR POR DNI
-    cin>>idTurno;
-    cout << "Ingrese ID del medico:" <<endl;// O BUSCAR POR DNI
-    cin>>idMedico;
-
-    posTurno=repoTurno.buscarPorId(idTurno);
-    if(posTurno==-1){
-        cout << "El turno ingresado no existe" << endl;
-        return;
-    }
-
-    turno=repoTurno.leer(posTurno);
-    idPaciente=turno.getIdPaciente();
-    if(turno.getIdMedico()!=idMedico){
-        cout << "El turno ingresado no corresponde al medico" << endl;
-        return;
-    }
-
-    if(turno.getEstado()== "CANCELADO"){
-        cout << "Este turno fue cancelado" << endl;
-        return;
-    }else if(turno.getEstado()=="ATENDIDO"){
-        cout << "Este turno ya fue atendido" << endl;
-        return;
-    }
-
-    int posPaciente= repoPaciente.buscarPorId(idPaciente);
-    int posMedico= repoMedico.buscarPorId(idMedico);
-
-    if(posPaciente == -1){
-        cout << "El paciente asociado al turno no existe." << endl;
-        return;
-    }
-
-    if(posMedico == -1){
-        cout << "El medico asociado al turno no existe." << endl;
-        return;
-    }
-
-    paciente=repoPaciente.leer(posPaciente);
-    medico=repoMedico.leer(posMedico);
-
-    cout << "Paciente : " << paciente.getNombre()<< " " << paciente.getApellido() << endl;
-    cout << "Medico :" << medico.getNombre()<< " " << medico.getApellido() << endl;
-    cout << "Fecha :" <<turno.getFechaTurno().toString() <<endl;
-    cout << "---------------------------------------------------------------" << endl;
-    cout << "Ingresar diagnostico:" << endl << endl;
-    cin.ignore();
-    bool diagnosticoValido;
-    do{
-
-        cin.getline(diagnostico,100);
-        diagnosticoValido=validacionCaracteres(diagnostico,100);
-    }while(!diagnosticoValido);
-
-    todoMayuscula(diagnostico);
-
-    historial.setDiagnostico(diagnostico);
-    historial.setEliminado(false);
-    historial.setFecha(turno.getFechaTurno());
-    historial.setIdHistorial(repoHistorial.getCantidadRegistros()+1);
-    historial.setIdMedico(idMedico);
-    historial.setIdPaciente(idPaciente);
-    historial.setIdTurno(idTurno);
-
-    if(repoHistorial.guardar(historial)){
-
-    turno.setEstado("ATENDIDO");
-
-    if(repoTurno.modificar(turno,posTurno)){
-        cout << "El historial se ha guardado exitosamente." << endl;
-    }else{
-        cout << "El historial se guardo existosamente pero no se pudo modificar el turno" << endl;
-    }
-    }else{
-        cout << "No se ha podido guardar el historial." << endl;
-    }
-
-
-
-
-}*/
-
-
-
-// SI TURNO VALIDA TODO, EL ALTA DEBERIA DEVOLVER BOOL Y RECIBIR POR PARAMETRO LOS DATOS DE TURNO, MEDICO Y PACIENTE
-bool HistorialManager::cargarHistorial(Turno turno, Medicos medico, Paciente paciente){
-
-    char diagnostico[100];
-    Historial historial;
-
-    int idPaciente = turno.getIdPaciente();
-    int idMedico = turno.getIdMedico();
-    int idTurno = turno.getIdTurno();
+    paciente= repoPaciente.leer(repoPaciente.buscarPorId(idPaciente));
+    medico= repoMedico.leer(repoMedico.buscarPorId(idMedico));
 
 
     cout << "Paciente : " << paciente.getNombre()<< " " << paciente.getApellido() << endl;
@@ -138,12 +42,14 @@ bool HistorialManager::cargarHistorial(Turno turno, Medicos medico, Paciente pac
     historial.setIdHistorial(repoHistorial.getCantidadRegistros()+1);
     historial.setIdMedico(idMedico);
     historial.setIdPaciente(idPaciente);
-    historial.setIdTurno(idTurno);
+    historial.setIdTurno(turno.getIdTurno());
 
     if(repoHistorial.guardar(historial)){
         cout << "El historial se ha guardado exitosamente." << endl;
+        return true;
     }else{
         cout << "No se ha podido guardar el historial." << endl;
+        return false;
     }
 
 
@@ -152,18 +58,7 @@ bool HistorialManager::cargarHistorial(Turno turno, Medicos medico, Paciente pac
 }
 
 
-
-void HistorialManager::bajaHistorial(){
-
-
-    }//se deberia dar de baja un historial{
-
-
-
-
-
-
-/*void HistorialManager::modificarHistorial(){
+void HistorialManager::modificarHistorial(){
 
     char diagnostico[100];
     Historial historial;
@@ -217,11 +112,13 @@ void HistorialManager::bajaHistorial(){
     }
 
 }
-*////REVISAR
 
 
-/*void HistorialManager::listarHistoriales(){
+
+void HistorialManager::listarHistoriales(){
     Historial historial;
+    Paciente paciente;
+    PacienteArchivo repoPaciente;
 
     int cantidad = repoHistorial.getCantidadRegistros();
 
@@ -229,19 +126,23 @@ void HistorialManager::bajaHistorial(){
     for(int i=0;i<cantidad;i++){
 
         historial=repoHistorial.leer(i);
-        mostrarHistorial(historial);
-        cout << "---------------------------------" << endl;
+        paciente=repoPaciente.leer(repoPaciente.buscarPorId(historial.getIdPaciente()));
 
+        if(paciente.getEliminado()==false){
+
+            mostrarHistorial(historial);
+            cout << "---------------------------------" << endl;
+        }
 
 
     }
 
 
 }
-*////REVISAR
 
 
-/*void HistorialManager::mostrarHistorial(Historial reg){
+
+void HistorialManager::mostrarHistorial(Historial reg){
 
     Paciente paciente;
     PacienteArchivo repoPaciente;
@@ -265,15 +166,65 @@ void HistorialManager::bajaHistorial(){
 
 
 }
-*////REVISAR
+
 
 
 void HistorialManager::listarPorPaciente(){
 
     Paciente paciente;
     PacienteArchivo repoPaciente;
+    Historial historial;
+    Medicos medico;
+    MedicosArchivos repoMedico;
 
-    int cantidad = repoPaciente.getCantidadRegistros();
+    int cantidadPacientes = repoPaciente.getCantidadRegistros();
+    int cantidadHistoriales = repoHistorial.getCantidadRegistros();
+
+    for(int i=0;i<cantidadPacientes;i++){
+
+        paciente=repoPaciente.leer(i);
+        bool tieneHistorial=false;
+
+        if(paciente.getEliminado()==false){
+
+            for(int j=0;j<cantidadHistoriales;j++){
+
+
+
+                historial=repoHistorial.leer(j);
+
+
+
+            if(historial.getIdPaciente()==paciente.getIdPaciente()){
+                if(tieneHistorial==false){
+                    cout << "Paciente: " << paciente.getNombre() << " " << paciente.getApellido() << endl;
+                    cout << "-------------------------------------" << endl;
+                    tieneHistorial=true;
+
+                }
+
+                medico= repoMedico.leer(repoMedico.buscarPorId(historial.getIdMedico()));
+
+                cout << "Medico: " << medico.getNombre() << " " << medico.getApellido() << endl;
+                cout << "Especialidad: " << medico.getEspecialidad() << endl;
+                cout << "Fecha: " << historial.getFecha().toString() << endl;
+                cout << "--------------------------" << endl;
+                cout << historial.getDiagnostico() << endl;
+                cout << endl << endl;
+            }
+
+
+
+            }
+
+        if(tieneHistorial==true){
+                cout << "--------------------------------------------------------------" << endl;
+        }
+        }
+
+
+
+    }
 
 
 
@@ -283,19 +234,118 @@ void HistorialManager::listarPorPaciente(){
 
 void HistorialManager::listarPorMedico(){
 
+    Historial historial;
+    Paciente paciente;
+    PacienteArchivo repoPaciente;
+    Medicos medico;
+    MedicosArchivos repoMedico;
+
+
+    int cantidadMedicos= repoMedico.getCantidadRegistros();
+    int cantidadHistoriales= repoHistorial.getCantidadRegistros();
+
+
+    for(int i=0;i<cantidadMedicos;i++){
+
+        bool tieneHistorial=false;
+        medico= repoMedico.leer(i);
+
+        if(medico.getEliminado()==false){
+
+            for(int j=0;j<cantidadHistoriales;j++){
+
+                historial= repoHistorial.leer(j);
+
+                if(medico.getIdMedico()==historial.getIdMedico()){
+
+                    if(tieneHistorial==false){
+
+                    cout << "Medico: " << medico.getNombre() << " " << medico.getApellido() << endl;
+                    cout << "-------------------------------------" << endl;
+                    tieneHistorial=true;
+
+                    }
+
+                    paciente= repoPaciente.leer(repoPaciente.buscarPorId(historial.getIdPaciente()));
+
+
+                    cout << "Paciente: " << paciente.getNombre() << " " << paciente.getApellido() << endl;
+                    cout << "Fecha: " << historial.getFecha().toString() << endl;
+                    cout << "Diagnostico: " << historial.getDiagnostico() << endl;
+                    cout << endl << endl;
+
+                }
+
+
+            }
+
+
+
+
+        }
+        if(tieneHistorial){
+            cout << "------------------------------------------------------------------" << endl;
+        }
+
+
+
+    }
+
+
 
 }
 
 
 
 void HistorialManager::hacerCopiaDeSeguridad(){
+    int cantidadRegistros = repoHistorial.getCantidadRegistros();
+    Historial *vec = new Historial[cantidadRegistros];
 
+    if (vec == nullptr)
+    {
+        cout << "Error al realizar backup" << endl;
+        return;
+    }
+
+    repoHistorial.leer(vec, cantidadRegistros);
+    _archivoBkp.vaciar();
+    if (_archivoBkp.guardar(vec, cantidadRegistros))
+    {
+        cout << "Backup realizado correctamente" << endl;
+    }
+    else
+    {
+        cout << "Error al realizar backup" << endl;
+    }
+
+    delete []vec;
 
 }
 
 
 
 void HistorialManager::restaurarCopiaDeSeguridad(){
+    int cantidadRegistros = _archivoBkp.getCantidadRegistros();
+    Historial *vec = new Historial[cantidadRegistros];
 
+    if (vec == nullptr)
+    {
+        cout << "Error al restaurar backup" << endl;
+        return;
+    }
+
+    _archivoBkp.leer(vec, cantidadRegistros);
+    repoHistorial.vaciar();
+    if (repoHistorial.guardar(vec, cantidadRegistros))
+    {
+        cout << "Backup restaurado correctamente" << endl;
+    }
+    else
+    {
+        cout << "Error al restaurar backup" << endl;
+    }
+
+    delete []vec;
 
 }
+
