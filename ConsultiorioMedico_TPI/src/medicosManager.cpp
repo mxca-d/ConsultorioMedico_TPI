@@ -91,7 +91,7 @@ void MedicosManager::altaMedico()
             cout << "Presione 1. para habilitar agenda." << endl;
             cout << "Presione 2. para no agregar dia." << endl;
             cout << "0. para cancelar carga. " << endl;
-            //mostrarDiaAgenda(i);
+            mostrarDiaAgenda(i);
             cin >> opcion;
 
             switch (opcion)
