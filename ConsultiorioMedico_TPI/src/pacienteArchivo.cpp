@@ -50,7 +50,7 @@ int PacienteArchivo::buscarPorDni(const char* dni){
     return -1;
 
 }
-/*
+
 bool PacienteArchivo::buscarCoincidenciaId(int id){
     Paciente reg;
 
@@ -59,7 +59,7 @@ bool PacienteArchivo::buscarCoincidenciaId(int id){
     for(int i=0;i<cantidad;i++){
         reg= leer(i);
 
-        if(reg.getEliminado()==false && reg.get()==id){
+        if(reg.getEliminado()==false && reg.getIdPaciente()==id){
             return true;
         }
 
@@ -67,7 +67,25 @@ bool PacienteArchivo::buscarCoincidenciaId(int id){
 
     return false;
 
-}*/
+}
+
+int PacienteArchivo::buscarPorId(int id){
+    Paciente reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0;i<cantidad;i++){
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && reg.getIdPaciente()==id){
+            return i;
+        }
+
+    }
+
+    return -1;
+
+}
 
 bool PacienteArchivo::buscarCoincidenciaDni(const char* dni){
     Paciente reg;
@@ -122,7 +140,7 @@ Paciente PacienteArchivo::leer(int pos){
 
 }
 
-/*void PacienteArchivo::leer(Paciente *vec, int cantidadRegistrosALeer)
+void PacienteArchivo::leer(Paciente *vec, int cantidadRegistrosALeer)
 {
     FILE *p = fopen(_nombreArchivo, "rb");
     if (p == NULL)
@@ -132,8 +150,7 @@ Paciente PacienteArchivo::leer(int pos){
 
     fread(vec, sizeof(Paciente), cantidadRegistrosALeer, p);
     fclose(p);
-}*/
-//ESTA FUNCION NO RECORRE CANTIDAD DE REGISTROS, EL PARAMETRO DE FREAD LO QUE HACE ES SALTEAR LOS BYTES, NO LA CANT QUE VA A LEER
+}
 
 
 bool PacienteArchivo::guardar(Paciente *vec, int cantidadRegistrosAEscribir)

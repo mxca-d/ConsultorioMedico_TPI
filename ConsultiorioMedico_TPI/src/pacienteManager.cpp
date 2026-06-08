@@ -5,7 +5,7 @@
 
 using namespace std;
 
-/*
+
 
 void PacienteManager::altaPaciente(){
     char nombre[30], apellido[30], obraSocial[30],dni [12];
@@ -64,7 +64,7 @@ void PacienteManager::altaPaciente(){
 }
 
 
-/*void PacienteManager::bajaPaciente(){
+void PacienteManager::bajaPaciente(){
     Paciente reg;
 
     int id, pos;
@@ -93,10 +93,10 @@ void PacienteManager::altaPaciente(){
 
 
 
-}*////REVISAR
+}
 
 
-/*void PacienteManager::modificarPaciente(){
+void PacienteManager::modificarPaciente(){
     char nombre[30], apellido[30], obraSocial[30],dni [12];
     Fecha fechaNacimiento;
     bool fechaValida;
@@ -195,10 +195,10 @@ void PacienteManager::altaPaciente(){
         cout << "No se ha podido modificar los datos del paciente." << endl;
     }
 
-}*////REVISAR
+}
 
 
-/*void PacienteManager::listarPacientes(){
+void PacienteManager::listarPacientes(){
     int cantidad= repoPaciente.getCantidadRegistros();
     Paciente reg;
     for(int i=0;i<cantidad; i++){
@@ -231,22 +231,42 @@ void PacienteManager::BuscarPorId()
     {
         cout << "No existe el registro con ID #" << id << endl;
     }
-}*////REVISAR
+}
 
-/*void PacienteManager::listarPacientesPorApellido(){
+void PacienteManager::listarPacientesPorApellido(){
     Paciente reg;
 
-    int cantidad= repoPaciente.getCantidadActivos();
+    int cantidadActivos= repoPaciente.getCantidadActivos();
+    int cantidadTotal= repoPaciente.getCantidadRegistros();
 
     Paciente *pacientesOrdenados;
-    pacientesOrdenados= new Paciente [cantidad];
+    pacientesOrdenados= new Paciente [cantidadActivos];
+
+    int posPacientesOrdenados =0;
+
+    for(int i=0;i<cantidadTotal;i++){
+
+        reg= repoPaciente.leer(i);
+
+        if(reg.getEliminado()==false){
+
+            pacientesOrdenados[posPacientesOrdenados]=reg;
+            posPacientesOrdenados++;
+
+        }
+
+    }
+
+
+
     Paciente aux;
 
-    for(int i=0;i <cantidad-1;i++){
 
-        for (int j=i+1;j<cantidad;j++){
+    for(int i=0;i <cantidadActivos-1;i++){
 
-            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j])>0){//evalua valor A-Z con ASCII
+        for (int j=i+1;j<cantidadActivos;j++){
+
+            if(strcmp(pacientesOrdenados[i].getApellido(),pacientesOrdenados[j].getApellido())>0){//evalua valor A-Z con ASCII
 
                 aux=pacientesOrdenados[i];
                 pacientesOrdenados[i]=pacientesOrdenados[j];
@@ -258,35 +278,53 @@ void PacienteManager::BuscarPorId()
 
     }
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0;i<cantidadActivos;i++){
 
         mostrarPaciente(pacientesOrdenados[i]);//estaria bueno implementar un metodo que muestre por filas
         cout << endl;
 
     }
 
+    delete[] pacientesOrdenados;
+
+}
 
 
-}*/
-
-
-/*void PacienteManager::listarPacientesPorObraSocial(){
+void PacienteManager::listarPacientesPorObraSocial(){
 
     Paciente reg;
-    int cantidad= repoPaciente.getCantidadActivos();
+    int cantidadActivos= repoPaciente.getCantidadActivos();
+    int cantidadTotal= repoPaciente.getCantidadRegistros();
 
     Paciente *pacientesOrdenados;
 
-    pacientesOrdenados= new pacientesOrdenados[cantidad];
+    pacientesOrdenados= new Paciente [cantidadActivos];
+
+    int posPacientesOrdenados=0;
+
+    for(int i=0;i<cantidadTotal;i++){
+
+        reg=repoPaciente.leer(i);
+
+        if(reg.getEliminado()==false){
+
+            pacientesOrdenados[posPacientesOrdenados]=reg;
+            posPacientesOrdenados++;
+
+        }
+
+    }
+
+
     Paciente aux;
 
 
-    for(int i=0;i<cantidad-1;i++){
+    for(int i=0;i<cantidadActivos-1;i++){
 
 
-        for(int j=i+1;j<cantidad;j++){
+        for(int j=i+1;j<cantidadActivos;j++){
 
-            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j]>0)){
+            if(strcmp(pacientesOrdenados[i].getObraSocial(),pacientesOrdenados[j].getObraSocial())>0){
                 aux=pacientesOrdenados[i];
                 pacientesOrdenados[i]=pacientesOrdenados[j];
                 pacientesOrdenados[j]=aux;
@@ -298,14 +336,14 @@ void PacienteManager::BuscarPorId()
 
     }
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0;i<cantidadActivos;i++){
 
         mostrarPaciente(pacientesOrdenados[i]);
         cout << endl;
     }
 
 
-
+    delete[] pacientesOrdenados;
 
 }
 
@@ -313,18 +351,39 @@ void PacienteManager::BuscarPorId()
 void PacienteManager::listarPacientesPorDni(){
 
     Paciente reg;
-    int cantidad = repoPaciente.getCantidadActivos();
+    int cantidadActivos = repoPaciente.getCantidadActivos();
+    int cantidadTotal= repoPaciente.getCantidadRegistros();
 
     Paciente *pacientesOrdenados;
 
-    pacientesOrdenados= new Paciente [cantidad];
+    pacientesOrdenados= new Paciente [cantidadActivos];
+
+    int posPacientesOrdenados=0;
+
+    for(int i=0;i<cantidadTotal;i++){
+
+        reg=repoPaciente.leer(i);
+
+        if(reg.getEliminado()==false){
+
+            pacientesOrdenados[posPacientesOrdenados]=reg;
+            posPacientesOrdenados++;
+
+        }
+
+
+
+
+    }
+
     Paciente aux;
 
-    for(int i=0;i<cantidad-1;i++){
 
-        for(int j=i+1;j<cantidad;j++){
+    for(int i=0;i<cantidadActivos-1;i++){
 
-            if(strcmp(pacientesOrdenados[i],pacientesOrdenados[j])>0){
+        for(int j=i+1;j<cantidadActivos;j++){
+
+            if(strcmp(pacientesOrdenados[i].getDni(),pacientesOrdenados[j].getDni())>0){
 
                 aux= pacientesOrdenados[i];
                 pacientesOrdenados[i]=pacientesOrdenados[j];
@@ -337,7 +396,7 @@ void PacienteManager::listarPacientesPorDni(){
 
 
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0;i<cantidadActivos;i++){
 
         mostrarPaciente(pacientesOrdenados[i]);
         cout << endl;
@@ -345,7 +404,7 @@ void PacienteManager::listarPacientesPorDni(){
 
     }
 
-
+    delete [] pacientesOrdenados;
 
 
 }
@@ -425,5 +484,4 @@ void PacienteManager::restaurarCopiaDeSeguridad()
 
 
 }
-/*
-*/
+
