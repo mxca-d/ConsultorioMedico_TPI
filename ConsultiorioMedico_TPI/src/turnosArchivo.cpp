@@ -8,6 +8,7 @@
 #include "medicos.h"
 
 using namespace std;
+///CONSULTAR
 
 /*void altaTurno(){
     Turno t;

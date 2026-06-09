@@ -27,14 +27,14 @@ Turno::Turno (int idMedico, int dni, int turno,int idTurno, int idPaciente)
     _idTurno = idTurno;
     _idMedico = idMedico;
     _idPaciente = idPaciente;
-    strcpy (_dniPaciente, "N/A");
+    strcpy (_dniPaciente, "N/A");///DNI?
     strcpy (_estado, "PENDIENTE");
     _eliminado = false;
 }
 
 
 
-void Turno::setIdTurno(int id)
+void Turno::setIdTurno(int id)///DEBATIR VALIDACION CON FRAN
 {
     if(id>0)
     {
@@ -101,7 +101,7 @@ void Turno::setHora(int hora)/// 0-1
 
     }
 }
-void Turno::setDiaTurno (int dia)
+void Turno::setDiaTurno (int dia)/// 0-1
 {
     switch(dia)
     {
@@ -188,7 +188,7 @@ Fecha Turno::getFechaTurno()
     return _fechaTurno;
 }
 
-int Turno::getFechaint()
+int Turno::getFechaint()///CONSULTAR PPOR ESTE METODO
 {
     int fecha = _fechaTurno.getAnio()*10000 + _fechaTurno.getMes() * 100 + _fechaTurno.getDia();
     return fecha;

@@ -13,7 +13,6 @@ class TurnoManager
 
 public:
     void altaTurno();
-    //void bajaTurno();
     void cancelarTurno();
     void atenderTurno();
     void modificarTurno();
@@ -23,11 +22,11 @@ public:
     void listarPorMedico();
     void listarPorEstado();
     void listarPorFecha();
-    void listarPorRangoFechas();
-    void listarXId();
+    void listarPorRangoFechas();///POSIBLEMENTE LO SAQUEMOS?
+    void listarPorId();///CAMBIO X = POR
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
-    int generarId();
+    int generarId();///AGREGAMOS METODO
 
 
 private:
@@ -35,11 +34,11 @@ private:
     TurnoArchivo _archivoBkp = TurnoArchivo("Turno.bkp");
     PacienteArchivo _repoPaciente;
     MedicosArchivos _repoMedico;
-    historialArchivo _repoHistorial;
-    ArancelArchivo _repoArancel;
+    historialArchivo _repoHistorial; ///AGREGAMOS ATRIBUTO-REPO
+    ArancelArchivo _repoArancel;    ///AGREGAMOS ATRIBUTO-REPO
 
-    MedicosManager _managerMedico;
-    HistorialManager _managerHistorial;
+    MedicosManager _managerMedico;  ///AGREGAMOS ATRIBUTO-MANAGER
+    HistorialManager _managerHistorial; ///AGREGAMOS ATRIBUTO-MANAGER
 
 
 };

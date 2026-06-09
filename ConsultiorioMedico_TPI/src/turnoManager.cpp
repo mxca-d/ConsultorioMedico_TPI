@@ -70,7 +70,7 @@ void TurnoManager::altaTurno()
     do
     {
         valido = false;
-        _managerMedico.mostrarEspecialidades();
+        _managerMedico.mostrarEspecialidades();///ESPECIALIDADES
         cout << "Ingrese Especilidad que desea: " ;
         cin.getline(especialidad,30);
         if (cancelacionUsuario(especialidad) )
