@@ -13,7 +13,7 @@ class HistorialManager{
 
 public:
     bool cargarHistorial(Turno turno);
-    void modificarHistorial();
+    void modificarHistorial();///AGREGAMOS METODO
     void listarHistoriales();
     void mostrarHistorial(Historial reg);
     void listarPorPaciente();

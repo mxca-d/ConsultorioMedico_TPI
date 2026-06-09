@@ -10,11 +10,11 @@ private:
 public:
     ObraSociales();
     void setIdObraSocial(int id);
-    void setEliminado(bool eliminado);
     void setNombre(const char *nombre);
+    void setEliminado(bool eliminado);
 
-    const char* getNombre();
     int getIdObraSocial();
+    const char* getNombre();
     bool getEliminado();
 
 
