@@ -99,7 +99,7 @@
 
 1779376694 D
 
-1779401016 ated upstream
+1781009378 ated upstream
 
 1780952415 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancel.cpp
 	<iostream>
@@ -107,7 +107,7 @@
 	"arancel.h"
 	"obraSocialArchivo.h"
 
-1780670514 shed changes
+1781013587 shed changes
 	<iostream>
 	<cstring>
 	"arancel.h"
@@ -120,6 +120,12 @@
 	"fecha.h"
 	"paciente.h"
 	"pacienteArchivo.h"
+	<iostream>
+	<cstring>
+	"turnoManager.h"
+	"pacienteArchivo.h"
+	"medicosManager.h"
+	"utils.h"
 
 1780952415 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancel.h
 
@@ -527,7 +533,7 @@
 
 1781009378 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
 
-1781012207 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+1781013665 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
 	<iostream>
 	<cstring>
 	"turnoManager.h"
@@ -579,26 +585,26 @@
 	"turnoManager.h"
 	"menu.h"
 
-1780805401 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuarios.cpp
+1781013665 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuarios.cpp
 	"usuarios.h"
 	<cstring>
 
-1780808212 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuarios.h
+1781013665 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuarios.h
 
-1780848106 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosarchivo.cpp
+1781013665 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosarchivo.cpp
 	"usuariosArchivo.h"
 	<cstdio>
 	<cstring>
 
-1780848106 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosarchivo.h
+1781013665 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosarchivo.h
 	"usuarios.h"
 
-1781013235 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosmanager.cpp
+1781013665 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosmanager.cpp
 	<iostream>
 	<cstring>
 	"usuariosManager.h"
 	"utils.h"
 
-1780857078 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosmanager.h
+1781013665 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosmanager.h
 	"usuariosArchivo.h"
 
