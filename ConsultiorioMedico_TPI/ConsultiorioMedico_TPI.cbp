@@ -61,6 +61,9 @@
 		<Unit filename="include/turnoManager.h" />
 		<Unit filename="include/turnoMenu.h" />
 		<Unit filename="include/turnosArchivo.h" />
+		<Unit filename="include/usuarios.h" />
+		<Unit filename="include/usuariosArchivo.h" />
+		<Unit filename="include/usuariosManager.h" />
 		<Unit filename="include/utils.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/arancel.cpp" />
@@ -90,6 +93,9 @@
 		<Unit filename="src/turnoManager.cpp" />
 		<Unit filename="src/turnoMenu.cpp" />
 		<Unit filename="src/turnosArchivo.cpp" />
+		<Unit filename="src/usuarios.cpp" />
+		<Unit filename="src/usuariosArchivo.cpp" />
+		<Unit filename="src/usuariosManager.cpp" />
 		<Unit filename="src/utils.cpp" />
 		<Extensions />
 	</Project>
