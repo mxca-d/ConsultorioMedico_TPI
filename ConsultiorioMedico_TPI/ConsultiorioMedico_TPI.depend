@@ -388,13 +388,21 @@
 
 1780684462 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\obrassociales.h
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelarchivo.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelarchivo.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	"arancelArchivo.h"
 	"arancel.h"
 	<cstring>
 
+<<<<<<< Updated upstream
 1781009262 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelarchivo.h
+=======
+1781009100 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelarchivo.h
+>>>>>>> Stashed changes
 	"arancel.h"
 
 1780875346 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmanager.cpp
@@ -444,12 +452,20 @@
 1779742994 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialarchivo.h
 	"Historial.h"
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	"historialManager.h"
 	"utils.h"
 
+<<<<<<< Updated upstream
 1781009262 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
+=======
+1781009100 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
+>>>>>>> Stashed changes
 	"historial.h"
 	"historialArchivo.h"
 	"turnosArchivo.h"
@@ -479,10 +495,17 @@
 1780871303 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicosarchivo.h
 	"Medicos.h"
 
+<<<<<<< Updated upstream
 1781009262 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicos.h
 	<string>
 
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicos.cpp
+=======
+1781009100 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\medicos.h
+	<string>
+
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicos.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	"Medicos.h"
 	<cstring>
@@ -492,7 +515,11 @@
 	<cstdio>
 	<cstring>
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicosmanager.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\medicosmanager.cpp
+>>>>>>> Stashed changes
 	"medicosManager.h"
 	"medicosArchivo.h"
 	<iostream>
@@ -540,7 +567,11 @@
 	<cstring>
 	"obrasSociales.h"
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"paciente.h"
@@ -548,7 +579,11 @@
 1780871303 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\paciente.h
 	"fecha.h"
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	"paciente.h"
 	"PacienteArchivo.h"
@@ -557,7 +592,11 @@
 1780871303 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientearchivo.h
 	"paciente.h"
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemanager.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemanager.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstdio>
 	"PacienteManager.h"
@@ -575,18 +614,31 @@
 	"pacienteManager.h"
 	"menu.h"
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"turno.h"
 	"utils.h"
 
+<<<<<<< Updated upstream
 1781009262 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
 	"fecha.h"
 
 1781009262 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
 
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+=======
+1781009100 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
+	"fecha.h"
+
+1781009100 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
+
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"turnoManager.h"
@@ -594,7 +646,11 @@
 	"medicosManager.h"
 	"utils.h"
 
+<<<<<<< Updated upstream
 1781009262 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomanager.h
+=======
+1781009100 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomanager.h
+>>>>>>> Stashed changes
 	"turno.h"
 	"turnosArchivo.h"
 	"pacienteArchivo.h"
@@ -610,7 +666,11 @@
 	"turnoManager.h"
 	"menu.h"
 
+<<<<<<< Updated upstream
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnosarchivo.cpp
+=======
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnosarchivo.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"turno.h"
@@ -620,10 +680,17 @@
 	"arancel.h"
 	"medicos.h"
 
+<<<<<<< Updated upstream
 1781009262 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnosarchivo.h
 	"turno.h"
 
 1781009262 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\utils.cpp
+=======
+1781009100 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnosarchivo.h
+	"turno.h"
+
+1781009100 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\utils.cpp
+>>>>>>> Stashed changes
 	"utils.h"
 	<iostream>
 	<cstring>
