@@ -13,9 +13,9 @@ public:
     Medicos leer(int pos);
     bool modificar(Medicos reg, int pos);
     int buscarPorId(int id);
-    bool buscarCoincidenciaId(int id);
-    bool buscarCoincidenciaDni(const char* dni);
-    bool buscarCoincidenciaEspecialidad(const char* especialidad);
+    bool buscarCoincidenciaId(int id);///AGREGAMOS ESTE METODO
+    bool buscarCoincidenciaDni(const char* dni);///AGREGAMOS ESTE METODO
+    bool buscarCoincidenciaEspecialidad(const char* especialidad);///AGREGAMOS ESTE METODO
 
     bool guardar(Medicos *vec, int cantidadRegistrosAEscribir);
     void leer(Medicos *vec, int cantidadRegistrosALeer);

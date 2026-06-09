@@ -13,9 +13,10 @@ private:
     int _idMedico;
     bool _eliminado;
     float _honorarios;
-    bool _diasAgenda [5];
-    bool _turnos [5];
+    bool _diasAgenda [5];///AGREGAMOS ESTE ATRIBUTO
+    bool _turnos [5];///AGREGAMOS ESTE ATRIBUTO
 
+    ///FALTA EMAIL Y DIRECCION, PERO LO AGREGO AL CREAR LA CLASE PERSONA QUE VA A HEREDAR ESOS DATOS
 
 
 public:
@@ -30,10 +31,10 @@ public:
     void setEliminado(bool eliminado);
     void setIdMedico(int id);
     void setHonorarios(float honorarios);
-    void setDiasAgenda (const bool* diasAgenda);
-    void setDiaAgendaEleccion (int seleccion, bool estado );
-    void setTurnosAgenda (const bool* turnosAgenda);
-    void setTurnoEleccion (int seleccion, bool estado );
+    void setDiasAgenda (const bool* diasAgenda);///AGREGAMOS ESTE METODO
+    void setDiaAgendaEleccion (int seleccion, bool estado );///AGREGAMOS ESTE METODO
+    void setTurnosAgenda (const bool* turnosAgenda);///AGREGAMOS ESTE METODO
+    void setTurnoEleccion (int seleccion, bool estado );///AGREGAMOS ESTE METODO
 
 
     const char* getNombre();
@@ -45,8 +46,8 @@ public:
     int getIdMedico();
     float getHonorarios();
     bool getEliminado();
-    const bool* getDiasAgenda();
-    const bool* getTurnosAgenda();
+    const bool* getDiasAgenda();///AGREGAMOS ESTE METODO
+    const bool* getTurnosAgenda();///AGREGAMOS ESTE METODO
 
 
 };

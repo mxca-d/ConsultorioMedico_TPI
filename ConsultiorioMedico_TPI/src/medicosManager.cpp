@@ -11,7 +11,7 @@ using namespace std;
 
 void MedicosManager::altaMedico()
 {
-
+    ///FALTAN UNOS ATRIBUTOS DE CONTACTO
     char nombre[30],apellido[30],especialidad[30],dni[12],matricula[15],telefono[15];
     float honorarios;
     int opcion;
@@ -185,7 +185,7 @@ void MedicosManager::bajaMedico()
 
 }
 
-void MedicosManager::listarMedico()
+void MedicosManager::listarTodos()
 {
     int cantidadRegistros = _repoMedicos.getCantidadRegistros();
 
@@ -200,7 +200,7 @@ void MedicosManager::listarMedico()
     }
 }
 
-void MedicosManager::listarXId()
+void MedicosManager::listarPorId()///LISTAR O MOSTRAR POR ID?
 {
     int id;
 
@@ -219,7 +219,7 @@ void MedicosManager::listarXId()
     }
 }
 
-void MedicosManager::listarMedicoEspecialidad(const char* especialidad)
+void MedicosManager::listarMedicoEspecialidad(const char* especialidad)///COORDINAR SI VAMOS A USAR UTILS
 {
     int coincidencias = 0;
     int cantidadRegistros = _repoMedicos.getCantidadRegistros();
@@ -246,7 +246,7 @@ void MedicosManager::listarMedicoEspecialidad(const char* especialidad)
     }
 }
 
-void MedicosManager::mostrarMedico(Medicos medicos)
+void MedicosManager::mostrarMedico(Medicos medicos)///AGREGAR LOS ATRIBUTOS DE CONTACTO
 {
     cout << "-------------------MEDICOS-------------------" << endl;
     cout << endl;
@@ -347,6 +347,7 @@ void MedicosManager::listarMedicoPorApellido()
         return;
     }
     _repoMedicos.leer(vec, cantidadRegistros);
+    ///DEBERIAMOS ANTES VER SI ESTAN ACTIVOS? GENERE ALGO PARECIDO EN HISTORIAL
 
 
 
