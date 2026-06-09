@@ -1,18 +1,19 @@
 #include <iostream>
 #include "app.h"
+/*
 #include "menuAdministrador.h"
 #include "menuMedico.h"
-#include "menuRecepcionista.h"
+#include "menuRecepcionista.h"*/
 using namespace std;
-/*
+
 int main()
 {
     App app;
     app.run();
 
     return 0;
-}*/
-
+}
+/*
 int main()
 {
     UsuariosManager usuario;
@@ -54,4 +55,4 @@ int main()
 
     return 0;
 }
-
+*/

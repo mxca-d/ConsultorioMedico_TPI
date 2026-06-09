@@ -111,7 +111,8 @@ void arancelManager::altaArancel()
 }
 */
 
-void arancelManager::altaArancel(){
+void arancelManager::altaArancel()
+{
 
     Arancel reg;
     ObraSocialManager managerObraSocial;
@@ -121,65 +122,76 @@ void arancelManager::altaArancel(){
 
     char especialidad[30];
     float cobertura;
-    do{
+    do
+    {
         system("cls");
-    cout << "Obras sociales disponibles:" << endl;
-    managerObraSocial.listarObrasSociales();
+        cout << "Obras sociales disponibles:" << endl;
+        managerObraSocial.listarObrasSociales();
 
-    cout << "Ingrese ID de obra social: ";
-    cin >> id;
+        cout << "Ingrese ID de obra social: ";
+        cin >> id;
 
-    pos = repoObraSocial.buscarPorId(id);
+        pos = repoObraSocial.buscarPorId(id);
 
-    if(pos == -1){
-        cout << "La obra social ingresada no existe." << endl;
-        system("pause");
+        if(pos == -1)
+        {
+            cout << "La obra social ingresada no existe." << endl;
+            system("pause");
+        }
     }
-    }while(pos==-1);
+    while(pos==-1);
 
     bool especialidadValida;
 
-    do{
+    do
+    {
         system("cls");
-    mostrarEspecialidades();
+        mostrarEspecialidades();
 
-    cout << "Seleccionar especialidad: ";
-    cin >> opcion;
+        cout << "Seleccionar especialidad: ";
+        cin >> opcion;
 
-    especialidadValida = cargarEspecialidad(opcion, especialidad);
+        especialidadValida = cargarEspecialidad(opcion, especialidad);
 
-    if(!especialidadValida){
-        cout << "Especialidad invalida." << endl;
-        system("pause");
+        if(!especialidadValida)
+        {
+            cout << "Especialidad invalida." << endl;
+            system("pause");
+        }
+
     }
-
-    }while(!especialidadValida);
-
+    while(!especialidadValida);
 
 
-    do{
+
+    do
+    {
         cout << "Ingrese porcentaje de cobertura: ";
         cin >> cobertura;
 
-        if(cobertura < 0 || cobertura > 100){
+        if(cobertura < 0 || cobertura > 100)
+        {
             cout << "Cobertura invalida. Debe estar entre 0 y 100." << endl;
         }
 
-    }while(cobertura < 0 || cobertura > 100);
+    }
+    while(cobertura < 0 || cobertura > 100);
 
     int cantidad = _repoArancel.getCantidadRegistros();
     Arancel aux;
 
-    for(int i = 0; i < cantidad; i++){
-    aux = _repoArancel.leer(i);
+    for(int i = 0; i < cantidad; i++)
+    {
+        aux = _repoArancel.leer(i);
 
-    if(aux.getEliminado() == false &&
-       aux.getIdObraSocial() == id &&
-       strcmp(aux.getEspecialidad(), especialidad) == 0){
+        if(aux.getEliminado() == false &&
+                aux.getIdObraSocial() == id &&
+                strcmp(aux.getEspecialidad(), especialidad) == 0)
+        {
 
-        cout << "Ya existe un arancel para esa obra social y especialidad." << endl;
-        return;
-    }
+            cout << "Ya existe un arancel para esa obra social y especialidad." << endl;
+            return;
+        }
     }
 
     reg.setIdArancel(cantidad + 1);
@@ -188,9 +200,12 @@ void arancelManager::altaArancel(){
     reg.setCobertura(cobertura);
     reg.setEliminado(false);
 
-    if(_repoArancel.guardar(reg)){
+    if(_repoArancel.guardar(reg))
+    {
         cout << "Arancel guardado correctamente." << endl;
-    }else{
+    }
+    else
+    {
         cout << "No se pudo guardar el arancel." << endl;
     }
 }

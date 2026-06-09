@@ -6,7 +6,8 @@
 using namespace std;
 
 
-void ObraSocialManager::altaObraSocial(){
+void ObraSocialManager::altaObraSocial()
+{
 
     char nombre[30];
 
@@ -15,8 +16,7 @@ void ObraSocialManager::altaObraSocial(){
 
     cout << "-------------------OBRA SOCIAL-------------------" << endl;
     cout << endl;
-    cout << "Ingrese el nombre de la obra social:" << endl;
-    cout << endl;
+    cout << "Ingrese el nombre de la obra social:" ;
 
     if (std::cin.peek() == '\n')
     {
@@ -26,32 +26,33 @@ void ObraSocialManager::altaObraSocial(){
     cin.getline(nombre,30);
     todoMayuscula(nombre);
 
-
-
-
     int cantidad = repoObraSocial.getCantidadRegistros();
 
 
-    for( int i=0;i<cantidad;i++){
+    for( int i=0; i<cantidad; i++)
+    {
 
         reg= repoObraSocial.leer(i);
 
-        if(reg.getEliminado()==false && strcmp(reg.getNombre(),nombre)==0){
+        if(reg.getEliminado()==false && strcmp(reg.getNombre(),nombre)==0)
+        {
             cout << "La obra social ingresada ya existe..." << endl;
             return;
         }
 
     }
 
-
     reg.setNombre(nombre);
     reg.setEliminado(false);
     reg.setIdObraSocial(cantidad+1);
     bool seGuardo=repoObraSocial.guardar(reg);
 
-    if(seGuardo){
+    if(seGuardo)
+    {
         cout << "La obra social fue registrada con exito." << endl;
-    }else{
+    }
+    else
+    {
         cout << "No se pudo guardar la obra social..." << endl;
     }
 
@@ -62,7 +63,8 @@ void ObraSocialManager::altaObraSocial(){
 
 
 
-void ObraSocialManager::bajaObraSocial(){
+void ObraSocialManager::bajaObraSocial()
+{
     ObraSociales reg;
 
     int id, pos;
@@ -98,7 +100,8 @@ void ObraSocialManager::bajaObraSocial(){
 
 
 
-void ObraSocialManager::modificarObraSocial(){
+void ObraSocialManager::modificarObraSocial()
+{
 
     char nombre[30];
 
@@ -114,7 +117,8 @@ void ObraSocialManager::modificarObraSocial(){
 
     pos=repoObraSocial.buscarPorId(id);
 
-    if(pos==-1){
+    if(pos==-1)
+    {
         cout << "El id ingresado no existe." << endl;
         return;
     }
@@ -129,17 +133,22 @@ void ObraSocialManager::modificarObraSocial(){
     int cantidad=repoObraSocial.getCantidadRegistros();
 
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0; i<cantidad; i++)
+    {
 
         aux=repoObraSocial.leer(i);
 
-        if(strcmp(aux.getNombre(),nombre)==0){
-            if(aux.getEliminado()){
+        if(strcmp(aux.getNombre(),nombre)==0)
+        {
+            if(aux.getEliminado())
+            {
                 cout << "Existe obra social dada de baja con ese nombre. "
-                << "En caso de querer reactivar, realizarlo desde la opcion 'Dar alta obra social'" << endl;
+                     << "En caso de querer reactivar, realizarlo desde la opcion 'Dar alta obra social'" << endl;
                 return;
 
-            }else if (aux.getIdObraSocial() != id){
+            }
+            else if (aux.getIdObraSocial() != id)
+            {
                 cout << "Ya existe una obra social activa con ese nombre." << endl;
                 return;
             }
@@ -151,9 +160,12 @@ void ObraSocialManager::modificarObraSocial(){
     reg.setNombre(nombre);
     bool modificado=repoObraSocial.modificar(reg,pos);
 
-    if(modificado){
+    if(modificado)
+    {
         cout << "El nombre de la obra social ha sido modificado exitosamente" << endl;
-    }else{
+    }
+    else
+    {
         cout << "No se ha podido modificar el nombre de la obra social." << endl;
     }
 
@@ -165,28 +177,33 @@ void ObraSocialManager::modificarObraSocial(){
 
 
 
-void ObraSocialManager::listarObrasSociales(){
+void ObraSocialManager::listarObrasSociales()
+{
 
     ObraSociales reg;
 
     int cantidad=repoObraSocial.getCantidadRegistros();
 
-        for(int i=0;i<cantidad;i++){
+    for(int i=0; i<cantidad; i++)
+    {
 
-            reg=repoObraSocial.leer(i);
+        reg=repoObraSocial.leer(i);
 
-            if(reg.getEliminado()==false){
-                mostrarObraSocial(reg);
-            }
+        if(reg.getEliminado()==false)
+        {
+            mostrarObraSocial(reg);
         }
+    }
 
 }
 
 
 
-void ObraSocialManager::mostrarObraSocial(ObraSociales reg){
+void ObraSocialManager::mostrarObraSocial(ObraSociales reg)
+{
 
-    if(reg.getEliminado()==false){
+    if(reg.getEliminado()==false)
+    {
         cout << reg.getIdObraSocial() << " - " << reg.getNombre() << endl;
     }
 
@@ -195,7 +212,8 @@ void ObraSocialManager::mostrarObraSocial(ObraSociales reg){
 
 
 
-void ObraSocialManager::buscarObraSocialPorId(){
+void ObraSocialManager::buscarObraSocialPorId()
+{
 
     ObraSociales reg;
     int id, pos;
@@ -205,7 +223,8 @@ void ObraSocialManager::buscarObraSocialPorId(){
 
     pos=repoObraSocial.buscarPorId(id);
 
-    if(pos==-1){
+    if(pos==-1)
+    {
         cout << "El id ingresado no existe." << endl;
         return;
     }
@@ -218,7 +237,8 @@ void ObraSocialManager::buscarObraSocialPorId(){
 
 
 
-void ObraSocialManager::hacerCopiaDeSeguridad(){
+void ObraSocialManager::hacerCopiaDeSeguridad()
+{
     int cantidadRegistros = repoObraSocial.getCantidadRegistros();
     ObraSociales *vec = new ObraSociales[cantidadRegistros];
 
@@ -245,7 +265,8 @@ void ObraSocialManager::hacerCopiaDeSeguridad(){
 
 
 
-void ObraSocialManager::restaurarCopiaDeSeguridad(){
+void ObraSocialManager::restaurarCopiaDeSeguridad()
+{
 
     int cantidadRegistros = _archivoBkp.getCantidadRegistros();
     ObraSociales *vec = new ObraSociales[cantidadRegistros];

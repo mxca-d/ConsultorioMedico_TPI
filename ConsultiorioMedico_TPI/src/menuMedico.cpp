@@ -37,7 +37,7 @@ void MenuMedico::ejecutarOpcion(int opcion)
         _managerTurno.listarTurnoPendientePorMedico();
         break;
     case 4:
-        _historialManager.listarPorPaciente();// no funca..
+        //_historialManager.listarPorPaciente();// no funca..
         break;
     case 5:
         _pacienteManager.bajaPaciente();

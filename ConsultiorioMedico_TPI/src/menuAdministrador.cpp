@@ -1,29 +1,42 @@
 #include <iostream>
 #include "menuAdministrador.h"
+#include "usuariosManager.h"
 using namespace std;
 
-MenuAdministrador::MenuAdministrador(){
-   setCantidadOpciones(6);
+MenuAdministrador::MenuAdministrador()
+{
+    setCantidadOpciones(6);
 }
 
-void MenuAdministrador::mostrarOpciones(){
-   cout << "----- MENU COMPLERO-----"<<endl;
-   cout << "1- TURNOS"<<endl;
-   cout << "2- MEDICOS"<<endl;
-   cout << "3- PACIENTES"<<endl;
-   cout << "4- OBRAS SOCIALES"<<endl;
-   cout << "5- ARANCELES"<<endl;
-   cout << "6- HISTORIAL PACIENTES"<<endl;
-   cout << "0- SALIR"<<endl;
-   cout << "------------------------"<<endl;
+void MenuAdministrador::mostrarOpciones()
+{
+    cout << "----- MENU COMPLERO-----"<<endl;
+    cout << "1- DAR ALTA USUARIO"<<endl;
+    cout << "2- DAR ALTA MEDICO"<<endl;
+    cout << "3- DAR DE ALTA OBRA SOCIAL" << endl;
+    cout << "3- DAR ALTA ARANCEL"<<endl;
+    cout << "0- SALIR"<<endl;
+    cout << "------------------------"<<endl;
 }
 
-void MenuAdministrador::ejecutarOpcion(int opcion){
-   switch(opcion){
-   case 1:
+void MenuAdministrador::ejecutarOpcion(int opcion)
+{
 
-      break;
-   case 0:
-      cout << "Gracias por usar mi app :)" << endl;
-   }
+
+    switch(opcion)
+    {
+    case 1:
+        _usuarioManager.altaUsuario();
+        break;
+    case 2:
+        _medicoManager.altaMedico();
+        break;
+    case 3:
+        _obraSocialManager.altaObraSocial();
+        break;
+    case 4:
+        _arancelManager.altaArancel();
+    case 0:
+        cout << "Gracias por usar mi app :)" << endl;
+    }
 }

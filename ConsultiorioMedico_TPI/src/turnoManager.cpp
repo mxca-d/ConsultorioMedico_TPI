@@ -36,6 +36,11 @@ void TurnoManager::altaTurno()
     {
 
         cout << "DNI paciente:  ";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+
         cin.getline(dniPaciente,8);
         if (cin.fail())
         {
@@ -145,8 +150,8 @@ void TurnoManager::altaTurno()
 
         if (!diasTurno[seleccion-1])
         {
-            medico.setDiaAgendaEleccion(seleccion-1,false);
-            turno.setDiaTurno(seleccion-1);
+            //medico.setDiaAgendaEleccion(seleccion-1,false); // tengo cinco turnos
+            //turno.setDiaTurno(seleccion-1);
             valido=true;
         }
         else
@@ -198,7 +203,8 @@ void TurnoManager::altaTurno()
         arancel = _repoArancel.leer(posArancel);
 
     }
-    costoConsulta = medico.getHonorarios() *arancel.getCobertura() /100;
+    float descArancel = medico.getHonorarios() *arancel.getCobertura() /100;
+    costoConsulta = medico.getHonorarios() - descArancel;
     cout << "VALOR A ABONAR: $ " << costoConsulta << endl;
 
     f.setHoy();
@@ -250,6 +256,11 @@ void TurnoManager::cancelarTurno()
 
         cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
         cout << "INGRESE DNI DEL PACIENTE: ";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+
         cin.getline(dni,8);
         if (cin.fail())
         {
@@ -374,6 +385,11 @@ void TurnoManager::listarTurnoPendientePorPaciente()
         bandDni = false;
         cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
         cout << "INGRESE DNI DEL PACIENTE: ";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+
         cin.getline(dni,8);
         if (cin.fail())
         {
@@ -511,6 +527,11 @@ void TurnoManager::listarTurnoPendientePorMedico()
         bandDni = false;
         cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
         cout << "INGRESE DNI MEDICO: ";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+
         cin.getline(dni,8);
         if (cin.fail())
         {
@@ -651,6 +672,12 @@ void TurnoManager::atenderTurno()
         valido = false;
         cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
         cout << "INGRESE DNI DEL PACIENTE: ";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+
+
         cin.getline(dni,8);
         cout << endl;
 
@@ -735,6 +762,15 @@ void TurnoManager::atenderTurno()
         }
     }
     while(!valido);
+    turno.setEstado("ATENDIDO");
+
+    if(_repoTurno.modificar(turno,posTurno))
+    {
+        cout << "TURNO ATENDIDO" << endl;
+    } else
+    {
+        cout << "error" << endl;
+    }
 
     // terminar guardando estado turno...
 

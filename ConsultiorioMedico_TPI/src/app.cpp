@@ -11,7 +11,7 @@ void App::mostrarOpciones(){
    cout << "----- INGRESO USUARIO-----"<<endl;
 
 }
-/*
+
 int App::seleccionarOpcion(){
    int opcion;
 
@@ -24,7 +24,7 @@ int App::seleccionarOpcion(){
    } while(opcion < 0 || opcion > getCantidadOpciones());
 
    return opcion;
-}*/
+}
 
 void App::ejecutarOpcion(int opcion){
    switch(opcion){

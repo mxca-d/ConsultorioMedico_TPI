@@ -19,6 +19,7 @@ class Usuarios
 
         char _nombreUsuario [20];
         char _password [15];
+        //DNI
         char _rol [30];
         bool _eliminado;
 };

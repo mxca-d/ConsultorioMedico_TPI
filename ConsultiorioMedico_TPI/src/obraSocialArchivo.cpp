@@ -5,27 +5,31 @@
 using namespace std;
 
 
-ObraSocialArchivo::ObraSocialArchivo(){
+ObraSocialArchivo::ObraSocialArchivo()
+{
     strcpy(_nombreArchivo,"obrasocial.dat");
 
 }
 
 
 
-ObraSocialArchivo::ObraSocialArchivo(const char* nombre){
+ObraSocialArchivo::ObraSocialArchivo(const char* nombre)
+{
     strcpy(_nombreArchivo,nombre);
 
 }
 
 
 
-bool ObraSocialArchivo::guardar(ObraSociales p){
+bool ObraSocialArchivo::guardar(ObraSociales p)
+{
 
-FILE *pFile;
+    FILE *pFile;
 
     pFile=fopen(_nombreArchivo,"ab");
 
-    if(pFile==nullptr){
+    if(pFile==nullptr)
+    {
         return false;
 
     }
@@ -39,21 +43,22 @@ FILE *pFile;
 
 
 
-int ObraSocialArchivo::getCantidadRegistros(){
+int ObraSocialArchivo::getCantidadRegistros()
+{
 
     FILE *pFile;
 
     pFile=fopen(_nombreArchivo,"rb");
 
-    if(pFile=nullptr){
+    if(pFile==nullptr)
+    {
         return 0;
     }
-
-    fseek(pFile,sizeof(ObraSociales),2);
+    fseek(pFile, 0, SEEK_END);
 
     int bytes= ftell(pFile);
     int total= bytes / sizeof(ObraSociales);
-
+    fclose(pFile);
     return total;
 
 
@@ -61,14 +66,16 @@ int ObraSocialArchivo::getCantidadRegistros(){
 
 
 
-ObraSociales ObraSocialArchivo::leer(int pos){
+ObraSociales ObraSocialArchivo::leer(int pos)
+{
 
     FILE *pFile;
     ObraSociales reg;
 
     pFile= fopen(_nombreArchivo,"rb");
 
-    if(pFile=nullptr){
+    if(pFile==nullptr)
+    {
         return reg;
     }
 
@@ -87,12 +94,14 @@ ObraSociales ObraSocialArchivo::leer(int pos){
 
 
 
-bool ObraSocialArchivo::modificar(ObraSociales reg, int pos){
+bool ObraSocialArchivo::modificar(ObraSociales reg, int pos)
+{
 
     FILE *pFile;
 
     pFile=fopen(_nombreArchivo,"rb+");
-    if(pFile==nullptr){
+    if(pFile==nullptr)
+    {
         return false;
     }
 
@@ -106,15 +115,18 @@ bool ObraSocialArchivo::modificar(ObraSociales reg, int pos){
 
 
 
-int ObraSocialArchivo::buscarPorId(int id){
+int ObraSocialArchivo::buscarPorId(int id)
+{
     ObraSociales reg;
 
     int cantidad= getCantidadRegistros();
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0; i<cantidad; i++)
+    {
         reg= leer(i);
 
-        if(reg.getEliminado()==false && reg.getIdObraSocial()==id){
+        if(reg.getEliminado()==false && reg.getIdObraSocial()==id)
+        {
             return i;
         }
 
@@ -126,13 +138,15 @@ int ObraSocialArchivo::buscarPorId(int id){
 
 
 
-bool ObraSocialArchivo::guardar(ObraSociales*vec, int cantidadRegistrosAEscribir){
+bool ObraSocialArchivo::guardar(ObraSociales*vec, int cantidadRegistrosAEscribir)
+{
 
     FILE *pfile;
 
     pfile= fopen(_nombreArchivo,"ab");
 
-    if(pfile==nullptr){
+    if(pfile==nullptr)
+    {
         return false;
     }
 
@@ -144,13 +158,15 @@ bool ObraSocialArchivo::guardar(ObraSociales*vec, int cantidadRegistrosAEscribir
 
 
 
-void ObraSocialArchivo::leer(ObraSociales *vec, int cantidadRegistrosALeer){
+void ObraSocialArchivo::leer(ObraSociales *vec, int cantidadRegistrosALeer)
+{
 
     FILE *pFile;
 
     pFile= fopen(_nombreArchivo,"rb");
 
-    if(pFile==nullptr){
+    if(pFile==nullptr)
+    {
         return;
     }
 
@@ -164,11 +180,13 @@ void ObraSocialArchivo::leer(ObraSociales *vec, int cantidadRegistrosALeer){
 
 
 
-void ObraSocialArchivo::vaciar(){
+void ObraSocialArchivo::vaciar()
+{
     FILE *pFile;
 
     pFile= fopen(_nombreArchivo, "wb");
-    if(pFile==nullptr){
+    if(pFile==nullptr)
+    {
         return;
     }
     fclose(pFile);

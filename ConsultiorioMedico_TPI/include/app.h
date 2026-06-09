@@ -9,7 +9,7 @@ class App: public Menu {
 public:
    App();
    void mostrarOpciones() override;
-   //int seleccionarOpcion() ;
+   int seleccionarOpcion() ;
    void ejecutarOpcion(int opcion) override;
 
 private:

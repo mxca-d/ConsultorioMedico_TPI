@@ -6,7 +6,7 @@ public:
     void run();
 
     virtual void mostrarOpciones() = 0;
-    int seleccionarOpcion() ;
+    virtual int seleccionarOpcion() ;
     virtual void ejecutarOpcion(int opcion) = 0;
 
 protected:

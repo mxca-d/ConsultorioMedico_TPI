@@ -7,7 +7,8 @@ using namespace std;
 
 
 
-void PacienteManager::altaPaciente(){
+void PacienteManager::altaPaciente()
+{
     char nombre[30], apellido[30], obraSocial[30],dni [12];
     Fecha fechaNacimiento;
     bool fechaValida;
@@ -18,21 +19,29 @@ void PacienteManager::altaPaciente(){
 
     cout << "-------------------PACIENTES-------------------" << endl;
     cout << "Nombre: ";
+    if (cin.peek() == '\n')
+    {
+        cin.ignore();
+    }
+
     cin.getline(nombre,30);
     cout << endl;
     cout << "Apellido: ";
     cin.getline (apellido, 30);
     cout << endl;
-    do{
+    do
+    {
 
-    cout << "Fecha de nacimiento: " <<endl;
-    fechaValida=fechaNacimiento.cargar();
-    if(!fechaValida){
-        cout << "Fecha invalida. Ingrese los datos nuevamente...";
-        system("pause");
-        system("cls");
+        cout << "Fecha de nacimiento: " <<endl;
+        fechaValida=fechaNacimiento.cargar();
+        if(!fechaValida)
+        {
+            cout << "Fecha invalida. Ingrese los datos nuevamente...";
+            system("pause");
+            system("cls");
+        }
     }
-    }while(!fechaValida);
+    while(!fechaValida);
     cout << endl;
     cout << "DNI: ";
     cin.ignore();
@@ -51,9 +60,12 @@ void PacienteManager::altaPaciente(){
     p.setIdPaciente(repoPaciente.getCantidadRegistros()+1);
     p.setEliminado(false);
 
-    if(repoPaciente.guardar(p)){
+    if(repoPaciente.guardar(p))
+    {
         cout << "Se guardo el paciente exitosamente!" << endl;
-    }else{
+    }
+    else
+    {
         cout << "No se pudo guardar el paciente..." << endl;
     }
 
@@ -64,7 +76,8 @@ void PacienteManager::altaPaciente(){
 }
 
 
-void PacienteManager::bajaPaciente(){
+void PacienteManager::bajaPaciente()
+{
     Paciente reg;
 
     int id, pos;
@@ -75,7 +88,8 @@ void PacienteManager::bajaPaciente(){
 
     pos=repoPaciente.buscarPorId(id);
 
-    if(pos==-1){
+    if(pos==-1)
+    {
         cout << "El id ingresado no existe." << endl;
         return;
     }
@@ -85,9 +99,12 @@ void PacienteManager::bajaPaciente(){
 
     bool eliminado=repoPaciente.modificar(reg,pos);
 
-    if(eliminado){
+    if(eliminado)
+    {
         cout << "El paciente se ha dado de baja exitosamente." << endl;
-    }else{
+    }
+    else
+    {
         cout << "No se pudo dar de baja el paciente." << endl;
     }
 
@@ -96,7 +113,8 @@ void PacienteManager::bajaPaciente(){
 }
 
 
-void PacienteManager::modificarPaciente(){
+void PacienteManager::modificarPaciente()
+{
     char nombre[30], apellido[30], obraSocial[30],dni [12];
     Fecha fechaNacimiento;
     bool fechaValida;
@@ -111,7 +129,8 @@ void PacienteManager::modificarPaciente(){
 
     pos=repoPaciente.buscarPorId(id);
 
-    if(pos==-1){
+    if(pos==-1)
+    {
         cout << "El id ingresado no existe." << endl;
         return;
     }
@@ -120,7 +139,8 @@ void PacienteManager::modificarPaciente(){
 
 
     int opcion;
-    do{
+    do
+    {
         system("cls");
 
         cout << "-----------------------------" << endl;
@@ -134,24 +154,27 @@ void PacienteManager::modificarPaciente(){
         cout << "-----------------------------" << endl;
         cin>>opcion;
         cin.ignore();
-        switch(opcion){
-            case 1:
-                cout << "Nombre: ";
-                cin.getline(nombre,30);
-                p.setNombre(nombre);
+        switch(opcion)
+        {
+        case 1:
+            cout << "Nombre: ";
+            cin.getline(nombre,30);
+            p.setNombre(nombre);
 
-                break;
-            case 2:
-                cout << "Apellido: ";
-                cin.getline (apellido, 30);
-                p.setApellido(apellido);
-                break;
+            break;
+        case 2:
+            cout << "Apellido: ";
+            cin.getline (apellido, 30);
+            p.setApellido(apellido);
+            break;
         case 3:
-            do{
+            do
+            {
 
                 cout << "Fecha de nacimiento: " <<endl;
                 fechaValida=fechaNacimiento.cargar();
-                if(!fechaValida){
+                if(!fechaValida)
+                {
                     cout << "Fecha invalida. Ingrese los datos nuevamente...";
                     system("pause");
                     system("cls");
@@ -161,23 +184,23 @@ void PacienteManager::modificarPaciente(){
             p.setFechaNacimiento(fechaNacimiento);
 
             break;
-            case 4:
-                cout << "DNI: ";
-                cin.getline (dni, 12);
-                p.setDni(dni);
-                break;
-            case 5:
-                cout << "Obra Social: ";
-                cin.getline (obraSocial, 30);
-                p.setObraSocial(obraSocial);
-                break;
-            case 0:
+        case 4:
+            cout << "DNI: ";
+            cin.getline (dni, 12);
+            p.setDni(dni);
+            break;
+        case 5:
+            cout << "Obra Social: ";
+            cin.getline (obraSocial, 30);
+            p.setObraSocial(obraSocial);
+            break;
+        case 0:
 
-                break;
-            default:
-                cout << "Opcion invalida... intente nuevamente" << endl;
-                system("pause");
-                break;
+            break;
+        default:
+            cout << "Opcion invalida... intente nuevamente" << endl;
+            system("pause");
+            break;
 
 
 
@@ -185,26 +208,33 @@ void PacienteManager::modificarPaciente(){
         }
 
 
-    }while(opcion!=0);
+    }
+    while(opcion!=0);
 
     bool modificado=repoPaciente.modificar(p,pos);
 
-    if(modificado){
+    if(modificado)
+    {
         cout << "Los datos del paciente han sido modificados exitosamente" << endl;
-    }else{
+    }
+    else
+    {
         cout << "No se ha podido modificar los datos del paciente." << endl;
     }
 
 }
 
 
-void PacienteManager::listarPacientes(){
+void PacienteManager::listarPacientes()
+{
     int cantidad= repoPaciente.getCantidadRegistros();
     Paciente reg;
-    for(int i=0;i<cantidad; i++){
+    for(int i=0; i<cantidad; i++)
+    {
         reg=repoPaciente.leer(i);
 
-        if(reg.getEliminado()!=true){
+        if(reg.getEliminado()!=true)
+        {
 
             mostrarPaciente(reg);
             cout << endl;
@@ -233,7 +263,8 @@ void PacienteManager::BuscarPorId()
     }
 }
 
-void PacienteManager::listarPacientesPorApellido(){
+void PacienteManager::listarPacientesPorApellido()
+{
     Paciente reg;
 
     int cantidadActivos= repoPaciente.getCantidadActivos();
@@ -244,11 +275,13 @@ void PacienteManager::listarPacientesPorApellido(){
 
     int posPacientesOrdenados =0;
 
-    for(int i=0;i<cantidadTotal;i++){
+    for(int i=0; i<cantidadTotal; i++)
+    {
 
         reg= repoPaciente.leer(i);
 
-        if(reg.getEliminado()==false){
+        if(reg.getEliminado()==false)
+        {
 
             pacientesOrdenados[posPacientesOrdenados]=reg;
             posPacientesOrdenados++;
@@ -262,11 +295,14 @@ void PacienteManager::listarPacientesPorApellido(){
     Paciente aux;
 
 
-    for(int i=0;i <cantidadActivos-1;i++){
+    for(int i=0; i <cantidadActivos-1; i++)
+    {
 
-        for (int j=i+1;j<cantidadActivos;j++){
+        for (int j=i+1; j<cantidadActivos; j++)
+        {
 
-            if(strcmp(pacientesOrdenados[i].getApellido(),pacientesOrdenados[j].getApellido())>0){//evalua valor A-Z con ASCII
+            if(strcmp(pacientesOrdenados[i].getApellido(),pacientesOrdenados[j].getApellido())>0) //evalua valor A-Z con ASCII
+            {
 
                 aux=pacientesOrdenados[i];
                 pacientesOrdenados[i]=pacientesOrdenados[j];
@@ -278,7 +314,8 @@ void PacienteManager::listarPacientesPorApellido(){
 
     }
 
-    for(int i=0;i<cantidadActivos;i++){
+    for(int i=0; i<cantidadActivos; i++)
+    {
 
         mostrarPaciente(pacientesOrdenados[i]);//estaria bueno implementar un metodo que muestre por filas
         cout << endl;
@@ -290,7 +327,8 @@ void PacienteManager::listarPacientesPorApellido(){
 }
 
 
-void PacienteManager::listarPacientesPorObraSocial(){
+void PacienteManager::listarPacientesPorObraSocial()
+{
 
     Paciente reg;
     int cantidadActivos= repoPaciente.getCantidadActivos();
@@ -302,11 +340,13 @@ void PacienteManager::listarPacientesPorObraSocial(){
 
     int posPacientesOrdenados=0;
 
-    for(int i=0;i<cantidadTotal;i++){
+    for(int i=0; i<cantidadTotal; i++)
+    {
 
         reg=repoPaciente.leer(i);
 
-        if(reg.getEliminado()==false){
+        if(reg.getEliminado()==false)
+        {
 
             pacientesOrdenados[posPacientesOrdenados]=reg;
             posPacientesOrdenados++;
@@ -319,12 +359,15 @@ void PacienteManager::listarPacientesPorObraSocial(){
     Paciente aux;
 
 
-    for(int i=0;i<cantidadActivos-1;i++){
+    for(int i=0; i<cantidadActivos-1; i++)
+    {
 
 
-        for(int j=i+1;j<cantidadActivos;j++){
+        for(int j=i+1; j<cantidadActivos; j++)
+        {
 
-            if(strcmp(pacientesOrdenados[i].getObraSocial(),pacientesOrdenados[j].getObraSocial())>0){
+            if(strcmp(pacientesOrdenados[i].getObraSocial(),pacientesOrdenados[j].getObraSocial())>0)
+            {
                 aux=pacientesOrdenados[i];
                 pacientesOrdenados[i]=pacientesOrdenados[j];
                 pacientesOrdenados[j]=aux;
@@ -336,7 +379,8 @@ void PacienteManager::listarPacientesPorObraSocial(){
 
     }
 
-    for(int i=0;i<cantidadActivos;i++){
+    for(int i=0; i<cantidadActivos; i++)
+    {
 
         mostrarPaciente(pacientesOrdenados[i]);
         cout << endl;
@@ -348,7 +392,8 @@ void PacienteManager::listarPacientesPorObraSocial(){
 }
 
 
-void PacienteManager::listarPacientesPorDni(){
+void PacienteManager::listarPacientesPorDni()
+{
 
     Paciente reg;
     int cantidadActivos = repoPaciente.getCantidadActivos();
@@ -360,11 +405,13 @@ void PacienteManager::listarPacientesPorDni(){
 
     int posPacientesOrdenados=0;
 
-    for(int i=0;i<cantidadTotal;i++){
+    for(int i=0; i<cantidadTotal; i++)
+    {
 
         reg=repoPaciente.leer(i);
 
-        if(reg.getEliminado()==false){
+        if(reg.getEliminado()==false)
+        {
 
             pacientesOrdenados[posPacientesOrdenados]=reg;
             posPacientesOrdenados++;
@@ -379,11 +426,14 @@ void PacienteManager::listarPacientesPorDni(){
     Paciente aux;
 
 
-    for(int i=0;i<cantidadActivos-1;i++){
+    for(int i=0; i<cantidadActivos-1; i++)
+    {
 
-        for(int j=i+1;j<cantidadActivos;j++){
+        for(int j=i+1; j<cantidadActivos; j++)
+        {
 
-            if(strcmp(pacientesOrdenados[i].getDni(),pacientesOrdenados[j].getDni())>0){
+            if(strcmp(pacientesOrdenados[i].getDni(),pacientesOrdenados[j].getDni())>0)
+            {
 
                 aux= pacientesOrdenados[i];
                 pacientesOrdenados[i]=pacientesOrdenados[j];
@@ -396,7 +446,8 @@ void PacienteManager::listarPacientesPorDni(){
 
 
 
-    for(int i=0;i<cantidadActivos;i++){
+    for(int i=0; i<cantidadActivos; i++)
+    {
 
         mostrarPaciente(pacientesOrdenados[i]);
         cout << endl;
@@ -414,20 +465,24 @@ void PacienteManager::listarPacientesPorDni(){
 
 
 
-void PacienteManager::mostrarPaciente(Paciente reg){
+void PacienteManager::mostrarPaciente(Paciente reg)
+{
 
     cout << "ID: " << reg.getIdPaciente() <<endl;
     cout << "Nombre: " <<reg.getNombre()<< endl;
     cout << "Apellido: " <<reg.getApellido()<< endl;
     cout << "Fecha de nacimiento: "<< reg.getFechaNacimiento().getDia()
-    << "/" << reg.getFechaNacimiento().getMes()
-    << "/" << reg.getFechaNacimiento().getAnio() <<endl;
+         << "/" << reg.getFechaNacimiento().getMes()
+         << "/" << reg.getFechaNacimiento().getAnio() <<endl;
     cout << "DNI: " <<reg.getDni()<< endl;
     cout << "Obra social: " << reg.getObraSocial()<< endl;
     cout << "Estado: ";
-    if(reg.getEliminado()){
+    if(reg.getEliminado())
+    {
         cout << "Inactivo" << endl;
-    }else{
+    }
+    else
+    {
         cout << "Activo" << endl;
     }
 }
