@@ -7,42 +7,42 @@ class Turno
 private:
     int _idTurno;
     int _idPaciente;
-    char _dniPaciente [8];
     int _idMedico;
+    char _dniPaciente [8];///AGREGAMOS ATRIBUTO
     Fecha _fechaTurno;
-    char _hora[6]; //agregue un espacio mas por los :
-    char _diaTurno [8];
+    char _hora[6];
+    char _diaTurno [8];///AGREGAMOS ATRIBUTO
     char _estado[15];
     bool _eliminado;
     float _costoConsulta;
 
-    //TurnoArchivo _repoTurno;
+
 
 public:
     Turno();
-    Turno (int idMedico, int dni, int turno,int idTurno,int idPaciente);
+    Turno (int idMedico, int dni, int turno,int idTurno,int idPaciente);///AGREGAMOS CONSTRCUTOR CON PARAMETROS
     void setIdTurno(int id);
     void setIdPaciente(int id);
-    void setDniPaciente(const char* dni);
+    void setDniPaciente(const char* dni);///AGREGAMOS METODO
     void setIdMedico(int id);
     void setFechaTurno(Fecha fecha);
     void setHora(int hora);
-    void setDiaTurno (int dia);
     void setEstado(const char* estado);
+    void setDiaTurno (int dia);///AGREGAMOS METODO
     void setEliminado(bool eliminado);
     void setCostoConsulta(float costo);
 
-    const char* getHora();
-    const char* getEstado();
     int getIdTurno();
     int getIdPaciente();
-    const char* getDniPaciente();
     int getIdMedico();
-    bool getEliminado();
     Fecha getFechaTurno();
-    int getFechaint();
+    const char* getHora();
+    const char* getEstado();
+    bool getEliminado();
     float getCostoConsulta();
-    const char* getDiaTurno();
+    const char* getDniPaciente();///AGREGAMOS METODO
+    int getFechaint();///CONSULTAR FRAN
+    const char* getDiaTurno();///AGREGAMOS METODO
 
 
 

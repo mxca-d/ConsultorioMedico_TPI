@@ -74,7 +74,7 @@ void Turno::setFechaTurno(Fecha fecha)
 }
 
 
-void Turno::setHora(int hora)
+void Turno::setHora(int hora)/// 0-1
 {
     switch(hora)
     {
