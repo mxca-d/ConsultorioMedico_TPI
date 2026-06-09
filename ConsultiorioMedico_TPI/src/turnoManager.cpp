@@ -164,7 +164,7 @@ void TurnoManager::altaTurno()
         {
             if(turnoAgenda[i])
             {
-              //  mostrarTurnoAgenda(i);
+               mostrarTurnoAgenda(i);
             }
         }
 
@@ -201,12 +201,12 @@ void TurnoManager::altaTurno()
     costoConsulta = medico.getHonorarios() *arancel.getCobertura() /100;
     cout << "VALOR A ABONAR: $ " << costoConsulta << endl;
 
-
+    f.setHoy();
     turno.setCostoConsulta(costoConsulta);
     turno.setDniPaciente(dniPaciente);
     turno.setEliminado(false);
     turno.setEstado("PENDIENTE");
-    //turno.setFechaTurno();
+    turno.setFechaTurno(f);
     turno.setIdTurno(generarId());
     mostrarTurno(turno);
 
@@ -540,7 +540,7 @@ void TurnoManager::atenderTurno()
     Turno turno;
     bool valido;
     char dni[8];
-    int id, posTurno, opcion, cantRegistros;
+    int  posTurno, opcion, cantRegistros;
     Historial historial;
 
     do
