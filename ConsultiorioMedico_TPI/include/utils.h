@@ -13,4 +13,4 @@ bool validacionImportes (float precio);
 void mostrarEspecialidades();
 bool cargarEspecialidad(int opcion, char* especialidad);
 void mostrarDiaAgenda (int indice);
-void mostrarTrunoAgenda (int indice);
+void mostrarTurnoAgenda (int indice);

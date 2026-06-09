@@ -93,6 +93,10 @@ bool validacionCaracteres (const char* cadena)
 
     if (caracteres == 0)
     {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         return false;
     }
     else if (caracteres < 29 && caracteres > 2)
@@ -101,6 +105,10 @@ bool validacionCaracteres (const char* cadena)
     }
     else
     {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         return false;
     }
 
@@ -114,7 +122,7 @@ bool validacionCaracteres (const char* cadena, int tamanio)//REPASAR ESTA FUNCIO
 
     if (caracteres == 0)
     {
-        cout << ">> Error: no puede quedar vacio.\n" << endl;
+
         return false;
     }
     else if (caracteres <= tamanio && caracteres > 2)
@@ -123,9 +131,7 @@ bool validacionCaracteres (const char* cadena, int tamanio)//REPASAR ESTA FUNCIO
     }
     else
     {
-        cout << "Fuera de rango, recuerde ingresar hasta " << tamanio<< "caracteres..." << endl;
-        cin.clear();
-        cin.ignore(30, '\n');
+
         return false;
     }
 
@@ -141,7 +147,7 @@ bool validacionCaracteres (int num)
     }
     else
     {
-        cout << "Fuera de rango" << endl;
+
         return false;
     }
 
@@ -157,13 +163,14 @@ void todoMayuscula (char *pCadena)
     }
 }
 
+/*
 void controlBufferEnter ()
 {
     if (cin.peek() == '\n')
     {
         cin.ignore();
     }
-}
+}*/
 
 bool validacionImportes (float precio)
 {
@@ -217,21 +224,21 @@ void mostrarDiaAgenda (int indice)
     switch (indice)
     {
     case 0 :
-        cout << "LUNES" << endl;
+        cout << "1.LUNES" << endl;
         break;
 
     case 1:
-        cout << "MARTES" << endl;
+        cout << "2.MARTES" << endl;
         break;
 
     case 2:
-        cout << "MIERCOLES" << endl;
+        cout << "3.MIERCOLES" << endl;
         break;
     case 3:
-        cout << "JUEVES" << endl;
+        cout << "4.JUEVES" << endl;
         break;
     case 4:
-        cout << "VIERNES" << endl;
+        cout << "5.VIERNES" << endl;
         break;
     default:
         cout << "INCORRECTO"<< endl;
@@ -239,12 +246,12 @@ void mostrarDiaAgenda (int indice)
 
     }
 }
-void mostrarTrunoAgenda (int indice)
+void mostrarTurnoAgenda (int indice)
 {
     switch (indice)
     {
     case 0 :
-        cout << "1. 08:00 Hs" << endl;
+        cout << "1. << 08:00 Hs" << endl;
         break;
 
     case 1:

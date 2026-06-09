@@ -35,8 +35,10 @@ void MedicosManager::altaMedico()
     cout << endl;
     cout << "Ingrese '0' en caso de querer cancelar la carga" << endl;
     cout << endl;
-
-    controlBufferEnter ();
+    if (cin.peek() == '\n')
+    {
+        cin.ignore();
+    }
 
     for (int i=0; i < 6; i++)
     {

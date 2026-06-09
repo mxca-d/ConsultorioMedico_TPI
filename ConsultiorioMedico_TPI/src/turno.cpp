@@ -13,7 +13,11 @@ Turno::Turno()
     strcpy (_dniPaciente, "N/A");
     strcpy (_hora, "N/A");
     strcpy (_estado, "N/A");
+    strcpy (_diaTurno, "N/A");
+
+
     _eliminado = false;
+
 
 }
 
@@ -70,14 +74,61 @@ void Turno::setFechaTurno(Fecha fecha)
 }
 
 
-void Turno::setHora(const char* hora)
+void Turno::setHora(int hora)
 {
-    if(horaValida(hora))
+    switch(hora)
     {
-        strcpy(_hora,hora);
-    }
+    case 0 :
+        strcpy(_hora,"08:00" );
+        break;
 
+    case 1:
+        strcpy(_hora,"09:00" );
+        break;
+
+    case 2:
+        strcpy(_hora,"10:00" );
+        break;
+    case 3:
+        strcpy(_hora,"11:00" );
+        break;
+    case 4:
+        strcpy(_hora,"12:00" );
+        break;
+    default:
+        strcpy(_hora,"ERROR" );
+        break;
+
+    }
 }
+void Turno::setDiaTurno (int dia)
+{
+    switch(dia)
+    {
+    case 0 :
+        strcpy(_diaTurno,"LUNES" );
+        break;
+
+    case 1:
+        strcpy(_diaTurno,"MARTES" );
+        break;
+
+    case 2:
+        strcpy(_diaTurno,"MIERCOLES" );
+        break;
+    case 3:
+        strcpy(_diaTurno,"JUEVES" );
+        break;
+    case 4:
+        strcpy(_diaTurno,"VIERNES" );
+        break;
+    default:
+        strcpy(_diaTurno,"ERROR" );
+        break;
+
+    }
+}
+
 
 
 void Turno::setEstado(const char* estado)
@@ -141,4 +192,9 @@ int Turno::getFechaint()
 {
     int fecha = _fechaTurno.getAnio()*10000 + _fechaTurno.getMes() * 100 + _fechaTurno.getDia();
     return fecha;
+}
+
+const char* Turno::getDiaTurno()
+{
+    return _diaTurno;
 }

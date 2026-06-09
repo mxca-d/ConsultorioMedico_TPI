@@ -4,7 +4,9 @@
 #include "pacienteArchivo.h"
 #include "medicosArchivo.h"
 #include "historialArchivo.h"
+#include"arancelArchivo.h"
 #include "medicosManager.h"
+#include "historialManager.h"
 
 class TurnoManager
 {
@@ -25,6 +27,7 @@ public:
     void listarXId();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
+    int generarId();
 
 
 private:
@@ -33,8 +36,10 @@ private:
     PacienteArchivo _repoPaciente;
     MedicosArchivos _repoMedico;
     historialArchivo _repoHistorial;
+    ArancelArchivo _repoArancel;
 
     MedicosManager _managerMedico;
+    HistorialManager _managerHistorial;
 
 
 };

@@ -117,6 +117,22 @@ int ArancelArchivo::buscarPorId(int id)
     }
     return -1;
 }
+int ArancelArchivo::buscarPorIdObraSocial(int id)
+{
+    Arancel aux;
+    int cantidadRegistros = getCantidadRegistros();
+
+    for(int i=0; i<cantidadRegistros; i++)
+    {
+        aux = leer(i);
+        if (aux.getIdObraSocial() == id && aux.getEliminado()==false)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void ArancelArchivo::leer(Arancel *vec, int cantidadRegistrosALeer)
 {
     FILE *pFile = fopen(_nombreArchivo, "rb");

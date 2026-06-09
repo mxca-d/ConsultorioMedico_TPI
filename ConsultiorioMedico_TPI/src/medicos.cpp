@@ -90,6 +90,14 @@ void Medicos::setDiasAgenda (const bool* diasAgenda )
         _diasAgenda[i] = diasAgenda[i];
     }
 }
+
+void Medicos::setDiaAgendaEleccion (int seleccion, bool estado )
+{
+
+        _diasAgenda[seleccion] = estado;
+
+}
+
 void Medicos::setTurnosAgenda (const bool* turnosAgenda)
 {
     for (int i=0; i<5; i++)
@@ -98,6 +106,12 @@ void Medicos::setTurnosAgenda (const bool* turnosAgenda)
     }
 }
 
+void Medicos::setTurnoEleccion (int seleccion, bool estado )
+{
+
+        _turnos[seleccion] = estado;
+
+}
 const char* Medicos::getNombre()
 {
     return _nombre;

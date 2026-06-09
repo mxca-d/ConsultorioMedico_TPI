@@ -281,7 +281,7 @@ int TurnoArchivo::buscarPorDni(const char* dni)
     for(int i=0; i<cantidadRegistros; i++)
     {
         aux = leer(i);
-        if (strcmp (aux.getDniPaciente(), dni) == 0 && aux.getEliminado()==false && aux.getEstado() == "PENDIENTE")
+        if (strcmp (aux.getDniPaciente(), dni) == 0 && aux.getEliminado()==false && strcmp(aux.getEstado(), "PENDIENTE")==0)
         {
             return i;
         }
@@ -298,4 +298,5 @@ void TurnoArchivo::vaciar()
     }
     fclose(p);
 }
+
 
