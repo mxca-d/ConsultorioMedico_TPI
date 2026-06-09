@@ -93,10 +93,6 @@ bool validacionCaracteres (const char* cadena)
 
     if (caracteres == 0)
     {
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         return false;
     }
     else if (caracteres < 29 && caracteres > 2)
@@ -105,10 +101,6 @@ bool validacionCaracteres (const char* cadena)
     }
     else
     {
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         return false;
     }
 

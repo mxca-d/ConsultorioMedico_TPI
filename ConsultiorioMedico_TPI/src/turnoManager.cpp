@@ -164,7 +164,7 @@ void TurnoManager::altaTurno()
         {
             if(turnoAgenda[i])
             {
-                mostrarTurnoAgenda(i);
+              //  mostrarTurnoAgenda(i);
             }
         }
 

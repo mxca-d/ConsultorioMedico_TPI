@@ -265,7 +265,7 @@ void MedicosManager::mostrarMedico(Medicos medicos)
 
         if(diasAgenda [i]== true)
         {
-            //mostrarDiaAgenda(i);
+            mostrarDiaAgenda(i);
         }
     }
 
