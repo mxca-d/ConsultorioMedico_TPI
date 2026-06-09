@@ -164,7 +164,7 @@ void TurnoManager::altaTurno()
         {
             if(turnoAgenda[i])
             {
-               mostrarTurnoAgenda(i);
+                mostrarTurnoAgenda(i);
             }
         }
 
@@ -362,6 +362,58 @@ void TurnoManager::listarTurnos()
 
 }
 
+void TurnoManager::listarTurnoPendientePorPaciente()
+{
+    bool bandDni;
+    char dni [8];
+    int pos;
+    Turno turno,
+          turnoAux;
+    do
+    {
+        bandDni = false;
+        cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
+        cout << "INGRESE DNI DEL PACIENTE: ";
+        cin.getline(dni,8);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+
+        if (cancelacionUsuario(dni) && validacionCaracteres (dni,8))
+        {
+            return;
+        }
+
+        pos = _repoTurno.buscarPorDni (dni);
+        if(pos==-1)
+        {
+            cout << "El DNI no posee turnos pendientes. " << endl;
+
+        }
+        else
+        {
+            turno = _repoTurno.leer(pos);
+            int cantidadRegistros = _repoTurno.getCantidadRegistros();
+            for(int i=0; i<cantidadRegistros; i++)
+            {
+                turnoAux = _repoTurno.leer(i);
+
+                if (strcmp(turno.getDniPaciente(),turnoAux.getDniPaciente())==0
+                        && strcmp(turnoAux.getEstado(),"PENDIENTE")==0)
+                {
+                    mostrarTurno(turnoAux);
+                    cout << "-----------------------------------------" << endl;
+                }
+
+            }
+            bandDni = true;
+        }
+    }
+    while(!bandDni);
+}
+
 
 void TurnoManager::listarPorPaciente()
 {
@@ -448,6 +500,57 @@ void TurnoManager::listarPorMedico()
 
     delete []vec;
 }
+void TurnoManager::listarTurnoPendientePorMedico()
+{
+    bool bandDni;
+    char dni [8];
+    int  idMedico, contPendientes;
+    Turno turno;
+    do
+    {
+        bandDni = false;
+        cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
+        cout << "INGRESE DNI MEDICO: ";
+        cin.getline(dni,8);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+
+        if (cancelacionUsuario(dni) && validacionCaracteres (dni,8))
+        {
+            return;
+        }
+        idMedico = _managerMedico.recuperarIdMedico(dni);
+        if(idMedico == -1)
+        {
+            cout << "DNI NO ENCONTRADO..." << endl;
+        }
+        else
+        {
+            contPendientes = 0;
+            int cantidadRegistros = _repoTurno.getCantidadRegistros();
+            for (int i=0; i<cantidadRegistros; i++)
+            {
+                turno = _repoTurno.leer(i);
+                if (turno.getIdMedico() == idMedico && strcmp(turno.getEstado(), "PENDIENTE") == 0)
+                {
+                    mostrarTurno (turno);
+                    cout <<"-----------------------------------------------" << endl;
+                    contPendientes ++;
+                }
+            }
+            bandDni = true;
+            if (contPendientes == 0)
+            {
+                cout << "SIN TURNOS PENDIENTES..." << endl;
+            }
+        }
+    }
+    while(!bandDni);
+}
+
 
 void TurnoManager::listarPorEstado()
 {
@@ -569,7 +672,8 @@ void TurnoManager::atenderTurno()
             turno = _repoTurno.leer(posTurno);
             mostrarTurno (turno);
         }
-    } while(!valido);
+    }
+    while(!valido);
 
     do
     {
@@ -605,7 +709,8 @@ void TurnoManager::atenderTurno()
             break;
         }
 
-    }while(!valido);
+    }
+    while(!valido);
 
     do
     {
@@ -628,7 +733,8 @@ void TurnoManager::atenderTurno()
             break;
 
         }
-    } while(!valido);
+    }
+    while(!valido);
 
     // terminar guardando estado turno...
 

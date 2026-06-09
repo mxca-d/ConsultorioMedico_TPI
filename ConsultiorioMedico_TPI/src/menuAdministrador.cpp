@@ -1,12 +1,12 @@
 #include <iostream>
-#include "menuInterfaz.h"
+#include "menuAdministrador.h"
 using namespace std;
 
-MenuInterfaz::MenuInterfaz(){
-   setCantidadOpciones(1);
+MenuAdministrador::MenuAdministrador(){
+   setCantidadOpciones(6);
 }
 
-void MenuInterfaz::mostrarOpciones(){
+void MenuAdministrador::mostrarOpciones(){
    cout << "----- MENU COMPLERO-----"<<endl;
    cout << "1- TURNOS"<<endl;
    cout << "2- MEDICOS"<<endl;
@@ -18,9 +18,10 @@ void MenuInterfaz::mostrarOpciones(){
    cout << "------------------------"<<endl;
 }
 
-void MenuInterfaz::ejecutarOpcion(int opcion){
+void MenuAdministrador::ejecutarOpcion(int opcion){
    switch(opcion){
    case 1:
+
       break;
    case 0:
       cout << "Gracias por usar mi app :)" << endl;

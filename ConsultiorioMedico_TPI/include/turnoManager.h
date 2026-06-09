@@ -20,7 +20,9 @@ public:
     void listarTurnos();
     void mostrarTurno(Turno reg);
     void listarPorPaciente();
+    void listarTurnoPendientePorPaciente();
     void listarPorMedico();
+    void listarTurnoPendientePorMedico();
     void listarPorEstado();
     void listarPorFecha();
     void listarPorRangoFechas();

@@ -19,6 +19,7 @@ public:
     void restaurarCopiaDeSeguridad();
 
     void mostrarEspecialidades();
+    int recuperarIdMedico (const char* dni);
 
 
     //QUEDA PENDIENTE EL MODIFICAR-ESTILO PACIENTEMANAGER(CON LAS RESPECTIVAS VALIDACIONES)

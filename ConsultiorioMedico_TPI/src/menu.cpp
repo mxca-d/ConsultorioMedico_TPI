@@ -23,7 +23,7 @@ int Menu::seleccionarOpcion(){
    int opcion;
 
    do{
-      cout << "Ingrese opcion: ";
+      cout << "PADRE Ingrese opcion: ";
       cin >> opcion;
 
       if(opcion < 0 || opcion > getCantidadOpciones()){

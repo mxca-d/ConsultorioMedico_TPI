@@ -219,11 +219,12 @@ int UsuariosManager::login()
     char username[20], pass [15];
     int pos,
         contPass = 0;
-    bool valido;
+    bool valido, ingreso;
     do
     {
         system ("cls");
         valido = true;
+        ingreso = true;
         cout <<  "+-----------------LOGIN-----------------+" << endl;
         cout <<  " USUARIO: ";
         cin.getline(username,20);
@@ -231,9 +232,9 @@ int UsuariosManager::login()
         {
             cin.clear();
             cin.ignore(10000, '\n');
-            valido = false;
+            ingreso = false;
         }
-        if (_repoUsuarios.buscarCoincidenciaNombreUsuario(username))
+        if ( ingreso &&_repoUsuarios.buscarCoincidenciaNombreUsuario(username))
         {
             pos = _repoUsuarios.buscarPorNombreUsuario(username);
             u =_repoUsuarios.leer(pos);
@@ -263,33 +264,39 @@ int UsuariosManager::login()
     {
 
         valido = true;
+        ingreso = true;
         cout << " CONTRASEÑA: ";
         cin.getline(pass,15);
         if(cin.fail())
         {
             cin.clear();
             cin.ignore(10000, '\n');
-            valido = false;
+            ingreso = false;
         }
 
-        if (strcmp(pass,u.getPassword())==0)
+        if (ingreso && strcmp(pass,u.getPassword())==0)
         {
             cout << "Bienvenido " << u.getRol() << endl;
             system("pause");
             valido= true;
         }
-        else if (contPass <3)
-        {
-            cout << " CONTRASEÑA INCORRECTA, VUELVA A INTENTARLO..." << endl;
-            system("pause");
-            contPass ++;
-            valido = false;
-        }
         else
         {
-            cout << " DEMASIADOS INTENTOS FALLIDOS..." << endl;
-            system("pause");
-            return -1;
+            contPass ++;
+            if (contPass <3)
+            {
+
+                cout << " CONTRASEÑA INCORRECTA, VUELVA A INTENTARLO..." << endl;
+                system("pause");
+
+                valido = false;
+            }
+            else
+            {
+                cout << " DEMASIADOS INTENTOS FALLIDOS..." << endl;
+                system("pause");
+                return -1;
+            }
         }
     }
     while (!valido);
@@ -313,5 +320,5 @@ int UsuariosManager::numeroRol (const char* rol)
         return 3;
     }
 
-return -1;
+    return -1;
 }

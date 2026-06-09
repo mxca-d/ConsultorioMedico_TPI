@@ -1,9 +1,9 @@
 #pragma once
 #include "menu.h"
 
-class MenuInterfaz: public Menu {
+class MenuAdministrador: public Menu {
 public:
-   MenuInterfaz();
+   MenuAdministrador();
    void mostrarOpciones() override;
    void ejecutarOpcion(int opcion) override;
 

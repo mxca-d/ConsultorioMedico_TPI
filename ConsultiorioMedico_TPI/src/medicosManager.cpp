@@ -471,3 +471,21 @@ void MedicosManager::mostrarEspecialidades()
     delete[] vec;
     delete[] vecAux;
 }
+
+int MedicosManager::recuperarIdMedico (const char* dni)
+{
+    int cantidadRegistros = _repoMedicos.getCantidadRegistros();
+    Medicos medico;
+
+    for (int i=0;i<cantidadRegistros;i++)
+    {
+        medico = _repoMedicos.leer(i);
+        if (strcmp(medico.getDni(), dni)==0)
+        {
+         return medico.getIdMedico();
+        break;
+        }
+
+    }
+    return -1;
+}
