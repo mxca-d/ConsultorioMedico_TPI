@@ -126,13 +126,10 @@ void HistorialManager::listarHistoriales(){
     for(int i=0;i<cantidad;i++){
 
         historial=repoHistorial.leer(i);
-        paciente=repoPaciente.leer(repoPaciente.buscarPorId(historial.getIdPaciente()));
 
-        if(paciente.getEliminado()==false){
+        mostrarHistorial(historial);
+        cout << "---------------------------------" << endl;
 
-            mostrarHistorial(historial);
-            cout << "---------------------------------" << endl;
-        }
 
 
     }

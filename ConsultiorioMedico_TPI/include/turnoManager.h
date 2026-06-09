@@ -22,8 +22,6 @@ public:
     void listarPorMedico();
     void listarPorEstado();
     void listarPorFecha();
-    void listarPorRangoFechas();///POSIBLEMENTE LO SAQUEMOS?
-    void listarXId();///CAMBIO X = POR-(((EXISTE?)))
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
     int generarId();///AGREGAMOS METODO

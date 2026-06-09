@@ -78,7 +78,7 @@ void arancelManager::altaArancel(){
     }
     }
 
-    reg.setIdArancel(cantidad + 1);
+    reg.setIdArancel(generarId());
     reg.setIdObraSocial(id);
     reg.setEspecialidad(especialidad);
     reg.setCobertura(cobertura);
@@ -184,7 +184,7 @@ void arancelManager::mostrarArancel(Arancel reg)///LE CAMBIE EL NOMBRE A REG, CO
 }
 
 
-///ESTE METODO TODAVIA NO LO USAMOS, EN EL ALTA YA SACAMOS LA CANT REGISTROS Y DIRECTAMENTE SUMAMOS +1
+
 int arancelManager::generarId()
 {
     return _repoArancel.getCantidadRegistros() + 1;
