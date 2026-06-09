@@ -14,7 +14,7 @@ public:
     Arancel leer(int pos);
     bool modificar(Arancel reg, int pos);
     int buscarPorId(int id);
-    int buscarPorIdObraSocial(int id);//agregue
+    int buscarPorIdObraSocial(int id);///AGREGAMOS METODO
 
     bool guardar(Arancel*vec, int cantidadRegistrosAEscribir);
     void leer(Arancel *vec, int cantidadRegistrosALeer);

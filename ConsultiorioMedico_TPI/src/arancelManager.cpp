@@ -5,111 +5,6 @@
 #include <cstring>
 
 using namespace std;
-/*
-void arancelManager::altaArancel()
-{
-
-    char especilidad[30];
-    int idArancel, idObraSocial, cantRegistrosObraSocial;
-    float precio;
-    bool eliminado,
-         valido= false;
-
-    ObraSocialManager manObraSocial;
-    Arancel m;
-    ObraSociales obraSocial;
-
-
-    cout << "-------------------ARANCELES-------------------" << endl;
-    cout << endl;
-    cout << "Ingrese '0' en caso de querer cancelar la carga" << endl;
-    cout << endl;
-
-    controlBufferEnter();
-
-    do
-    {
-        manObraSocial.mostrarIdObraSocial();
-        cout << "Ingrese un id del listado: " ;
-        cin >> idObraSocial;
-
-        if(cancelacionUsuario(idObraSocial))
-        {
-            return;
-        }
-
-
-        cantRegistrosObraSocial = _repoObrasocial.getCantidadRegistros();
-        for (int i=0; i<cantRegistrosObraSocial; i++)
-        {
-            obraSocial = _repoObrasocial.leer(i);
-            if(idObraSocial == obraSocial.getIdObraSocial() )
-            {
-                valido = true;
-                break;
-            }
-        }
-        if(!valido)
-        {
-            cout << "Ingreso invalido o inexistente..." << endl;
-
-        }
-
-    }
-    while (!valido);
-
-    controlBufferEnter();
-    do
-    {
-        cout << "Especialidad:  ";
-        cin.getline(especilidad,30);
-
-        if (cancelacionUsuario(especilidad) )
-        {
-            return;
-        }
-        valido = validacionCaracteres (especilidad); //preguntar si esta bien que imprima un msj y luego vuelva bool
-
-    }
-    while (!valido);
-
-    do
-    {
-        cout << "Precio:  ";
-        cin >> precio;
-        if (cancelacionUsuario(precio) )
-        {
-            return;
-        }
-        valido = validacionImportes (precio);
-
-    }
-    while (!valido);
-
-
-    idArancel = generarId();
-
-    eliminado = false;
-    m.setIdArancel(idArancel);
-    m.setIdObraSocial(idObraSocial);
-    m.setEspecialidad(especilidad);
-    m.setPrecio(precio);
-    m.setEliminado(eliminado);
-
-
-
-
-
-    if(_repoArancel.guardar (m))
-    {
-        cout << "Se guardo el arancel exitosamente!" << endl;
-    }
-    else
-    {
-        cout << "No se pudo guardar el arancel..." << endl;
-    }
-}
-*/
 
 void arancelManager::altaArancel(){
 
@@ -178,6 +73,7 @@ void arancelManager::altaArancel(){
        strcmp(aux.getEspecialidad(), especialidad) == 0){
 
         cout << "Ya existe un arancel para esa obra social y especialidad." << endl;
+        system("pause");
         return;
     }
     }
@@ -216,6 +112,7 @@ void arancelManager::bajaArancel()
     if(pos==-1)
     {
         cout << "El id ingresado no existe." << endl;
+        system("pause");
         return;
     }
 
@@ -253,8 +150,9 @@ void arancelManager::listarAranceles()
     }
 }
 
-void arancelManager::listarXId()
-{
+
+///ESTE METODO LO VAMOS A HACER PARA MOSTRAR SOLO UNO O PARA LISTAR ORDENANDO LOS ID? SINO DEBERIA LLAMARSE BUSCARPORID
+void arancelManager::listarPorId(){
     int id;
 
     cout << "Ingrese el ID: ";
@@ -272,28 +170,26 @@ void arancelManager::listarXId()
     }
 }
 
-void arancelManager::mostrarArancel(Arancel aranceles)
+void arancelManager::mostrarArancel(Arancel reg)///LE CAMBIE EL NOMBRE A REG, COMO ESTA DECLARADO EN EL .H
 {
     cout << "-------------------ARANCELES-------------------" << endl;
     cout << endl;
-    cout << "ID Arancel: " << aranceles.getIdArancel()<< endl;
-    cout << "ID Obra Social: " << aranceles.getIdObraSocial() << endl;
-    cout << "Especialidad: " << aranceles.getEspecialidad()<< endl;
-    cout << "Porcentaje : %" << aranceles.getCobertura()<< endl;
+    cout << "ID Arancel: " << reg.getIdArancel()<< endl;
+    cout << "ID Obra Social: " << reg.getIdObraSocial() << endl;
+    cout << "Especialidad: " << reg.getEspecialidad()<< endl;
+    cout << "Porcentaje : %" << reg.getCobertura()<< endl;
 
 
 
 }
 
-/*bool arancelManager::existeId(int id)
-{
-    return _repoArancel.buscarPorId(id) > 0;//mayor a 0 no? o vamos a hacer que 0 sea un nro posible de id?
-}
-*/
+
+///ESTE METODO TODAVIA NO LO USAMOS, EN EL ALTA YA SACAMOS LA CANT REGISTROS Y DIRECTAMENTE SUMAMOS +1
 int arancelManager::generarId()
 {
     return _repoArancel.getCantidadRegistros() + 1;
 }
+
 
 void arancelManager::hacerCopiaDeSeguridad()
 {

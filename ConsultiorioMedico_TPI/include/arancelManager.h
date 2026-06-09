@@ -10,13 +10,13 @@ public:
     void altaArancel();
     void bajaArancel();
     void modificarArancel();
-    void listarAranceles();
+    void listarAranceles();///CAMBIO MODIFICAR ARANCELES-PLURAL
     void mostrarArancel(Arancel reg);
-    void listarXId();
+    void listarPorId();///CAMBIO X = POR
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
-    int generarId();
+    int generarId();///AGREGAMOS UN METODO
 
 private:
 

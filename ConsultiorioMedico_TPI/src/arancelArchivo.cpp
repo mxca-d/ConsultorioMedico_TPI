@@ -88,6 +88,7 @@ bool ArancelArchivo::modificar(Arancel reg, int pos){
     fclose(pFile);
     return pudoEscribir;
 }
+
 bool ArancelArchivo::guardar(Arancel reg)
 {
     FILE *pFile = fopen(_nombreArchivo, "ab");
@@ -144,6 +145,7 @@ void ArancelArchivo::leer(Arancel *vec, int cantidadRegistrosALeer)
     fread(vec, sizeof(Arancel), cantidadRegistrosALeer, pFile);
     fclose(pFile);
 }
+
 void ArancelArchivo::vaciar()
 {
     FILE *pFile = fopen(_nombreArchivo, "wb");
