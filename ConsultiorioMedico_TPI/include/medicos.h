@@ -4,13 +4,15 @@
 class Medicos
 {
 private:
+    int _idMedico;
     char _nombre[30];
     char _apellido[30];
-    char _especialidad[30];
     char _dni[12];
+    //email
+    //domicilio
+    char _especialidad[30];
     char  _matricula[15];
     char _telefono[15];
-    int _idMedico;
     bool _eliminado;
     float _honorarios;
     bool _diasAgenda [5];///AGREGAMOS ESTE ATRIBUTO
