@@ -1,5 +1,6 @@
 #include <iostream>
 #include "app.h"
+#include "fecha.h"
 /*
 #include "menuAdministrador.h"
 #include "menuMedico.h"
@@ -8,8 +9,21 @@ using namespace std;
 
 int main()
 {
-    App app;
-    app.run();
+    //App app;
+   // app.run();
+
+
+
+    Fecha hoy;
+    hoy.setHoy();
+    Fecha vec[4];
+
+    hoy.obtenerDias(1, vec, hoy);
+
+    for(int i=0;i<4;i++)
+    {
+    vec[i].mostrar();
+    }
 
     return 0;
 }

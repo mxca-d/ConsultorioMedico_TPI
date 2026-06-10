@@ -265,3 +265,28 @@ void mostrarTurnoAgenda (int indice)
 
     }
 }
+
+void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
+
+    Fecha aux = obtenerFechaBase(opcion);
+    hoy.agregarDias(1);
+
+    while(aux.esMenor(hoy)){
+
+       aux.agregarDias(7);
+
+    }
+
+    for(int i=0;i<4;i++){
+
+
+        dias[i]=aux;
+        aux.agregarDias(7);
+
+
+
+    }
+
+
+}
+

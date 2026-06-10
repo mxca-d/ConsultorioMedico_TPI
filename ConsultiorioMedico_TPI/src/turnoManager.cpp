@@ -964,3 +964,32 @@ int TurnoManager::generarId()
         }
 
         */
+
+
+
+
+void TurnoManager::mostrarTurnosDisponibles(Medicos medico){
+
+    Fecha hoy;
+    hoy.setHoy()
+
+    for(int i=0;i<5;i++){
+        Fecha dias[4];
+
+        if(medico.getDiasAgenda()[i]){
+            obtenerDias(i+1,dias,hoy);
+        }
+
+        for(int j=0;j<5;j++){
+            if(medico.getTurnosAgenda()){
+                cout << dias[i] << mostrarTurnoAgenda(j);
+            }
+        }
+
+
+    }
+
+}
+
+
+
