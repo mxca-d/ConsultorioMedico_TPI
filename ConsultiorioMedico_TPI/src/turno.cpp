@@ -74,32 +74,11 @@ void Turno::setFechaTurno(Fecha fecha)
 }
 
 
-void Turno::setHora(int hora)
+void Turno::setHora(const char* hora)
 {
-    switch(hora)
-    {
-    case 0 :
-        strcpy(_hora,"08:00" );
-        break;
 
-    case 1:
-        strcpy(_hora,"09:00" );
-        break;
+    strcpy(_hora,hora );
 
-    case 2:
-        strcpy(_hora,"10:00" );
-        break;
-    case 3:
-        strcpy(_hora,"11:00" );
-        break;
-    case 4:
-        strcpy(_hora,"12:00" );
-        break;
-    default:
-        strcpy(_hora,"ERROR" );
-        break;
-
-    }
 }
 void Turno::setDiaTurno (int dia)
 {

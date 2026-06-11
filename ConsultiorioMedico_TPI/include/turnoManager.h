@@ -31,6 +31,8 @@ public:
     void restaurarCopiaDeSeguridad();
     int generarId();
 
+    int turnosDisponiblesPorMedico(Medicos medico,Turno opciones[]);
+    bool turnoOcupado(int idMedico, Fecha fecha, const char *hora);
 
 private:
     TurnoArchivo _repoTurno;

@@ -273,12 +273,12 @@ void Fecha::setHoy() {
 
 void Fecha::mostrar(){
 
-    cout << _dia << "/" << _mes << "/" << _anio << endl;
+    cout << _dia << "/" << _mes << "/" << _anio;
 
 
 }
 
-Fecha Fecha::obtenerFechaBase(int opcion){///NUEVO METODO
+/*Fecha Fecha::obtenerFechaBase(int opcion){///NUEVO METODO
 
 
 
@@ -297,7 +297,7 @@ Fecha Fecha::obtenerFechaBase(int opcion){///NUEVO METODO
 
     }
 
-}
+}*/
 
 
 bool Fecha::esMenor(Fecha fecha2){///NUEVO METODO
@@ -344,7 +344,7 @@ bool Fecha::esIgual(Fecha fecha2){
 }
 
 
-void Fecha::obtenerDias(int opcion, Fecha *dias, Fecha hoy){
+/*void Fecha::obtenerDias(int opcion, Fecha *dias, Fecha hoy){
 
     Fecha aux = obtenerFechaBase(opcion);
     hoy.agregarDias(1);
@@ -368,3 +368,4 @@ void Fecha::obtenerDias(int opcion, Fecha *dias, Fecha hoy){
 
 }
 
+*/

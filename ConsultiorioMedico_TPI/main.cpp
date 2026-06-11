@@ -14,18 +14,7 @@ int main()
 
 
 
-    Fecha hoy;
-    hoy.setHoy();
-    Fecha vec[4];
 
-    hoy.obtenerDias(1, vec, hoy);
-
-    for(int i=0;i<4;i++)
-    {
-    vec[i].mostrar();
-    }
-
-    return 0;
 }
 /*
 int main()
