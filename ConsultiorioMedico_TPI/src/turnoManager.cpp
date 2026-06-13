@@ -679,6 +679,11 @@ void TurnoManager::atenderTurno()
 
 
         cin.getline(dni,8);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
         cout << endl;
 
         if (cancelacionUsuario(dni))
@@ -767,7 +772,8 @@ void TurnoManager::atenderTurno()
     if(_repoTurno.modificar(turno,posTurno))
     {
         cout << "TURNO ATENDIDO" << endl;
-    } else
+    }
+    else
     {
         cout << "error" << endl;
     }

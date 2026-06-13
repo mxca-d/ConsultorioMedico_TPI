@@ -8,7 +8,6 @@ public:
    MenuMedico();
    void mostrarOpciones() override;
    void ejecutarOpcion(int opcion) override;
-
 private:
     TurnoManager _managerTurno;
     PacienteManager _pacienteManager;
