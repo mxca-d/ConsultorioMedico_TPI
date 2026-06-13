@@ -318,10 +318,20 @@
 	"arancelManager.h"
 	"menu.h"
 
+<<<<<<< Updated upstream
 1781292959 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\main.cpp
 	<iostream>
 	"app.h"
 	"usuariosManager.h"
+=======
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\main.cpp
+	<iostream>
+	"app.h"
+	"fecha.h"
+	"menuAdministrador.h"
+	"menuMedico.h"
+	"menuRecepcionista.h"
+>>>>>>> Stashed changes
 
 1780875346 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancel.cpp
 	<iostream>
@@ -365,16 +375,20 @@
 	"arancelManager.h"
 	"menu.h"
 
+<<<<<<< Updated upstream
 1781292887 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menu.h
 	"usuarios.h"
+=======
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menu.h
+>>>>>>> Stashed changes
 
-1779740715 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\fecha.cpp
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\fecha.cpp
 	<iostream>
 	"fecha.h"
 	<string>
 	<chrono>
 
-1779740714 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\fecha.h
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\fecha.h
 	<string>
 
 1780871303 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historial.cpp
@@ -448,7 +462,11 @@
 	<cstring>
 	"utils.h"
 
+<<<<<<< Updated upstream
 1781273750 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menu.cpp
+=======
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menu.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	"menu.h"
 	<cstdio>
@@ -524,18 +542,23 @@
 	"pacienteManager.h"
 	"menu.h"
 
-1781009378 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turno.cpp
 	<iostream>
 	<cstring>
 	"turno.h"
 	"utils.h"
 
-1781009378 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
 	"fecha.h"
 
-1781009378 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
+	"fecha.h"
 
+<<<<<<< Updated upstream
 1781090376 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+=======
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"turnoManager.h"
@@ -543,7 +566,7 @@
 	"medicosManager.h"
 	"utils.h"
 
-1781036210 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomanager.h
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomanager.h
 	"turno.h"
 	"turnosArchivo.h"
 	"pacienteArchivo.h"
@@ -574,7 +597,7 @@
 1781009378 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnosarchivo.h
 	"turno.h"
 
-1781011342 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\utils.cpp
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\utils.cpp
 	"utils.h"
 	<iostream>
 	<cstring>
@@ -587,11 +610,19 @@
 	"turnoManager.h"
 	"menu.h"
 
+<<<<<<< Updated upstream
 1781091598 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuarios.cpp
 	"usuarios.h"
 	<cstring>
 
 1781117458 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuarios.h
+=======
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuarios.cpp
+	"usuarios.h"
+	<cstring>
+
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuarios.h
+>>>>>>> Stashed changes
 
 1781013850 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosarchivo.cpp
 	"usuariosArchivo.h"
@@ -601,13 +632,21 @@
 1781013850 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosarchivo.h
 	"usuarios.h"
 
+<<<<<<< Updated upstream
 1781292727 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosmanager.cpp
+=======
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosmanager.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"usuariosManager.h"
 	"utils.h"
 
+<<<<<<< Updated upstream
 1781292465 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosmanager.h
+=======
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosmanager.h
+>>>>>>> Stashed changes
 	"usuariosArchivo.h"
 
 1781047664 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuadministrador.cpp
@@ -635,16 +674,29 @@
 	<iostream>
 	"MenuMedico.h"
 
+<<<<<<< Updated upstream
 1781117535 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menumedico.h
+=======
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menumedico.h
+>>>>>>> Stashed changes
 	"menu.h"
 	"turnoManager.h"
 	"pacienteManager.h"
 
+<<<<<<< Updated upstream
 1781293142 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\app.cpp
 	<iostream>
 	"app.h"
 
 1781292581 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\app.h
+=======
+1781358448 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\app.cpp
+	<iostream>
+	"app.h"
+
+1781358448 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\app.h
+	"menu.h"
+>>>>>>> Stashed changes
 	"usuariosManager.h"
 	"menuAdministrador.h"
 	"menuMedico.h"
