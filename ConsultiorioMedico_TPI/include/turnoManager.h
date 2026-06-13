@@ -15,7 +15,7 @@ public:
     void altaTurno();
     //void bajaTurno();
     void cancelarTurno();
-    void atenderTurno();
+    void atenderTurno(const char* dniUsuario);
     void modificarTurno();
     void listarTurnos();
     void mostrarTurno(Turno reg);

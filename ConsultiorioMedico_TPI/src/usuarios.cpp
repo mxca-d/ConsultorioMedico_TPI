@@ -80,6 +80,8 @@ int Usuarios::getNumeroRol ()
 
     return -1;
 }
+
+
 bool Usuarios::getEliminado()
 {
     return _eliminado;

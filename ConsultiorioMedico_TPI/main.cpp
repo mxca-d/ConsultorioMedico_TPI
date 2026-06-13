@@ -5,8 +5,11 @@ using namespace std;
 
 int main()
 {
+
     App app;
-    //UsuariosManager usu;
+    const char* usuarioDNI = nullptr;
+
+    //Usuarios usu;
     //usu.altaUsuario();
     app.run();
 

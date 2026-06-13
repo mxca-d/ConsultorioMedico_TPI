@@ -659,7 +659,7 @@ void TurnoManager::listarPorFecha()
     delete []vec;
 }
 
-void TurnoManager::atenderTurno()
+void TurnoManager::atenderTurno(const char* dniUsuario)
 {
     Turno turno;
     bool valido;
@@ -670,6 +670,7 @@ void TurnoManager::atenderTurno()
     do
     {
         valido = false;
+        cout << "DNI DE USUARIO: "<< dniUsuario << endl;
         cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
         cout << "INGRESE DNI DEL PACIENTE: ";
         if (cin.peek() == '\n')
@@ -842,7 +843,7 @@ int TurnoManager::generarId()
     return _repoTurno.getCantidadRegistros() + 1;
 }
 /*
-        void MedicosManager::hacerCopiaDeSeguridad()
+void MedicosManager::hacerCopiaDeSeguridad()
         {
             int cantidadRegistros = _repoMedicos.getCantidadRegistros();
             Medicos *vec = new Medicos[cantidadRegistros];

@@ -9,19 +9,25 @@ Menu::Menu(){
 }
 void Menu::run(){
    int opcion;
+   char prueba [10]={"prueba"};
 
 
    do{
       system("cls");
       mostrarOpciones();
       opcion = seleccionarOpcion( );
+
+      cout << prueba << endl;
+      system ("pause");
+      cout << "run "<< _dniUsuario << endl;
+      system ("pause");
       ejecutarOpcion(opcion);
       system("pause");
    }while(opcion != 0);
 }
 
 
-int Menu::seleccionarOpcion( ){
+int Menu::seleccionarOpcion(){
    int opcion;
 
    do{

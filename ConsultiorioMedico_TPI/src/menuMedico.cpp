@@ -20,6 +20,8 @@ void MenuMedico::mostrarOpciones()
     cout << endl;
     cout << "0- SALIR"<<endl;
     cout << "------------------------"<<endl;
+    cout << "ant"<< _dniUsuario << "des"<<endl;
+
 }
 
 void MenuMedico::ejecutarOpcion(int opcion)
@@ -27,8 +29,8 @@ void MenuMedico::ejecutarOpcion(int opcion)
     switch(opcion)
     {
     case 1:
-
-        _managerTurno.atenderTurno();
+cout << "menu medico " << _dniUsuario << endl;
+        _managerTurno.atenderTurno(_dniUsuario);
         break;
     case 2:
         _managerTurno.cancelarTurno();

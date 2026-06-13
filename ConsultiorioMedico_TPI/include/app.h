@@ -4,13 +4,13 @@
 #include "menuMedico.h"
 #include "menuRecepcionista.h"
 
-class App {
+class App: public Menu {
 public:
    App();
-   void run();
-   void mostrarOpciones() ;
-   Usuarios seleccionarOpcion() ;
-   void ejecutarOpcion(Usuarios usuario) ;
+//   void run(Usuarios usu) ;
+   void mostrarOpciones() override;
+   int seleccionarOpcion() override ;
+   void ejecutarOpcion(int opcion)  override ;
 
    void setCantidadOpciones(int cant);
    int getCantidadOpciones ();
