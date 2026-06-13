@@ -8,15 +8,18 @@ App::App(){
 }
 
 void App::mostrarOpciones(){
-   cout << "----- INGRESO USUARIO-----"<<endl;
+
 
 }
 
 int App::seleccionarOpcion(){
-   int opcion;
+    int opcion;
+
+    //_usuarioManager.crearAdminSiNoExiste();
 
    do{
-        opcion = _usuario.login();
+        _usuario= _usuarioManager.login();
+        opcion = _usuarioManager.numeroRol(_usuario.getRol());
 
       if(opcion < 0 || opcion > getCantidadOpciones()){
          cout << " > Opcion no correcta..." << endl;
@@ -32,6 +35,7 @@ void App::ejecutarOpcion(int opcion){
     _menuAdministrador.run();
       break;
    case 2:
+    _menuMedico.setIdMedico(_usuario.getIdMedico());
     _menuMedico.run();
     break;
    case 3:

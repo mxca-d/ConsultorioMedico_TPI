@@ -13,7 +13,8 @@ public:
    void ejecutarOpcion(int opcion) override;
 
 private:
-    UsuariosManager _usuario;
+    UsuariosManager _usuarioManager;
+    Usuarios _usuario;
 
     MenuRecepcionista _menuRecepcionista;
     MenuMedico _menuMedico;

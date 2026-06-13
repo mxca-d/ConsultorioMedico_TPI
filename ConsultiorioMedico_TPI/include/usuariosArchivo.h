@@ -13,7 +13,7 @@ public:
     int getCantidadRegistros();
     Usuarios leer(int pos);
     bool buscarCoincidenciaNombreUsuario(const char* usuario);
-    bool buscarCoincidenciaPassword (const char* passw);
+    //bool buscarCoincidenciaPassword (const char* passw);
     int buscarPorNombreUsuario(const char* usuario);
 
 

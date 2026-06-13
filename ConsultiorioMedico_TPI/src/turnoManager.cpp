@@ -516,7 +516,7 @@ void TurnoManager::listarPorMedico()
 
     delete []vec;
 }
-void TurnoManager::listarTurnoPendientePorMedico()
+void TurnoManager::listarTurnoPendientePorMedico()///pasamos ID a traves del menuMedico
 {
     bool bandDni;
     char dni [8];

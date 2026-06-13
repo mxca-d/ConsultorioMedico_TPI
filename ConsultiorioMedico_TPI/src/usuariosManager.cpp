@@ -6,6 +6,27 @@
 using namespace std;
 
 
+void UsuariosManager::crearAdminSiNoExiste(){
+
+    if(_repoUsuarios.getCantidadRegistros()==0){
+
+        Usuarios admin;
+
+        admin.setEliminado(false);
+        admin.setIdMedico(0);
+        admin.setIdUsuario(_repoUsuarios.getCantidadRegistros()+1);
+        admin.setNombreUsuario("admin");
+        admin.setPassword("1234");
+        admin.setRol(1);
+
+        _repoUsuarios.guardar(admin);
+
+    }
+
+
+}
+
+
 void UsuariosManager::altaUsuario()
 {
     Usuarios usuario;
@@ -124,6 +145,7 @@ void UsuariosManager::altaUsuario()
         cout << "ERROR EN LA CREACION DEL USUARIO..." << endl;
     }
 }
+
 void UsuariosManager::bajaUsuario()
 {
     Usuarios usuario;
@@ -213,7 +235,8 @@ void UsuariosManager::listarUsuarios()
 
     }
 }
-int UsuariosManager::login()
+
+Usuarios UsuariosManager::login()
 {
     Usuarios u;
     char username[20], pass [15];
@@ -295,13 +318,13 @@ int UsuariosManager::login()
             {
                 cout << " DEMASIADOS INTENTOS FALLIDOS..." << endl;
                 system("pause");
-                return -1;
+                return u;
             }
         }
     }
     while (!valido);
 
-    return numeroRol(u.getRol());
+    return u;
 }
 
 int UsuariosManager::numeroRol (const char* rol)
@@ -322,3 +345,5 @@ int UsuariosManager::numeroRol (const char* rol)
 
     return -1;
 }
+
+
