@@ -247,7 +247,7 @@
 	"obrasSociales.h"
 	"obraSocialArchivo.h"
 
-1781362458 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+1781375488 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
 	<iostream>
 	<cstring>
 	"turnoManager.h"
@@ -692,7 +692,7 @@
 	"turnoManager.h"
 	"pacienteManager.h"
 
-1781374581 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\app.cpp
+1781377852 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\app.cpp
 	<iostream>
 	"app.h"
 

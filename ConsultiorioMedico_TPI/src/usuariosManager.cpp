@@ -8,6 +8,8 @@ using namespace std;
 
 void UsuariosManager::crearAdminSiNoExiste(){
 
+
+
     if(_repoUsuarios.getCantidadRegistros()==0){
 
         Usuarios admin;
@@ -135,6 +137,8 @@ void UsuariosManager::altaUsuario()
     usuario.setPassword(pass1);
     usuario.setRol(rol);
     usuario.setEliminado(false);
+    usuario.setIdUsuario(_repoUsuarios.getCantidadRegistros()+1);
+
 
     if(_repoUsuarios.guardar(usuario))
     {
