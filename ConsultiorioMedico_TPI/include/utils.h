@@ -1,4 +1,5 @@
 #pragma once
+#include "fecha.h"
 
 bool horaValida(const char* hora);
 bool cancelacionUsuario (const char* cadena);
@@ -13,4 +14,7 @@ bool validacionImportes (float precio);
 void mostrarEspecialidades();
 bool cargarEspecialidad(int opcion, char* especialidad);
 void mostrarDiaAgenda (int indice);
-void mostrarTurnoAgenda (int indice);
+void mostrarHoraTurno (int indice);
+bool cargarHoraTurno(int opcion, char* hora);
+Fecha obtenerFechaBase(int opcion);
+void obtenerDias(int opcion, Fecha *dias, Fecha hoy);

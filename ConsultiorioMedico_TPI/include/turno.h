@@ -26,7 +26,7 @@ public:
     void setDniPaciente(const char* dni);
     void setIdMedico(int id);
     void setFechaTurno(Fecha fecha);
-    void setHora(int hora);
+    void setHora(const char* hora);
     void setDiaTurno (int dia);
     void setEstado(const char* estado);
     void setEliminado(bool eliminado);

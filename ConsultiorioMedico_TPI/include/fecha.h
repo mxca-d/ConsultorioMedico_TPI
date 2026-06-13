@@ -27,6 +27,11 @@ public:
     bool cargar();
     void agregarDias(int cant);
     void mostrar();
+    Fecha obtenerFechaBase(int opcion);
+    bool esMenor(Fecha fecha2);
+    bool esIgual(Fecha fecha2);
+    void obtenerDias(int opcion, Fecha *dias, Fecha hoy);
+
 
     std::string toString();
 };

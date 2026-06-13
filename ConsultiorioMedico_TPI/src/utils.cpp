@@ -176,6 +176,67 @@ bool validacionImportes (float precio)
     }
 }
 
+
+
+void mostrarDiaAgenda (int indice)
+{
+    switch (indice)
+    {
+    case 0 :
+        cout << "1.LUNES" << endl;
+        break;
+
+    case 1:
+        cout << "2.MARTES" << endl;
+        break;
+
+    case 2:
+        cout << "3.MIERCOLES" << endl;
+        break;
+    case 3:
+        cout << "4.JUEVES" << endl;
+        break;
+    case 4:
+        cout << "5.VIERNES" << endl;
+        break;
+    default:
+        cout << "INCORRECTO"<< endl;
+        break;
+
+    }
+}
+
+
+
+void mostrarHoraTurno (int indice)
+{
+    switch (indice)
+    {
+    case 0 :
+        cout << "1. << 08:00 Hs" << endl;
+        break;
+
+    case 1:
+        cout << "2. 09:00 Hs" << endl;
+        break;
+
+    case 2:
+        cout << "3. 10:00 Hs" << endl;
+        break;
+    case 3:
+        cout << "4. 11:00 Hs" << endl;
+        break;
+    case 4:
+        cout << "5. 12:00 Hs" << endl;
+        break;
+    default:
+        cout << "INCORRECTO"<< endl;
+        break;
+
+    }
+}
+
+
 void mostrarEspecialidades(){
     cout << "1- CLINICA MEDICA" << endl;
     cout << "2- CARDIOLOGIA" << endl;
@@ -209,59 +270,69 @@ bool cargarEspecialidad(int opcion, char* especialidad){
 
 }
 
+bool cargarHoraTurno(int opcion, char* hora){
 
-
-void mostrarDiaAgenda (int indice)
-{
-    switch (indice)
-    {
-    case 0 :
-        cout << "1.LUNES" << endl;
-        break;
-
-    case 1:
-        cout << "2.MARTES" << endl;
-        break;
-
-    case 2:
-        cout << "3.MIERCOLES" << endl;
-        break;
-    case 3:
-        cout << "4.JUEVES" << endl;
-        break;
-    case 4:
-        cout << "5.VIERNES" << endl;
-        break;
-    default:
-        cout << "INCORRECTO"<< endl;
-        break;
+    switch(opcion){
+        case 1:
+            strcpy(hora, "08:00");
+            return true;
+        case 2:
+            strcpy(hora, "09:00");
+            return true;
+        case 3:
+            strcpy(hora, "10:00");
+            return true;
+        case 4:
+            strcpy(hora, "11:00");
+            return true;
+        case 5:
+            strcpy(hora, "12:00");
+            return true;
+        default:
+            return false;
 
     }
+
 }
-void mostrarTurnoAgenda (int indice)
-{
-    switch (indice)
-    {
-    case 0 :
-        cout << "1. << 08:00 Hs" << endl;
-        break;
+Fecha obtenerFechaBase(int opcion){
+
+
+
+    switch(opcion){
 
     case 1:
-        cout << "2. 09:00 Hs" << endl;
-        break;
-
+        return Fecha(5,1,2026);
     case 2:
-        cout << "3. 10:00 Hs" << endl;
-        break;
+        return Fecha(6,1,2026);
     case 3:
-        cout << "4. 11:00 Hs" << endl;
-        break;
+        return Fecha(7,1,2026);
     case 4:
-        cout << "5. 12:00 Hs" << endl;
-        break;
-    default:
-        cout << "INCORRECTO"<< endl;
-        break;
+        return Fecha(8,1,2026);
+    case 5:
+        return Fecha(9,1,2026);
 
     }
+
 }
+
+void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
+
+    Fecha aux = obtenerFechaBase(opcion);
+    hoy.agregarDias(1);
+
+    while(aux.esMenor(hoy)){
+
+       aux.agregarDias(7);
+
+    }
+
+    for(int i=0;i<4;i++){
+
+        dias[i]=aux;
+        aux.agregarDias(7);
+
+    }
+
+
+}
+
