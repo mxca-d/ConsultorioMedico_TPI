@@ -8,7 +8,7 @@ public:
     void altaUsuario();
     void bajaUsuario();
     void listarUsuarios();
-    int login();
+    Usuarios login();
 
     int numeroRol (const char* rol);
 

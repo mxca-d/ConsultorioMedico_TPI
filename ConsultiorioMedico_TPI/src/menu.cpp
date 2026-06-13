@@ -10,20 +10,22 @@ Menu::Menu(){
 void Menu::run(){
    int opcion;
 
+
    do{
       system("cls");
       mostrarOpciones();
-      opcion = seleccionarOpcion();
+      opcion = seleccionarOpcion( );
       ejecutarOpcion(opcion);
       system("pause");
    }while(opcion != 0);
 }
 
-int Menu::seleccionarOpcion(){
+
+int Menu::seleccionarOpcion( ){
    int opcion;
 
    do{
-      cout << "PADRE Ingrese opcion: ";
+      cout << " Ingrese opcion: ";
       cin >> opcion;
 
       if(opcion < 0 || opcion > getCantidadOpciones()){
