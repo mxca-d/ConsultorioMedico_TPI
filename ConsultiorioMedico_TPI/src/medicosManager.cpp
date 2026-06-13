@@ -136,7 +136,7 @@ void MedicosManager::altaMedico()///agregue la creacion del usuario
     m.setDiasAgenda(diasAgenda);
 
     usuario.setIdUsuario(repoUsuarios.getCantidadRegistros()+1);
-    usuario.setIdMedico(m.getIdMedico());
+    usuario.setDni(m.getDni());
     usuario.setNombreUsuario(m.getDni());
     usuario.setPassword("1234");
     usuario.setRol(2);

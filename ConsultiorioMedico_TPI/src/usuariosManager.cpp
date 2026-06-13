@@ -15,7 +15,7 @@ void UsuariosManager::crearAdminSiNoExiste(){
         Usuarios admin;
 
         admin.setEliminado(false);
-        admin.setIdMedico(0);
+        admin.setDni("0");
         admin.setIdUsuario(_repoUsuarios.getCantidadRegistros()+1);
         admin.setNombreUsuario("admin");
         admin.setPassword("1234");

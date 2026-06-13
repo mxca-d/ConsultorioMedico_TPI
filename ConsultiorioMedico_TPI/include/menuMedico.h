@@ -4,13 +4,14 @@
 #include "pacienteManager.h"
 #include "usuariosManager.h"
 #include "medicosArchivo.h"
+#include "medicosManager.h"
 
 class MenuMedico: public Menu {
 public:
    MenuMedico();
    void mostrarOpciones() override;
    void ejecutarOpcion(int opcion) override;
-   void setIdMedico(int id);
+   void leerMedico(const char* dni);
 
 private:
     int _idMedico;
@@ -20,4 +21,5 @@ private:
     PacienteManager _pacienteManager;
     HistorialManager _historialManager;
     UsuariosManager _usuariosManager;
+    MedicosManager _managerMedico;
 };

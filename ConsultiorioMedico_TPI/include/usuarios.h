@@ -9,10 +9,10 @@ class Usuarios
         void setPassword (const char* password);
         void setRol (int rol);
         void setEliminado (bool eliminado);
-        void setIdMedico(int id);///
+        void setDni(const char* dni);///
         void setIdUsuario(int id);///
 
-        int getIdMedico();///
+        const char* getDni();///
         int getIdUsuario();///
         int getNumeroRol();
         const char* getNombreUsuario();
@@ -26,8 +26,6 @@ class Usuarios
         char _password [15];
         char _rol [30];
         bool _eliminado;
-        int _idMedico; ///NUEVO ATRIBUTO
-
-        //DNI
+        char _dni[9];
 };
 

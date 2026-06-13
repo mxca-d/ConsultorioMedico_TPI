@@ -35,7 +35,7 @@ void App::ejecutarOpcion(int opcion){
     _menuAdministrador.run();
       break;
    case 2:
-    _menuMedico.setIdMedico(_usuario.getIdMedico());
+    _menuMedico.leerMedico(_usuario.getDni());
     _menuMedico.run();
     break;
    case 3:

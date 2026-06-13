@@ -984,27 +984,29 @@ int TurnoManager::turnosDisponiblesPorMedico( Medicos medico, Turno opciones[]){
 
     char hora[6];
 
-    for(int i=0;i<5;i++){
+    for(int i=0;i<5;i++){///DIAS POSIBLES (LUN-VIER)
 
-        if(medico.getDiasAgenda()[i]){
+        if(medico.getDiasAgenda()[i]){///DIAS HABILITADOS DEL MEDICO
 
             Fecha dias[4];
 
-            obtenerDias(i+1,dias,hoy);
+            obtenerDias(i+1,dias,hoy);///CARGA LOS PROXIMOS 4 LUNES/MARTES/ETC
 
-            for(int j=0;j<4;j++){
+            for(int j=0;j<4;j++){///RECORRE EL VEC DE DIAS CARGADOS
 
-                for(int k=0;k<5;k++){
+                for(int k=0;k<5;k++){///RECORRE LOS POSIBLES TURNOS/HORARIOS
 
-                    if(cargarHoraTurno(k+1,hora)){
+                    if(cargarHoraTurno(k+1,hora)){///CARGA EL CHAR
 
-                        if(turnoOcupado(medico.getIdMedico(),dias[j],hora)==false){
+                        if(turnoOcupado(medico.getIdMedico(),dias[j],hora)==false){///CHEQUEA QUE EL TURNO NO ESTE OCUPADO
 
                             cout << opcionesTotal+1 << ") ";
                             cout << "Medico :" << medico.getNombre() << " " << medico.getApellido() << " -";
                             dias[j].mostrar();
                             cout << " -"<< hora << endl;
 
+
+                            ///SETTEA Y GUARDA EN EL VECTOR LOS POSIBLES TURNOS CON FECHA Y HORA
                             opciones[opcionesTotal].setIdMedico(medico.getIdMedico());
                             opciones[opcionesTotal].setFechaTurno(dias[j]);
                             opciones[opcionesTotal].setHora(hora);

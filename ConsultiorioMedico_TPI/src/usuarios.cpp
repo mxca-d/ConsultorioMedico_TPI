@@ -9,7 +9,7 @@ Usuarios::Usuarios()
     //strcpy(_dni,"N/A");
     _eliminado = false;
     _idUsuario=0;
-    _idMedico=0;
+    strcpy(_dni,"N/A");
 }
 
 void Usuarios::setNombreUsuario(const char* usuario)
@@ -20,10 +20,10 @@ void Usuarios::setPassword (const char* password)
 {
     strcpy(_password,password);
 }
-/*void Usuarios::setDni (const char* dni)
+void Usuarios::setDni (const char* dni)
 {
     strcpy(_dni,dni);
-}*/
+}
 void Usuarios::setRol (int rol)
 {
     switch(rol)
@@ -47,10 +47,6 @@ void Usuarios::setEliminado(bool eliminado)
     _eliminado = eliminado;
 }
 
-void Usuarios::setIdMedico(int id){
-    _idMedico=id;
-
-}
 
 
 
@@ -60,11 +56,6 @@ void Usuarios::setIdUsuario(int id){
 }
 
 
-
-int Usuarios::getIdMedico(){
-
-    return _idMedico;
-}
 
 
 
@@ -82,10 +73,10 @@ const char* Usuarios::getPassword ()
 {
     return _password;
 }
-/*const char* Usuarios::getDni()
+const char* Usuarios::getDni()
 {
     return _dni;
-}*/
+}
 const char* Usuarios::getRol()
 {
     return _rol;

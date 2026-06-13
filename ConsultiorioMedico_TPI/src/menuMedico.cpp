@@ -52,9 +52,10 @@ void MenuMedico::ejecutarOpcion(int opcion)
     }
 }
 
-void MenuMedico::setIdMedico(int id){
+void MenuMedico::leerMedico(const char* dni){
 
-    int pos= _repoMedico.buscarPorId(id);
+    int idMedico= _managerMedico.recuperarIdMedico(dni);
+    int pos=_repoMedico.buscarPorId(idMedico);
 
 
     if(pos!=-1){
