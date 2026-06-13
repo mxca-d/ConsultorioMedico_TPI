@@ -14,6 +14,7 @@ class Usuarios
 
         int getIdMedico();///
         int getIdUsuario();///
+        int getNumeroRol();
         const char* getNombreUsuario();
         const char* getPassword ();
         const char* getRol();

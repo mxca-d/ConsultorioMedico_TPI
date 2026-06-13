@@ -110,8 +110,8 @@ void UsuariosManager::altaUsuario()
     {
         cout << "ELIJA UN ROL: " << endl;
         cout << "              1. ADMINISTRADOR." << endl;
-        cout << "              2. RECEPCIONISTA." << endl;
-        cout << "              3. MEDICO." << endl;
+        cout << "              2. MEDICO." << endl;
+        cout << "              3. RECEPCIONISTA." << endl;
         cin >> rol;
 
         switch(rol)

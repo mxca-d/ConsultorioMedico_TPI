@@ -54,7 +54,7 @@ void MenuMedico::ejecutarOpcion(int opcion)
 
 void MenuMedico::setIdMedico(int id){
 
-    int pos= _repoMedico.buscarPorId(_idMedico);
+    int pos= _repoMedico.buscarPorId(id);
 
 
     if(pos!=-1){
