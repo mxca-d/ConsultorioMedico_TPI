@@ -6,10 +6,33 @@
 using namespace std;
 
 
+void UsuariosManager::crearAdminSiNoExiste(){
+
+
+
+    if(_repoUsuarios.getCantidadRegistros()==0){
+
+        Usuarios admin;
+
+        admin.setEliminado(false);
+        admin.setIdMedico(0);
+        admin.setIdUsuario(_repoUsuarios.getCantidadRegistros()+1);
+        admin.setNombreUsuario("admin");
+        admin.setPassword("1234");
+        admin.setRol(1);
+
+        _repoUsuarios.guardar(admin);
+
+    }
+
+
+}
+
+
 void UsuariosManager::altaUsuario()
 {
     Usuarios usuario;
-    char nombre[20],pass1[15],pass2[15], dni[8];
+    char nombre[20],pass1[15],pass2[15];
     int rol;
     bool valido = true,
          repetir =false,
@@ -19,10 +42,6 @@ void UsuariosManager::altaUsuario()
     {
         ingreso = true;
         cout << "INGRESE NOMBRE DE USUARIO: " ;
-        if (cin.peek() == '\n')
-        {
-            cin.ignore();
-        }
         cin.getline(nombre,20);
         if (cin.fail())
         {
@@ -86,45 +105,13 @@ void UsuariosManager::altaUsuario()
         }
     }
     while (!valido);
-    do
-    {
-        valido = false;
-        cout << "INGRESE DNI: ";
-        cin.getline(dni,8);
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-        }
-
-        if(cancelacionUsuario(dni))
-        {
-            return;
-        }
-
-        if (validacionCaracteres(dni,8))
-        {
-            usuario.setDni(dni);
-            valido=true;
-        }
-        else
-        {
-            cout << "INGRESO INVALIDO.. " << endl;
-        }
-    }
-    while (!valido);
 
     do
     {
-        valido = false;
         cout << "ELIJA UN ROL: " << endl;
         cout << "              1. ADMINISTRADOR." << endl;
         cout << "              2. RECEPCIONISTA." << endl;
         cout << "              3. MEDICO." << endl;
-        if (cin.peek() == '\n')
-        {
-            cin.ignore();
-        }
         cin >> rol;
 
         switch(rol)
@@ -150,6 +137,8 @@ void UsuariosManager::altaUsuario()
     usuario.setPassword(pass1);
     usuario.setRol(rol);
     usuario.setEliminado(false);
+    usuario.setIdUsuario(_repoUsuarios.getCantidadRegistros()+1);
+
 
     if(_repoUsuarios.guardar(usuario))
     {
@@ -160,6 +149,7 @@ void UsuariosManager::altaUsuario()
         cout << "ERROR EN LA CREACION DEL USUARIO..." << endl;
     }
 }
+
 void UsuariosManager::bajaUsuario()
 {
     Usuarios usuario;
@@ -172,10 +162,6 @@ void UsuariosManager::bajaUsuario()
     {
 
         cout << "INGRESE NOMBRE DE USUARIO: " ;
-        if (cin.peek() == '\n')
-        {
-            cin.ignore();
-        }
         cin.getline(nombre,20);
         if (cin.fail())
         {
@@ -253,6 +239,7 @@ void UsuariosManager::listarUsuarios()
 
     }
 }
+
 Usuarios UsuariosManager::login()
 {
     Usuarios u;
@@ -267,10 +254,6 @@ Usuarios UsuariosManager::login()
         ingreso = true;
         cout <<  "+-----------------LOGIN-----------------+" << endl;
         cout <<  " USUARIO: ";
-        if (cin.peek() == '\n')
-        {
-            cin.ignore();
-        }
         cin.getline(username,20);
         if (cin.fail())
         {
@@ -339,7 +322,7 @@ Usuarios UsuariosManager::login()
             {
                 cout << " DEMASIADOS INTENTOS FALLIDOS..." << endl;
                 system("pause");
-                break;
+                return u;
             }
         }
     }
@@ -366,3 +349,5 @@ int UsuariosManager::numeroRol (const char* rol)
 
     return -1;
 }
+
+

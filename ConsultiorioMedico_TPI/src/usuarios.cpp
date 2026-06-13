@@ -8,6 +8,8 @@ Usuarios::Usuarios()
     strcpy(_rol,"SIN ROL");
     strcpy(_dni,"N/A");
     _eliminado = false;
+    _idUsuario=0;
+    _idMedico=0;
 }
 
 void Usuarios::setNombreUsuario(const char* usuario)
@@ -30,10 +32,10 @@ void Usuarios::setRol (int rol)
         strcpy(_rol,"ADMINISTRADOR");
         break;
     case 2:
-        strcpy(_rol,"RECEPCIONISTA");
+        strcpy(_rol,"MEDICO");
         break;
     case 3:
-        strcpy(_rol,"MEDICO");
+        strcpy(_rol,"RECEPCIONISTA");
         break;
     default:
         break;
@@ -44,6 +46,33 @@ void Usuarios::setEliminado(bool eliminado)
 {
     _eliminado = eliminado;
 }
+
+void Usuarios::setIdMedico(int id){
+    _idMedico=id;
+
+}
+
+
+
+void Usuarios::setIdUsuario(int id){
+
+    _idUsuario=id;
+}
+
+
+
+int Usuarios::getIdMedico(){
+
+    return _idMedico;
+}
+
+
+
+int Usuarios::getIdUsuario(){
+    return _idUsuario;
+
+}
+
 
 const char* Usuarios::getNombreUsuario()
 {

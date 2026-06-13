@@ -7,57 +7,35 @@ App::App(){
    setCantidadOpciones(3);
 }
 
-void App::setCantidadOpciones(int cant)
-{
-    _cantidadOpciones = cant;
-}
-
-int App:: getCantidadOpciones ()
-{
-    return _cantidadOpciones;
-}
-
 void App::mostrarOpciones(){
-   cout << "----- INGRESO USUARIO-----"<<endl;
+
 
 }
 
-void App::run(){
-   Usuarios usuario;
+int App::seleccionarOpcion(){
+    int opcion;
 
-
-   do{
-      system("cls");
-      mostrarOpciones();
-      usuario = seleccionarOpcion( );
-      ejecutarOpcion(usuario);
-      system("pause");
-   }while(usuario.getNumeroRol() != 0);
-}
-
-
-Usuarios App::seleccionarOpcion(){
-   Usuarios usuario;
-   int opciones;
-
+    _usuarioManager.crearAdminSiNoExiste();
 
    do{
-        usuario = _usuario.login();
-        opciones= usuario.getNumeroRol();
-      if(opciones < 0 || opciones> getCantidadOpciones()){
+        _usuario= _usuarioManager.login();
+        opcion = _usuarioManager.numeroRol(_usuario.getRol());
+
+      if(opcion < 0 || opcion > getCantidadOpciones()){
          cout << " > Opcion no correcta..." << endl;
       }
-   } while(opciones < 0 || opciones > getCantidadOpciones());
+   } while(opcion < 0 || opcion > getCantidadOpciones());
 
-   return usuario;
+   return opcion;
 }
 
-void App::ejecutarOpcion(Usuarios usuario){
-   switch(usuario.getNumeroRol()){
+void App::ejecutarOpcion(int opcion){
+   switch(opcion){
    case 1:
     _menuAdministrador.run();
       break;
    case 2:
+    _menuMedico.setIdMedico(_usuario.getIdMedico());
     _menuMedico.run();
     break;
    case 3:

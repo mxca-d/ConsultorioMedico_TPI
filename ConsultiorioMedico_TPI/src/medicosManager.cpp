@@ -9,8 +9,10 @@ using namespace std;
 
 
 
-void MedicosManager::altaMedico()
+void MedicosManager::altaMedico()///agregue la creacion del usuario
 {
+    Usuarios usuario;
+    UsuariosArchivo repoUsuarios;
 
     char nombre[30],apellido[30],especialidad[30],dni[12],matricula[15],telefono[15];
     float honorarios;
@@ -85,7 +87,7 @@ void MedicosManager::altaMedico()
     while (!valido);
     system("cls");
     cout << "           DIAS DE ATENCION        " << endl;
-    for (int i=0; i<5; i++)
+    for (int i=0; i<5; i++)///revisar for- doble dowhile
     {
         do
         {
@@ -133,6 +135,13 @@ void MedicosManager::altaMedico()
     m.setEliminado(eliminado);
     m.setDiasAgenda(diasAgenda);
 
+    usuario.setIdUsuario(repoUsuarios.getCantidadRegistros()+1);
+    usuario.setIdMedico(m.getIdMedico());
+    usuario.setNombreUsuario(m.getDni());
+    usuario.setPassword("1234");
+    usuario.setRol(2);
+    usuario.setEliminado(false);
+
     mostrarMedico (m);
 
 
@@ -141,11 +150,23 @@ void MedicosManager::altaMedico()
     if(_repoMedicos.guardar (m))
     {
         cout << "Se guardo el medico exitosamente!" << endl;
+
+        if(repoUsuarios.guardar(usuario)){
+
+            cout << "Tambien se genero el usuario." << endl;
+
+        }else{
+
+            cout << "Pero no se pudo generar el usuario..." << endl;
+        }
     }
     else
     {
         cout << "No se pudo guardar el medico..." << endl;
     }
+
+
+
 }
 
 void MedicosManager::bajaMedico()
@@ -489,3 +510,4 @@ int MedicosManager::recuperarIdMedico (const char* dni)
     }
     return -1;
 }
+

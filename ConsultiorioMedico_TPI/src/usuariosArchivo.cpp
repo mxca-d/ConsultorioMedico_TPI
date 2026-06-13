@@ -116,7 +116,7 @@ int UsuariosArchivo::buscarPorNombreUsuario(const char* usuario){
 }
 
 
-bool UsuariosArchivo::buscarCoincidenciaPassword (const char* passw){
+/*bool UsuariosArchivo::buscarCoincidenciaPassword (const char* passw){
     Usuarios reg;
 
     int cantidad= getCantidadRegistros();
@@ -133,7 +133,7 @@ bool UsuariosArchivo::buscarCoincidenciaPassword (const char* passw){
     return false;
 
 }
-
+*/
 
 void UsuariosArchivo::vaciar()
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include "medicosArchivo.h"
 #include "medicos.h"
+#include "usuariosManager.h"
 
 class MedicosManager
 {
