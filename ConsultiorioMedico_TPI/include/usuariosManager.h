@@ -1,5 +1,7 @@
 #pragma once
 #include "usuariosArchivo.h"
+#include "medicosManager.h"
+#include "medicosArchivo.h"
 
 
 class UsuariosManager
@@ -21,6 +23,7 @@ protected:
 private:
 
     UsuariosArchivo _repoUsuarios;
+    MedicosArchivos _repoMedicos;
 
 };
 

@@ -9,11 +9,11 @@ class Usuarios
         void setPassword (const char* password);
         void setRol (int rol);
         void setEliminado (bool eliminado);
-        void setDni(const char* dni);///
+        void setDni(const char* dni);
         void setIdUsuario(int id);///
 
-        const char* getDni();///
-        int getIdUsuario();///
+        const char* getDni();
+        int getIdUsuario();
         int getNumeroRol();
         const char* getNombreUsuario();
         const char* getPassword ();

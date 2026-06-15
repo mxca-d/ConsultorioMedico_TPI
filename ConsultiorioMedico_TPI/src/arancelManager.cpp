@@ -130,6 +130,11 @@ void arancelManager::altaArancel()
 
         cout << "Ingrese ID de obra social: ";
         cin >> id;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
 
         pos = repoObraSocial.buscarPorId(id);
 
@@ -150,6 +155,11 @@ void arancelManager::altaArancel()
 
         cout << "Seleccionar especialidad: ";
         cin >> opcion;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
 
         especialidadValida = cargarEspecialidad(opcion, especialidad);
 
@@ -163,19 +173,26 @@ void arancelManager::altaArancel()
     while(!especialidadValida);
 
 
-
+    bool ingreso;
     do
     {
+        ingreso = true;
         cout << "Ingrese porcentaje de cobertura: ";
         cin >> cobertura;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+        }
 
-        if(cobertura < 0 || cobertura > 100)
+        if(ingreso && (cobertura < 0 || cobertura > 100))
         {
             cout << "Cobertura invalida. Debe estar entre 0 y 100." << endl;
         }
 
     }
-    while(cobertura < 0 || cobertura > 100);
+    while(ingreso && (cobertura < 0 || cobertura > 100));
 
     int cantidad = _repoArancel.getCantidadRegistros();
     Arancel aux;
@@ -224,6 +241,14 @@ void arancelManager::bajaArancel()
 
     cout << "Ingrese el ID del arancel a dar de baja:";
     cin>>id;
+    if (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "INGRESO INVALIDO, OPERACION CANCELADA..." << endl;
+        system("pause");
+        return;
+    }
     cout << endl;
 
     pos=_repoArancel.buscarPorId(id);
@@ -231,6 +256,7 @@ void arancelManager::bajaArancel()
     if(pos==-1)
     {
         cout << "El id ingresado no existe." << endl;
+        system("pause");
         return;
     }
 

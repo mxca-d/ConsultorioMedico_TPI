@@ -10,37 +10,62 @@ void ObraSocialManager::altaObraSocial()
 {
 
     char nombre[30];
-
-
+    bool valido, ingreso;
+    int cantidad;
     ObraSociales reg;
-
-    cout << "-------------------OBRA SOCIAL-------------------" << endl;
-    cout << endl;
-    cout << "Ingrese el nombre de la obra social:" ;
-
-    if (std::cin.peek() == '\n')
+    do
     {
-        std::cin.ignore();
-    }
+        valido = false;
+        ingreso = true;
+        cout << "-------------------OBRA SOCIAL-------------------" << endl;
+        cout << endl;
+        cout << "Ingrese 0 (cero) para cancelar la operacion" << endl;
+        cout << "Ingrese el nombre de la obra social:" ;
 
-    cin.getline(nombre,30);
-    todoMayuscula(nombre);
 
-    int cantidad = repoObraSocial.getCantidadRegistros();
-
-
-    for( int i=0; i<cantidad; i++)
-    {
-
-        reg= repoObraSocial.leer(i);
-
-        if(reg.getEliminado()==false && strcmp(reg.getNombre(),nombre)==0)
+        if (std::cin.peek() == '\n')
         {
-            cout << "La obra social ingresada ya existe..." << endl;
-            return;
+            std::cin.ignore();
         }
 
+        cin.getline(nombre,30);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+        }
+        todoMayuscula(nombre);
+        if(cancelacionUsuario(nombre))
+        {
+            cout << "OPERACION CANCELADA..." << endl;
+            return;
+        }
+        if (ingreso && validacionCaracteres(nombre))
+        {
+
+            cantidad = repoObraSocial.getCantidadRegistros();
+
+
+            for( int i=0; i<cantidad; i++)
+            {
+
+                reg= repoObraSocial.leer(i);
+
+                if(reg.getEliminado()==false && strcmp(reg.getNombre(),nombre)==0)
+                {
+                    cout << "La obra social ingresada ya existe..." << endl;
+                    ingreso = false;
+                }
+
+            }
+            if (ingreso)
+            {
+                valido = true;
+            }
+        }
     }
+    while (!valido);
 
     reg.setNombre(nombre);
     reg.setEliminado(false);

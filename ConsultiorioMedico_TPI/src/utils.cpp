@@ -58,7 +58,7 @@ bool cancelacionUsuario (const char* cadena)
 {
     if (strcmp (cadena, "0") == 0)
     {
-        cout << "Carga cancelada por el usuario..." << endl;
+
         return true;
     }
 
@@ -146,6 +146,22 @@ bool validacionCaracteres (int num)
 
 }
 
+bool validacionCaracteres (float num)
+{
+
+
+ if (num < 10000 && num > 0)
+    {
+        return true;
+    }
+    else
+    {
+
+        return false;
+    }
+
+
+}
 
 void todoMayuscula (char *pCadena)
 {
@@ -334,5 +350,19 @@ void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
     }
 
 
+}
+
+bool validacionSoloNumeros(const char* cadena)
+{
+    int tamanio = strlen(cadena);
+    for (int i=0; i< tamanio;i++ )
+    {
+        if (!isdigit(cadena [i]))
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 

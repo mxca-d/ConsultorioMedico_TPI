@@ -13,7 +13,7 @@ UsuariosArchivo:: UsuariosArchivo(const char* nombre)
     strcpy(_nombreArchivo,nombre);
 }
 
-int UsuariosArchivo::getCantidadRegistros()//
+int UsuariosArchivo::getCantidadRegistros()
 {
     FILE *p = fopen(_nombreArchivo, "rb");
 
@@ -27,6 +27,31 @@ int UsuariosArchivo::getCantidadRegistros()//
     fclose(p);
 
     return bytes / sizeof(Usuarios);
+}
+
+bool UsuariosArchivo::existenRegistros()
+{
+    int cantidad;
+    FILE *p = fopen(_nombreArchivo, "rb");
+
+    if (p == NULL)
+    {
+        return 0;
+    }
+
+    fseek(p, 0, SEEK_END);
+    int bytes = ftell(p);
+    fclose(p);
+    cantidad = bytes / sizeof(Usuarios);
+    if (cantidad == 0 )
+    {
+        return false;
+    }
+    else
+    {
+
+        return true;
+    }
 }
 
 bool UsuariosArchivo::guardar(Usuarios reg)
@@ -79,15 +104,18 @@ Usuarios UsuariosArchivo::leer(int pos)
 
 
 
-bool UsuariosArchivo::buscarCoincidenciaNombreUsuario (const char* usuario){
+bool UsuariosArchivo::buscarCoincidenciaNombreUsuario (const char* usuario)
+{
     Usuarios reg;
 
     int cantidad= getCantidadRegistros();
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0; i<cantidad; i++)
+    {
         reg= leer(i);
 
-        if(reg.getEliminado()==false && strcmp(reg.getNombreUsuario(),usuario)==0){
+        if(reg.getEliminado()==false && strcmp(reg.getNombreUsuario(),usuario)==0)
+        {
             return true;
         }
 
@@ -97,15 +125,61 @@ bool UsuariosArchivo::buscarCoincidenciaNombreUsuario (const char* usuario){
 
 }
 
-int UsuariosArchivo::buscarPorNombreUsuario(const char* usuario){
+bool UsuariosArchivo::buscarCoincidenciaDni (const char* dni)
+{
     Usuarios reg;
 
     int cantidad= getCantidadRegistros();
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0; i<cantidad; i++)
+    {
         reg= leer(i);
 
-        if(reg.getEliminado()==false && strcmp(reg.getNombreUsuario(),usuario)==0){
+        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni)==0)
+        {
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
+int UsuariosArchivo::buscarPorNombreUsuario(const char* usuario)
+{
+    Usuarios reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0; i<cantidad; i++)
+    {
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && strcmp(reg.getNombreUsuario(),usuario)==0)
+        {
+            return i;
+        }
+
+    }
+
+    return -1;
+
+}
+
+
+int UsuariosArchivo::buscarPorDni(const char* dni)
+{
+    Usuarios reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0; i<cantidad; i++)
+    {
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni)==0)
+        {
             return i;
         }
 

@@ -1,16 +1,19 @@
 #include <iostream>
 #include <cstring>
+#include <cctype>
 #include "usuariosManager.h"
 #include "utils.h"
 
 using namespace std;
 
 
-void UsuariosManager::crearAdminSiNoExiste(){
+void UsuariosManager::crearAdminSiNoExiste()
+{
 
 
 
-    if(_repoUsuarios.getCantidadRegistros()==0){
+    if(_repoUsuarios.getCantidadRegistros()==0)
+    {
 
         Usuarios admin;
 
@@ -32,7 +35,7 @@ void UsuariosManager::crearAdminSiNoExiste(){
 void UsuariosManager::altaUsuario()
 {
     Usuarios usuario;
-    char nombre[20],pass1[15],pass2[15];
+    char nombre[20],pass1[15],pass2[15], dni[9];
     int rol;
     bool valido = true,
          repetir =false,
@@ -42,6 +45,10 @@ void UsuariosManager::altaUsuario()
     {
         ingreso = true;
         cout << "INGRESE NOMBRE DE USUARIO: " ;
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
         cin.getline(nombre,20);
         if (cin.fail())
         {
@@ -50,9 +57,6 @@ void UsuariosManager::altaUsuario()
             valido = false;
             ingreso = false;
         }
-
-
-
 
         if (cancelacionUsuario(nombre))
         {
@@ -105,6 +109,46 @@ void UsuariosManager::altaUsuario()
         }
     }
     while (!valido);
+    do
+    {
+        ingreso = true;
+        cout << "INGRESE DNI DEL USUARIO: " ;
+        cin.getline(dni,9);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            valido = false;
+            ingreso = false;
+        }
+
+
+        if (cancelacionUsuario(dni))
+        {
+            return;
+        }
+
+        if (!validacionSoloNumeros(dni))
+        {
+            cout << "SOLO SE PERMITEN NUMEROS EN ESTE INGRESO..." << endl;
+            ingreso = false;
+            valido = false;
+
+        }
+
+        if( ingreso && validacionCaracteres(dni, 9))
+        {
+            valido = true;
+
+        }
+        else if (ingreso)
+        {
+            cout<< "USUARIO INCORRECTO.... "<< endl;
+            valido = false;
+        }
+    }
+    while (!valido);
+
 
     do
     {
@@ -117,12 +161,56 @@ void UsuariosManager::altaUsuario()
         switch(rol)
         {
         case 1:
+            if (_repoUsuarios.buscarCoincidenciaDni(dni))
+            {
+                int pos;
+                Usuarios usu;
+                pos=_repoUsuarios.buscarPorDni(dni);
+                usu= _repoUsuarios.leer(pos);
+
+                if (usu.getEliminado() == false && strcmp(usu.getRol(),"MEDICO")==0)
+                {
+                    cout << "YA EXISTE UN USUARIO ACTIVO PARA EL ROL QUE ELIJIO..." << endl;
+                    cout << "CARGA CANCELADA...." << endl;
+                    return;
+                }
+            }
             valido = true;
             break;
         case 2:
+            if (_repoMedicos.buscarCoincidenciaDni(dni))
+            {
+                cout << "DNI YA POSEE USUARIO ACTIVO...." << endl;
+                valido=false;
+                return;
+            }
+            else
+            {
+
+                cout << "DEBE REALIZAR EL ALTA DEL MEDICO PARA GENERAR USUARIO. GRACIAS..." << endl;
+                MedicosManager managerMedico;
+                managerMedico.altaMedico();
+                return;
+
+            }
+
             valido = true;
             break;
         case 3:
+            if (_repoUsuarios.buscarCoincidenciaDni(dni))
+            {
+                int pos;
+                Usuarios usu;
+                pos=_repoUsuarios.buscarPorDni(dni);
+                usu= _repoUsuarios.leer(pos);
+
+                if (usu.getEliminado() == false && strcmp(usu.getRol(),"RECEPCIONISTA")==0)
+                {
+                    cout << "YA EXISTE UN USUARIO ACTIVO PARA EL ROL QUE ELIJIO..." << endl;
+                    cout << "CARGA CANCELADA...." << endl;
+                    return;
+                }
+            }
             valido = true;
             break;
         default:
@@ -138,6 +226,7 @@ void UsuariosManager::altaUsuario()
     usuario.setRol(rol);
     usuario.setEliminado(false);
     usuario.setIdUsuario(_repoUsuarios.getCantidadRegistros()+1);
+
 
 
     if(_repoUsuarios.guardar(usuario))
@@ -158,68 +247,82 @@ void UsuariosManager::bajaUsuario()
 
     bool valido = true;
 
-    do
+    if (_repoUsuarios.existenRegistros())
     {
 
-        cout << "INGRESE NOMBRE DE USUARIO: " ;
-        cin.getline(nombre,20);
-        if (cin.fail())
+
+        do
         {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            valido = false;
-        }
 
-        if (cancelacionUsuario(nombre))
-        {
-            return;
-        }
-
-        if(_repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
-        {
-            pos = _repoUsuarios.buscarPorNombreUsuario(nombre);
-            usuario = _repoUsuarios.leer(pos);
-
-            cout << "DESEA DAR DE BAJA EL USUAIO? 1.SI/2.NO/ 0.CANCELAR" << endl;
-            cin >> opcion;
-
-            switch(opcion)
+            cout << "INGRESE NOMBRE DE USUARIO: " ;
+            if (cin.peek() == '\n')
             {
-            case 1:
-                usuario.setEliminado(true);
-                if (_repoUsuarios.modificar(usuario,pos))
-                {
-                    cout << "USUARIO ELIMINADO.." << endl;
-                    valido = true;
-
-                }
-                else
-                {
-                    cout << "ERROR, ELIMINACION NO COMPLETADA... " << endl;
-                    valido = true;
-                }
-
-                break;
-            case 2:
-                valido =false;
-                break;
-            case 0:
-                return;
-            default:
-                cout << "OPCION INCORRECTA..." << endl;
-                break;
-
+                cin.ignore();
+            }
+            cin.getline(nombre,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                valido = false;
             }
 
+            if (cancelacionUsuario(nombre))
+            {
+                return;
+            }
 
+            if(_repoUsuarios.buscarCoincidenciaNombreUsuario(nombre) && validacionCaracteres(nombre))
+            {
+                pos = _repoUsuarios.buscarPorNombreUsuario(nombre);
+                usuario = _repoUsuarios.leer(pos);
+
+                cout << "DESEA DAR DE BAJA EL USUARIO? 1.SI/2.NO/ 0.CANCELAR" << endl;
+                cin >> opcion;
+
+                switch(opcion)
+                {
+                case 1:
+                    usuario.setEliminado(true);
+                    if (_repoUsuarios.modificar(usuario,pos))
+                    {
+                        cout << "USUARIO ELIMINADO.." << endl;
+                        valido = true;
+
+                    }
+                    else
+                    {
+                        cout << "ERROR, ELIMINACION NO COMPLETADA... " << endl;
+                        valido = true;
+                    }
+
+                    break;
+                case 2:
+                    valido =false;
+                    break;
+                case 0:
+                    return;
+                default:
+                    cout << "OPCION INCORRECTA..." << endl;
+                    break;
+
+                }
+
+
+            }
+            else
+            {
+                cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
+                valido = false;
+            }
         }
-        else
-        {
-            cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
-            valido = false;
-        }
+        while (!valido);
     }
-    while (!valido);
+    else
+    {
+        cout << "NO EXISTEN REGISTROS....." << endl;
+        return;
+    }
 
 
 }
@@ -230,13 +333,32 @@ void UsuariosManager::listarUsuarios()
     int cantidadRegistros;
 
     cantidadRegistros = _repoUsuarios.getCantidadRegistros();
-    cout << "+-----------------USUARIOS-----------------+" << endl;
-    for (int i=0; i<cantidadRegistros; i++)
+    if (_repoUsuarios.existenRegistros() ==false)
     {
-        u = _repoUsuarios.leer(i);
-        cout << " NOMBRE USUARIO: "<< u.getNombreUsuario()<< endl;
-        cout << " ROL: " << u.getRol() << endl;
+        cout << "NO EXISTE REGISTROS DE USUARIOS....." << endl;
+        return;
+    }
+    else
+    {
 
+        cout << "+-----------------USUARIOS-----------------+" << endl;
+        for (int i=0; i<cantidadRegistros; i++)
+        {
+            u = _repoUsuarios.leer(i);
+            cout << " ID USUARIO: "<< u.getIdUsuario() << endl;
+            cout << " NOMBRE USUARIO: "<< u.getNombreUsuario()<< endl;
+            cout << " ROL: " << u.getRol() << endl;
+            if (u.getEliminado())
+            {
+                cout << "ESTADO: ELIMINADO " << endl;
+
+            }
+            else
+            {
+                cout << "ESTADO: ACTIVO " << endl;
+            }
+            cout << "+-----------------------------------------------------+" << endl;
+        }
     }
 }
 
@@ -246,87 +368,100 @@ Usuarios UsuariosManager::login()
     char username[20], pass [15];
     int pos,
         contPass = 0;
-    bool valido, ingreso;
+    bool usuarioValido, ingreso, bandPass, intentos;
     do
     {
-        system ("cls");
-        valido = true;
-        ingreso = true;
-        cout <<  "+-----------------LOGIN-----------------+" << endl;
-        cout <<  " USUARIO: ";
-        cin.getline(username,20);
-        if (cin.fail())
+        contPass = 0;
+        do
         {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            ingreso = false;
-        }
-        if ( ingreso &&_repoUsuarios.buscarCoincidenciaNombreUsuario(username))
-        {
-            pos = _repoUsuarios.buscarPorNombreUsuario(username);
-            u =_repoUsuarios.leer(pos);
-            if (!u.getEliminado())
+            system ("cls");
+            usuarioValido = true;
+            ingreso = true;
+
+            cout <<  "+-----------------LOGIN-----------------+" << endl;
+            cout <<  " USUARIO: ";
+            if (cin.peek() == '\n')
             {
-                valido = true;
+                cin.ignore();
+            }
+            cin.getline(username,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                ingreso = false;
+            }
+            if ( ingreso &&_repoUsuarios.buscarCoincidenciaNombreUsuario(username))
+            {
+                pos = _repoUsuarios.buscarPorNombreUsuario(username);
+                u =_repoUsuarios.leer(pos);
+                if (!u.getEliminado())
+                {
+                    usuarioValido = true;
+
+                }
+                else
+                {
+                    cout << "USUARIO INVALIDO.." << endl;
+                    system("pause");
+                    usuarioValido = false;
+                }
 
             }
             else
             {
                 cout << "USUARIO INVALIDO.." << endl;
                 system("pause");
-                valido = false;
+                usuarioValido = false;
+            }
+        }
+        while (!usuarioValido);
+
+        do
+        {
+
+            bandPass = true;
+            intentos = true;
+            ingreso = true;
+            cout << " CONTRASEÑA: ";
+            cin.getline(pass,15);
+            if(cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                ingreso = false;
             }
 
-        }
-        else
-        {
-            cout << "USUARIO INVALIDO.." << endl;
-            system("pause");
-            valido = false;
-        }
-    }
-    while (!valido);
-
-    do
-    {
-
-        valido = true;
-        ingreso = true;
-        cout << " CONTRASEÑA: ";
-        cin.getline(pass,15);
-        if(cin.fail())
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            ingreso = false;
-        }
-
-        if (ingreso && strcmp(pass,u.getPassword())==0)
-        {
-            cout << "Bienvenido " << u.getRol() << endl;
-            system("pause");
-            valido= true;
-        }
-        else
-        {
-            contPass ++;
-            if (contPass <3)
+            if (ingreso && strcmp(pass,u.getPassword())==0)
             {
-
-                cout << " CONTRASEÑA INCORRECTA, VUELVA A INTENTARLO..." << endl;
+                cout << "Bienvenido " << u.getRol() << endl;
                 system("pause");
-
-                valido = false;
+                bandPass = true;
             }
             else
             {
-                cout << " DEMASIADOS INTENTOS FALLIDOS..." << endl;
-                system("pause");
-                return u;
+                contPass ++;
+                if (contPass <3)
+                {
+
+                    cout << " CONTRASEÑA INCORRECTA, VUELVA A INTENTARLO..." << endl;
+                    system("pause");
+
+                    bandPass = false;
+                }
+                else
+                {
+                    cout << " DEMASIADOS INTENTOS FALLIDOS..." << endl;
+                    system("pause");
+                    bandPass=true;
+                    intentos = false;
+
+                }
             }
         }
+        while (!bandPass);
     }
-    while (!valido);
+    while (!intentos);
 
     return u;
 }

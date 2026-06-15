@@ -7,7 +7,7 @@ private:
     char _nombre[30];
     char _apellido[30];
     char _especialidad[30];
-    char _dni[12];
+    char _dni[9];
     char  _matricula[15];
     char _telefono[15];
     int _idMedico;
