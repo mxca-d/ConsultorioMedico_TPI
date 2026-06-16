@@ -16,16 +16,14 @@ public:
     void cancelarTurno();
     void atenderTurno();
     void modificarTurno();
-    void listarTurnos();
     void mostrarTurno(Turno reg);
+    void listarTurnos();
     void listarPorPaciente();
     void listarTurnoPendientePorPaciente();
     void listarPorMedico();
     void listarTurnoPendientePorMedico(const char* dni);
     void listarPorEstado();
     void listarPorFecha();
-    void listarPorRangoFechas();
-    void listarXId();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
     int generarId();

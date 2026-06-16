@@ -5,9 +5,8 @@
 class TurnoMenu: public Menu {
 public:
    TurnoMenu();
-   void mostrarOpciones();
-   void ejecutarOpcion(int opcion);
-
+   void mostrarOpciones() override;
+   void ejecutarOpcion(int opcion)override;
 private:
    TurnoManager _managerTurno;
 };

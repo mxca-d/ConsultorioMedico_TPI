@@ -470,7 +470,7 @@ void TurnoManager::listarPorPaciente()///NO SERIA POR APELLIDO?
 
 }
 
-void TurnoManager::listarPorMedico()
+void TurnoManager::listarPorMedico()///NO SERIA POR APELLIDO?
 {
     int cantidadRegistros = _repoTurno.getCantidadRegistros();
     Turno *vec = new Turno[cantidadRegistros];
@@ -512,7 +512,7 @@ void TurnoManager::listarPorMedico()
 
     delete []vec;
 }
-void TurnoManager::listarTurnoPendientePorMedico(const char* dni)///pasamos ID a traves del menuMedico
+void TurnoManager::listarTurnoPendientePorMedico(const char* dni)
 {
     int  idMedico, contPendientes;
     Turno turno;
@@ -812,60 +812,59 @@ int TurnoManager::generarId()
 {
     return _repoTurno.getCantidadRegistros() + 1;
 }
+
+void TurnoManager::hacerCopiaDeSeguridad(){
+    int cantidadRegistros = _repoTurno.getCantidadRegistros();
+    Turno *vec = new Turno[cantidadRegistros];
+
+    if (vec == nullptr)
+    {
+        cout << "Falla al realizar backup" << endl;
+        return;
+    }
+
+    _repoTurno.leer(vec, cantidadRegistros);
+    _archivoBkp.vaciar();
+    if (_archivoBkp.guardar(vec, cantidadRegistros))
+    {
+        cout << "Backup realizado correctamente" << endl;
+    }
+    else
+    {
+        cout << "Falla al realizar backup" << endl;
+    }
+
+    delete []vec;
+}
+
+void TurnoManager::restaurarCopiaDeSeguridad()
+{
+
+    int cantidadRegistros = _archivoBkp.getCantidadRegistros();
+    Turno *vec = new Turno[cantidadRegistros];
+
+    if (vec == nullptr)
+    {
+        cout << "Falla al restaurar backup" << endl;
+        return;
+    }
+
+    _archivoBkp.leer(vec, cantidadRegistros);
+    _repoTurno.vaciar();
+    if (_repoTurno.guardar(vec, cantidadRegistros))
+    {
+        cout << "Backup restaurado correctamente" << endl;
+    }
+    else
+    {
+        cout << "Falla al restaurar backup" << endl;
+    }
+
+    delete []vec;
+
+
+}
 /*
-        void MedicosManager::hacerCopiaDeSeguridad()
-        {
-            int cantidadRegistros = _repoMedicos.getCantidadRegistros();
-            Medicos *vec = new Medicos[cantidadRegistros];
-
-            if (vec == nullptr)
-            {
-                cout << "Falla al realizar backup" << endl;
-                return;
-            }
-
-            _repoMedicos.leer(vec, cantidadRegistros);
-            _archivoBkp.vaciar();
-            if (_archivoBkp.guardar(vec, cantidadRegistros))
-            {
-                cout << "Backup realizado correctamente" << endl;
-            }
-            else
-            {
-                cout << "Falla al realizar backup" << endl;
-            }
-
-            delete []vec;
-        }
-
-        void MedicosManager::restaurarCopiaDeSeguridad()
-        {
-
-            int cantidadRegistros = _archivoBkp.getCantidadRegistros();
-            Medicos *vec = new Medicos[cantidadRegistros];
-
-            if (vec == nullptr)
-            {
-                cout << "Falla al restaurar backup" << endl;
-                return;
-            }
-
-            _archivoBkp.leer(vec, cantidadRegistros);
-            _repoMedicos.vaciar();
-            if (_repoMedicos.guardar(vec, cantidadRegistros))
-            {
-                cout << "Backup restaurado correctamente" << endl;
-            }
-            else
-            {
-                cout << "Falla al restaurar backup" << endl;
-            }
-
-            delete []vec;
-
-
-        }
-
         void MedicosManager::listarMedicoPorApellido()
         {
             int cantidadRegistros = _repoMedicos.getCantidadRegistros();

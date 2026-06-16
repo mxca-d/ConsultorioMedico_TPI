@@ -78,6 +78,44 @@ bool validacionCaracteres (int num)
 
 }
 
+bool validacionCaracteres (const char* cadena)
+{
+    int caracteres = strlen (cadena);
+
+    if (caracteres == 0)
+    {
+        return false;
+    }
+    else if (caracteres < 29 && caracteres > 2)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+
+}
+
+
+bool validacionCaracteres (float num)
+{
+
+
+    if (num < 10000 && num > 0)
+    {
+        return true;
+    }
+    else
+    {
+
+        return false;
+    }
+
+
+}
+
 
 void todoMayuscula (char *pCadena)
 {
