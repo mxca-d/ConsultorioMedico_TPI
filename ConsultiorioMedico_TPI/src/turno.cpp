@@ -77,6 +77,7 @@ void Turno::setHora(const char* hora)
     strcpy(_hora,hora );
 
 }
+/*
 void Turno::setDiaTurno (int dia)
 {
     switch(dia)
@@ -104,7 +105,7 @@ void Turno::setDiaTurno (int dia)
 
     }
 }
-
+*/
 
 
 void Turno::setEstado(const char* estado)
@@ -172,7 +173,8 @@ int Turno::getFechaint()
 
 }
 
-const char* Turno::getDiaTurno()
+/*const char* Turno::getDiaTurno()
 {
     return _diaTurno;
 }
+*/

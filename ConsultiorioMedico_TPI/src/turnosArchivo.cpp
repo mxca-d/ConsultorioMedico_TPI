@@ -299,4 +299,19 @@ void TurnoArchivo::vaciar()
     fclose(p);
 }
 
+int TurnoArchivo::getCantidadActivos(){
+    Turno reg;
+    int cantidad= getCantidadRegistros();
+    int contadorActivos=0;
+
+    for(int i=0;i<cantidad;i++){
+        if(reg.getEliminado()!=true){
+            contadorActivos++;
+        }
+
+    }
+    return contadorActivos;
+
+}
+
 
