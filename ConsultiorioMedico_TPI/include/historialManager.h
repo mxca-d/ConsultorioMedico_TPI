@@ -18,6 +18,8 @@ public:
     void mostrarHistorial(Historial reg);
     void listarPorPaciente();
     void listarPorMedico();
+    void buscarPorDniPaciente();
+    void buscarPorDniMedico();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 

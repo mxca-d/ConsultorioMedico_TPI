@@ -14,7 +14,7 @@ void MenuMedico::mostrarOpciones()
     cout <<" TURNOS:                      " << endl;
     cout << "1- ATENDER TURNO"<<endl;
     cout << "2- CANCELAR TURNO"<<endl;
-    cout << "3- CONSULTAR TURNO PENDIENTE"<<endl;
+    cout << "3- CONSULTAR TURNOS PENDIENTES"<<endl;
     cout << "HISTORIA CLINICA:                   "<< endl;
     cout << "4- CONSULTAR"<<endl;
     cout << "USUARIO:" << endl;

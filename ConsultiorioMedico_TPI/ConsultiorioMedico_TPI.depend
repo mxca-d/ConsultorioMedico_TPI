@@ -232,7 +232,7 @@
 	"historialManager.h"
 	"utils.h"
 
-1781036261 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
+1781641632 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
 	"historial.h"
 	"historialArchivo.h"
 	"turnosArchivo.h"
@@ -714,12 +714,12 @@
 	"turnoManager.h"
 	"pacienteManager.h"
 
-1781619363 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuadministrador.cpp
+1781643058 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuadministrador.cpp
 	<iostream>
 	"menuAdministrador.h"
 	"usuariosManager.h"
 
-1781619363 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menumedico.cpp
+1781643237 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menumedico.cpp
 	<iostream>
 	"MenuMedico.h"
 

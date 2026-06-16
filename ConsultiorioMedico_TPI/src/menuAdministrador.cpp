@@ -10,7 +10,7 @@ MenuAdministrador::MenuAdministrador()
 
 void MenuAdministrador::mostrarOpciones()
 {
-    cout << "----- MENU COMPLERO-----"<<endl;
+    cout << "----- MENU COMPLETO-----"<<endl;
     cout << "1- USUARIO"<<endl;
     cout << "2- MEDICOS"<<endl;
     cout << "3- PACIENTES" << endl;
