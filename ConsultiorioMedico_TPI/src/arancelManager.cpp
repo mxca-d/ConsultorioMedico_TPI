@@ -279,6 +279,77 @@ void arancelManager::bajaArancel()
 
 }
 
+void arancelManager::modificarArancel()
+{
+    Arancel reg;
+
+    int id, pos, cobertura;
+    bool ingreso, modificado;
+
+
+    cout << "Ingrese el ID del arancel a dar de baja:";
+    cin>>id;
+    if (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "INGRESO INVALIDO, OPERACION CANCELADA..." << endl;
+        system("pause");
+        return;
+    }
+    cout << endl;
+
+    pos=_repoArancel.buscarPorId(id);
+
+    if(pos==-1)
+    {
+        cout << "El id ingresado no existe." << endl;
+        system("pause");
+        return;
+    }
+
+    reg= _repoArancel.leer(pos);
+    mostrarArancel(reg);
+
+    do
+    {
+        ingreso = true;
+        cout << "Ingrese porcentaje de cobertura: ";
+        cin >> cobertura;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+        }
+
+        if(ingreso && (cobertura < 0 || cobertura > 100))
+        {
+            cout << "Cobertura invalida. Debe estar entre 0 y 100." << endl;
+        }
+
+    }
+    while(ingreso && (cobertura < 0 || cobertura > 100));
+
+    reg.setCobertura(cobertura);
+
+    modificado=_repoArancel.modificar(reg,pos);
+
+    if(modificado)
+    {
+        cout << "El arancel se ha dado de baja exitosamente." << endl;
+    }
+    else
+    {
+        cout << "No se pudo dar de baja el arancel." << endl;
+    }
+
+
+
+
+}
+
+
 void arancelManager::listarAranceles()
 {
     int cantidadRegistros = _repoArancel.getCantidadRegistros();

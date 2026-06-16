@@ -67,6 +67,7 @@
 		<Unit filename="include/usuarios.h" />
 		<Unit filename="include/usuariosArchivo.h" />
 		<Unit filename="include/usuariosManager.h" />
+		<Unit filename="include/usuariosMenu.h" />
 		<Unit filename="include/utils.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/app.cpp" />
@@ -102,6 +103,7 @@
 		<Unit filename="src/usuarios.cpp" />
 		<Unit filename="src/usuariosArchivo.cpp" />
 		<Unit filename="src/usuariosManager.cpp" />
+		<Unit filename="src/usuariosMenu.cpp" />
 		<Unit filename="src/utils.cpp" />
 		<Extensions />
 	</Project>

@@ -14,7 +14,7 @@ void MenuAdministrador::mostrarOpciones()
     cout << "1- DAR ALTA USUARIO"<<endl;
     cout << "2- DAR ALTA MEDICO"<<endl;
     cout << "3- DAR DE ALTA OBRA SOCIAL" << endl;
-    cout << "4- DAR ALTA ARANCEL"<<endl;
+    cout << "4- MENU ARANCEL"<<endl;
     cout << "5- LISTAR USUARIOS" << endl;
     cout << "0- SALIR"<<endl;
     cout << "------------------------"<<endl;
@@ -36,10 +36,13 @@ void MenuAdministrador::ejecutarOpcion(int opcion)
         _obraSocialManager.altaObraSocial();
         break;
     case 4:
-        _arancelManager.altaArancel();
+        _menuArancel.run();
+        break;
     case 5:
         _usuarioManager.listarUsuarios();
+        break;
     case 0:
         cout << "Gracias por usar mi app :)" << endl;
+        break;
     }
 }

@@ -4,6 +4,7 @@
 #include "medicosManager.h"
 #include "obraSocialManager.h"
 #include "arancelManager.h"
+#include "arancelMenu.h"
 
 class MenuAdministrador: public Menu {
 public:
@@ -16,5 +17,6 @@ private:
     MedicosManager _medicoManager;
     ObraSocialManager _obraSocialManager;
     arancelManager _arancelManager;
+    ArancelMenu _menuArancel;
 
 };

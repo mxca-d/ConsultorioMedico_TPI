@@ -1,30 +1,27 @@
 #include <iostream>
-#include "obraSocialMenu.h"
+#include "informesMenu.h"
 
 using namespace std;
 
-ObraSocialMenu::ObraSocialMenu()
+InformesMenu::InformesMenu()
 {
-    setCantidadOpciones(7);
+    setCantidadOpciones(4);
 }
 
-void ObraSocialMenu::mostrarOpciones()
+void InformesMenu::mostrarOpciones()
 {
-    cout << "----- MENU PACIENTE-----"<<endl;
-    cout << "1- ALTA OBRA SOCIAL"<<endl;
-    cout << "2- BAJA OBRA SOCIAL"<<endl;
-    cout << "3- MODIFICAR EXISTENTE"<<endl;
-    cout << "4- LISTAR TODAS"<<endl;
-    cout << "5- CONSULTAR POR ID"<<endl;
-    cout << "6- CREAR COPIA DE SEGURIDAD"<<endl;
-    cout << "7- REESTABLECER DESDE COPIA DE SEGURIDAD" << endl;
+    cout << "----- MENU INFORMES-----"<<endl;
+    cout << "1- SUELDOS POR MEDICO"<<endl;
+    cout << "2- RECAUDACION TOTAL"<<endl;
+    cout << "3- RECAUDACION TOTAL DESCONTANDO OBRA SOCIALES"<<endl;
+    cout << "4- RECAUDACION POR OBRA SOCIALES"<<endl;
     cout << "0- SALIR"<<endl;
     cout << "------------------------"<<endl;
 }
 
-void ObraSocialMenu::ejecutarOpcion(int opcion)
+void InformesMenu::ejecutarOpcion(int opcion)
 {
-    switch(opcion)
+ /*   switch(opcion)
     {
     case 1:
         _managerObraSocial.altaObraSocial();
@@ -52,5 +49,5 @@ void ObraSocialMenu::ejecutarOpcion(int opcion)
         break;
     default:
         cout << "OPCION INCORRECTA...";
-    }
+    } */
 }
