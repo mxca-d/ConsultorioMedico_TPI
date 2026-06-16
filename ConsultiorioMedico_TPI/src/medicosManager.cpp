@@ -61,7 +61,7 @@ void MedicosManager::altaMedico()///agregue la creacion del usuario
             }
             if (i==4)
             {
-                if(!soloNumeros(cargar[4].pDestino))
+                if(!validacionSoloNumeros(cargar[4].pDestino))
                 {
                     cout << "Solo se Permiten Numeros..."<< endl;
                     valido = false;
