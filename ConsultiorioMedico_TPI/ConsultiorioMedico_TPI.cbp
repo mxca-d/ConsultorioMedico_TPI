@@ -44,6 +44,7 @@
 		<Unit filename="include/historialArchivo.h" />
 		<Unit filename="include/historialManager.h" />
 		<Unit filename="include/historialMenu.h" />
+		<Unit filename="include/informesMenu.h" />
 		<Unit filename="include/medicoMenu.h" />
 		<Unit filename="include/medicos.h" />
 		<Unit filename="include/medicosArchivo.h" />
@@ -80,6 +81,7 @@
 		<Unit filename="src/historialArchivo.cpp" />
 		<Unit filename="src/historialManager.cpp" />
 		<Unit filename="src/historialMenu.cpp" />
+		<Unit filename="src/informesMenu.cpp" />
 		<Unit filename="src/medicoMenu.cpp" />
 		<Unit filename="src/medicos.cpp" />
 		<Unit filename="src/medicosArchivo.cpp" />
