@@ -9,6 +9,7 @@ public:
 
     void altaMedico();
     void bajaMedico();
+    void modificarMedico();
     void listarMedico(); //listarTodos();
     void listarXId();
     void mostrarMedico(Medicos medicos);
@@ -19,7 +20,7 @@ public:
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
-    void mostrarEspecialidades();
+    void mostrarEspecialidadesExistentes();
     int recuperarIdMedico (const char* dni);
 
 

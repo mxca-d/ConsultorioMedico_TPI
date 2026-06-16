@@ -376,7 +376,7 @@ void TurnoManager::listarTurnos()
 void TurnoManager::listarTurnoPendientePorPaciente()
 {
     bool bandDni;
-    char dni [8];
+    char dni [9];
     int pos;
     Turno turno,
           turnoAux;
@@ -390,41 +390,48 @@ void TurnoManager::listarTurnoPendientePorPaciente()
             cin.ignore();
         }
 
-        cin.getline(dni,8);
+        cin.getline(dni,9);
         if (cin.fail())
         {
             cin.clear();
             cin.ignore(10000, '\n');
         }
 
-        if (cancelacionUsuario(dni) && validacionCaracteres (dni,8))
+        if (cancelacionUsuario(dni))
         {
             return;
         }
-
-        pos = _repoTurno.buscarPorDni (dni);
-        if(pos==-1)
+        if (validacionCaracteres (dni,9))
         {
-            cout << "El DNI no posee turnos pendientes. " << endl;
 
+            pos = _repoTurno.buscarPorDni (dni);
+            if(pos==-1)
+            {
+                cout << "El DNI no posee turnos pendientes. " << endl;
+
+            }
+            else
+            {
+                turno = _repoTurno.leer(pos);
+                int cantidadRegistros = _repoTurno.getCantidadRegistros();
+                for(int i=0; i<cantidadRegistros; i++)
+                {
+                    turnoAux = _repoTurno.leer(i);
+
+                    if (strcmp(turno.getDniPaciente(),turnoAux.getDniPaciente())==0
+                            && strcmp(turnoAux.getEstado(),"PENDIENTE")==0)
+                    {
+                        mostrarTurno(turnoAux);
+                        cout << "-----------------------------------------" << endl;
+                    }
+
+                }
+                bandDni = true;
+            }
         }
         else
         {
-            turno = _repoTurno.leer(pos);
-            int cantidadRegistros = _repoTurno.getCantidadRegistros();
-            for(int i=0; i<cantidadRegistros; i++)
-            {
-                turnoAux = _repoTurno.leer(i);
-
-                if (strcmp(turno.getDniPaciente(),turnoAux.getDniPaciente())==0
-                        && strcmp(turnoAux.getEstado(),"PENDIENTE")==0)
-                {
-                    mostrarTurno(turnoAux);
-                    cout << "-----------------------------------------" << endl;
-                }
-
-            }
-            bandDni = true;
+            cout << "INGRESO INVALIDO..." << endl;
         }
     }
     while(!bandDni);
@@ -516,60 +523,35 @@ void TurnoManager::listarPorMedico()
 
     delete []vec;
 }
-void TurnoManager::listarTurnoPendientePorMedico()///pasamos ID a traves del menuMedico
+void TurnoManager::listarTurnoPendientePorMedico(const char* dni)///pasamos ID a traves del menuMedico
 {
-    bool bandDni;
-    char dni [8];
     int  idMedico, contPendientes;
     Turno turno;
-    do
+
+    idMedico = _managerMedico.recuperarIdMedico(dni);
+    if(idMedico == -1)
     {
-        bandDni = false;
-        cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
-        cout << "INGRESE DNI MEDICO: ";
-        if (cin.peek() == '\n')
+        cout << "DNI NO ENCONTRADO..." << endl;
+    }
+    else
+    {
+        contPendientes = 0;
+        int cantidadRegistros = _repoTurno.getCantidadRegistros();
+        for (int i=0; i<cantidadRegistros; i++)
         {
-            cin.ignore();
-        }
-
-        cin.getline(dni,8);
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-        }
-
-        if (cancelacionUsuario(dni) && validacionCaracteres (dni,8))
-        {
-            return;
-        }
-        idMedico = _managerMedico.recuperarIdMedico(dni);
-        if(idMedico == -1)
-        {
-            cout << "DNI NO ENCONTRADO..." << endl;
-        }
-        else
-        {
-            contPendientes = 0;
-            int cantidadRegistros = _repoTurno.getCantidadRegistros();
-            for (int i=0; i<cantidadRegistros; i++)
+            turno = _repoTurno.leer(i);
+            if (turno.getIdMedico() == idMedico && strcmp(turno.getEstado(), "PENDIENTE") == 0)
             {
-                turno = _repoTurno.leer(i);
-                if (turno.getIdMedico() == idMedico && strcmp(turno.getEstado(), "PENDIENTE") == 0)
-                {
-                    mostrarTurno (turno);
-                    cout <<"-----------------------------------------------" << endl;
-                    contPendientes ++;
-                }
+                mostrarTurno (turno);
+                cout <<"-----------------------------------------------" << endl;
+                contPendientes ++;
             }
-            bandDni = true;
-            if (contPendientes == 0)
-            {
-                cout << "SIN TURNOS PENDIENTES..." << endl;
-            }
+        }
+        if (contPendientes == 0)
+        {
+            cout << "SIN TURNOS PENDIENTES..." << endl;
         }
     }
-    while(!bandDni);
 }
 
 
@@ -976,7 +958,8 @@ int TurnoManager::generarId()
 
 
 
-int TurnoManager::turnosDisponiblesPorMedico( Medicos medico, Turno opciones[]){
+int TurnoManager::turnosDisponiblesPorMedico( Medicos medico, Turno opciones[])
+{
 
     int opcionesTotal=0;
     Fecha hoy;
@@ -984,21 +967,27 @@ int TurnoManager::turnosDisponiblesPorMedico( Medicos medico, Turno opciones[]){
 
     char hora[6];
 
-    for(int i=0;i<5;i++){///DIAS POSIBLES (LUN-VIER)
+    for(int i=0; i<5; i++) ///DIAS POSIBLES (LUN-VIER)
+    {
 
-        if(medico.getDiasAgenda()[i]){///DIAS HABILITADOS DEL MEDICO
+        if(medico.getDiasAgenda()[i]) ///DIAS HABILITADOS DEL MEDICO
+        {
 
             Fecha dias[4];
 
             obtenerDias(i+1,dias,hoy);///CARGA LOS PROXIMOS 4 LUNES/MARTES/ETC
 
-            for(int j=0;j<4;j++){///RECORRE EL VEC DE DIAS CARGADOS
+            for(int j=0; j<4; j++) ///RECORRE EL VEC DE DIAS CARGADOS
+            {
 
-                for(int k=0;k<5;k++){///RECORRE LOS POSIBLES TURNOS/HORARIOS
+                for(int k=0; k<5; k++) ///RECORRE LOS POSIBLES TURNOS/HORARIOS
+                {
 
-                    if(cargarHoraTurno(k+1,hora)){///CARGA EL CHAR
+                    if(cargarHoraTurno(k+1,hora)) ///CARGA EL CHAR
+                    {
 
-                        if(turnoOcupado(medico.getIdMedico(),dias[j],hora)==false){///CHEQUEA QUE EL TURNO NO ESTE OCUPADO
+                        if(turnoOcupado(medico.getIdMedico(),dias[j],hora)==false) ///CHEQUEA QUE EL TURNO NO ESTE OCUPADO
+                        {
 
                             cout << opcionesTotal+1 << ") ";
                             cout << "Medico :" << medico.getNombre() << " " << medico.getApellido() << " -";
@@ -1034,25 +1023,28 @@ int TurnoManager::turnosDisponiblesPorMedico( Medicos medico, Turno opciones[]){
 
 
 
-bool TurnoManager::turnoOcupado(int idMedico, Fecha fecha, const char *hora){
+bool TurnoManager::turnoOcupado(int idMedico, Fecha fecha, const char *hora)
+{
 
     Turno turno;
 
     int cantidad= _repoTurno.getCantidadRegistros();
 
 
-    for(int i=0;i<cantidad;i++){
+    for(int i=0; i<cantidad; i++)
+    {
 
         turno= _repoTurno.leer(i);
 
         if(turno.getIdMedico()== idMedico
-           && turno.getFechaTurno().esIgual(fecha)
-            && strcmp(turno.getHora(),hora)==0
-           &&strcmp(turno.getEstado(),"PENDIENTE")==0 ){
+                && turno.getFechaTurno().esIgual(fecha)
+                && strcmp(turno.getHora(),hora)==0
+                &&strcmp(turno.getEstado(),"PENDIENTE")==0 )
+        {
 
-                return true;
+            return true;
 
-            }
+        }
 
 
 
@@ -1066,7 +1058,7 @@ bool TurnoManager::turnoOcupado(int idMedico, Fecha fecha, const char *hora){
 void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
 {
 
-    char dniPaciente[8], especialidad[30];
+    char dniPaciente[9], especialidad[30];
     int  idMedico, posMed,seleccion, posArancel, posPas,opcionEspecialidad, opcionTurno, cantidadOpciones;
     float costoConsulta;
     Fecha f;
@@ -1095,7 +1087,7 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
             cin.ignore();
         }
 
-        cin.getline(dniPaciente,8);
+        cin.getline(dniPaciente,9);
         if (cin.fail())
         {
             cin.clear();
@@ -1104,24 +1096,32 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
 
         ///CANCELACION USUARIO YA TIENE UN COUT
 
-        if (cancelacionUsuario(dniPaciente) && validacionCaracteres (dniPaciente,8))
+        if (cancelacionUsuario(dniPaciente))
+        {
+            cout << "CANCELACION POR USUARIO.. " << endl;
+            return;
+        }
+        if(!validacionCaracteres (dniPaciente,10))
         {
             cout << "INGRESO INVALIDO..." << endl;
             return;
         }
-
-
-        if (_repoPaciente.buscarPorDni(dniPaciente))
-        {
-            posPas= _repoPaciente.buscarPorDni(dniPaciente);
-            paciente = _repoPaciente.leer(posPas);
-            turno.setIdPaciente(paciente.getIdPaciente());
-            valido = true;
-        }
         else
         {
-            cout << "DNI NO ENCONTRADO..." << endl;
-            valido = false;
+
+
+            if (_repoPaciente.buscarPorDni(dniPaciente))
+            {
+                posPas= _repoPaciente.buscarPorDni(dniPaciente);
+                paciente = _repoPaciente.leer(posPas);
+                turno.setIdPaciente(paciente.getIdPaciente());
+                valido = true;
+            }
+            else
+            {
+                cout << "DNI NO ENCONTRADO..." << endl;
+                valido = false;
+            }
         }
 
     }
@@ -1161,6 +1161,7 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
     {
 
         _managerMedico.listarMedicoEspecialidad(especialidad);
+        system("pause");
         cout << "Seleccionar ID medico:  ";
         cin >> idMedico;
 
@@ -1178,14 +1179,18 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
             cantidadOpciones = turnosDisponiblesPorMedico(medico,opciones);
 
 
-            if(cantidadOpciones==0){
+            if(cantidadOpciones==0)
+            {
 
                 cout << "NO HAY TURNOS DISPONIBLES CON EL MEDICO " << medico.getNombre() << " " << medico.getApellido() << endl;
                 valido=false;
-            }else{
+            }
+            else
+            {
                 valido=true;
             }
-        }else
+        }
+        else
         {
             cout << "INGRESO INVALIDO...."<< endl;
             valido = false;
@@ -1194,19 +1199,22 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
     }
     while (!valido);
 
-    do{
-        system("cls");
+    do
+    {
+
         cout << "Seleccione el turno que desea dar de alta:";
         cin>>opcionTurno;
 
-        if(opcionTurno<1 || opcionTurno>cantidadOpciones){
+        if(opcionTurno<1 || opcionTurno>cantidadOpciones)
+        {
             cout << "OPCION INVALIDA. INTENTE NUEVAMENTE..." << endl;
             system("pause");
         }
 
 
 
-    }while(opcionTurno<1 || opcionTurno>cantidadOpciones);
+    }
+    while(opcionTurno<1 || opcionTurno>cantidadOpciones);
 
 
     turno = opciones[opcionTurno-1];
@@ -1221,18 +1229,25 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
         cout <<"CONFIRMAR TURNO? 1.SI/2.NO" << endl;
         cin >>seleccion;
 
-    }while(seleccion!=1 && seleccion!=2);
+    }
+    while(seleccion!=1 && seleccion!=2);
 
-    if(seleccion==2){
+    if(seleccion==2)
+    {
         cout << "OPERACION CANCELADA..."<< endl;
         system("pause");
         return;
-    }else{
+    }
+    else
+    {
 
-        if(_repoTurno.guardar(turno)){
-        cout << "TURNO REGISTRADO CORRECTAMENTE." << endl;
-        }else{
-        cout << "ERROR AL GUARDAR EL TURNO." << endl;
+        if(_repoTurno.guardar(turno))
+        {
+            cout << "TURNO REGISTRADO CORRECTAMENTE." << endl;
+        }
+        else
+        {
+            cout << "ERROR AL GUARDAR EL TURNO." << endl;
         }
 
     }

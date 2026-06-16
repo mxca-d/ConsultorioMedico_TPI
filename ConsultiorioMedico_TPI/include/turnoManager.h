@@ -22,7 +22,7 @@ public:
     void listarPorPaciente();
     void listarTurnoPendientePorPaciente();
     void listarPorMedico();
-    void listarTurnoPendientePorMedico();
+    void listarTurnoPendientePorMedico(const char* dni);
     void listarPorEstado();
     void listarPorFecha();
     void listarPorRangoFechas();

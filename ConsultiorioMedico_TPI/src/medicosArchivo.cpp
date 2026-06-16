@@ -114,6 +114,22 @@ int MedicosArchivos::buscarPorId(int id)
     return -1;
 }
 
+int MedicosArchivos::buscarPorDni(const char* dni)
+{
+    Medicos aux;
+    int cantidadRegistros = getCantidadRegistros();
+
+    for(int i=0; i<cantidadRegistros; i++)
+    {
+        aux = leer(i);
+        if (strcmp(aux.getDni(),dni) == 0 && aux.getEliminado()==false)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 bool MedicosArchivos::buscarCoincidenciaId(int id){
     Medicos reg;
 

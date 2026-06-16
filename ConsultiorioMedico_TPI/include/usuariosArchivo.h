@@ -11,11 +11,13 @@ public:
     bool guardar(Usuarios reg);
     bool modificar(Usuarios reg, int posicionAReemplazar);
     int getCantidadRegistros();
+    bool existenRegistros();
     Usuarios leer(int pos);
     bool buscarCoincidenciaNombreUsuario(const char* usuario);
+    bool buscarCoincidenciaDni(const char* dni);
     //bool buscarCoincidenciaPassword (const char* passw);
     int buscarPorNombreUsuario(const char* usuario);
-
+int buscarPorDni(const char* dni);
 
     void vaciar();
 

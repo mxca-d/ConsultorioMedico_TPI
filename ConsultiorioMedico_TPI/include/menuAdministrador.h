@@ -1,9 +1,12 @@
 #pragma once
 #include "menu.h"
-#include "usuariosManager.h"
-#include "medicosManager.h"
-#include "obraSocialManager.h"
-#include "arancelManager.h"
+#include "usuariosMenu.h"
+#include "medicoMenu.h"
+#include "pacienteMenu.h"
+#include "obraSocialMenu.h"
+#include "historialMenu.h"
+#include "informesMenu.h"
+#include "arancelMenu.h"
 
 class MenuAdministrador: public Menu {
 public:
@@ -12,9 +15,12 @@ public:
    void ejecutarOpcion(int opcion) override;
 
 private:
-    UsuariosManager _usuarioManager;
-    MedicosManager _medicoManager;
-    ObraSocialManager _obraSocialManager;
-    arancelManager _arancelManager;
+    UsuarioMenu _usuarioMenu;
+    MedicoMenu _medicoMenu;
+    PacienteMenu _pacienteMenu;
+    ObraSocialMenu _obraSocialesMenu;
+    HistorialMenu _HistorialMenu;
+    InformesMenu _informesMenu;
+    ArancelMenu _menuArancel;
 
 };
