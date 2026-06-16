@@ -23,3 +23,4 @@ bool soloNumeros(const char *cadena, int tam);
 bool soloLetras(const char *cadena, int tam);
 bool letrasYNumeros(const char *cadena, int tam);
 bool dniValido(const char *dni);
+bool validacionSoloNumeros(const char* cadena);

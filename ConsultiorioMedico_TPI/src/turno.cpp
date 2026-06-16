@@ -13,7 +13,8 @@ Turno::Turno()
     strcpy (_dniPaciente, "N/A");
     strcpy (_hora, "N/A");
     strcpy (_estado, "N/A");
-    strcpy (_diaTurno, "N/A");
+    strcpy (_dniPaciente, "N/A");
+    _costoConsulta=0;
 
 
     _eliminado = false;

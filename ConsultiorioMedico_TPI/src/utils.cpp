@@ -367,5 +367,19 @@ void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
 
 }
 
+bool validacionSoloNumeros(const char* cadena)
+{
+    int tamanio = strlen(cadena);
+    for (int i=0; i< tamanio; i++ )
+    {
+        if (!isdigit(cadena [i]))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 
 

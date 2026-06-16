@@ -317,7 +317,8 @@ void TurnoManager::mostrarTurno(Turno turno)
     cout << "MEDICO: " << medico.getApellido() << ", " << medico.getNombre() << endl;
     cout << "ESPECIALIDAD: " << medico.getEspecialidad() << endl;
     cout << "FECHA: ";
-    cout << turno.getFechaTurno().mostrar() << endl;
+    turno.getFechaTurno().mostrar();
+    cout << endl;
     cout << "HORA: " <<turno.getHora() << endl;
     cout << "ESTADO: "<< turno.getEstado() << endl;
     cout << "COSTO: $" << turno.getCostoConsulta() << endl;
@@ -412,7 +413,7 @@ void TurnoManager::listarPorPaciente()///NO SERIA POR APELLIDO?
     int cantidadTotal = _repoTurno.getCantidadRegistros();
     int cantidadActivos= _repoTurno.getCantidadActivos();
     Turno *vec = new Turno[cantidadActivos];
-    Turno aux;
+    Turno reg;
 
 
     if (vec == nullptr)
@@ -420,8 +421,6 @@ void TurnoManager::listarPorPaciente()///NO SERIA POR APELLIDO?
         cout << "Falla asignacion de memoria" << endl;
         return;
     }
-    _repoTurno.leer(vec, cantidadRegistros);
-
 
 
     int posVec =0;
