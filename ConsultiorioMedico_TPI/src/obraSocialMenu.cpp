@@ -10,7 +10,7 @@ ObraSocialMenu::ObraSocialMenu()
 
 void ObraSocialMenu::mostrarOpciones()
 {
-    cout << "----- MENU PACIENTE-----"<<endl;
+    cout << "----- MENU OBRA SOCIAL-----"<<endl;
     cout << "1- ALTA OBRA SOCIAL"<<endl;
     cout << "2- BAJA OBRA SOCIAL"<<endl;
     cout << "3- MODIFICAR EXISTENTE"<<endl;

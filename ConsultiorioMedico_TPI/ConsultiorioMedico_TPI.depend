@@ -483,7 +483,7 @@
 	"obrasSociales.h"
 	"obraSocialArchivo.h"
 
-1781573721 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialmenu.cpp
+1781575439 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\obrasocialmenu.cpp
 	<iostream>
 	"obraSocialMenu.h"
 
@@ -621,17 +621,19 @@
 	"medicosManager.h"
 	"medicosArchivo.h"
 
-1781528113 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuadministrador.cpp
+1781575439 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuadministrador.cpp
 	<iostream>
 	"menuAdministrador.h"
 	"usuariosManager.h"
 
-1781528003 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menuadministrador.h
+1781575053 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menuadministrador.h
 	"menu.h"
-	"usuariosManager.h"
-	"medicosManager.h"
-	"obraSocialManager.h"
-	"arancelManager.h"
+	"usuariosMenu.h"
+	"medicoMenu.h"
+	"pacienteMenu.h"
+	"obraSocialMenu.h"
+	"historialMenu.h"
+	"informesMenu.h"
 	"arancelMenu.h"
 
 1781378340 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menurecepcionista.cpp
@@ -740,4 +742,11 @@
 1781533318 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosmenu.h
 	"usuariosManager.h"
 	"menu.h"
+
+1781574589 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\informesmenu.h
+	"menu.h"
+
+1781574589 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\informesmenu.cpp
+	<iostream>
+	"informesMenu.h"
 
