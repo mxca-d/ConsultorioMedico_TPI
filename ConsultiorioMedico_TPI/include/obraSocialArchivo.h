@@ -14,6 +14,7 @@ public:
     ObraSociales leer(int pos);
     bool modificar(ObraSociales reg, int pos);
     int buscarPorId(int id);
+    bool buscarCoincidenciaId(int id);
 
 
     bool guardar(ObraSociales*vec, int cantidadRegistrosAEscribir);

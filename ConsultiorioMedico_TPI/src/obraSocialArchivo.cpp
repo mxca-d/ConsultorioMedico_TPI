@@ -194,3 +194,22 @@ void ObraSocialArchivo::vaciar()
 
 
 }
+
+bool ObraSocialArchivo::buscarCoincidenciaId(int id){
+    ObraSociales reg;
+
+    int cantidad= getCantidadRegistros();
+
+    for(int i=0;i<cantidad;i++){
+        reg= leer(i);
+
+        if(reg.getEliminado()==false && reg.getIdObraSocial()==id){
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+

@@ -18,3 +18,8 @@ void mostrarHoraTurno (int indice);
 bool cargarHoraTurno(int opcion, char* hora);
 Fecha obtenerFechaBase(int opcion);
 void obtenerDias(int opcion, Fecha *dias, Fecha hoy);
+void cargarCadena(char *cadena, int tam);
+bool soloNumeros(const char *cadena, int tam);
+bool soloLetras(const char *cadena, int tam);
+bool letrasYNumeros(const char *cadena, int tam);
+bool dniValido(const char *dni);

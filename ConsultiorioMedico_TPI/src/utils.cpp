@@ -3,7 +3,7 @@
 #include <cstring>
 
 using namespace std;
-
+/*
 bool horaValida(const char* hora)
 {
 
@@ -52,7 +52,7 @@ bool horaValida(const char* hora)
     }
 
     return true;
-}
+}*////REEMPLAZADA POR CARGAR-HORA-TURNO
 
 bool cancelacionUsuario (const char* cadena)
 {
@@ -129,6 +129,7 @@ bool validacionCaracteres (const char* cadena, int tamanio)//REPASAR ESTA FUNCIO
 
 
 }
+
 bool validacionCaracteres (int num)
 {
 
@@ -154,6 +155,105 @@ void todoMayuscula (char *pCadena)
         pCadena[i] = toupper(pCadena[i]);
     }
 }
+
+bool letrasYNumeros(const char *cadena, int tam){
+
+    int largo = strlen(cadena);
+
+    if(largo < 3 || largo >= tam){
+        return false;
+    }
+
+    int i = 0;
+    while(cadena[i] != '\0')
+    {
+        if(!((cadena[i] >= 65 && cadena[i] <= 90)///A-Z =65 a 90
+            || (cadena[i] >= 97 && cadena[i] <= 122)///a-z =97 a 122
+            || cadena[i] == 32///32= espacio
+            || (cadena[i] >= 48 && cadena[i] <= 57)))///48=0 y 57=9
+            {
+            return false;
+        }
+
+
+        i++;
+    }
+
+    return true;
+
+
+}
+
+
+
+bool soloNumeros(const char *cadena, int tam){
+
+    int largo = strlen(cadena);
+
+    if(largo == 0 || largo >= tam){
+        return false;
+    }
+
+    int i = 0;
+    while(cadena[i] != '\0')
+    {
+        if(cadena[i] < 48 || cadena[i] > 57)///48=0 y 57=9 - ASCII
+        {
+            return false;
+        }
+
+        i++;
+    }
+
+    return true;
+}
+
+bool dniValido(const char *dni){
+
+    int largo = strlen(dni);
+
+    if(largo<7 || largo>8){
+        return false;
+    }
+
+    int i = 0;
+    while(dni[i] != '\0')
+    {
+        if(dni[i] < 48 || dni[i] > 57)///48=0 y 57=9 - ASCII
+        {
+            return false;
+        }
+
+        i++;
+    }
+
+    return true;
+}
+
+bool soloLetras(const char *cadena, int tam){
+
+    int largo = strlen(cadena);
+
+    if(largo < 3 || largo >= tam){
+        return false;
+    }
+
+    int i = 0;
+
+    while(cadena[i] != '\0')
+    {
+        if(!((cadena[i] >= 65 && cadena[i] <= 90)///A-Z =65 a 90
+            || (cadena[i] >= 97 && cadena[i] <= 122)///a-z =97 a 122
+            || cadena[i] == 32)){///32= espacio
+            return false;
+        }
+
+        i++;
+    }
+
+    return true;
+}
+
 
 /*
 void controlBufferEnter ()
@@ -334,5 +434,14 @@ void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
     }
 
 
+}
+
+
+void cargarCadena(char *cadena, int tam){
+    if(cin.peek() == '\n'){
+        cin.ignore();
+    }
+
+    cin.getline(cadena, tam);
 }
 

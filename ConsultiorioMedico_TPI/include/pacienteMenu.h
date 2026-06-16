@@ -5,8 +5,8 @@
 class PacienteMenu: public Menu {
 public:
    PacienteMenu();
-   void mostrarOpciones();
-   void ejecutarOpcion(int opcion);
+   void mostrarOpciones() override;
+   void ejecutarOpcion(int opcion)override;
 
 private:
    PacienteManager _managerPaciente;
