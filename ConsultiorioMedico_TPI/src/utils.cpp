@@ -3,56 +3,6 @@
 #include <cstring>
 
 using namespace std;
-/*
-bool horaValida(const char* hora)
-{
-
-    if(strlen(hora) != 5) //verifica cant char
-    {
-        return false;
-    }
-
-    if(hora[2] != ':') // verifica que esten los :
-    {
-        return false;
-    }
-
-    if(hora[0] < '0' || hora[0] > '9') // verifica rango
-    {
-        return false;
-    }
-
-    if(hora[1] < '0' || hora[1] > '9')
-    {
-        return false;
-    }
-
-    if(hora[3] < '0' || hora[3] > '9')
-    {
-        return false;
-    }
-
-    if(hora[4] < '0' || hora[4] > '9')
-    {
-        return false;
-    }
-
-    int horas = (hora[0] - '0') * 10 + (hora[1] - '0');//resto 48= '0' y lo convierto en decena para sumar
-
-    int minutos = (hora[3] - '0') * 10 + (hora[4] - '0');
-
-    if(horas < 0 || horas > 23) //verifico que no supere las hs
-    {
-        return false;
-    }
-
-    if(minutos < 0 || minutos > 59) //verifico q no supere los minutos
-    {
-        return false;
-    }
-
-    return true;
-}*////REEMPLAZADA POR CARGAR-HORA-TURNO
 
 bool cancelacionUsuario (const char* cadena)
 {
@@ -87,27 +37,8 @@ bool cancelacionUsuario (float num)
     return false;
 }
 
-bool validacionCaracteres (const char* cadena)
-{
-    int caracteres = strlen (cadena);
 
-    if (caracteres == 0)
-    {
-        return false;
-    }
-    else if (caracteres < 29 && caracteres > 2)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
-
-}
-
-bool validacionCaracteres (const char* cadena, int tamanio)//REPASAR ESTA FUNCION
+bool validacionCaracteres (const char* cadena, int tamanio)
 {
 
     int caracteres = strlen (cadena);
@@ -153,6 +84,19 @@ void todoMayuscula (char *pCadena)
     for (int i = 0; pCadena[i] != '\0'; i++)
     {
         pCadena[i] = toupper(pCadena[i]);
+    }
+}
+
+
+bool validacionImportes (float precio)
+{
+    if (precio > 0 && precio < 5000000)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -255,25 +199,12 @@ bool soloLetras(const char *cadena, int tam){
 }
 
 
-/*
-void controlBufferEnter ()
-{
-    if (cin.peek() == '\n')
-    {
+void cargarCadena(char *cadena, int tam){
+    if(cin.peek() == '\n'){
         cin.ignore();
     }
-}*/
 
-bool validacionImportes (float precio)
-{
-    if (precio > 0 && precio < 5000000)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    cin.getline(cadena, tam);
 }
 
 
@@ -308,7 +239,7 @@ void mostrarDiaAgenda (int indice)
 
 
 
-void mostrarHoraTurno (int indice)
+/*void mostrarHoraTurno (int indice)
 {
     switch (indice)
     {
@@ -335,7 +266,7 @@ void mostrarHoraTurno (int indice)
 
     }
 }
-
+*//// SE USA?
 
 void mostrarEspecialidades(){
     cout << "1- CLINICA MEDICA" << endl;
@@ -426,7 +357,7 @@ void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
 
     }
 
-    for(int i=0;i<4;i++){
+    for(int i=0;i<2;i++){
 
         dias[i]=aux;
         aux.agregarDias(7);
@@ -437,11 +368,4 @@ void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
 }
 
 
-void cargarCadena(char *cadena, int tam){
-    if(cin.peek() == '\n'){
-        cin.ignore();
-    }
-
-    cin.getline(cadena, tam);
-}
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "fecha.h"
-//#include "turnosArchivo.h"
+
 
 class Turno
 {
@@ -10,13 +10,13 @@ private:
     char _dniPaciente [8];
     int _idMedico;
     Fecha _fechaTurno;
-    char _hora[6]; //agregue un espacio mas por los :
+    char _hora[6];
     char _diaTurno [8];
     char _estado[15];
     bool _eliminado;
     float _costoConsulta;
 
-    //TurnoArchivo _repoTurno;
+
 
 public:
     Turno();

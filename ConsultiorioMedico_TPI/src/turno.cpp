@@ -36,10 +36,7 @@ Turno::Turno (int idMedico, int dni, int turno,int idTurno, int idPaciente)
 
 void Turno::setIdTurno(int id)
 {
-    if(id>0)
-    {
         _idTurno=id;
-    }
 
 }
 
@@ -169,8 +166,10 @@ Fecha Turno::getFechaTurno()
 
 int Turno::getFechaint()
 {
+    ///PREGUNTAR A FRAN
     int fecha = _fechaTurno.getAnio()*10000 + _fechaTurno.getMes() * 100 + _fechaTurno.getDia();
     return fecha;
+
 }
 
 const char* Turno::getDiaTurno()

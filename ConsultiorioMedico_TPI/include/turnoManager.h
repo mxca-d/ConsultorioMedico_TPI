@@ -13,7 +13,6 @@ class TurnoManager
 
 public:
     void altaTurno();
-    //void bajaTurno();
     void cancelarTurno();
     void atenderTurno();
     void modificarTurno();
