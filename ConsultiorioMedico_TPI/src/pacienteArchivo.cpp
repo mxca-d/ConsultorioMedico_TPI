@@ -105,6 +105,8 @@ bool PacienteArchivo::buscarCoincidenciaDni(const char* dni){
 
 }
 
+
+
 bool PacienteArchivo::guardar(Paciente p){
 
     FILE *pFile;

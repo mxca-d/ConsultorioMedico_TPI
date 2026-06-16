@@ -39,7 +39,7 @@ void MenuMedico::ejecutarOpcion(int opcion)
         _managerTurno.listarTurnoPendientePorMedico(_medico.getDni());
         break;
     case 4:
-        //_historialManager.listarPorPaciente();// no funca..
+        _historialManager.listarPacienteHistorial();
         break;
     case 5:
         //_usuariosManager.modificar()///pendiente

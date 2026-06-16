@@ -399,12 +399,12 @@
 1779742994 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialarchivo.h
 	"Historial.h"
 
-1781009378 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
+1781640073 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
 	<iostream>
 	"historialManager.h"
 	"utils.h"
 
-1781009378 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
+1781639114 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialmanager.h
 	"historial.h"
 	"historialArchivo.h"
 	"turnosArchivo.h"
@@ -504,7 +504,7 @@
 1780871303 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\paciente.h
 	"fecha.h"
 
-1781009378 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
+1781638965 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientearchivo.cpp
 	<iostream>
 	"paciente.h"
 	"PacienteArchivo.h"
@@ -543,7 +543,7 @@
 1781488007 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
 	"fecha.h"
 
-1781609030 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
+1781609420 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
 	<iostream>
 	<cstring>
 	"turnoManager.h"
@@ -582,7 +582,7 @@
 1781009378 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnosarchivo.h
 	"turno.h"
 
-1781609030 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\utils.cpp
+1781609420 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\utils.cpp
 	"utils.h"
 	<iostream>
 	<cstring>
@@ -645,7 +645,7 @@
 	"turnoManager.h"
 	"pacienteManager.h"
 
-1781607647 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menumedico.cpp
+1781639347 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menumedico.cpp
 	<iostream>
 	"MenuMedico.h"
 

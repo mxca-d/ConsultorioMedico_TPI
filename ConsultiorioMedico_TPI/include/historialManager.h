@@ -18,6 +18,7 @@ public:
     void mostrarHistorial(Historial reg);
     void listarPorPaciente();
     void listarPorMedico();
+    void listarPacienteHistorial();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
