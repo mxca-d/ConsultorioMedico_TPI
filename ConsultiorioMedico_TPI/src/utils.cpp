@@ -69,7 +69,6 @@ bool cancelacionUsuario (int num)
 {
     if (num == 0)
     {
-        cout << "Carga cancelada por el usuario..." << endl;
         return true;
     }
 
@@ -133,7 +132,7 @@ bool validacionCaracteres (int num)
 {
 
 
- if (num < 10000 && num > 0)
+    if (num < 10000 && num > 0)
     {
         return true;
     }
@@ -150,7 +149,7 @@ bool validacionCaracteres (float num)
 {
 
 
- if (num < 10000 && num > 0)
+    if (num < 10000 && num > 0)
     {
         return true;
     }
@@ -253,7 +252,8 @@ void mostrarHoraTurno (int indice)
 }
 
 
-void mostrarEspecialidades(){
+void mostrarEspecialidades()
+{
     cout << "1- CLINICA MEDICA" << endl;
     cout << "2- CARDIOLOGIA" << endl;
     cout << "3- PEDIATRIA" << endl;
@@ -261,60 +261,66 @@ void mostrarEspecialidades(){
     cout << "5- KINESIOLOGIA" << endl;
 }
 
-bool cargarEspecialidad(int opcion, char* especialidad){
+bool cargarEspecialidad(int opcion, char* especialidad)
+{
 
-    switch(opcion){
-        case 1:
-            strcpy(especialidad, "CLINICA MEDICA");
-            return true;
-        case 2:
-            strcpy(especialidad, "CARDIOLOGIA");
-            return true;
-        case 3:
-            strcpy(especialidad, "PEDIATRIA");
-            return true;
-        case 4:
-            strcpy(especialidad, "DERMATOLOGIA");
-            return true;
-        case 5:
-            strcpy(especialidad, "KINESIOLOGIA");
-            return true;
-        default:
-            return false;
-
-    }
-
-}
-
-bool cargarHoraTurno(int opcion, char* hora){
-
-    switch(opcion){
-        case 1:
-            strcpy(hora, "08:00");
-            return true;
-        case 2:
-            strcpy(hora, "09:00");
-            return true;
-        case 3:
-            strcpy(hora, "10:00");
-            return true;
-        case 4:
-            strcpy(hora, "11:00");
-            return true;
-        case 5:
-            strcpy(hora, "12:00");
-            return true;
-        default:
-            return false;
+    switch(opcion)
+    {
+    case 1:
+        strcpy(especialidad, "CLINICA MEDICA");
+        return true;
+    case 2:
+        strcpy(especialidad, "CARDIOLOGIA");
+        return true;
+    case 3:
+        strcpy(especialidad, "PEDIATRIA");
+        return true;
+    case 4:
+        strcpy(especialidad, "DERMATOLOGIA");
+        return true;
+    case 5:
+        strcpy(especialidad, "KINESIOLOGIA");
+        return true;
+    default:
+        return false;
 
     }
 
 }
-Fecha obtenerFechaBase(int opcion){
+
+bool cargarHoraTurno(int opcion, char* hora)
+{
+
+    switch(opcion)
+    {
+    case 1:
+        strcpy(hora, "08:00");
+        return true;
+    case 2:
+        strcpy(hora, "09:00");
+        return true;
+    case 3:
+        strcpy(hora, "10:00");
+        return true;
+    case 4:
+        strcpy(hora, "11:00");
+        return true;
+    case 5:
+        strcpy(hora, "12:00");
+        return true;
+    default:
+        return false;
+
+    }
+
+}
+Fecha obtenerFechaBase(int opcion)
+{
 
 
 
-    switch(opcion){
+    switch(opcion)
+    {
 
     case 1:
         return Fecha(5,1,2026);
@@ -331,18 +337,21 @@ Fecha obtenerFechaBase(int opcion){
 
 }
 
-void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
+void obtenerDias(int opcion, Fecha *dias, Fecha hoy)
+{
 
     Fecha aux = obtenerFechaBase(opcion);
     hoy.agregarDias(1);
 
-    while(aux.esMenor(hoy)){
+    while(aux.esMenor(hoy))
+    {
 
-       aux.agregarDias(7);
+        aux.agregarDias(7);
 
     }
 
-    for(int i=0;i<4;i++){
+    for(int i=0; i<4; i++)
+    {
 
         dias[i]=aux;
         aux.agregarDias(7);
@@ -355,7 +364,7 @@ void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
 bool validacionSoloNumeros(const char* cadena)
 {
     int tamanio = strlen(cadena);
-    for (int i=0; i< tamanio;i++ )
+    for (int i=0; i< tamanio; i++ )
     {
         if (!isdigit(cadena [i]))
         {
