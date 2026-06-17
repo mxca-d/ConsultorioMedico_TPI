@@ -485,4 +485,155 @@ int UsuariosManager::numeroRol (const char* rol)
     return -1;
 }
 
+void UsuariosManager::modificarUsuario(const char* dni)
+{
+    Usuarios u;
+    int posUsuario, opcion;
+    char nombreUsuario [20], pass1 [15], pass2 [15];
+    bool valido,ingreso,comprobacion;
+
+    posUsuario = _repoUsuarios.buscarPorDni(dni);
+    if (posUsuario == -1)
+    {
+        cout << "ERROR EN DNI USUARIO.." << endl;
+        system ("pause");
+        return;
+    }
+    u = _repoUsuarios.leer(posUsuario);
+
+    do
+    {
+        valido = true;
+        ingreso= true;
+        cout << "DNI USUARIO:  " << u.getDni() << endl;
+        cout << endl;
+        cout << "ELIJA UNA OPCION A MODIFICAR:" << endl;
+        cout << "                   1. USUARIO " << endl;
+        cout << "                   2. CONTRASEÑA " << endl;
+        ///y aca deberia seguir si ponemos modificar direccion,
+        ///nombre, telefono, etc. como herencia a los demas....
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin >> opcion;
+        cin.ignore();
+
+        switch (opcion)
+        {
+        case 1:
+            cout << "NOMBRE DE USUARIO ACTUAL: " << u.getNombreUsuario()<< endl;
+            cout << "USUARIO NUEVO: ";
+
+            cin.getline(nombreUsuario,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                valido = false;
+                ingreso = false;
+            }
+
+            if (ingreso && validacionCaracteres(nombreUsuario))
+            {
+                u.setNombreUsuario(nombreUsuario);
+                if (_repoUsuarios.modificar(u,posUsuario))
+                {
+                    cout << "SE HAN GUARDADO LOS CAMBIOS CORRECTAMENTE..." << endl;
+                    valido = true;
+                }
+                else
+                {
+                    cout << "ERROR AL GUARDAR LOS CAMBIOS, PORFAVOR REINTENTE..." << endl;
+                    valido = false;
+                }
+            }
+            else
+            {
+                cout << "INGRESO INVALIDO..." << endl;
+                cout << "recuerde que nombre de usuario debe tener maximo 20 caracteres y minimo 3..." << endl;
+                valido= false;
+            }
+            break;
+        case 2:
+            do
+            {
+                comprobacion = false;
+                cout << "CONTRASEÑA ACTUAL: " << u.getPassword() << endl;
+                cout << "CONTRASEÑA NUEVA: ";
+
+                cin.getline(pass1,15);
+                cout << endl;
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    valido = false;
+                    ingreso = false;
+                }
+                if (cancelacionUsuario(pass1))
+                {
+                    cout << "CANCELACION POR EL USUARIO..." << endl;
+                    system("pause");
+                    return;
+                }
+                if (ingreso && validacionCaracteres(pass1))
+                {
+                    if (comprobacion == false)
+                    {
+                        cout << "REPITA LA CONTRASEÑA: " ;
+                        cin.getline(pass2,15);
+                        cout << endl;
+                        if (cin.fail())
+                        {
+                            cin.clear();
+                            cin.ignore(10000, '\n');
+                            valido = false;
+                            ingreso = false;
+                        }
+                        if (ingreso && strcmp(pass1,pass2)==0)
+                        {
+                            comprobacion = true;
+                        }
+
+                    }
+                    if (comprobacion && ingreso)
+                    {
+
+                        u.setPassword(pass1);
+                        if (_repoUsuarios.modificar(u,posUsuario))
+                        {
+                            cout << "SE HAN GUARDADO LOS CAMBIOS CORRECTAMENTE..." << endl;
+
+                        }
+                        else
+                        {
+                            cout << "ERROR AL GUARDAR LOS CAMBIOS, PORFAVOR REINTENTE..." << endl;
+                            comprobacion = false;
+                        }
+                    }
+                }
+                else
+                {
+                    cout << "INGRESO INVALIDO..." << endl;
+                    cout << "recuerde que la contraseña debe tener maximo 15 caracteres y minimo 3..." << endl;
+                    comprobacion= true;
+                }
+
+            }
+            while (!comprobacion);
+            break;
+
+        case 0:
+            return;
+        default:
+            cout << "OPCION INCORRECTA... " << endl;
+            valido = false;
+            break;
+        }
+
+    }
+    while(!valido);
+}
+
 
