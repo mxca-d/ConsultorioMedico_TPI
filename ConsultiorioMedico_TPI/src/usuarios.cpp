@@ -6,7 +6,11 @@ Usuarios::Usuarios()
     strcpy (_nombreUsuario,"N/A");
     strcpy(_password,"N/A");
     strcpy(_rol,"SIN ROL");
-    //strcpy(_dni,"N/A");
+    strcpy(_nombre, "N/A");
+    strcpy(_apellido, "N/A");
+    strcpy (_domicilio, "N/A");
+    strcpy (_email, "N/A");
+    strcpy (_telefono, "N/A");
     _eliminado = false;
     _idUsuario=0;
     strcpy(_dni,"N/A");
@@ -19,6 +23,36 @@ void Usuarios::setNombreUsuario(const char* usuario)
 void Usuarios::setPassword (const char* password)
 {
     strcpy(_password,password);
+}
+
+
+void Usuarios::setNombre(const char* nombre)
+{
+    strcpy(_nombre,nombre);
+
+}
+
+void Usuarios::setApellido(const char* apellido)
+{
+    strcpy(_apellido,apellido);
+}
+
+void Usuarios::setEmail(const char* email)
+{
+    strcpy(_email,email);
+
+}
+
+void Usuarios::setDomicilio(const char* domicilio)
+{
+    strcpy(_domicilio,domicilio);
+
+}
+
+void Usuarios::setTelefono(const char* telefono)
+{
+    strcpy(_telefono,telefono);
+
 }
 void Usuarios::setDni (const char* dni)
 {
@@ -50,7 +84,8 @@ void Usuarios::setEliminado(bool eliminado)
 
 
 
-void Usuarios::setIdUsuario(int id){
+void Usuarios::setIdUsuario(int id)
+{
 
     _idUsuario=id;
 }
@@ -59,7 +94,8 @@ void Usuarios::setIdUsuario(int id){
 
 
 
-int Usuarios::getIdUsuario(){
+int Usuarios::getIdUsuario()
+{
     return _idUsuario;
 
 }
@@ -73,6 +109,30 @@ const char* Usuarios::getPassword ()
 {
     return _password;
 }
+
+const char* Usuarios::getNombre()
+{
+    return _nombre;
+}
+const char* Usuarios::getApellido()
+{
+    return _apellido;
+}
+const char* Usuarios::getDomicilio()
+{
+    return _domicilio;
+}
+
+const char* Usuarios::getTelefono()
+{
+    return _telefono;
+}
+const char* Usuarios::getEmail()
+{
+    return _email;
+}
+
+
 const char* Usuarios::getDni()
 {
     return _dni;

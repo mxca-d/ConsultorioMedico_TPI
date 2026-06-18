@@ -35,7 +35,8 @@ void UsuariosManager::crearAdminSiNoExiste()
 void UsuariosManager::altaUsuario()
 {
     Usuarios usuario;
-    char nombre[20],pass1[15],pass2[15], dni[9];
+    char nombreUsuario[20],pass1[15],pass2[15], dni[9], nombre[30], apellido[30],
+        domicilio[30],email[30],telefono[15];
     int rol;
     bool valido = true,
          repetir =false,
@@ -49,7 +50,7 @@ void UsuariosManager::altaUsuario()
         {
             cin.ignore();
         }
-        cin.getline(nombre,20);
+        cin.getline(nombreUsuario,20);
         if (cin.fail())
         {
             cin.clear();
@@ -58,12 +59,12 @@ void UsuariosManager::altaUsuario()
             ingreso = false;
         }
 
-        if (cancelacionUsuario(nombre))
+        if (cancelacionUsuario(nombreUsuario))
         {
             return;
         }
 
-        if( ingreso && validacionCaracteres(nombre,20) && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
+        if( ingreso && validacionCaracteres(nombreUsuario) && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
         {
             valido = true;
 
