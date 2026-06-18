@@ -634,7 +634,7 @@ void TurnoManager::atenderTurno()
 {
     Turno turno;
     bool valido;
-    char dni[8];
+    char dni[9];
     int  posTurno, opcion, cantRegistros;
     Historial historial;
 

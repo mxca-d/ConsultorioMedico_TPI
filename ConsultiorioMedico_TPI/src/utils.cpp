@@ -151,7 +151,7 @@ bool letrasYNumeros(const char *cadena, int tam){
     {
         if(!((cadena[i] >= 65 && cadena[i] <= 90)///A-Z =65 a 90
             || (cadena[i] >= 97 && cadena[i] <= 122)///a-z =97 a 122
-            || cadena[i] == 32///32= espacio
+            || cadena[i] == 32 ///32= espacio
             || (cadena[i] >= 48 && cadena[i] <= 57)))///48=0 y 57=9
             {
             return false;
