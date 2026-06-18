@@ -39,7 +39,7 @@ void ArancelMenu::ejecutarOpcion(int opcion)
         _managerArancel.listarAranceles();
         break;
     case 5:
-        _managerArancel.listarXId();
+        _managerArancel.listarPorId();
         break;
     case 6:
         _managerArancel.hacerCopiaDeSeguridad();

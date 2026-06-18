@@ -145,7 +145,7 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
 
 
 
-    posArancel = _repoArancel.buscarPorIdObraSocial(paciente.getIdObraSocial()); ///REVISAR ARANCEL
+    posArancel = _repoArancel.buscarPorIdObraSocialYEspecialidad(paciente.getIdObraSocial(),especialidad);
     if (posArancel >= 0)
     {
         arancel = _repoArancel.leer(posArancel);

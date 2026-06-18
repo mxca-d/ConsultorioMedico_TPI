@@ -5,123 +5,17 @@
 #include <cstring>
 
 using namespace std;
-/*
-void arancelManager::altaArancel()
-{
-
-    char especilidad[30];
-    int idArancel, idObraSocial, cantRegistrosObraSocial;
-    float precio;
-    bool eliminado,
-         valido= false;
-
-    ObraSocialManager manObraSocial;
-    Arancel m;
-    ObraSociales obraSocial;
-
-
-    cout << "-------------------ARANCELES-------------------" << endl;
-    cout << endl;
-    cout << "Ingrese '0' en caso de querer cancelar la carga" << endl;
-    cout << endl;
-
-    controlBufferEnter();
-
-    do
-    {
-        manObraSocial.mostrarIdObraSocial();
-        cout << "Ingrese un id del listado: " ;
-        cin >> idObraSocial;
-
-        if(cancelacionUsuario(idObraSocial))
-        {
-            return;
-        }
-
-
-        cantRegistrosObraSocial = _repoObrasocial.getCantidadRegistros();
-        for (int i=0; i<cantRegistrosObraSocial; i++)
-        {
-            obraSocial = _repoObrasocial.leer(i);
-            if(idObraSocial == obraSocial.getIdObraSocial() )
-            {
-                valido = true;
-                break;
-            }
-        }
-        if(!valido)
-        {
-            cout << "Ingreso invalido o inexistente..." << endl;
-
-        }
-
-    }
-    while (!valido);
-
-    controlBufferEnter();
-    do
-    {
-        cout << "Especialidad:  ";
-        cin.getline(especilidad,30);
-
-        if (cancelacionUsuario(especilidad) )
-        {
-            return;
-        }
-        valido = validacionCaracteres (especilidad); //preguntar si esta bien que imprima un msj y luego vuelva bool
-
-    }
-    while (!valido);
-
-    do
-    {
-        cout << "Precio:  ";
-        cin >> precio;
-        if (cancelacionUsuario(precio) )
-        {
-            return;
-        }
-        valido = validacionImportes (precio);
-
-    }
-    while (!valido);
-
-
-    idArancel = generarId();
-
-    eliminado = false;
-    m.setIdArancel(idArancel);
-    m.setIdObraSocial(idObraSocial);
-    m.setEspecialidad(especilidad);
-    m.setPrecio(precio);
-    m.setEliminado(eliminado);
-
-
-
-
-
-    if(_repoArancel.guardar (m))
-    {
-        cout << "Se guardo el arancel exitosamente!" << endl;
-    }
-    else
-    {
-        cout << "No se pudo guardar el arancel..." << endl;
-    }
-}
-*/
 
 void arancelManager::altaArancel()
 {
 
     Arancel reg;
-    ObraSocialManager managerObraSocial;
-    ObraSocialArchivo repoObraSocial;
 
     int id, pos, opcion;
 
     char especialidad[30];
     float cobertura;
+    cout << "INGRESE 0 EN CASO DE QUERER CANCELAR LA OPERACION"<< endl << endl;
     do
     {
         system("cls");
@@ -135,7 +29,10 @@ void arancelManager::altaArancel()
             cin.clear();
             cin.ignore(10000, '\n');
         }
-
+        if(cancelacionUsuario(id)){
+            system("pause");
+            return;
+        }
         pos = repoObraSocial.buscarPorId(id);
 
         if(pos == -1)
@@ -159,6 +56,10 @@ void arancelManager::altaArancel()
         {
             cin.clear();
             cin.ignore(10000, '\n');
+        }
+        if(cancelacionUsuario(opcion)){
+            system("pause");
+            return;
         }
 
         especialidadValida = cargarEspecialidad(opcion, especialidad);
@@ -185,7 +86,10 @@ void arancelManager::altaArancel()
             cin.ignore(10000, '\n');
             ingreso = false;
         }
-
+        if(cancelacionUsuario(cobertura)){
+            system("pause");
+            return;
+        }
         if(ingreso && (cobertura < 0 || cobertura > 100))
         {
             cout << "Cobertura invalida. Debe estar entre 0 y 100." << endl;
@@ -211,7 +115,7 @@ void arancelManager::altaArancel()
         }
     }
 
-    reg.setIdArancel(cantidad + 1);
+    reg.setIdArancel(generarId());
     reg.setIdObraSocial(id);
     reg.setEspecialidad(especialidad);
     reg.setCobertura(cobertura);
@@ -255,7 +159,7 @@ void arancelManager::bajaArancel()
 
     if(pos==-1)
     {
-        cout << "El id ingresado no existe." << endl;
+        cout << "El ID ingresado no existe." << endl;
         system("pause");
         return;
     }
@@ -286,27 +190,35 @@ void arancelManager::modificarArancel()
     int id, pos, cobertura;
     bool ingreso, modificado;
 
+    cout << "INGRESE 0 EN CASO DE QUERER CANCELAR LA OPERACION"<< endl << endl;
 
-    cout << "Ingrese el ID del arancel a dar de baja:";
-    cin>>id;
-    if (cin.fail())
+    do
     {
-        cin.clear();
-        cin.ignore(10000, '\n');
-        cout << "INGRESO INVALIDO, OPERACION CANCELADA..." << endl;
-        system("pause");
-        return;
-    }
-    cout << endl;
+        system("cls");
+        cout << "Obras sociales disponibles:" << endl;
+        managerObraSocial.listarObrasSociales();
 
-    pos=_repoArancel.buscarPorId(id);
+        cout << "Ingrese ID de obra social: ";
+        cin >> id;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        if(cancelacionUsuario(id)){
+            system("pause");
+            return;
+        }
+        pos = repoObraSocial.buscarPorId(id);
 
-    if(pos==-1)
-    {
-        cout << "El id ingresado no existe." << endl;
-        system("pause");
-        return;
+        if(pos == -1)
+        {
+            cout << "La obra social ingresada no existe." << endl;
+            system("pause");
+        }
     }
+    while(pos==-1);
+
 
     reg= _repoArancel.leer(pos);
     mostrarArancel(reg);
@@ -321,6 +233,10 @@ void arancelManager::modificarArancel()
             cin.clear();
             cin.ignore(10000, '\n');
             ingreso = false;
+        }
+        if(cancelacionUsuario(cobertura)){
+            system("pause");
+            return;
         }
 
         if(ingreso && (cobertura < 0 || cobertura > 100))
@@ -365,7 +281,7 @@ void arancelManager::listarAranceles()
     }
 }
 
-void arancelManager::listarXId()
+void arancelManager::listarPorId()
 {
     int id;
 
@@ -391,17 +307,12 @@ void arancelManager::mostrarArancel(Arancel aranceles)
     cout << "ID Arancel: " << aranceles.getIdArancel()<< endl;
     cout << "ID Obra Social: " << aranceles.getIdObraSocial() << endl;
     cout << "Especialidad: " << aranceles.getEspecialidad()<< endl;
-    cout << "Porcentaje : %" << aranceles.getCobertura()<< endl;
+    cout << "Porcentaje de cobertura : %" << aranceles.getCobertura()<< endl;
 
 
 
 }
 
-/*bool arancelManager::existeId(int id)
-{
-    return _repoArancel.buscarPorId(id) > 0;//mayor a 0 no? o vamos a hacer que 0 sea un nro posible de id?
-}
-*/
 int arancelManager::generarId()
 {
     return _repoArancel.getCantidadRegistros() + 1;
