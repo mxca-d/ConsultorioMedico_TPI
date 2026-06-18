@@ -10,6 +10,7 @@ public:
     void crearAdminSiNoExiste();
     void altaUsuario();
     void bajaUsuario();
+    void modificarUsuario(const char* dni);
     void listarUsuarios();
     Usuarios login();
 

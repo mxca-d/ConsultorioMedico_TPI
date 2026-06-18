@@ -11,13 +11,20 @@ MenuMedico::MenuMedico()
 void MenuMedico::mostrarOpciones()
 {
     cout << "BIENVENIDO/A "<< _medico.getNombre() << " " << _medico.getApellido() << "!"<< endl;
-    cout <<" TURNOS:                      " << endl;
+    cout <<"             TURNOS:                      " << endl;
+    cout << endl;
     cout << "1- ATENDER TURNO"<<endl;
     cout << "2- CANCELAR TURNO"<<endl;
-    cout << "3- CONSULTAR TURNOS PENDIENTES"<<endl;
-    cout << "HISTORIA CLINICA:                   "<< endl;
+    cout << "3- CONSULTAR TURNO PENDIENTE"<<endl;
+    cout << endl;
+    cout << endl;
+    cout << "        HISTORIA CLINICA:                   "<< endl;
+    cout << endl;
     cout << "4- CONSULTAR"<<endl;
-    cout << "USUARIO:" << endl;
+    cout << endl;
+    cout << endl;
+    cout << "           USUARIO:" << endl;
+    cout << endl;
     cout << "5- CAMBIAR NOMBRE/CONTRASEÑA DE USUARIO" << endl;///pendiente modificacion en usuario
     cout << endl;
     cout << "0- SALIR"<<endl;
@@ -39,10 +46,10 @@ void MenuMedico::ejecutarOpcion(int opcion)
         _managerTurno.listarTurnoPendientePorMedico(_medico.getDni());
         break;
     case 4:
-        //_historialManager.listarPorPaciente();// no funca..
+        _historialManager.listarPacienteHistorial();
         break;
     case 5:
-        //_usuariosManager.modificar()///pendiente
+        _usuariosManager.modificarUsuario(_medico.getDni());
         break;
     case 0:
         cout << "Saliendo.." << endl;
