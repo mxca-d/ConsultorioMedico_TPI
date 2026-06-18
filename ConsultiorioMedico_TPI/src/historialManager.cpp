@@ -24,7 +24,9 @@ bool HistorialManager::cargarHistorial(Turno turno)
 
     cout << "Paciente : " << paciente.getNombre()<< " " << paciente.getApellido() << endl;
     cout << "Medico :" << medico.getNombre()<< " " << medico.getApellido() << endl;
-    cout << "Fecha :" <<turno.getFechaTurno().toString() <<endl;
+    cout << "Fecha :";
+        turno.getFechaTurno().mostrar();
+    cout <<endl;
     cout << "---------------------------------------------------------------" << endl;
 
     do

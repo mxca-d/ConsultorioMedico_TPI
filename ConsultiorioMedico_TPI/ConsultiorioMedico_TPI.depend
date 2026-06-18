@@ -229,7 +229,7 @@
 
 1779377529 a
 
-1781811024 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
+1781823109 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
 	<iostream>
 	"historialManager.h"
 	"utils.h"
@@ -269,7 +269,7 @@
 	"medicosManager.h"
 	"historialManager.h"
 
-1781619363 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmanager.cpp
+1781822903 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmanager.cpp
 	<iostream>
 	"arancelManager.h"
 	"obraSocialManager.h"
@@ -766,8 +766,9 @@
 	"usuariosManager.h"
 	"menu.h"
 
-1781619363 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\informesmenu.h
+1781826288 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\informesmenu.h
 	"menu.h"
+	"informes.h"
 
 1781619363 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\informesmenu.cpp
 	<iostream>
@@ -776,4 +777,6 @@
 1781619363 source:m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosmenu.cpp
 	<iostream>
 	"usuariosMenu.h"
+
+1781825018 m:\onedrive\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\informes.h
 

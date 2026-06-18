@@ -1,5 +1,6 @@
 #pragma once
 #include "menu.h"
+#include "informes.h"
 
 class InformesMenu: public Menu {
 public:
