@@ -466,7 +466,8 @@ void MedicosManager::listarMedicoPorEspecialidad()///ORDENAR POR ESPECIALIDAD?
     }
 }
 
-void MedicosManager::mostrarEspecialidadesExistentes()
+///este metodo
+/*void MedicosManager::mostrarEspecialidadesExistentes()
 {
     int cantidadRegistros = _repoMedicos.getCantidadRegistros();
     Medicos *vec = new Medicos[cantidadRegistros],
@@ -529,6 +530,7 @@ void MedicosManager::mostrarEspecialidadesExistentes()
     delete[] vec;
     delete[] vecAux;
 }
+*/
 
 int MedicosManager::recuperarIdMedico (const char* dni)
 {

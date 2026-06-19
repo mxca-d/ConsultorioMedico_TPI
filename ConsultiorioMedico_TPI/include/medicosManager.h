@@ -24,7 +24,6 @@ public:
     int recuperarIdMedico (const char* dni);
 
 
-    //QUEDA PENDIENTE EL MODIFICAR-ESTILO PACIENTEMANAGER(CON LAS RESPECTIVAS VALIDACIONES)
 
 private:
     MedicosArchivos _repoMedicos;
