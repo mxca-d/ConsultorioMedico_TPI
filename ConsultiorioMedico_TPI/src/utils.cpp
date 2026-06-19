@@ -78,7 +78,7 @@ bool validacionCaracteres (int num)
 
 }
 
-bool validacionCaracteres (const char* cadena)
+bool validacionCaracteres (const char* cadena)///ESTE NO VA, SOLO ES PARA UN LARGO DE 30
 {
     int caracteres = strlen (cadena);
 
