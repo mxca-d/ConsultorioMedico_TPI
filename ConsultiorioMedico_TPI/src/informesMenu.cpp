@@ -13,7 +13,7 @@ void InformesMenu::mostrarOpciones()
 {
     cout << "----- MENU INFORMES-----"<<endl;
     cout << "1- SUELDOS POR MEDICO"<<endl;
-    cout << "2- RECAUDACION TOTAL"<<endl;
+    cout << "2- RECAUDACION TOTAL DISCRIMINADA"<<endl;
     cout << "3- RECAUDACION POR OBRA SOCIALES"<<endl;
     cout << "0- SALIR"<<endl;
     cout << "------------------------"<<endl;
