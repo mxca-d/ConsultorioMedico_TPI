@@ -38,28 +38,6 @@ bool cancelacionUsuario (float num)
 }
 
 
-bool validacionCaracteres (const char* cadena, int tamanio)
-{
-
-    int caracteres = strlen (cadena);
-
-    if (caracteres == 0)
-    {
-
-        return false;
-    }
-    else if (caracteres <= tamanio && caracteres > 2)
-    {
-        return true;
-    }
-    else
-    {
-
-        return false;
-    }
-
-
-}
 
 bool validacionCaracteres (int num)
 {
@@ -78,28 +56,8 @@ bool validacionCaracteres (int num)
 
 }
 
-bool validacionCaracteres (const char* cadena)///ESTE NO VA, SOLO ES PARA UN LARGO DE 30
-{
-    int caracteres = strlen (cadena);
 
-    if (caracteres == 0)
-    {
-        return false;
-    }
-    else if (caracteres < 29 && caracteres > 2)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
-
-}
-
-
-bool validacionCaracteres (float num)
+/*bool validacionCaracteres (float num)
 {
 
 
@@ -115,7 +73,7 @@ bool validacionCaracteres (float num)
 
 
 }
-
+*/
 
 void todoMayuscula (char *pCadena)
 {
@@ -237,12 +195,20 @@ bool soloLetras(const char *cadena, int tam){
 }
 
 
-void cargarCadena(char *cadena, int tam){
+bool cargarCadena(char *cadena, int tam){
     if(cin.peek() == '\n'){
         cin.ignore();
     }
 
     cin.getline(cadena, tam);
+
+    if(cin.fail()){
+        cin.clear();
+        cin.ignore(10000,'\n');
+        return false;
+    }
+
+    return true;
 }
 
 
@@ -276,35 +242,6 @@ void mostrarDiaAgenda (int indice)
 }
 
 
-
-/*void mostrarHoraTurno (int indice)
-{
-    switch (indice)
-    {
-    case 0 :
-        cout << "1. << 08:00 Hs" << endl;
-        break;
-
-    case 1:
-        cout << "2. 09:00 Hs" << endl;
-        break;
-
-    case 2:
-        cout << "3. 10:00 Hs" << endl;
-        break;
-    case 3:
-        cout << "4. 11:00 Hs" << endl;
-        break;
-    case 4:
-        cout << "5. 12:00 Hs" << endl;
-        break;
-    default:
-        cout << "INCORRECTO"<< endl;
-        break;
-
-    }
-}
-*//// SE USA?
 
 void mostrarEspecialidades(){
     cout << "1- CLINICA MEDICA" << endl;

@@ -466,71 +466,7 @@ void MedicosManager::listarMedicoPorEspecialidad()///ORDENAR POR ESPECIALIDAD?
     }
 }
 
-///este metodo
-/*void MedicosManager::mostrarEspecialidadesExistentes()
-{
-    int cantidadRegistros = _repoMedicos.getCantidadRegistros();
-    Medicos *vec = new Medicos[cantidadRegistros],
-    *vecAux = new Medicos[cantidadRegistros];
-    int cantidadMostrar = 0;
 
-
-
-    if (vec == nullptr || vecAux == nullptr)
-    {
-        cout << "Falla asignacion de memoria" << endl;
-        delete[] vec;
-        delete[] vecAux;
-        return;
-    }
-
-    if (cantidadRegistros ==0)
-    {
-        cout << "Sin registros" << endl;
-        return;
-    }
-    _repoMedicos.leer(vec, cantidadRegistros);
-
-
-    for (int i=0; i<cantidadRegistros; i++)
-    {
-
-        if (!vec[i].getEliminado()&& cantidadMostrar==0)
-        {
-            vecAux[cantidadMostrar] = vec[i];
-            cantidadMostrar ++;
-        }
-        else if (!vec[i].getEliminado())
-        {
-            bool repetido = false;
-            for (int x=0; x<cantidadMostrar; x++)
-            {
-                if (strcmp (vec[i].getEspecialidad(),vecAux[x].getEspecialidad())==0)
-                {
-                    repetido = true;
-                    break;
-                }
-            }
-
-            if (!repetido)
-            {
-                vecAux[cantidadMostrar] = vec[i];
-                cantidadMostrar ++;
-            }
-        }
-    }
-
-    cout << "--- LISTADO DE ESPECIALIDADES ---" << endl;
-
-    for (int i=0; i<cantidadMostrar; i++)
-    {
-        cout << vecAux[i].getEspecialidad() << endl;
-    }
-
-    delete[] vec;
-    delete[] vecAux;
-}
-*/
 
 int MedicosManager::recuperarIdMedico (const char* dni)
 {

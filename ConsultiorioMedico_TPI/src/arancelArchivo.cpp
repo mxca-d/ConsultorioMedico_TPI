@@ -117,6 +117,7 @@ int ArancelArchivo::buscarPorId(int id)
     }
     return -1;
 }
+
 int ArancelArchivo::buscarPorIdObraSocialYEspecialidad(int id, const char *especialidad)
 {
     Arancel aux;

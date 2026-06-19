@@ -11,7 +11,6 @@ private:
     int _idMedico;
     Fecha _fechaTurno;
     char _hora[6];
-    //char _diaTurno [8];///LO USAMOS?
     char _estado[15];
     bool _eliminado;
     float _costoConsulta;

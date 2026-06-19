@@ -14,7 +14,7 @@ Medicos::Medicos()
     for (int i=0; i<5; i++)
     {
         _diasAgenda [i] =false;
-        _turnos[i] = false;
+
     }
 
 
@@ -66,20 +66,7 @@ void Medicos::setDiaAgendaEleccion (int seleccion, bool estado )
 
 }
 
-void Medicos::setTurnosAgenda (const bool* turnosAgenda)
-{
-    for (int i=0; i<5; i++)
-    {
-        _turnos[i] = turnosAgenda[i];
-    }
-}
 
-void Medicos::setTurnoEleccion (int seleccion, bool estado )
-{
-
-        _turnos[seleccion] = estado;
-
-}
 
 const char* Medicos::getEspecialidad()
 {
@@ -104,8 +91,4 @@ float Medicos::getHonorarios()
 const bool* Medicos::getDiasAgenda()
 {
     return _diasAgenda;
-}
-const bool* Medicos::getTurnosAgenda()
-{
-    return _turnos;
 }

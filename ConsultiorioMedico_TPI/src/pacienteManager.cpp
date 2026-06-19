@@ -13,7 +13,7 @@ void PacienteManager::altaPaciente()
     char nombre[30], apellido[30],email[30],domicilio[30],telefono[15], obraSocial[30],dni [9];
     Fecha fechaNacimiento, hoy;
     hoy.setHoy();
-    bool fechaValida;
+    bool fechaValida, valido;
     int opcionObraSocial;
 
     Paciente p;
@@ -23,25 +23,29 @@ void PacienteManager::altaPaciente()
     cout << "-------------------PACIENTES-------------------" << endl;
     cout << "INGRESE 0 PARA CANCELAR LA OPERACION..." << endl <<endl;
     do{
-        system("cls");
+
+        valido=false;
         cout << "Nombre: ";
-        cargarCadena(nombre,30);
+        valido=cargarCadena(nombre,30);
         if(cancelacionUsuario(nombre)){
             system("pause");
             return;
         }
 
-        if(!soloLetras(nombre,30)){
+        if(!soloLetras(nombre,30)|| !valido){
             cout << "Nombre invalido. Vuelva a intentarlo..."<< endl;
             system("pause");
+            valido=false;
+        }else{
+            valido=true;
         }
-    }while(!soloLetras(nombre,30));
+    }while(!valido);
 
     todoMayuscula(nombre);
     p.setNombre(nombre);
 
     do{
-        system("cls");
+
         cout << "Apellido: ";
         cargarCadena(apellido,30);
         if(cancelacionUsuario(apellido)){
@@ -69,7 +73,7 @@ void PacienteManager::altaPaciente()
             cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
             system("pause");
 
-        }else if(fechaNacimiento.esIgual(hoy)){
+        }else if(!fechaNacimiento.esMenor(hoy)){
             cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
             fechaValida=false;
             system("pause");
@@ -79,7 +83,7 @@ void PacienteManager::altaPaciente()
 
     p.setFechaNacimiento(fechaNacimiento);
 
-    bool valido;
+
 
     do{
         system("cls");

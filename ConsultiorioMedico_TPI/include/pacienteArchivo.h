@@ -15,7 +15,7 @@ public:
     bool modificar(Paciente reg, int pos);
     int buscarPorDni(const char* dni);
     int buscarPorId(int id);
-    bool buscarCoincidenciaId(int id);///si usamos getcantireg +1 hace falta esta validacion?
+    bool buscarCoincidenciaId(int id);
     bool buscarCoincidenciaDni(const char* dni);
 
     bool guardar(Paciente*vec, int cantidadRegistrosAEscribir);
