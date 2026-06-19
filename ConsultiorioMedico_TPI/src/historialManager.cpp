@@ -459,4 +459,3 @@ void HistorialManager::restaurarCopiaDeSeguridad()
     delete []vec;
 
 }
-

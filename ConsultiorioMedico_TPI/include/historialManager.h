@@ -23,6 +23,7 @@ public:
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
+    void listarPacienteHistorial();
 
 private:
     historialArchivo repoHistorial;

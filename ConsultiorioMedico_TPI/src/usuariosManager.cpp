@@ -36,7 +36,7 @@ void UsuariosManager::altaUsuario()
 {
     Usuarios usuario;
     char nombreUsuario[20],pass1[15],pass2[15], dni[9], nombre[30], apellido[30],
-        domicilio[30],email[30],telefono[15];
+         domicilio[30],email[30],telefono[15];
     int rol;
     bool valido = true,
          repetir =false,
@@ -64,10 +64,9 @@ void UsuariosManager::altaUsuario()
             return;
         }
 
-        if( ingreso && validacionCaracteres(nombreUsuario) && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
+        if( ingreso && validacionCaracteres(nombreUsuario) && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombreUsuario))
         {
             valido = true;
-
         }
         else
         {
@@ -176,7 +175,8 @@ void UsuariosManager::altaUsuario()
                     return;
                 }
             }
-            valido = true;
+
+                valido = true;
             break;
         case 2:
             if (_repoMedicos.buscarCoincidenciaDni(dni))
@@ -222,7 +222,159 @@ void UsuariosManager::altaUsuario()
     }
     while (!valido);
 
-    usuario.setNombreUsuario(nombre);
+    do
+        {
+        ingreso = true;
+        valido = true;
+
+        cout << "INGRESE SU NOMBRE: " ;
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin.getline(nombre,30);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+            valido = false;
+        }
+        if(ingreso && validacionCaracteres(nombre)&& soloLetras(nombre,30))
+        {
+            valido=true;
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO, RECUERDE QUE SOLO SE PERMITEN  LETRAS HASTA 30 CARACTERES..." << endl;
+            valido = false;
+        }
+    }
+    while(!valido);
+    do
+    {
+        ingreso = true;
+        valido = true;
+
+        cout << "INGRESE SU APELLIDO: " ;
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin.getline(apellido,30);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+            valido = false;
+        }
+        if(ingreso && validacionCaracteres(apellido)&& soloLetras(apellido,30))
+        {
+            valido=true;
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO, RECUERDE QUE SOLO SE PERMITEN LETRAS HASTA 30 CARACTERES..." << endl;
+            valido = false;
+        }
+    }
+    while(!valido);
+    do
+    {
+        ingreso = true;
+        valido = true;
+
+        cout << "INGRESE UN DOMICILIO: " ;
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin.getline(domicilio,30);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+            valido = false;
+        }
+        if(ingreso && validacionCaracteres(domicilio)&& letrasYNumeros(domicilio,30))
+        {
+            valido = true;
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO, RECUERDE QUE SOLO SE PERMITEN NUMEROS Y LETRAS HASTA 30 CARACTERES..." << endl;
+            valido = false;
+        }
+    }
+    while(!valido);
+
+    do
+    {
+        ingreso = true;
+        valido = true;
+
+        cout << "INGRESE TELEFONO DE CONTACTO: " ;
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin.getline(telefono,15);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+            valido = false;
+        }
+        if(ingreso && validacionCaracteres(telefono)&& validacionSoloNumeros(telefono))
+        {
+            valido = true;
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO, RECUERDE QUE SOLO SE PERMITEN NUMEROS HASTA 30 CARACTERES..." << endl;
+            valido = false;
+        }
+    }
+    while(!valido);
+    do
+    {
+        ingreso = true;
+        valido = true;
+
+        cout << "INGRESE UN EMAIL: " ;
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin.getline(email,30);
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            ingreso = false;
+            valido = false;
+        }
+        if(ingreso && validacionCaracteres(email))
+        {
+            valido = true;
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO, RECUERDE QUE SOLO SE PERMITEN HASTA 30 CARACTERES..." << endl;
+            valido = false;
+        }
+    }
+    while(!valido);
+
+    usuario.setNombre(nombre);
+    usuario.setApellido(apellido);
+    usuario.setDomicilio(domicilio);
+    usuario.setTelefono(telefono);
+    usuario.setEmail(email);
+    usuario.setNombreUsuario(nombreUsuario);
     usuario.setPassword(pass1);
     usuario.setRol(rol);
     usuario.setEliminado(false);
@@ -347,7 +499,7 @@ void UsuariosManager::listarUsuarios()
         {
             u = _repoUsuarios.leer(i);
             cout << " ID USUARIO: "<< u.getIdUsuario() << endl;
-            cout << " NOMBRE USUARIO: "<< u.getNombreUsuario()<< endl;
+            cout << " USUARIO: "<< u.getNombreUsuario()<< endl;
             cout << " ROL: " << u.getRol() << endl;
             if (u.getEliminado())
             {
@@ -358,6 +510,11 @@ void UsuariosManager::listarUsuarios()
             {
                 cout << "ESTADO: ACTIVO " << endl;
             }
+            cout << "NOMBRE: " << u.getNombre() << endl;
+            cout << "APELLIDO: " << u.getApellido() << endl;
+            cout << "DOMICILIO: "<< u.getDomicilio() << endl;
+            cout << "TELEFONO: " << u.getTelefono() << endl;
+            cout << "Email: " << u.getEmail() <<endl;
             cout << "+-----------------------------------------------------+" << endl;
         }
     }
@@ -511,8 +668,11 @@ void UsuariosManager::modificarUsuario(const char* dni)
         cout << "ELIJA UNA OPCION A MODIFICAR:" << endl;
         cout << "                   1. USUARIO " << endl;
         cout << "                   2. CONTRASEÑA " << endl;
-        ///y aca deberia seguir si ponemos modificar direccion,
-        ///nombre, telefono, etc. como herencia a los demas....
+        cout << "                   3. NOMBRE "  << endl;
+        cout << "                   4. APELLIDO " << endl;
+        cout << "                   5. DOMICILIO "<< endl;
+        cout << "                   6. TELEFONO " << endl;
+        cout << "                   7. Email " << endl;
         if (cin.peek() == '\n')
         {
             cin.ignore();
@@ -624,7 +784,176 @@ void UsuariosManager::modificarUsuario(const char* dni)
             }
             while (!comprobacion);
             break;
+        case 3:
+           /* cout << "NOMBRE DE USUARIO ACTUAL: " << u.getNombreUsuario()<< endl;
+            cout << "USUARIO NUEVO: ";
 
+            cin.getline(nombreUsuario,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                valido = false;
+                ingreso = false;
+            }
+
+            if (ingreso && validacionCaracteres(nombreUsuario))
+            {
+                u.setNombreUsuario(nombreUsuario);
+                if (_repoUsuarios.modificar(u,posUsuario))
+                {
+                    cout << "SE HAN GUARDADO LOS CAMBIOS CORRECTAMENTE..." << endl;
+                    valido = true;
+                }
+                else
+                {
+                    cout << "ERROR AL GUARDAR LOS CAMBIOS, PORFAVOR REINTENTE..." << endl;
+                    valido = false;
+                }
+            }
+            else
+            {
+                cout << "INGRESO INVALIDO..." << endl;
+                cout << "recuerde que nombre de usuario debe tener maximo 20 caracteres y minimo 3..." << endl;
+                valido= false;
+            }
+            break;
+        case 4:
+            cout << "NOMBRE DE USUARIO ACTUAL: " << u.getNombreUsuario()<< endl;
+            cout << "USUARIO NUEVO: ";
+
+            cin.getline(nombreUsuario,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                valido = false;
+                ingreso = false;
+            }
+
+            if (ingreso && validacionCaracteres(nombreUsuario))
+            {
+                u.setNombreUsuario(nombreUsuario);
+                if (_repoUsuarios.modificar(u,posUsuario))
+                {
+                    cout << "SE HAN GUARDADO LOS CAMBIOS CORRECTAMENTE..." << endl;
+                    valido = true;
+                }
+                else
+                {
+                    cout << "ERROR AL GUARDAR LOS CAMBIOS, PORFAVOR REINTENTE..." << endl;
+                    valido = false;
+                }
+            }
+            else
+            {
+                cout << "INGRESO INVALIDO..." << endl;
+                cout << "recuerde que nombre de usuario debe tener maximo 20 caracteres y minimo 3..." << endl;
+                valido= false;
+            }
+            break;
+        case 5:
+            cout << "NOMBRE DE USUARIO ACTUAL: " << u.getNombreUsuario()<< endl;
+            cout << "USUARIO NUEVO: ";
+
+            cin.getline(nombreUsuario,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                valido = false;
+                ingreso = false;
+            }
+
+            if (ingreso && validacionCaracteres(nombreUsuario))
+            {
+                u.setNombreUsuario(nombreUsuario);
+                if (_repoUsuarios.modificar(u,posUsuario))
+                {
+                    cout << "SE HAN GUARDADO LOS CAMBIOS CORRECTAMENTE..." << endl;
+                    valido = true;
+                }
+                else
+                {
+                    cout << "ERROR AL GUARDAR LOS CAMBIOS, PORFAVOR REINTENTE..." << endl;
+                    valido = false;
+                }
+            }
+            else
+            {
+                cout << "INGRESO INVALIDO..." << endl;
+                cout << "recuerde que nombre de usuario debe tener maximo 20 caracteres y minimo 3..." << endl;
+                valido= false;
+            }
+            break;
+        case 6:
+            cout << "NOMBRE DE USUARIO ACTUAL: " << u.getNombreUsuario()<< endl;
+            cout << "USUARIO NUEVO: ";
+
+            cin.getline(nombreUsuario,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                valido = false;
+                ingreso = false;
+            }
+
+            if (ingreso && validacionCaracteres(nombreUsuario))
+            {
+                u.setNombreUsuario(nombreUsuario);
+                if (_repoUsuarios.modificar(u,posUsuario))
+                {
+                    cout << "SE HAN GUARDADO LOS CAMBIOS CORRECTAMENTE..." << endl;
+                    valido = true;
+                }
+                else
+                {
+                    cout << "ERROR AL GUARDAR LOS CAMBIOS, PORFAVOR REINTENTE..." << endl;
+                    valido = false;
+                }
+            }
+            else
+            {
+                cout << "INGRESO INVALIDO..." << endl;
+                cout << "recuerde que nombre de usuario debe tener maximo 20 caracteres y minimo 3..." << endl;
+                valido= false;
+            }
+            break;
+        case 7:
+            cout << "NOMBRE DE USUARIO ACTUAL: " << u.getNombreUsuario()<< endl;
+            cout << "USUARIO NUEVO: ";
+
+            cin.getline(nombreUsuario,20);
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                valido = false;
+                ingreso = false;
+            }
+
+            if (ingreso && validacionCaracteres(nombreUsuario))
+            {
+                u.setNombreUsuario(nombreUsuario);
+                if (_repoUsuarios.modificar(u,posUsuario))
+                {
+                    cout << "SE HAN GUARDADO LOS CAMBIOS CORRECTAMENTE..." << endl;
+                    valido = true;
+                }
+                else
+                {
+                    cout << "ERROR AL GUARDAR LOS CAMBIOS, PORFAVOR REINTENTE..." << endl;
+                    valido = false;
+                }
+            }
+            else
+            {
+                cout << "INGRESO INVALIDO..." << endl;
+                cout << "recuerde que nombre de usuario debe tener maximo 20 caracteres y minimo 3..." << endl;
+                valido= false;
+            }
+            break;*/
         case 0:
             return;
         default:
