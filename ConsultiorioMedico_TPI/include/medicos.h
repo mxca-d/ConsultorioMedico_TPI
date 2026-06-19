@@ -11,7 +11,6 @@ private:
     int _idMedico;
     float _honorarios;
     bool _diasAgenda [5];
-    bool _turnos [5];
 
 
 
@@ -27,7 +26,6 @@ public:
     void setHonorarios(float honorarios);
     void setDiasAgenda (const bool* diasAgenda);
     void setDiaAgendaEleccion (int seleccion, bool estado );
-    void setTurnosAgenda (const bool* turnosAgenda);
     void setTurnoEleccion (int seleccion, bool estado );
 
 
@@ -39,7 +37,6 @@ public:
     float getHonorarios();
 
     const bool* getDiasAgenda();
-    const bool* getTurnosAgenda();
 
 
 };

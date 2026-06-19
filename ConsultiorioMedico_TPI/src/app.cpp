@@ -15,7 +15,7 @@ void App::mostrarOpciones(){
 int App::seleccionarOpcion(){
     int opcion;
 
-    //_usuarioManager.crearAdminSiNoExiste();
+    _usuarioManager.crearAdminSiNoExiste();
 
    do{
         _usuario= _usuarioManager.login();

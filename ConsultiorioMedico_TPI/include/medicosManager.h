@@ -10,10 +10,10 @@ public:
     void altaMedico();
     void bajaMedico();
     void modificarMedico();
-    void listarMedico(); //listarTodos();
-    void listarXId();
+    void listarMedicos();
+    void mostrarPorId();
     void mostrarMedico(Medicos medicos);
-    void listarMedicoPorApellido(); //
+    void listarMedicoPorApellido();
     void listarMedicoEspecialidad(const char* especialidad);
     void listarMedicoPorEspecialidad();
     //void buscarMedicoPorId();//
@@ -24,7 +24,6 @@ public:
     int recuperarIdMedico (const char* dni);
 
 
-    //QUEDA PENDIENTE EL MODIFICAR-ESTILO PACIENTEMANAGER(CON LAS RESPECTIVAS VALIDACIONES)
 
 private:
     MedicosArchivos _repoMedicos;

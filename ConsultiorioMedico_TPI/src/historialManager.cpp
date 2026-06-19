@@ -24,18 +24,24 @@ bool HistorialManager::cargarHistorial(Turno turno)
 
     cout << "Paciente : " << paciente.getNombre()<< " " << paciente.getApellido() << endl;
     cout << "Medico :" << medico.getNombre()<< " " << medico.getApellido() << endl;
-    cout << "Fecha :" <<turno.getFechaTurno().toString() <<endl;
+    cout << "Fecha :";
+        turno.getFechaTurno().mostrar();
+    cout <<endl;
     cout << "---------------------------------------------------------------" << endl;
-    cout << "Ingresar diagnostico:" << endl << endl;
-    cin.ignore();
-    bool diagnosticoValido;
+
     do
     {
+        system("cls");
+        cout << "Ingresar diagnostico:" << endl << endl;
+        cargarCadena(diagnostico,100);
+        if(!letrasYNumeros(diagnostico,100)){
+            cout << "Diagnostico invalido. Intente nuevamente..." << endl;
+            system("pause");
+        }
 
-        cin.getline(diagnostico,100);
-        diagnosticoValido=validacionCaracteres(diagnostico,100);
+
     }
-    while(!diagnosticoValido);
+    while(!letrasYNumeros(diagnostico,100));
 
     todoMayuscula(diagnostico);
 
@@ -66,7 +72,6 @@ bool HistorialManager::cargarHistorial(Turno turno)
 
 void HistorialManager::modificarHistorial()
 {
-
     char diagnostico[100];
     Historial historial;
     int idHistorial;
@@ -101,15 +106,16 @@ void HistorialManager::modificarHistorial()
     cout << "Fecha :" <<historial.getFecha().toString() << endl;
     cout << "---------------------------------------------------------------" << endl;
     cout << "Ingresar la modificacion del diagnostico:" << endl << endl;
-    cin.ignore();
-    bool diagnosticoValido;
-    do
-    {
+    do{
+        system("cls");
+        cargarCadena(diagnostico,100);
+        if(!letrasYNumeros(diagnostico,100)){
+            cout << "Diagnostico invalido. Intente nuevamente..."<< endl;
+            system("pause");
+        }
 
-        cin.getline(diagnostico,100);
-        diagnosticoValido=validacionCaracteres(diagnostico,100);
-    }
-    while(!diagnosticoValido);
+
+    }while(!letrasYNumeros(diagnostico,100));
 
     todoMayuscula(diagnostico);
 
@@ -266,27 +272,21 @@ void HistorialManager::listarPacienteHistorial()
     MedicosArchivos repoMedico;
     bool ingresar = true;
 
-    cout << "INGRESAR DNI PACIENTE A CONSULTAR: ";
-    if (cin.peek() == '\n')
-    {
-        cin.ignore();
-    }
 
-    cin.getline(dni,9);
-    if (cin.fail())
-    {
-        cin.clear();
-        cin.ignore(10000, '\n');
-        ingresar = false;
-    }
-    if(!ingresar || validacionCaracteres(dni)==false)
-    {
-        cout << "INGRESO INVALIDO..." << endl;
-        return;
-    }
-    else
-    {
+    do{
+        system("cls");
+        cout << "INGRESAR DNI PACIENTE A CONSULTAR: ";
+        cargarCadena(dni,9);
+        if(!dniValido(dni)){
+            cout << "Dni invalido. Intente nuevamente..." << endl;
+            system("pause");
+        }
+
+    }while(!dniValido(dni));
+
+
         posPacientes = repoPaciente.buscarPorDni(dni);
+
         if(posPacientes == -1)
         {
             cout << "DNI NO ENCONTRADO..." << endl;
@@ -327,7 +327,7 @@ void HistorialManager::listarPacienteHistorial()
             }
         }
 
-    }
+
 
 }
 

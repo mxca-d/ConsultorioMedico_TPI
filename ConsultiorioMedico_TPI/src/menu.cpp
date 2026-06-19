@@ -14,7 +14,7 @@ void Menu::run(){
    do{
       system("cls");
       mostrarOpciones();
-      opcion = seleccionarOpcion( );
+      opcion = seleccionarOpcion();
       ejecutarOpcion(opcion);
       system("pause");
    }while(opcion != 0);

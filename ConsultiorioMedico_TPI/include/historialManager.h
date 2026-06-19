@@ -18,12 +18,10 @@ public:
     void mostrarHistorial(Historial reg);
     void listarPorPaciente();
     void listarPorMedico();
-    void buscarPorDniPaciente();
-    void buscarPorDniMedico();
+    void listarPacienteHistorial();
     void hacerCopiaDeSeguridad();
     void restaurarCopiaDeSeguridad();
 
-    void listarPacienteHistorial();
 
 private:
     historialArchivo repoHistorial;

@@ -117,7 +117,8 @@ int ArancelArchivo::buscarPorId(int id)
     }
     return -1;
 }
-int ArancelArchivo::buscarPorIdObraSocial(int id)
+
+int ArancelArchivo::buscarPorIdObraSocialYEspecialidad(int id, const char *especialidad)
 {
     Arancel aux;
     int cantidadRegistros = getCantidadRegistros();
@@ -125,7 +126,9 @@ int ArancelArchivo::buscarPorIdObraSocial(int id)
     for(int i=0; i<cantidadRegistros; i++)
     {
         aux = leer(i);
-        if (aux.getIdObraSocial() == id && aux.getEliminado()==false)
+        if (aux.getIdObraSocial() == id
+            && aux.getEliminado()==false
+            && strcmp(aux.getEspecialidad(),especialidad)==0)
         {
             return i;
         }

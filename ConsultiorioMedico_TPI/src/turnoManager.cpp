@@ -145,7 +145,7 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
 
 
 
-    posArancel = _repoArancel.buscarPorIdObraSocial(paciente.getIdObraSocial()); ///REVISAR ARANCEL
+    posArancel = _repoArancel.buscarPorIdObraSocialYEspecialidad(paciente.getIdObraSocial(),especialidad);
     if (posArancel >= 0)
     {
         arancel = _repoArancel.leer(posArancel);
@@ -408,7 +408,7 @@ void TurnoManager::listarTurnoPendientePorPaciente()
 }
 
 
-void TurnoManager::listarPorPaciente()///NO SERIA POR APELLIDO?
+void TurnoManager::listarPorPaciente()///MEM DINAMICA CON ACTIVOS?
 {
     int cantidadTotal = _repoTurno.getCantidadRegistros();
     int cantidadActivos= _repoTurno.getCantidadActivos();
@@ -470,7 +470,7 @@ void TurnoManager::listarPorPaciente()///NO SERIA POR APELLIDO?
 
 }
 
-void TurnoManager::listarPorMedico()///NO SERIA POR APELLIDO?
+void TurnoManager::listarPorMedico()///MEM DINAMICA CON ACTIVOS?
 {
     int cantidadRegistros = _repoTurno.getCantidadRegistros();
     Turno *vec = new Turno[cantidadRegistros];
@@ -607,8 +607,7 @@ void TurnoManager::listarPorFecha()
     {
         for (int x=0; x<cantidadRegistros -1; x++)
         {
-
-            if (vec[x].getFechaint() > vec[x+1].getFechaint())
+            if(vec[x+1].getFechaTurno().esMenor(vec[x].getFechaTurno()))///metodo de la clase fecha
             {
                 aux = vec[x];
                 vec [x] = vec[x+1];
@@ -634,47 +633,44 @@ void TurnoManager::atenderTurno()
 {
     Turno turno;
     bool valido;
-    char dni[8];
+    char dni[9];
     int  posTurno, opcion, cantRegistros;
     Historial historial;
 
     do
     {
+        system("cls");
         valido = false;
-        cout << " INGRESE 0 (CERO) PARA CANCELAR..." << endl;
+        cout << "INGRESE 0 (CERO) PARA CANCELAR..." << endl;
         cout << "INGRESE DNI DEL PACIENTE: ";
-        if (cin.peek() == '\n')
-        {
-            cin.ignore();
-        }
-
-
-        cin.getline(dni,8);
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-        }
-        cout << endl;
-
+        cargarCadena(dni,9);
         if (cancelacionUsuario(dni))
         {
-            cout << "OPORACION CANCELADA" << endl;
+            system("pause");
             return;
         }
 
-        posTurno = _repoTurno.buscarPorDni (dni);
-        if(posTurno==-1)
-        {
-            cout << "El DNI no posee turnos pendientes. " << endl;
+        if(!dniValido(dni)){
+            cout << "Dni invalido. Intente nuevamente..." << endl;
+            system("pause");
+        }else{
+
+            posTurno = _repoTurno.buscarPorDni (dni);
+            if(posTurno==-1){
+                cout << "El DNI no posee turnos pendientes. " << endl;
+                system("pause");
+                return;
+
+            }else{
+                valido = true;
+                turno = _repoTurno.leer(posTurno);
+            mostrarTurno (turno);
+            }
 
         }
-        else
-        {
-            valido = true;
-            turno = _repoTurno.leer(posTurno);
-            mostrarTurno (turno);
-        }
+
+
+
     }
     while(!valido);
 
@@ -718,7 +714,7 @@ void TurnoManager::atenderTurno()
     do
     {
         valido = false;
-        cout << "DESEA INGRESAR UN NUEVO DIAGNOSTICO? 1.SI/2.NO " << endl;
+        cout << "DESEA INGRESAR UN NUEVO DIAGNOSTICO? 1.SI/2.NO " << endl;///DEBERIA SER OPCION? NO TENDRIA QUE SER OBKIUGATORIO?
         cin >> opcion;
 
         switch(opcion)
@@ -746,7 +742,7 @@ void TurnoManager::atenderTurno()
     }
     else
     {
-        cout << "error" << endl;
+        cout << "Error" << endl;
     }
 
     // terminar guardando estado turno...
