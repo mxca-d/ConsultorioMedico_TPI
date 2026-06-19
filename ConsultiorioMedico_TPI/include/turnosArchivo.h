@@ -15,6 +15,7 @@ public:
     bool modificar(Turno reg, int pos);
     int buscarPorId(int id);
     int buscarPorDni(const char* dni);
+    int getCantidadActivos();
 
 
     bool guardar(Turno*vec, int cantidadRegistrosAEscribir);

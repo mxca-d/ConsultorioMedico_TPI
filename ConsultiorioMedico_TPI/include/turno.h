@@ -1,6 +1,6 @@
 #pragma once
 #include "fecha.h"
-//#include "turnosArchivo.h"
+
 
 class Turno
 {
@@ -10,13 +10,13 @@ private:
     char _dniPaciente [8];
     int _idMedico;
     Fecha _fechaTurno;
-    char _hora[6]; //agregue un espacio mas por los :
-    char _diaTurno [8];
+    char _hora[6];
+    //char _diaTurno [8];///LO USAMOS?
     char _estado[15];
     bool _eliminado;
     float _costoConsulta;
 
-    //TurnoArchivo _repoTurno;
+
 
 public:
     Turno();
@@ -27,7 +27,7 @@ public:
     void setIdMedico(int id);
     void setFechaTurno(Fecha fecha);
     void setHora(const char* hora);
-    void setDiaTurno (int dia);
+    //void setDiaTurno (int dia);
     void setEstado(const char* estado);
     void setEliminado(bool eliminado);
     void setCostoConsulta(float costo);
@@ -42,7 +42,7 @@ public:
     Fecha getFechaTurno();
     int getFechaint();
     float getCostoConsulta();
-    const char* getDiaTurno();
+    //const char* getDiaTurno();
 
 
 

@@ -13,7 +13,8 @@ Turno::Turno()
     strcpy (_dniPaciente, "N/A");
     strcpy (_hora, "N/A");
     strcpy (_estado, "N/A");
-    strcpy (_diaTurno, "N/A");
+    strcpy (_dniPaciente, "N/A");
+    _costoConsulta=0;
 
 
     _eliminado = false;
@@ -36,10 +37,7 @@ Turno::Turno (int idMedico, int dni, int turno,int idTurno, int idPaciente)
 
 void Turno::setIdTurno(int id)
 {
-    if(id>0)
-    {
         _idTurno=id;
-    }
 
 }
 
@@ -80,6 +78,7 @@ void Turno::setHora(const char* hora)
     strcpy(_hora,hora );
 
 }
+/*
 void Turno::setDiaTurno (int dia)
 {
     switch(dia)
@@ -107,7 +106,7 @@ void Turno::setDiaTurno (int dia)
 
     }
 }
-
+*/
 
 
 void Turno::setEstado(const char* estado)
@@ -169,11 +168,14 @@ Fecha Turno::getFechaTurno()
 
 int Turno::getFechaint()
 {
+    ///PREGUNTAR A FRAN
     int fecha = _fechaTurno.getAnio()*10000 + _fechaTurno.getMes() * 100 + _fechaTurno.getDia();
     return fecha;
+
 }
 
-const char* Turno::getDiaTurno()
+/*const char* Turno::getDiaTurno()
 {
     return _diaTurno;
 }
+*/

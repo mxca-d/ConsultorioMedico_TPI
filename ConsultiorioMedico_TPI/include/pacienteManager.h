@@ -1,6 +1,7 @@
 #pragma once
 #include "paciente.h"
 #include "pacienteArchivo.h"
+#include "obraSocialManager.h"
 
 
 
@@ -14,6 +15,7 @@ public:
     void listarPacientes();
     void mostrarPaciente(Paciente reg);
     void BuscarPorId();
+    void BuscarPorDni();
     void listarPacientesPorApellido();
     void listarPacientesPorObraSocial();
     void listarPacientesPorDni();
@@ -24,5 +26,8 @@ public:
 private:
     PacienteArchivo repoPaciente;
     PacienteArchivo _archivoBkp = PacienteArchivo("pacientes.bkp");
+    ObraSocialArchivo repoObraSocial;
+    ObraSociales regObraSocial;
+    ObraSocialManager managerObraSocial;
 
 };

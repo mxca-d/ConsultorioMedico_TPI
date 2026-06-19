@@ -165,7 +165,13 @@ bool PacienteArchivo::guardar(Paciente *vec, int cantidadRegistrosAEscribir)
 
     int cantidadRegistrosEscritos = fwrite(vec, sizeof(Paciente), cantidadRegistrosAEscribir, p);
     fclose(p);
-    return cantidadRegistrosEscritos == cantidadRegistrosAEscribir;
+
+    if(cantidadRegistrosEscritos == cantidadRegistrosAEscribir){
+
+        return true;
+    }else{
+        return false;
+    }
 }
 
 void PacienteArchivo::vaciar()
