@@ -11,7 +11,7 @@ private:
     int _idMedico;
     float _honorarios;
     bool _diasAgenda [5];
-    bool _turnos [5];
+    bool _turnos [5];///LO USAMOS?
 
 
 

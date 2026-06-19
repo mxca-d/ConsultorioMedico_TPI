@@ -38,7 +38,7 @@ void MedicoMenu::ejecutarOpcion(int opcion)
         _managerMedico.modificarMedico();
         break;
     case 4:
-        _managerMedico.listarMedico();
+        _managerMedico.listarMedicos();
         break;
     case 5:
         _managerMedico.listarMedicoPorApellido();
@@ -47,7 +47,8 @@ void MedicoMenu::ejecutarOpcion(int opcion)
         _managerMedico.listarMedicoPorEspecialidad();
         break;
     case 7:
-        _managerMedico.listarXId();
+        _managerMedico.mostrarPorId();
+        break;
     case 8:
         _managerMedico.hacerCopiaDeSeguridad();
         break;

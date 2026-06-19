@@ -243,7 +243,7 @@ void MedicosManager::bajaMedico()
 
 }
 
-void MedicosManager::listarMedico()
+void MedicosManager::listarMedicos()
 {
     int cantidadRegistros = _repoMedicos.getCantidadRegistros();
 
@@ -258,7 +258,7 @@ void MedicosManager::listarMedico()
     }
 }
 
-void MedicosManager::listarXId()
+void MedicosManager::mostrarPorId()
 {
     int id;
 
@@ -444,7 +444,7 @@ void MedicosManager::listarMedicoPorApellido()
     delete []vec;
 }
 
-void MedicosManager::listarMedicoPorEspecialidad()
+void MedicosManager::listarMedicoPorEspecialidad()///ORDENAR POR ESPECIALIDAD?
 {
     int cantidadRegistros = _repoMedicos.getCantidadRegistros();
     Medicos reg;
