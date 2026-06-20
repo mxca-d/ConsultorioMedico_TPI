@@ -52,7 +52,7 @@ void ObraSocialManager::altaObraSocial()
         }
         else
         {
-            cout <<"INGRESO INVALIDO O NULO..." endl;
+            cout <<"INGRESO INVALIDO O NULO..." <<endl;
             valido = false;
         }
     }

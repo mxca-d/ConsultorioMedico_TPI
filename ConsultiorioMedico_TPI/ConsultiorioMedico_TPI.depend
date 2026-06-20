@@ -357,7 +357,7 @@
 1781908905 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\arancelarchivo.h
 	"arancel.h"
 
-1781908905 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmanager.cpp
+1781919925 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\arancelmanager.cpp
 	<iostream>
 	"arancelManager.h"
 	"obraSocialManager.h"
@@ -503,7 +503,7 @@
 	<cstring>
 	"obrasSociales.h"
 
-1781874149 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
+1781919230 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\paciente.cpp
 	<iostream>
 	<cstring>
 	"paciente.h"
@@ -550,7 +550,7 @@
 1781908905 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turno.h
 	"fecha.h"
 
-1781908905 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
+1781923145 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\utils.h
 	"fecha.h"
 
 1781908905 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomanager.cpp
@@ -609,7 +609,8 @@
 	"usuarios.h"
 	<cstring>
 
-1781744401 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuarios.h
+1781923065 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuarios.h
+	"fecha.h"
 
 1781478337 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\usuariosarchivo.cpp
 	"usuariosArchivo.h"
@@ -755,7 +756,7 @@
 	<iostream>
 	"usuariosMenu.h"
 
-1781533318 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosmenu.h
+1781918160 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\usuariosmenu.h
 	"usuariosManager.h"
 	"menu.h"
 
@@ -796,7 +797,7 @@
 
 1781908905 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\informes.h
 
-1781908905 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\informes.cpp
+1781923025 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\informes.cpp
 	<iostream>
 	<cstring>
 	"informes.h"
