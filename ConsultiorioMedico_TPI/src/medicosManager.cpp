@@ -9,25 +9,27 @@ using namespace std;
 
 
 
-void MedicosManager::altaMedico()///agregue la creacion del usuario
+void MedicosManager::altaMedico()
 {
     Usuarios usuario;
     UsuariosArchivo repoUsuarios;
 
-    char nombre[30],apellido[30],especialidad[30],dni[12],matricula[15],telefono[15];
+    char nombre[30],apellido[30],especialidad[30],dni[12],matricula[15],telefono[15], domicilio[30];
+    char email[30];
     float honorarios;
     int opcion;
-    bool eliminado,ingresar,
-         valido,
-         diasAgenda [5] = {false};
+    bool eliminado, fechaValida,ingresar,valido,diasAgenda [5] = {false};
 
-    Carga cargar [5] =
+    Carga cargar [6] =
     {
         {"Nombre: ", nombre, 30},
         {"Apellido: ", apellido, 30},
         {"DNI: ", dni, 12},
         {"Matricula: ", matricula, 15},
-        { "telefono: ", telefono, 15}
+        {"Telefono: ", telefono, 15},
+        //{"Fecha nacimiento: ",fechaNacimiento},
+        {"Domicilio: ", domicilio, 30},
+        {"Email: ", email, 30}
     };
 
     Medicos m;
@@ -36,60 +38,77 @@ void MedicosManager::altaMedico()///agregue la creacion del usuario
     cout << endl;
     cout << "Ingrese '0' en caso de querer cancelar la carga" << endl;
     cout << endl;
-    if (cin.peek() == '\n')
-    {
-        cin.ignore();
-    }
 
-    for (int i=0; i < 5; i++)
+    for (int i=0; i < 6; i++)
     {
 
         do
         {
+            valido=true;
             ingresar =true;
             cout << cargar [i].texto;
-            cin.getline(cargar[i].pDestino,cargar[i].tamanio);
+            valido=cargarCadena(cargar[i].pDestino,cargar[i].tamanio);
+
+            if(i==0 || i==1){
+                if(!soloLetras(cargar[i].pDestino)){
+                    valido=false;
+                }
+            }
 
 
             if (i == 2)
             {
+                if(!dniValido(cargar[i].pDestino)){
+                    valido=false;
+                }
+
                 if (_repoMedicos.buscarCoincidenciaDni (cargar[i].pDestino))
                 {
-                    cout << "DNI ya existente" << endl;
+                    cout << "Ya existe un paciente con ese DNI..." << endl;
                     return;
                 }
             }
             if (i==4)
             {
-                if(!validacionSoloNumeros(cargar[4].pDestino))
+                if(!soloNumeros(cargar[4].pDestino))
                 {
-                    cout << "Solo se Permiten Numeros..."<< endl;
                     valido = false;
-                    continue;
+
                 }
             }
             if (cancelacionUsuario(cargar[i].pDestino) )
             {
-                cout << "Carga cancelada por el usuario..." << endl;
+                system("pause");
                 return;
             }
-            if (cin.fail())
-            {
-                cin.clear();
-                cin.ignore(10000, '\n');
-                ingresar = false;
-            }
+
             todoMayuscula (cargar[i].pDestino);
-            if (ingresar && validacionCaracteres(cargar[i].pDestino))
-            {
-                valido = true;
+
+            if(!valido){
+                cout << "Invalido. Vuelva a intentarlo..." << endl;
             }
-
-
-
         }
         while (!valido);
     }
+
+    do
+    {
+        fechaValida=true;
+        cout << "Fecha de nacimiento: " <<endl;
+        fechaValida=fechaNacimiento.cargar();
+        if(!fechaValida)
+        {
+            cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
+            system("pause");
+
+        }else if(!fechaNacimiento.esMenor(hoy)){
+            cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
+            fechaValida=false;
+            system("pause");
+        }
+
+    }while(!fechaValida);
+
 
     do
     {
@@ -134,7 +153,7 @@ void MedicosManager::altaMedico()///agregue la creacion del usuario
             switch (opcion)
             {
             case 1:
-                cout << "agregado.." << endl;
+                cout << "Agregado.." << endl;
                 system ("pause");
                 diasAgenda [i] = true;
                 valido = true;
@@ -168,6 +187,9 @@ void MedicosManager::altaMedico()///agregue la creacion del usuario
     m.setIdMedico(generarId());
     m.setEliminado(eliminado);
     m.setDiasAgenda(diasAgenda);
+    m.setEmail(email);
+    m.setDomicilio(domicilio);
+    ///agregar setFechaNacimiento
 
     usuario.setIdUsuario(repoUsuarios.getCantidadRegistros()+1);
     usuario.setDni(m.getDni());
@@ -313,8 +335,10 @@ void MedicosManager::mostrarMedico(Medicos medicos)
     cout << "Apellido: " << medicos.getApellido()<< endl;
     cout << "DNI: " << medicos.getDni()<< endl;
     cout << "Especialidad: " << medicos.getEspecialidad()<< endl;
-    cout << "Telefono; " << medicos.getTelefono()<< endl;
-    cout << "Matricula; " << medicos.getMatricula()<< endl;
+    cout << "Domicilio: " << medicos.getDomicilio() << endl;
+    cout << "Telefono: " << medicos.getTelefono()<< endl;
+    cout << "Email: " << medicos.getEmail
+    cout << "Matricula: " << medicos.getMatricula()<< endl;
     cout << "Valor consulta: " << medicos.getHonorarios() << endl;
     cout << "Dias Atencion: " << endl;
     const bool* diasAgenda = medicos.getDiasAgenda();
@@ -331,7 +355,7 @@ void MedicosManager::mostrarMedico(Medicos medicos)
 
 bool MedicosManager::existeId(int id)
 {
-    return _repoMedicos.buscarPorId(id) > 0;//mayor a 0 no? o vamos a hacer que 0 sea un nro posible de id?
+    return _repoMedicos.buscarPorId(id) > 0;
 }
 
 int MedicosManager::generarId()
@@ -392,7 +416,7 @@ void MedicosManager::restaurarCopiaDeSeguridad()
 
 }
 
-void MedicosManager::listarMedicoPorApellido()
+void MedicosManager::listarMedicoPorApellido()///AGREGAR CANT ACTIVOS
 {
     int cantidadRegistros = _repoMedicos.getCantidadRegistros();
     Medicos *vec = new Medicos[cantidadRegistros];

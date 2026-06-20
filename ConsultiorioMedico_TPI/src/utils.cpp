@@ -96,11 +96,11 @@ bool validacionImportes (float precio)
     }
 }
 
-bool letrasYNumeros(const char *cadena, int tam){
+bool letrasYNumeros(const char *cadena){
 
     int largo = strlen(cadena);
 
-    if(largo < 3 || largo >= tam){
+    if(largo < 3){
         return false;
     }
 
@@ -126,11 +126,11 @@ bool letrasYNumeros(const char *cadena, int tam){
 
 
 
-bool soloNumeros(const char *cadena, int tam){
+bool soloNumeros(const char *cadena){
 
     int largo = strlen(cadena);
 
-    if(largo == 0 || largo >= tam){
+    if(largo == 0){
         return false;
     }
 
@@ -170,11 +170,11 @@ bool dniValido(const char *dni){
     return true;
 }
 
-bool soloLetras(const char *cadena, int tam){
+bool soloLetras(const char *cadena){
 
     int largo = strlen(cadena);
 
-    if(largo < 3 || largo >= tam){
+    if(largo < 3){
         return false;
     }
 
