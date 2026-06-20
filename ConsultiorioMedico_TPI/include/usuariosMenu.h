@@ -10,4 +10,5 @@ public:
 
 private:
    UsuariosManager _managerUsuario;
+   UsuariosArchivo _repoUsuarios;
 };

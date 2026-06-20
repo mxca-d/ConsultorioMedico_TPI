@@ -1,5 +1,6 @@
 #include <iostream>
 #include "usuariosMenu.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -32,17 +33,34 @@ void UsuarioMenu::ejecutarOpcion(int opcion)
         _managerUsuario.bajaUsuario();
         break;
     case 3:
-        //_managerUsuario.modificarUsuario();
+        bool valido = false;
+        char dni[9];
+        if (_repoUsuarios.getCantidadActivos()>1)
+        {
+            cout << "INGRESE DNI USUARIO A MODIFICAR: ";
+            valido = cargarCadena(dni,9);
+            if (valido && soloNumeros(dni))
+            {
+                _managerUsuario.modificarUsuario();
+            }
+            else
+            {
+                cout << "DNI INVALIDO O NULO..." << endl;
+            }
+        } else
+        {
+            cout << "NO EXISTEN REGISTROS A MODIFICAR..." << endl;
+        }
         break;
     case 4:
         _managerUsuario.listarUsuarios();
         break;
 
     case 5:
-  //      _managerUsuario.hacerCopiaDeSeguridad();
+        //      _managerUsuario.hacerCopiaDeSeguridad();
         break;
     case 6:
-  //      _managerUsuario.restaurarCopiaDeSeguridad();
+    //      _managerUsuario.restaurarCopiaDeSeguridad();
     case 0:
         cout << "Saliendo.." << endl;
         break;

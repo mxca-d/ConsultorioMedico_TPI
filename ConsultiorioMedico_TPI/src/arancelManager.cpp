@@ -23,13 +23,18 @@ void arancelManager::altaArancel()
         managerObraSocial.listarObrasSociales();
 
         cout << "Ingrese ID de obra social: ";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
         cin >> id;
         if (cin.fail())
         {
             cin.clear();
             cin.ignore(10000, '\n');
         }
-        if(cancelacionUsuario(id)){
+        if(cancelacionUsuario(id))
+        {
             system("pause");
             return;
         }
@@ -57,7 +62,8 @@ void arancelManager::altaArancel()
             cin.clear();
             cin.ignore(10000, '\n');
         }
-        if(cancelacionUsuario(opcion)){
+        if(cancelacionUsuario(opcion))
+        {
             system("pause");
             return;
         }
@@ -86,7 +92,8 @@ void arancelManager::altaArancel()
             cin.ignore(10000, '\n');
             ingreso = false;
         }
-        if(cancelacionUsuario(cobertura)){
+        if(cancelacionUsuario(cobertura))
+        {
             system("pause");
             return;
         }
@@ -144,6 +151,10 @@ void arancelManager::bajaArancel()
     int id, pos;
 
     cout << "Ingrese el ID del arancel a dar de baja:";
+    if (cin.peek() == '\n')
+    {
+        cin.ignore();
+    }
     cin>>id;
     if (cin.fail())
     {
@@ -199,13 +210,18 @@ void arancelManager::modificarArancel()
         managerObraSocial.listarObrasSociales();
 
         cout << "Ingrese ID de obra social: ";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
         cin >> id;
         if (cin.fail())
         {
             cin.clear();
             cin.ignore(10000, '\n');
         }
-        if(cancelacionUsuario(id)){
+        if(cancelacionUsuario(id))
+        {
             system("pause");
             return;
         }
@@ -234,7 +250,8 @@ void arancelManager::modificarArancel()
             cin.ignore(10000, '\n');
             ingreso = false;
         }
-        if(cancelacionUsuario(cobertura)){
+        if(cancelacionUsuario(cobertura))
+        {
             system("pause");
             return;
         }
@@ -284,20 +301,40 @@ void arancelManager::listarAranceles()
 void arancelManager::listarPorId()
 {
     int id;
-
-    cout << "Ingrese el ID: ";
-    cin >> id;
-
-    int posicion = _repoArancel.buscarPorId(id);
-    if (posicion >= 0)
+    bool valido;
+    do
     {
-        Arancel reg = _repoArancel.leer(posicion);
-        mostrarArancel(reg);
+
+        cout << "Ingrese el ID: ";
+        cin >> id;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            valido = false;
+        }
+        if (valido )
+        {
+
+            int posicion = _repoArancel.buscarPorId(id);
+            if (posicion >= 0)
+            {
+                Arancel reg = _repoArancel.leer(posicion);
+                mostrarArancel(reg);
+                valido = true;
+            }
+            else
+            {
+                cout << "No existe el registro con ID #" << id << endl;
+                valido = false;
+            }
+        }
+        else
+        {
+            cout << "Ingreso invalido o nulo..." << endl;
+        }
     }
-    else
-    {
-        cout << "No existe el registro con ID #" << id << endl;
-    }
+    while (!valido);
 }
 
 void arancelManager::mostrarArancel(Arancel aranceles)

@@ -43,7 +43,7 @@ bool validacionCaracteres (int num)
 {
 
 
- if (num < 10000 && num > 0)
+    if (num < 10000 && num > 0)
     {
         return true;
     }
@@ -96,11 +96,13 @@ bool validacionImportes (float precio)
     }
 }
 
-bool letrasYNumeros(const char *cadena, int tam){
+bool letrasYNumeros(const char *cadena)
+{
 
     int largo = strlen(cadena);
 
-    if(largo < 3 || largo >= tam){
+    if(largo < 3 )
+    {
         return false;
     }
 
@@ -108,10 +110,10 @@ bool letrasYNumeros(const char *cadena, int tam){
     while(cadena[i] != '\0')
     {
         if(!((cadena[i] >= 65 && cadena[i] <= 90)///A-Z =65 a 90
-            || (cadena[i] >= 97 && cadena[i] <= 122)///a-z =97 a 122
-            || cadena[i] == 32 ///32= espacio
-            || (cadena[i] >= 48 && cadena[i] <= 57)))///48=0 y 57=9
-            {
+                || (cadena[i] >= 97 && cadena[i] <= 122)///a-z =97 a 122
+                || cadena[i] == 32 ///32= espacio
+                || (cadena[i] >= 48 && cadena[i] <= 57)))///48=0 y 57=9
+        {
             return false;
         }
 
@@ -126,14 +128,15 @@ bool letrasYNumeros(const char *cadena, int tam){
 
 
 
-bool soloNumeros(const char *cadena, int tam){
+bool soloNumeros(const char *cadena)
+{
 
     int largo = strlen(cadena);
 
-    if(largo == 0 || largo >= tam){
+    if(largo < 3 )
+    {
         return false;
     }
-
     int i = 0;
     while(cadena[i] != '\0')
     {
@@ -148,11 +151,13 @@ bool soloNumeros(const char *cadena, int tam){
     return true;
 }
 
-bool dniValido(const char *dni){
+bool dniValido(const char *dni)
+{
 
     int largo = strlen(dni);
 
-    if(largo<7 || largo>8){
+    if(largo<7 || largo>8)
+    {
         return false;
     }
 
@@ -170,21 +175,23 @@ bool dniValido(const char *dni){
     return true;
 }
 
-bool soloLetras(const char *cadena, int tam){
+bool soloLetras(const char *cadena)
+{
 
     int largo = strlen(cadena);
 
-    if(largo < 3 || largo >= tam){
+    if(largo < 3 )
+    {
         return false;
     }
-
     int i = 0;
 
     while(cadena[i] != '\0')
     {
         if(!((cadena[i] >= 65 && cadena[i] <= 90)///A-Z =65 a 90
-            || (cadena[i] >= 97 && cadena[i] <= 122)///a-z =97 a 122
-            || cadena[i] == 32)){///32= espacio
+                || (cadena[i] >= 97 && cadena[i] <= 122)///a-z =97 a 122
+                || cadena[i] == 32)) ///32= espacio
+        {
             return false;
         }
 
@@ -195,14 +202,17 @@ bool soloLetras(const char *cadena, int tam){
 }
 
 
-bool cargarCadena(char *cadena, int tam){
-    if(cin.peek() == '\n'){
+bool cargarCadena(char *cadena, int tam)
+{
+    if(cin.peek() == '\n')
+    {
         cin.ignore();
     }
 
     cin.getline(cadena, tam);
 
-    if(cin.fail()){
+    if(cin.fail())
+    {
         cin.clear();
         cin.ignore(10000,'\n');
         return false;
@@ -243,7 +253,8 @@ void mostrarDiaAgenda (int indice)
 
 
 
-void mostrarEspecialidades(){
+void mostrarEspecialidades()
+{
     cout << "1- CLINICA MEDICA" << endl;
     cout << "2- CARDIOLOGIA" << endl;
     cout << "3- PEDIATRIA" << endl;
@@ -251,60 +262,66 @@ void mostrarEspecialidades(){
     cout << "5- KINESIOLOGIA" << endl;
 }
 
-bool cargarEspecialidad(int opcion, char* especialidad){
+bool cargarEspecialidad(int opcion, char* especialidad)
+{
 
-    switch(opcion){
-        case 1:
-            strcpy(especialidad, "CLINICA MEDICA");
-            return true;
-        case 2:
-            strcpy(especialidad, "CARDIOLOGIA");
-            return true;
-        case 3:
-            strcpy(especialidad, "PEDIATRIA");
-            return true;
-        case 4:
-            strcpy(especialidad, "DERMATOLOGIA");
-            return true;
-        case 5:
-            strcpy(especialidad, "KINESIOLOGIA");
-            return true;
-        default:
-            return false;
-
-    }
-
-}
-
-bool cargarHoraTurno(int opcion, char* hora){
-
-    switch(opcion){
-        case 1:
-            strcpy(hora, "08:00");
-            return true;
-        case 2:
-            strcpy(hora, "09:00");
-            return true;
-        case 3:
-            strcpy(hora, "10:00");
-            return true;
-        case 4:
-            strcpy(hora, "11:00");
-            return true;
-        case 5:
-            strcpy(hora, "12:00");
-            return true;
-        default:
-            return false;
+    switch(opcion)
+    {
+    case 1:
+        strcpy(especialidad, "CLINICA MEDICA");
+        return true;
+    case 2:
+        strcpy(especialidad, "CARDIOLOGIA");
+        return true;
+    case 3:
+        strcpy(especialidad, "PEDIATRIA");
+        return true;
+    case 4:
+        strcpy(especialidad, "DERMATOLOGIA");
+        return true;
+    case 5:
+        strcpy(especialidad, "KINESIOLOGIA");
+        return true;
+    default:
+        return false;
 
     }
 
 }
-Fecha obtenerFechaBase(int opcion){
+
+bool cargarHoraTurno(int opcion, char* hora)
+{
+
+    switch(opcion)
+    {
+    case 1:
+        strcpy(hora, "08:00");
+        return true;
+    case 2:
+        strcpy(hora, "09:00");
+        return true;
+    case 3:
+        strcpy(hora, "10:00");
+        return true;
+    case 4:
+        strcpy(hora, "11:00");
+        return true;
+    case 5:
+        strcpy(hora, "12:00");
+        return true;
+    default:
+        return false;
+
+    }
+
+}
+Fecha obtenerFechaBase(int opcion)
+{
 
 
 
-    switch(opcion){
+    switch(opcion)
+    {
 
     case 1:
         return Fecha(5,1,2026);
@@ -321,18 +338,21 @@ Fecha obtenerFechaBase(int opcion){
 
 }
 
-void obtenerDias(int opcion, Fecha *dias, Fecha hoy){
+void obtenerDias(int opcion, Fecha *dias, Fecha hoy)
+{
 
     Fecha aux = obtenerFechaBase(opcion);
     hoy.agregarDias(1);
 
-    while(aux.esMenor(hoy)){
+    while(aux.esMenor(hoy))
+    {
 
-       aux.agregarDias(7);
+        aux.agregarDias(7);
 
     }
 
-    for(int i=0;i<2;i++){
+    for(int i=0; i<2; i++)
+    {
 
         dias[i]=aux;
         aux.agregarDias(7);

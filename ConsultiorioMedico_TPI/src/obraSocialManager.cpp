@@ -23,25 +23,14 @@ void ObraSocialManager::altaObraSocial()
         cout << "Ingrese el nombre de la obra social:" ;
 
 
-        if (std::cin.peek() == '\n')
-        {
-            std::cin.ignore();
-        }
-
-        cin.getline(nombre,30);
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            ingreso = false;
-        }
+        valido= cargarCadena(nombre,30);
         todoMayuscula(nombre);
         if(cancelacionUsuario(nombre))
         {
             cout << "OPERACION CANCELADA..." << endl;
             return;
         }
-        if (ingreso && validacionCaracteres(nombre))
+        if (valido && soloLetras(nombre))
         {
 
             cantidad = repoObraSocial.getCantidadRegistros();
@@ -55,14 +44,16 @@ void ObraSocialManager::altaObraSocial()
                 if(reg.getEliminado()==false && strcmp(reg.getNombre(),nombre)==0)
                 {
                     cout << "La obra social ingresada ya existe..." << endl;
-                    ingreso = false;
+                    valido = false;
                 }
 
             }
-            if (ingreso)
-            {
-                valido = true;
-            }
+
+        }
+        else
+        {
+            cout <<"INGRESO INVALIDO O NULO..." endl;
+            valido = false;
         }
     }
     while (!valido);
@@ -91,34 +82,58 @@ void ObraSocialManager::altaObraSocial()
 void ObraSocialManager::bajaObraSocial()
 {
     ObraSociales reg;
+    bool valido = true;
 
     int id, pos;
 
-    cout << "Ingrese el ID de la obra social a dar de baja:";
-    cin>>id;
-    cout << endl;
-
-    pos=repoObraSocial.buscarPorId(id);
-
-    if(pos==-1)
+    do
     {
-        cout << "El id ingresado no existe." << endl;
-        return;
-    }
 
-    reg= repoObraSocial.leer(pos);
-    reg.setEliminado(true);
+        cout << "Ingrese el ID de la obra social a dar de baja:";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin>>id;
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+            valido = false;
+        }
+        cout << endl;
+        if (valido)
+        {
 
-    bool eliminado=repoObraSocial.modificar(reg,pos);
+            pos=repoObraSocial.buscarPorId(id);
 
-    if(eliminado)
-    {
-        cout << "La obra social se ha dado de baja exitosamente." << endl;
+            if(pos==-1)
+            {
+                cout << "El id ingresado no existe." << endl;
+                return;
+            }
+
+            reg= repoObraSocial.leer(pos);
+            reg.setEliminado(true);
+
+            bool eliminado=repoObraSocial.modificar(reg,pos);
+
+            if(eliminado)
+            {
+                cout << "La obra social se ha dado de baja exitosamente." << endl;
+            }
+            else
+            {
+                cout << "No se pudo dar de baja la obra social." << endl;
+            }
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO O NULO..." << endl;
+            valido =false;
+        }
     }
-    else
-    {
-        cout << "No se pudo dar de baja la obra social." << endl;
-    }
+    while(!valido);
 
 
 }
@@ -129,58 +144,95 @@ void ObraSocialManager::modificarObraSocial()
 {
 
     char nombre[30];
+    bool valido;
 
     ObraSociales reg;
     ObraSociales aux;
     int id, pos;
 
     listarObrasSociales();
-
-    cout << "Ingrese ID de la obra social a modificar:";
-    cin>>id;
-    cout << endl;
-
-    pos=repoObraSocial.buscarPorId(id);
-
-    if(pos==-1)
+    do
     {
-        cout << "El id ingresado no existe." << endl;
-        return;
-    }
-
-    reg= repoObraSocial.leer(pos);
-
-    cout << "Ingresar nuevo nombre:" << endl;
-    cin.ignore();
-    cin.getline(nombre,30);
-    todoMayuscula(nombre);
-
-    int cantidad=repoObraSocial.getCantidadRegistros();
-
-
-    for(int i=0; i<cantidad; i++)
-    {
-
-        aux=repoObraSocial.leer(i);
-
-        if(strcmp(aux.getNombre(),nombre)==0)
+        valido = true;
+        cout << "Ingrese ID de la obra social a modificar:";
+        if (cin.peek() == '\n')
         {
-            if(aux.getEliminado())
-            {
-                cout << "Existe obra social dada de baja con ese nombre. "
-                     << "En caso de querer reactivar, realizarlo desde la opcion 'Dar alta obra social'" << endl;
-                return;
-
-            }
-            else if (aux.getIdObraSocial() != id)
-            {
-                cout << "Ya existe una obra social activa con ese nombre." << endl;
-                return;
-            }
-
+            cin.ignore();
         }
+        cin>>id;
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+            valido = false;
+        }
+        if (cancelacionUsuario(id))
+        {
+            cout << "CANCELACION POR EL USUARIO..." << endl;
+            return;
+        }
+        if (valido)
+        {
 
+            pos=repoObraSocial.buscarPorId(id);
+
+            if(pos==-1)
+            {
+                cout << "El id ingresado no existe." << endl;
+                valido = false;
+            }
+        }
     }
+    while(!valido);
+    do
+    {
+        valido = true;
+        reg= repoObraSocial.leer(pos);
+
+        cout << "Ingresar nuevo nombre:" << endl;
+        valido = cargarCadena(nombre,30);
+        if (cancelacionUsuario(nombre))
+        {
+            cout << "CANCELACION POR EL USUARIO..." << endl;
+            return;
+        }
+        todoMayuscula(nombre);
+        if (valido && soloLetras(nombre))
+        {
+            int cantidad=repoObraSocial.getCantidadRegistros();
+
+            for(int i=0; i<cantidad; i++)
+            {
+
+                aux=repoObraSocial.leer(i);
+
+                if(strcmp(aux.getNombre(),nombre)==0)
+                {
+                    if(aux.getEliminado())
+                    {
+                        cout << "Existe obra social dada de baja con ese nombre. "
+                             << "En caso de querer reactivar, realizarlo desde la opcion 'Dar alta obra social'" << endl;
+                        return;
+
+                    }
+                    else if (aux.getIdObraSocial() != id)
+                    {
+                        cout << "Ya existe una obra social activa con ese nombre." << endl;
+                        return;
+                    }
+
+                }
+
+            }
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO O NULO..." << endl;
+            valido = false;
+        }
+    }
+    while(!valido);
+
 
     reg.setNombre(nombre);
     bool modificado=repoObraSocial.modificar(reg,pos);
@@ -193,8 +245,6 @@ void ObraSocialManager::modificarObraSocial()
     {
         cout << "No se ha podido modificar el nombre de la obra social." << endl;
     }
-
-
 
 
 
@@ -242,17 +292,47 @@ void ObraSocialManager::buscarObraSocialPorId()
 
     ObraSociales reg;
     int id, pos;
+    bool valido;
 
-    cout << "Ingresar ID de la obra social:" ;
-    cin>>id;
-
-    pos=repoObraSocial.buscarPorId(id);
-
-    if(pos==-1)
+    do
     {
-        cout << "El id ingresado no existe." << endl;
-        return;
+        valido = true;
+        cout << "Ingrese ID de la obra social:";
+        if (cin.peek() == '\n')
+        {
+            cin.ignore();
+        }
+        cin>>id;
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+            valido = false;
+        }
+        if (cancelacionUsuario(id))
+        {
+            cout << "CANCELACION POR EL USUARIO..." << endl;
+            return;
+        }
+        if (valido)
+        {
+
+            pos=repoObraSocial.buscarPorId(id);
+
+            if(pos==-1)
+            {
+                cout << "El id ingresado no existe." << endl;
+                valido = false;
+            }
+        }
+        else
+        {
+            cout << "INGRESO INVALIDO O NULO... " << endl;
+
+        }
+
     }
+    while(!valido);
 
     reg= repoObraSocial.leer(pos);
 
