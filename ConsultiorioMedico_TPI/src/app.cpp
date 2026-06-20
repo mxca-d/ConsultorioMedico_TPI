@@ -32,8 +32,6 @@ int App::seleccionarOpcion(){
 void App::ejecutarOpcion(int opcion){
    switch(opcion){
    case 1:
-       cout << "hola" ;
-       system ("pause");
     _menuAdministrador.run();
       break;
    case 2:
@@ -45,5 +43,11 @@ void App::ejecutarOpcion(int opcion){
     break;
    case 0:
       cout << "Gracias por usar mi app :)" << endl;
+      break;
+   default:
+    cout << "Invalido."<< endl;
+    break;
+
    }
+
 }

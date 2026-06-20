@@ -7,17 +7,24 @@ using namespace std;
 Menu::Menu(){
    setCantidadOpciones(0);
 }
-void Menu::run(){
-   int opcion;
+void Menu::run()
+{
+    int opcion;
 
 
-   do{
-      system("cls");
-      mostrarOpciones();
-      opcion = seleccionarOpcion();
-      ejecutarOpcion(opcion);
-      system("pause");
-   }while(opcion != 0);
+    do
+    {
+        system("cls");
+        mostrarOpciones();
+        opcion = seleccionarOpcion();
+        if(cin.fail()){
+        cin.clear();
+        cin.ignore(10000,'\n');
+        }
+        ejecutarOpcion(opcion);
+        system("pause");
+    }
+    while(opcion != 0);
 }
 
 

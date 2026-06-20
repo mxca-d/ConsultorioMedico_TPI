@@ -241,10 +241,10 @@ bool Fecha::cargar(){
     cout << "Ingresar dia:";
     cin>> dia;
     cout << endl;
-    cout << "Ingresar dia:";
+    cout << "Ingresar mes:";
     cin>> mes;
     cout << endl;
-    cout << "Ingresar dia:";
+    cout << "Ingresar anio:";
     cin>> anio;
     cout << endl;
 

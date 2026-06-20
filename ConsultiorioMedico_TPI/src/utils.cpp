@@ -98,11 +98,6 @@ bool validacionImportes (float precio)
 
 bool letrasYNumeros(const char *cadena){
 
-    int largo = strlen(cadena);
-
-    if(largo < 3){
-        return false;
-    }
 
     int i = 0;
     while(cadena[i] != '\0')
@@ -128,11 +123,6 @@ bool letrasYNumeros(const char *cadena){
 
 bool soloNumeros(const char *cadena){
 
-    int largo = strlen(cadena);
-
-    if(largo == 0){
-        return false;
-    }
 
     int i = 0;
     while(cadena[i] != '\0')
@@ -172,11 +162,6 @@ bool dniValido(const char *dni){
 
 bool soloLetras(const char *cadena){
 
-    int largo = strlen(cadena);
-
-    if(largo < 3){
-        return false;
-    }
 
     int i = 0;
 
@@ -201,6 +186,12 @@ bool cargarCadena(char *cadena, int tam){
     }
 
     cin.getline(cadena, tam);
+
+    int largo = strlen(cadena);
+
+    if(largo < 3){
+        return false;
+    }
 
     if(cin.fail()){
         cin.clear();

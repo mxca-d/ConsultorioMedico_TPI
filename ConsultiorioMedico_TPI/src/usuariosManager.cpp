@@ -54,13 +54,14 @@ void UsuariosManager::altaUsuario()
             return;
         }
 
-        if( !valido  && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombreUsuario))
+        if(valido  && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombreUsuario))
         {
             valido = true;
         }
         else
         {
             cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
+            valido=false;
         }
     }
     while (!valido);
@@ -112,7 +113,7 @@ void UsuariosManager::altaUsuario()
             return;
         }
 
-        if (valido &&!soloNumeros(dni))
+        if (valido &&!dniValido(dni))
         {
             cout << "SOLO SE PERMITEN NUMEROS EN ESTE INGRESO..." << endl;
 
@@ -299,6 +300,7 @@ void UsuariosManager::altaUsuario()
     usuario.setRol(rol);
     usuario.setEliminado(false);
     usuario.setIdUsuario(_repoUsuarios.getCantidadRegistros()+1);
+    usuario.setDni(dni);
 
 
 
@@ -407,8 +409,9 @@ void UsuariosManager::listarUsuarios()
             cout << "NOMBRE: " << u.getNombre() << endl;
             cout << "APELLIDO: " << u.getApellido() << endl;
             cout << "DOMICILIO: "<< u.getDomicilio() << endl;
+            cout << "DNI: " << u.getDni() <<endl;
             cout << "TELEFONO: " << u.getTelefono() << endl;
-            cout << "Email: " << u.getEmail() <<endl;
+            cout << "EMAIL: " << u.getEmail() <<endl;
             cout << "+-----------------------------------------------------+" << endl;
         }
 

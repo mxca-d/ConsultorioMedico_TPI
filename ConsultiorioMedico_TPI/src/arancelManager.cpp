@@ -304,7 +304,7 @@ void arancelManager::listarPorId()
     bool valido;
     do
     {
-
+        valido=true;
         cout << "Ingrese el ID: ";
         cin >> id;
         if (cin.fail())

@@ -40,7 +40,7 @@ void MedicosManager::altaMedico()
     cout << "Ingrese '0' en caso de querer cancelar la carga" << endl;
     cout << endl;
 
-    for (int i=0; i < 6; i++)
+    for (int i=0; i < 7; i++)
     {
 
         do
@@ -190,7 +190,7 @@ void MedicosManager::altaMedico()
     m.setDiasAgenda(diasAgenda);
     m.setEmail(email);
     m.setDomicilio(domicilio);
-    ///agregar setFechaNacimiento
+    m.setFechaNacimiento(fechaNacimiento);
 
     usuario.setIdUsuario(repoUsuarios.getCantidadRegistros()+1);
     usuario.setDni(m.getDni());
@@ -200,6 +200,7 @@ void MedicosManager::altaMedico()
     usuario.setEliminado(false);
 
     mostrarMedico (m);
+
 
 
 
@@ -225,7 +226,7 @@ void MedicosManager::altaMedico()
         cout << "No se pudo guardar el medico..." << endl;
     }
 
-
+    system("pause");
 
 }
 

@@ -211,7 +211,7 @@ void ObraSocialManager::modificarObraSocial()
                     if(aux.getEliminado())
                     {
                         cout << "Existe obra social dada de baja con ese nombre. "
-                             << "En caso de querer reactivar, realizarlo desde la opcion 'Dar alta obra social'" << endl;
+                             << "En caso de querer reactivar, realizarlo desde la opcion 'Modificar obra social'" << endl;
                         return;
 
                     }
