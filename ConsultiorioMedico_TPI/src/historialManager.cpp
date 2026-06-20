@@ -8,6 +8,7 @@ bool HistorialManager::cargarHistorial(Turno turno)
 {
 
     char diagnostico[100];
+    bool valido;
     Historial historial;
 
     PacienteArchivo repoPaciente;
@@ -31,17 +32,20 @@ bool HistorialManager::cargarHistorial(Turno turno)
 
     do
     {
+        valido=true;
         system("cls");
         cout << "Ingresar diagnostico:" << endl << endl;
-        cargarCadena(diagnostico,100);
-        if(!letrasYNumeros(diagnostico,100)){
+        valido=cargarCadena(diagnostico,100);
+        if(!letrasYNumeros(diagnostico)){
+            valido=false;
+        }
+        if(!valido){
             cout << "Diagnostico invalido. Intente nuevamente..." << endl;
             system("pause");
         }
 
-
     }
-    while(!letrasYNumeros(diagnostico,100));
+    while(!valido);
 
     todoMayuscula(diagnostico);
 
@@ -73,6 +77,7 @@ bool HistorialManager::cargarHistorial(Turno turno)
 void HistorialManager::modificarHistorial()
 {
     char diagnostico[100];
+    bool valido;
     Historial historial;
     int idHistorial;
     Paciente paciente;
@@ -108,14 +113,18 @@ void HistorialManager::modificarHistorial()
     cout << "Ingresar la modificacion del diagnostico:" << endl << endl;
     do{
         system("cls");
-        cargarCadena(diagnostico,100);
-        if(!letrasYNumeros(diagnostico,100)){
+        valido=true;
+        valido=cargarCadena(diagnostico,100);
+        if(!letrasYNumeros(diagnostico)){
+            valido=false;
+        }
+        if(!valido){
             cout << "Diagnostico invalido. Intente nuevamente..."<< endl;
             system("pause");
         }
 
 
-    }while(!letrasYNumeros(diagnostico,100));
+    }while(!valido);
 
     todoMayuscula(diagnostico);
 

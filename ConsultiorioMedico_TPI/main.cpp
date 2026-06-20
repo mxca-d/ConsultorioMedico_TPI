@@ -10,9 +10,7 @@ int main()
     //App app;
     //app.run();
 
-    PacienteManager managerPaciente;
 
-    managerPaciente.altaPaciente();
 
     return 0;
 }

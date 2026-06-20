@@ -11,6 +11,7 @@ public:
     bool guardar(Usuarios reg);
     bool modificar(Usuarios reg, int posicionAReemplazar);
     int getCantidadRegistros();
+    int getCantidadActivos();
     bool existenRegistros();
     Usuarios leer(int pos);
     bool buscarCoincidenciaNombreUsuario(const char* usuario);

@@ -33,6 +33,7 @@ void UsuarioMenu::ejecutarOpcion(int opcion)
         _managerUsuario.bajaUsuario();
         break;
     case 3:
+        {
         bool valido = false;
         char dni[9];
         if (_repoUsuarios.getCantidadActivos()>1)
@@ -41,7 +42,7 @@ void UsuarioMenu::ejecutarOpcion(int opcion)
             valido = cargarCadena(dni,9);
             if (valido && soloNumeros(dni))
             {
-                _managerUsuario.modificarUsuario();
+                _managerUsuario.modificarUsuario(dni);
             }
             else
             {
@@ -52,6 +53,7 @@ void UsuarioMenu::ejecutarOpcion(int opcion)
             cout << "NO EXISTEN REGISTROS A MODIFICAR..." << endl;
         }
         break;
+        }
     case 4:
         _managerUsuario.listarUsuarios();
         break;

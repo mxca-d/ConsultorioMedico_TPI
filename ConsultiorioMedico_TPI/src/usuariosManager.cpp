@@ -46,9 +46,9 @@ void UsuariosManager::altaUsuario()
     {
         valido = false;
         cout << "INGRESE NOMBRE DE USUARIO: " ;
-        valido = cargarCadena(nombreUsuario,20;)
+        valido = cargarCadena(nombreUsuario,20);
 
-                 if (cancelacionUsuario(nombreUsuario))
+            if (cancelacionUsuario(nombreUsuario))
         {
             cout << "CANCELADO..."<< endl;
             return;
@@ -242,7 +242,7 @@ void UsuariosManager::altaUsuario()
 
         cout << "INGRESE UN DOMICILIO: " ;
         valido = cargarCadena(domicilio,30);
-        if(ingreso && letrasYNumeros(domicilio,30))
+        if(ingreso && letrasYNumeros(domicilio))
         {
             valido = true;
         }
@@ -388,15 +388,7 @@ void UsuariosManager::listarUsuarios()
     int cantidadRegistros;
 
     cantidadRegistros = _repoUsuarios.getCantidadRegistros();
-    if (_repoUsuarios.existenRegistros() ==false)
-    {
-        cout << "NO EXISTE REGISTROS DE USUARIOS....." << endl;
-        return;
-    }
-    else
-    {
-
-        cout << "+-----------------USUARIOS-----------------+" << endl;
+     cout << "+-----------------USUARIOS-----------------+" << endl;
         for (int i=0; i<cantidadRegistros; i++)
         {
             u = _repoUsuarios.leer(i);
@@ -419,7 +411,7 @@ void UsuariosManager::listarUsuarios()
             cout << "Email: " << u.getEmail() <<endl;
             cout << "+-----------------------------------------------------+" << endl;
         }
-    }
+
 }
 
 Usuarios UsuariosManager::login()

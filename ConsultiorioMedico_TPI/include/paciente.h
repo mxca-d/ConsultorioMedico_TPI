@@ -17,11 +17,10 @@ public:
     void setIdPaciente(int ID);
     void setIdObrasocial(int ID);
     void setObraSocial(const char* obraSocial);
-    void setFechaNacimiento(Fecha fecha);
     const char* getObraSocial();
     int getIdPaciente();
     int getIdObraSocial();
-    Fecha getFechaNacimiento();
+
 
 
 

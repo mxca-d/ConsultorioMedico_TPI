@@ -16,18 +16,19 @@ void MedicosManager::altaMedico()
 
     char nombre[30],apellido[30],especialidad[30],dni[12],matricula[15],telefono[15], domicilio[30];
     char email[30];
+    Fecha fechaNacimiento, hoy;
+    hoy.setHoy();
     float honorarios;
     int opcion;
     bool eliminado, fechaValida,ingresar,valido,diasAgenda [5] = {false};
 
-    Carga cargar [6] =
+    Carga cargar [7] =
     {
         {"Nombre: ", nombre, 30},
         {"Apellido: ", apellido, 30},
-        {"DNI: ", dni, 12},
+        {"DNI: ", dni, 9},
         {"Matricula: ", matricula, 15},
         {"Telefono: ", telefono, 15},
-        //{"Fecha nacimiento: ",fechaNacimiento},
         {"Domicilio: ", domicilio, 30},
         {"Email: ", email, 30}
     };
@@ -337,7 +338,7 @@ void MedicosManager::mostrarMedico(Medicos medicos)
     cout << "Especialidad: " << medicos.getEspecialidad()<< endl;
     cout << "Domicilio: " << medicos.getDomicilio() << endl;
     cout << "Telefono: " << medicos.getTelefono()<< endl;
-    cout << "Email: " << medicos.getEmail
+    cout << "Email: " << medicos.getEmail() << endl;
     cout << "Matricula: " << medicos.getMatricula()<< endl;
     cout << "Valor consulta: " << medicos.getHonorarios() << endl;
     cout << "Dias Atencion: " << endl;
@@ -447,7 +448,7 @@ void MedicosManager::listarMedicoPorApellido()
 
     for (int i=0; i<cantActivos-1; i++)
     {
-        for (int j=i+1; x<cantActivos; x++)
+        for (int j=i+1; j<cantActivos; j++)
         {
 
             if (strcmp (vec[i].getApellido(), vec[j].getApellido())> 0 ||
@@ -543,9 +544,11 @@ int MedicosManager::recuperarIdMedico (const char* dni)
 void MedicosManager::modificarMedico()
 {
     char nombre[30], apellido[30], dni [9], especialidad[30], matricula[15],
-     telefono[15], honorarios [15];
-    Fecha fechaNacimiento;
-    bool fechaValida, ingreso, dias[5], valido;
+     telefono[15], domicilio[30], email[30];
+    Fecha fechaNacimiento, hoy;
+    hoy.setHoy();
+    float honorarios;
+    bool fechaValida, ingreso,diasAgenda [5] = {false}, valido;
     int  pos, eleccion;
 
     Medicos m;
@@ -680,8 +683,8 @@ void MedicosManager::modificarMedico()
                     system("pause");
                     valido = false;
                 }
-                else if(strcmp(dni, p.getDni()) != 0 &&
-                        repoPaciente.buscarCoincidenciaDni(dni)){
+                else if(strcmp(dni, m.getDni()) != 0 &&
+                        _repoMedicos.buscarCoincidenciaDni(dni)){
                     cout << "Ya existe un paciente con este DNI." << endl;
                     system("pause");
                     valido = false;
@@ -803,7 +806,7 @@ void MedicosManager::modificarMedico()
                 while (!valido);
                 system("cls");
             }
-            m.setDiasAgenda(dias);
+            m.setDiasAgenda(diasAgenda);
             break;
 
         case 10:

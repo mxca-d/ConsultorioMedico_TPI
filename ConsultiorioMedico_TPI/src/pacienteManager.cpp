@@ -88,8 +88,6 @@ void PacienteManager::altaPaciente()
 
     p.setFechaNacimiento(fechaNacimiento);
 
-
-
     do{
         valido = true;
         cout << "DNI: ";
