@@ -10,6 +10,7 @@ public:
 
     bool guardar(Medicos reg);
     int getCantidadRegistros();
+    int getCantidadActivos();
     Medicos leer(int pos);
     bool modificar(Medicos reg, int pos);
     int buscarPorId(int id);

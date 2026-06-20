@@ -208,6 +208,7 @@ int PacienteArchivo::getCantidadActivos(){
     int contadorActivos=0;
 
     for(int i=0;i<cantidad;i++){
+        reg=leer(i);
         if(reg.getEliminado()!=true){
             contadorActivos++;
         }

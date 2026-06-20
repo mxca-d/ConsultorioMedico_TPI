@@ -28,6 +28,20 @@ int MedicosArchivos::getCantidadRegistros()//
     return bytes / sizeof(Medicos);
 }
 
+int MedicosArchivos::getCantidadActivos(){
+    Medicos reg;
+    int cantidad= getCantidadRegistros();
+    int contadorActivos=0;
+
+    for(int i=0;i<cantidad;i++){
+        reg=leer(i);
+        if(!reg.getEliminado()){
+            contadorActivos++;
+        }
+    }
+    return contadorActivos;
+}
+
 bool MedicosArchivos::guardar(Medicos reg)
 {
     FILE *p = fopen(_nombreArchivo, "ab");

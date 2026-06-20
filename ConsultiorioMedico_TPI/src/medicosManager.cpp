@@ -416,11 +416,13 @@ void MedicosManager::restaurarCopiaDeSeguridad()
 
 }
 
-void MedicosManager::listarMedicoPorApellido()///AGREGAR CANT ACTIVOS
+void MedicosManager::listarMedicoPorApellido()
 {
-    int cantidadRegistros = _repoMedicos.getCantidadRegistros();
-    Medicos *vec = new Medicos[cantidadRegistros];
-    Medicos aux;
+    int cantTotal = _repoMedicos.getCantidadRegistros();
+    int cantActivos= _repoMedicos.getCantidadActivos();
+
+    Medicos *vec = new Medicos[cantActivos];
+    Medicos aux,reg;
 
 
     if (vec == nullptr)
@@ -428,66 +430,94 @@ void MedicosManager::listarMedicoPorApellido()///AGREGAR CANT ACTIVOS
         cout << "Falla asignacion de memoria" << endl;
         return;
     }
-    _repoMedicos.leer(vec, cantidadRegistros);
 
 
+    int posVec=0;
 
-    for (int i=0; i<cantidadRegistros; i++)
+    for(int i=0;i<cantTotal;i++){
+
+        reg=_repoMedicos.leer(i);
+
+        if(!reg.getEliminado()){
+            vec[posVec]=reg;
+            posVec++;
+        }
+
+    }
+
+    for (int i=0; i<cantActivos-1; i++)
     {
-        for (int x=0; x<cantidadRegistros -1; x++)
+        for (int j=i+1; x<cantActivos; x++)
         {
 
-            if (strcmp (vec[x].getApellido(), vec[x+1].getApellido())> 0 ||
-                    (strcmp(vec[x].getApellido(), vec[x+1].getApellido()) == 0
-                     && strcmp(vec[x].getNombre(), vec[x+1].getNombre()) > 0))
+            if (strcmp (vec[i].getApellido(), vec[j].getApellido())> 0 ||
+                    (strcmp(vec[i].getApellido(), vec[j].getApellido()) == 0
+                     && strcmp(vec[i].getNombre(), vec[j].getNombre()) > 0))
             {
-                aux = vec[x];
-                vec [x] = vec[x+1];
-                vec[x+1]= aux;
+                aux = vec[i];
+                vec [i] = vec[j];
+                vec[j]= aux;
             }
         }
     }
 
     cout <<               "Medicos listados por apellido"                << endl;
 
-    for (int i=0; i<cantidadRegistros; i++)
-    {
+    for (int i=0; i<cantActivos; i++){
+        mostrarMedico(vec[i]);
+        cout <<"----------"<< endl;
 
-        cout << endl;
-        cout << "Apellido: " << vec[i].getApellido()<< endl;
-        cout << "Nombre: " << vec[i].getNombre()<< endl;
-        cout << "ID: " << vec[i].getIdMedico()<< endl;
-        cout << "DNI: " << vec[i].getDni()<< endl;
-        cout << "Especialidad: " << vec[i].getEspecialidad()<< endl;
-        cout << "Telefono; " << vec[i].getTelefono()<< endl;
-        cout << "Matricula; " << vec[i].getMatricula()<< endl;
-
-        cout << "---------------------------------------------------------------"<< endl;
     }
 
     delete []vec;
 }
 
-void MedicosManager::listarMedicoPorEspecialidad()///ORDENAR POR ESPECIALIDAD?
+void MedicosManager::listarMedicoPorEspecialidad()
 {
-    int cantidadRegistros = _repoMedicos.getCantidadRegistros();
-    Medicos reg;
-    char especialidad [30];
+    int cantidadTotal = _repoMedicos.getCantidadRegistros();
+    int cantActivos= _repoMedicos.getCantidadActivos();
+    Medicos reg, aux;
 
-    cout << "Ingrese especialidad a consultar:  " << endl;
-    cin.getline(especialidad,30);
+    Medicos *vec;
+    vec= new Medicos[cantActivos];
+    if(vec==nullptr){
+        cout << "Error" << endl;
+        return;
+    }
 
+    int posVec=0;
 
+    for(int i=0;i<cantidadTotal;i++){
+        reg=_repoMedicos.leer(i);
 
-    for (int i = 0; i<cantidadRegistros; i++)
-    {
-        reg = _repoMedicos.leer(i);
-        if (!reg.getEliminado() && strcmp (especialidad, reg.getEspecialidad()) == 0)
-        {
-            mostrarMedico(reg);
-            cout << endl;
+        if(!reg.getEliminado()){
+            vec[posVec]=reg;
+            posVec++;
         }
     }
+
+    for(int i=0;i<cantActivos-1;i++){
+
+        for(int j=i+1;j<cantActivos;j++){
+
+            if(strcmp(vec[i].getEspecialidad(),vec[j].getEspecialidad())>0){
+
+                aux=vec[i];
+                vec[i]=vec[j];
+                vec[j]=aux;
+
+            }
+        }
+
+    }
+
+    for (int i = 0; i<cantActivos; i++)
+    {
+        mostrarMedico(vec[i]);
+        cout << "----------" << endl;
+    }
+
+    delete []vec;
 }
 
 
@@ -510,7 +540,7 @@ int MedicosManager::recuperarIdMedico (const char* dni)
     return -1;
 }
 
-void MedicosManager::modificarMedico()
+void MedicosManager::modificarMedico()///PENDIENTE!
 {
     char nombre[30], apellido[30], dni [9], especialidad[30], matricula[15],
      telefono[15], honorarios [15];
