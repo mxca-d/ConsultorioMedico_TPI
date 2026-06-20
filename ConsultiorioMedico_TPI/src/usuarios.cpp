@@ -90,6 +90,11 @@ void Usuarios::setIdUsuario(int id)
     _idUsuario=id;
 }
 
+void Usuarios::setFechaNacimiento(Fecha fecha){
+    _fechaNacimiento=fecha;
+
+}
+
 
 
 
@@ -140,6 +145,9 @@ const char* Usuarios::getDni()
 const char* Usuarios::getRol()
 {
     return _rol;
+}
+Fecha Usuarios::getFechaNacimiento(){
+    return _fechaNacimiento;
 }
 
 int Usuarios::getNumeroRol ()

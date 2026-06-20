@@ -16,6 +16,7 @@ public:
     void setTelefono (const char* telefono);
     void setNombre (const char* nombre);
     void setApellido (const char* apellido);
+    void setFechaNacimiento (Fecha fecha);
 
     const char* getDni();
     int getIdUsuario();
@@ -28,6 +29,7 @@ public:
     const char* getTelefono();
     const char* getEmail();
     const char* getRol();
+    Fecha getFechaNacimiento();
     bool getEliminado ();
 
 
@@ -42,6 +44,7 @@ private:
     char _domicilio[30] ;
     char _dni[9];
     char _rol [30];
+    Fecha _fechaNacimiento;
     bool _eliminado;
 };
 

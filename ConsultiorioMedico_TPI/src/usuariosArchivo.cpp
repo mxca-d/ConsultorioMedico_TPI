@@ -29,29 +29,19 @@ int UsuariosArchivo::getCantidadRegistros()
     return bytes / sizeof(Usuarios);
 }
 
-bool UsuariosArchivo::existenRegistros()
-{
-    int cantidad;
-    FILE *p = fopen(_nombreArchivo, "rb");
+int UsuariosArchivo::getCantidadActivos(){
+    Usuarios reg;
+    int cantidad= getCantidadRegistros();
+    int contadorActivos=0;
 
-    if (p == NULL)
-    {
-        return 0;
-    }
+    for(int i=0;i<cantidad;i++){
+        if(reg.getEliminado()!=true){
+            contadorActivos++;
+        }
 
-    fseek(p, 0, SEEK_END);
-    int bytes = ftell(p);
-    fclose(p);
-    cantidad = bytes / sizeof(Usuarios);
-    if (cantidad == 0 )
-    {
-        return false;
     }
-    else
-    {
+    return contadorActivos;
 
-        return true;
-    }
 }
 
 bool UsuariosArchivo::guardar(Usuarios reg)
