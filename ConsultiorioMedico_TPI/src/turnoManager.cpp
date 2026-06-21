@@ -730,7 +730,7 @@ void TurnoManager::atenderTurno()
     do
     {
         valido = false;
-        cout << "DESEA INGRESAR UN NUEVO DIAGNOSTICO? 1.SI/2.NO " << endl;///DEBERIA SER OPCION? NO TENDRIA QUE SER OBKIUGATORIO?
+        cout << "DESEA INGRESAR UN NUEVO DIAGNOSTICO? 1.SI/2.NO " << endl;
         cin >> opcion;
 
         switch(opcion)
@@ -761,7 +761,7 @@ void TurnoManager::atenderTurno()
         cout << "Error" << endl;
     }
 
-    // terminar guardando estado turno...
+
 
 
 
