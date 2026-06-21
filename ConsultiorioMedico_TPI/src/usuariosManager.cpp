@@ -46,21 +46,22 @@ void UsuariosManager::altaUsuario()
     {
         valido = false;
         cout << "INGRESE NOMBRE DE USUARIO: " ;
-        valido = cargarCadena(nombreUsuario,20;)
+        valido = cargarCadena(nombreUsuario,20);
 
-                 if (cancelacionUsuario(nombreUsuario))
+        if (cancelacionUsuario(nombreUsuario))
         {
             cout << "CANCELADO..."<< endl;
             return;
         }
 
-        if( !valido  && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombreUsuario))
+        if( valido  && !_repoUsuarios.buscarCoincidenciaNombreUsuario(nombreUsuario))
         {
             valido = true;
         }
         else
         {
             cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
+            valido = false;
         }
     }
     while (!valido);
@@ -321,63 +322,63 @@ void UsuariosManager::bajaUsuario()
     bool valido = false;
 
 
-        do
+    do
+    {
+
+        cout << "INGRESE NOMBRE DE USUARIO: " ;
+        valido = cargarCadena(nombre,20);
+
+        if (cancelacionUsuario(nombre))
         {
+            cout << "CANCELADO..."<< endl;
+            return;
+        }
 
-            cout << "INGRESE NOMBRE DE USUARIO: " ;
-            valido = cargarCadena(nombre,20);
+        if(valido && _repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
+        {
+            pos = _repoUsuarios.buscarPorNombreUsuario(nombre);
+            usuario = _repoUsuarios.leer(pos);
 
-            if (cancelacionUsuario(nombre))
+            cout << "DESEA DAR DE BAJA EL USUARIO? 1.SI/2.NO/ 0.CANCELAR" << endl;
+            cin >> opcion;
+
+            switch(opcion)
             {
-                cout << "CANCELADO..."<< endl;
-                return;
-            }
-
-            if(valido && _repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
-            {
-                pos = _repoUsuarios.buscarPorNombreUsuario(nombre);
-                usuario = _repoUsuarios.leer(pos);
-
-                cout << "DESEA DAR DE BAJA EL USUARIO? 1.SI/2.NO/ 0.CANCELAR" << endl;
-                cin >> opcion;
-
-                switch(opcion)
+            case 1:
+                usuario.setEliminado(true);
+                if (_repoUsuarios.modificar(usuario,pos))
                 {
-                case 1:
-                    usuario.setEliminado(true);
-                    if (_repoUsuarios.modificar(usuario,pos))
-                    {
-                        cout << "USUARIO ELIMINADO.." << endl;
-                        valido = true;
-
-                    }
-                    else
-                    {
-                        cout << "ERROR, ELIMINACION NO COMPLETADA... " << endl;
-                        valido = true;
-                    }
-
-                    break;
-                case 2:
-                    valido =false;
-                    break;
-                case 0:
-                    return;
-                default:
-                    cout << "OPCION INCORRECTA..." << endl;
-                    break;
+                    cout << "USUARIO ELIMINADO.." << endl;
+                    valido = true;
 
                 }
+                else
+                {
+                    cout << "ERROR, ELIMINACION NO COMPLETADA... " << endl;
+                    valido = true;
+                }
 
+                break;
+            case 2:
+                valido =false;
+                break;
+            case 0:
+                return;
+            default:
+                cout << "OPCION INCORRECTA..." << endl;
+                break;
 
             }
-            else
-            {
-                cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
-                valido = false;
-            }
+
+
         }
-        while (!valido);
+        else
+        {
+            cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
+            valido = false;
+        }
+    }
+    while (!valido);
 
 
 }
