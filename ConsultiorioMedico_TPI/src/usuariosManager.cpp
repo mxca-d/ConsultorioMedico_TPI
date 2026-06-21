@@ -551,7 +551,8 @@ void UsuariosManager::modificarUsuario(const char* dni)
         cout << "                   2. CONTRASEÑA " << endl;
         cout << "                   3. DOMICILIO "<< endl;
         cout << "                   4. TELEFONO " << endl;
-        cout << "                   5. Email " << endl;
+        cout << "                   5. EMAIL " << endl;
+        cout << "                   6. ESTADO " << endl;
         if (cin.peek() == '\n')
         {
             cin.ignore();
@@ -738,6 +739,49 @@ void UsuariosManager::modificarUsuario(const char* dni)
                 valido= false;
             }
             break;
+        case 6:
+            {
+            int seleccion;
+            cout << "El estado actual es ";
+            if(u.getEliminado()){
+                cout << "Inactivo." << endl;
+                do
+                {
+                    valido=true;
+                    cout <<"Desea activarlo nuevamente? 1.SI/2.NO" << endl;
+                    if (cin.peek() == '\n')
+                    {
+                        cin.ignore();
+                    }
+                    cin>>seleccion;
+                    if(cin.fail())
+                    {
+                        cin.clear();
+                        cin.ignore(10000,'\n');
+                        valido = false;
+                    }
+
+                }
+                while(seleccion!=1 && seleccion!=2 && !valido);
+
+                if(seleccion==2)
+                {
+                    cout << "OPERACION CANCELADA..."<< endl;
+                    system("pause");
+                    return;
+                }else{
+                    u.setEliminado(false);
+                }
+
+            }else{
+                cout << "Activo. No se aceptan modificaciones." << endl;
+            }
+
+            system("pause");
+
+            break;
+            }
+
         case 0:
             return;
         default:

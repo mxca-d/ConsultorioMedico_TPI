@@ -41,7 +41,7 @@ int PacienteArchivo::buscarPorDni(const char* dni){
     for(int i=0;i<cantidad;i++){
         reg= leer(i);
 
-        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni)==0){
+        if(strcmp(reg.getDni(),dni)==0){
             return i;
         }
 
@@ -95,7 +95,7 @@ bool PacienteArchivo::buscarCoincidenciaDni(const char* dni){
     for(int i=0;i<cantidad;i++){
         reg= leer(i);
 
-        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni) ==0){
+        if(strcmp(reg.getDni(),dni) ==0){
             return true;
         }
 

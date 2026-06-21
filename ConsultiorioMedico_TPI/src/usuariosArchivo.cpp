@@ -125,7 +125,7 @@ bool UsuariosArchivo::buscarCoincidenciaDni (const char* dni)
     {
         reg= leer(i);
 
-        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni)==0)
+        if(strcmp(reg.getDni(),dni)==0)
         {
             return true;
         }
@@ -168,7 +168,7 @@ int UsuariosArchivo::buscarPorDni(const char* dni)
     {
         reg= leer(i);
 
-        if(reg.getEliminado()==false && strcmp(reg.getDni(),dni)==0)
+        if(strcmp(reg.getDni(),dni)==0)
         {
             return i;
         }

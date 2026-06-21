@@ -65,7 +65,8 @@ void MedicosManager::altaMedico()
 
                 if (_repoMedicos.buscarCoincidenciaDni (cargar[i].pDestino))
                 {
-                    cout << "Ya existe un paciente con ese DNI..." << endl;
+
+                    cout << "Ya existe un medico con ese DNI..." << endl;
                     return;
                 }
             }
@@ -614,7 +615,8 @@ void MedicosManager::modificarMedico()
         cout << "9-Dias atencion" << endl;
         cout << "10-Especialidad" << endl;
         cout << "11-Matricula" << endl;
-        cout << "12-Cancelar" << endl;
+        cout << "12-Estado" << endl;
+        cout << "13-Cancelar" << endl;
         cout << "0-Guardar y salir" << endl;
         cout << "-----------------------------" << endl;
         cin>>opcion;
@@ -851,10 +853,55 @@ void MedicosManager::modificarMedico()
             m.setMatricula(matricula);
 
         case 12:
+            {
+            int seleccion;
+            cout << "El estado actual es ";
+            if(m.getEliminado()){
+                cout << "Inactivo." << endl;
+                do
+                {
+                    valido=true;
+                    cout <<"Desea activarlo nuevamente? 1.SI/2.NO" << endl;
+                    if (cin.peek() == '\n')
+                    {
+                        cin.ignore();
+                    }
+                    cin>>seleccion;
+                    if(cin.fail())
+                    {
+                        cin.clear();
+                        cin.ignore(10000,'\n');
+                        valido = false;
+                    }
+
+                }
+                while(seleccion!=1 && seleccion!=2 && !valido);
+
+                if(seleccion==2)
+                {
+                    cout << "OPERACION CANCELADA..."<< endl;
+                    system("pause");
+                    return;
+                }else{
+                    m.setEliminado(false);
+                }
+
+            }else{
+                cout << "Activo. No se aceptan modificaciones." << endl;
+            }
+
+            system("pause");
+
+            break;
+            }
+        case 13:
             cout << "MODIFICACION CANCELADA...." << endl;
             cout << "NO SE GUARDARON CAMBIOS... " << endl;
             return;
 
+            break;
+
+        case 0:
             break;
         default:
             cout << "Opcion invalida... intente nuevamente" << endl;

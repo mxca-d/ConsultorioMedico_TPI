@@ -308,7 +308,8 @@ void PacienteManager::modificarPaciente()
         cout << "6-Telefono" << endl;
         cout << "7-Email" << endl;
         cout << "8-Obra social" << endl;
-        cout << "9-Cancelar" << endl;
+        cout << "9-Estado" << endl;
+        cout << "10-Cancelar" << endl;
         cout << "0-Guardar y salir" << endl;
         cout << "-----------------------------" << endl;
         cin>>opcion;
@@ -475,9 +476,54 @@ void PacienteManager::modificarPaciente()
             break;
 
         case 9:
+            {
+            int seleccion;
+            cout << "El estado actual es ";
+            if(p.getEliminado()){
+                cout << "Inactivo." << endl;
+                do
+                {
+                    valido=true;
+                    cout <<"Desea activarlo nuevamente? 1.SI/2.NO" << endl;
+                    if (cin.peek() == '\n')
+                    {
+                        cin.ignore();
+                    }
+                    cin>>seleccion;
+                    if(cin.fail())
+                    {
+                        cin.clear();
+                        cin.ignore(10000,'\n');
+                        valido = false;
+                    }
+
+                }
+                while(seleccion!=1 && seleccion!=2 && !valido);
+
+                if(seleccion==2)
+                {
+                    cout << "OPERACION CANCELADA..."<< endl;
+                    system("pause");
+                    return;
+                }else{
+                    p.setEliminado(false);
+                }
+
+            }else{
+                cout << "Activo. No se aceptan modificaciones." << endl;
+            }
+
+            system("pause");
+
+            break;
+            }
+        case 10:
             cout << "MODIFICACION CANCELADA...." << endl;
             cout << "NO SE GUARDARON CAMBIOS... " << endl;
             return;
+
+        case 0:
+            break;
 
         default:
             cout << "Opcion invalida... intente nuevamente" << endl;

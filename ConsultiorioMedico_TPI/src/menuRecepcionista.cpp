@@ -4,7 +4,7 @@
 using namespace std;
 
 MenuRecepcionista::MenuRecepcionista(){
-   setCantidadOpciones(5);
+   setCantidadOpciones(6);
 }
 
 void MenuRecepcionista::mostrarOpciones(){
@@ -16,6 +16,7 @@ void MenuRecepcionista::mostrarOpciones(){
    cout << "PACIENTES:                   "<< endl;
    cout << "4- DAR DE ALTA"<<endl;
    cout << "5- DAR DE BAJA"<<endl;
+   cout << "6- MODIFICAR"<<endl;
    cout << endl;
    cout << "0- SALIR"<<endl;
    cout << "------------------------"<<endl;
@@ -37,6 +38,9 @@ void MenuRecepcionista::ejecutarOpcion(int opcion){
     break;
    case 5:
     _pacienteManager.bajaPaciente();
+    break;
+    case 6:
+    _pacienteManager.modificarPaciente();
     break;
    case 0:
       cout << "Saliendo.." << endl;
