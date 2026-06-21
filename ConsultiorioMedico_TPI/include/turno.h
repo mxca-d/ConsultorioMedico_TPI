@@ -7,7 +7,7 @@ class Turno
 private:
     int _idTurno;
     int _idPaciente;
-    char _dniPaciente [8];
+    char _dniPaciente [9];
     int _idMedico;
     Fecha _fechaTurno;
     char _hora[6];

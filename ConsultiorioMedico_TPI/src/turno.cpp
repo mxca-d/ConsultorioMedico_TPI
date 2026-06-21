@@ -64,10 +64,9 @@ void Turno::setIdMedico(int id)
 
 void Turno::setFechaTurno(Fecha fecha)
 {
-    if(fecha.fechaValida(_fechaTurno.getDia(),_fechaTurno.getMes(), _fechaTurno.getAnio()))
-    {
-        _fechaTurno=fecha;
-    }
+
+    _fechaTurno=fecha;
+
 
 }
 

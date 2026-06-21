@@ -145,6 +145,7 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
 
 
 
+
     posArancel = _repoArancel.buscarPorIdObraSocialYEspecialidad(paciente.getIdObraSocial(),especialidad);
     if (posArancel >= 0)
     {
@@ -154,7 +155,12 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
     float descArancel = medico.getHonorarios() *arancel.getCobertura() /100;
     costoConsulta = medico.getHonorarios() - descArancel;
 
-    turno = opciones[opcionTurno-1];
+
+    Turno opcionElegida= opciones[opcionTurno-1];
+
+    turno.setIdMedico(opcionElegida.getIdMedico());
+    turno.setFechaTurno(opcionElegida.getFechaTurno());
+    turno.setHora(opcionElegida.getHora());
     turno.setIdPaciente(paciente.getIdPaciente());
     turno.setDniPaciente(dniPaciente);
     turno.setCostoConsulta(costoConsulta);
@@ -167,6 +173,7 @@ void TurnoManager::altaTurno() ///ALTA TURNO NUEVO- A CHEQUEAR
     {
         system("cls");
         mostrarTurno(turno);
+
         cout <<"CONFIRMAR TURNO? 1.SI/2.NO" << endl;
         cin >>seleccion;
         if (cancelacionUsuario(seleccion)){
@@ -684,6 +691,9 @@ void TurnoManager::atenderTurno()
         switch(opcion)
         {
         case 1:
+            {
+
+            bool bandHistorial=false;
             cantRegistros = _repoHistorial.getCantidadRegistros();
             for (int i=0; i<cantRegistros; i++)
             {
@@ -691,14 +701,20 @@ void TurnoManager::atenderTurno()
                 historial = _repoHistorial.leer(i);
                 if(turno.getIdPaciente() == historial.getIdPaciente() )
                 {
-
+                    bandHistorial=true;
                     _managerHistorial.mostrarHistorial(historial);
                     cout << "-------------------------------------------------" << endl;
                 }
 
             }
+
+            if(!bandHistorial){
+                    cout << "El paciente no posee historial aun..." << endl;
+            }
+
             valido = true;
             break;
+            }
         case 2:
             valido =true;
             break;

@@ -198,6 +198,13 @@ void MedicosManager::altaMedico()
     usuario.setPassword("1234");
     usuario.setRol(2);
     usuario.setEliminado(false);
+    usuario.setNombre(nombre);
+    usuario.setApellido(apellido);
+    usuario.setTelefono(telefono);
+    usuario.setDomicilio(domicilio);
+    usuario.setEmail(email);
+    usuario.setFechaNacimiento(fechaNacimiento);
+
 
     mostrarMedico (m);
 
@@ -315,6 +322,7 @@ void MedicosManager::listarMedicoEspecialidad(const char* especialidad)
         {
             cout << "idMedico: " << m.getIdMedico() << endl;
             cout << "Medico: " << m.getApellido() << ", " << m.getNombre() << endl;
+            cout << "Especialidad: " << m.getEspecialidad() << endl;
             cout << "-------------------------------------------------------------" << endl;
             coincidencias ++;
 
