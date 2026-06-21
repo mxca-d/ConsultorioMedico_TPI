@@ -48,7 +48,7 @@ void UsuariosManager::altaUsuario()
         cout << "INGRESE NOMBRE DE USUARIO: " ;
         valido = cargarCadena(nombreUsuario,20);
 
-            if (cancelacionUsuario(nombreUsuario))
+        if (cancelacionUsuario(nombreUsuario))
         {
             cout << "CANCELADO..."<< endl;
             return;
@@ -137,6 +137,12 @@ void UsuariosManager::altaUsuario()
         cout << "              2. MEDICO." << endl;
         cout << "              3. RECEPCIONISTA." << endl;
         cin >> rol;
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+        }
 
         switch(rol)
         {
@@ -323,63 +329,69 @@ void UsuariosManager::bajaUsuario()
     bool valido = false;
 
 
-        do
+    do
+    {
+
+        cout << "INGRESE NOMBRE DE USUARIO: " ;
+        valido = cargarCadena(nombre,20);
+
+        if (cancelacionUsuario(nombre))
         {
+            cout << "CANCELADO..."<< endl;
+            return;
+        }
 
-            cout << "INGRESE NOMBRE DE USUARIO: " ;
-            valido = cargarCadena(nombre,20);
+        if(valido && _repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
+        {
+            pos = _repoUsuarios.buscarPorNombreUsuario(nombre);
+            usuario = _repoUsuarios.leer(pos);
 
-            if (cancelacionUsuario(nombre))
+            cout << "DESEA DAR DE BAJA EL USUARIO? 1.SI/2.NO/ 0.CANCELAR" << endl;
+            cin >> opcion;
+            if(cin.fail())
             {
-                cout << "CANCELADO..."<< endl;
-                return;
+                cin.clear();
+                cin.ignore(10000,'\n');
+
             }
 
-            if(valido && _repoUsuarios.buscarCoincidenciaNombreUsuario(nombre))
+            switch(opcion)
             {
-                pos = _repoUsuarios.buscarPorNombreUsuario(nombre);
-                usuario = _repoUsuarios.leer(pos);
-
-                cout << "DESEA DAR DE BAJA EL USUARIO? 1.SI/2.NO/ 0.CANCELAR" << endl;
-                cin >> opcion;
-
-                switch(opcion)
+            case 1:
+                usuario.setEliminado(true);
+                if (_repoUsuarios.modificar(usuario,pos))
                 {
-                case 1:
-                    usuario.setEliminado(true);
-                    if (_repoUsuarios.modificar(usuario,pos))
-                    {
-                        cout << "USUARIO ELIMINADO.." << endl;
-                        valido = true;
-
-                    }
-                    else
-                    {
-                        cout << "ERROR, ELIMINACION NO COMPLETADA... " << endl;
-                        valido = true;
-                    }
-
-                    break;
-                case 2:
-                    valido =false;
-                    break;
-                case 0:
-                    return;
-                default:
-                    cout << "OPCION INCORRECTA..." << endl;
-                    break;
+                    cout << "USUARIO ELIMINADO.." << endl;
+                    valido = true;
 
                 }
+                else
+                {
+                    cout << "ERROR, ELIMINACION NO COMPLETADA... " << endl;
+                    valido = true;
+                }
 
+                break;
+            case 2:
+                valido =false;
+                break;
+            case 0:
+                return;
+            default:
+                cout << "OPCION INCORRECTA..." << endl;
+                break;
 
             }
-            else
-            {
-                cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
-                valido = false;
-            }
+
+
         }
-        while (!valido);
+        else
+        {
+            cout<< "USUARIO INCORRECTO O EXISTENTE" << endl;
+            valido = false;
+        }
+    }
+    while (!valido);
 
 
 }
@@ -390,30 +402,30 @@ void UsuariosManager::listarUsuarios()
     int cantidadRegistros;
 
     cantidadRegistros = _repoUsuarios.getCantidadRegistros();
-     cout << "+-----------------USUARIOS-----------------+" << endl;
-        for (int i=0; i<cantidadRegistros; i++)
+    cout << "+-----------------USUARIOS-----------------+" << endl;
+    for (int i=0; i<cantidadRegistros; i++)
+    {
+        u = _repoUsuarios.leer(i);
+        cout << " ID USUARIO: "<< u.getIdUsuario() << endl;
+        cout << " USUARIO: "<< u.getNombreUsuario()<< endl;
+        cout << " ROL: " << u.getRol() << endl;
+        if (u.getEliminado())
         {
-            u = _repoUsuarios.leer(i);
-            cout << " ID USUARIO: "<< u.getIdUsuario() << endl;
-            cout << " USUARIO: "<< u.getNombreUsuario()<< endl;
-            cout << " ROL: " << u.getRol() << endl;
-            if (u.getEliminado())
-            {
-                cout << "ESTADO: ELIMINADO " << endl;
+            cout << "ESTADO: ELIMINADO " << endl;
 
-            }
-            else
-            {
-                cout << "ESTADO: ACTIVO " << endl;
-            }
-            cout << "NOMBRE: " << u.getNombre() << endl;
-            cout << "APELLIDO: " << u.getApellido() << endl;
-            cout << "DOMICILIO: "<< u.getDomicilio() << endl;
-            cout << "DNI: " << u.getDni() <<endl;
-            cout << "TELEFONO: " << u.getTelefono() << endl;
-            cout << "EMAIL: " << u.getEmail() <<endl;
-            cout << "+-----------------------------------------------------+" << endl;
         }
+        else
+        {
+            cout << "ESTADO: ACTIVO " << endl;
+        }
+        cout << "NOMBRE: " << u.getNombre() << endl;
+        cout << "APELLIDO: " << u.getApellido() << endl;
+        cout << "DOMICILIO: "<< u.getDomicilio() << endl;
+        cout << "DNI: " << u.getDni() <<endl;
+        cout << "TELEFONO: " << u.getTelefono() << endl;
+        cout << "EMAIL: " << u.getEmail() <<endl;
+        cout << "+-----------------------------------------------------+" << endl;
+    }
 
 }
 
@@ -558,7 +570,12 @@ void UsuariosManager::modificarUsuario(const char* dni)
             cin.ignore();
         }
         cin >> opcion;
-        cin.ignore();
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+        }
 
         switch (opcion)
         {
@@ -740,10 +757,11 @@ void UsuariosManager::modificarUsuario(const char* dni)
             }
             break;
         case 6:
-            {
+        {
             int seleccion;
             cout << "El estado actual es ";
-            if(u.getEliminado()){
+            if(u.getEliminado())
+            {
                 cout << "Inactivo." << endl;
                 do
                 {
@@ -769,18 +787,22 @@ void UsuariosManager::modificarUsuario(const char* dni)
                     cout << "OPERACION CANCELADA..."<< endl;
                     system("pause");
                     return;
-                }else{
+                }
+                else
+                {
                     u.setEliminado(false);
                 }
 
-            }else{
+            }
+            else
+            {
                 cout << "Activo. No se aceptan modificaciones." << endl;
             }
 
             system("pause");
 
             break;
-            }
+        }
 
         case 0:
             return;

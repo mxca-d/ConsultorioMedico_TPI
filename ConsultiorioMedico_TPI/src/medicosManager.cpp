@@ -50,8 +50,10 @@ void MedicosManager::altaMedico()
             cout << cargar [i].texto;
             valido=cargarCadena(cargar[i].pDestino,cargar[i].tamanio);
 
-            if(i==0 || i==1){
-                if(!soloLetras(cargar[i].pDestino)){
+            if(i==0 || i==1)
+            {
+                if(!soloLetras(cargar[i].pDestino))
+                {
                     valido=false;
                 }
             }
@@ -59,7 +61,8 @@ void MedicosManager::altaMedico()
 
             if (i == 2)
             {
-                if(!dniValido(cargar[i].pDestino)){
+                if(!dniValido(cargar[i].pDestino))
+                {
                     valido=false;
                 }
 
@@ -86,7 +89,8 @@ void MedicosManager::altaMedico()
 
             todoMayuscula (cargar[i].pDestino);
 
-            if(!valido){
+            if(!valido)
+            {
                 cout << "Invalido. Vuelva a intentarlo..." << endl;
             }
         }
@@ -103,13 +107,16 @@ void MedicosManager::altaMedico()
             cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
             system("pause");
 
-        }else if(!fechaNacimiento.esMenor(hoy)){
+        }
+        else if(!fechaNacimiento.esMenor(hoy))
+        {
             cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
             fechaValida=false;
             system("pause");
         }
 
-    }while(!fechaValida);
+    }
+    while(!fechaValida);
 
 
     do
@@ -117,7 +124,12 @@ void MedicosManager::altaMedico()
         mostrarEspecialidades();
         cout << "Elija una especialidad: " << endl;
         cin >> opcion;
-        cin.ignore();
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+        }
         valido = cargarEspecialidad(opcion,especialidad);
     }
     while(!valido);
@@ -127,7 +139,12 @@ void MedicosManager::altaMedico()
         valido = true;
         cout << "Valor consulta: " ;
         cin >> honorarios;
-        cin.ignore();
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+        }
 
         if (cancelacionUsuario (honorarios))
         {
@@ -151,6 +168,12 @@ void MedicosManager::altaMedico()
             cout << "0. para cancelar carga. " << endl;
             mostrarDiaAgenda(i);
             cin >> opcion;
+            if(cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000,'\n');
+
+            }
 
             switch (opcion)
             {
@@ -246,6 +269,12 @@ void MedicosManager::bajaMedico()
 
     cout << "Ingrese el ID del medico a dar de baja:";
     cin>>id;
+    if(cin.fail())
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+
+    }
     cout << endl;
 
     pos=_repoMedicos.buscarPorId(id);
@@ -296,6 +325,12 @@ void MedicosManager::mostrarPorId()
 
     cout << "Ingrese el ID: ";
     cin >> id;
+    if(cin.fail())
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+
+    }
 
     int posicion = _repoMedicos.buscarPorId(id);
     if (posicion >= 0)
@@ -445,11 +480,13 @@ void MedicosManager::listarMedicoPorApellido()
 
     int posVec=0;
 
-    for(int i=0;i<cantTotal;i++){
+    for(int i=0; i<cantTotal; i++)
+    {
 
         reg=_repoMedicos.leer(i);
 
-        if(!reg.getEliminado()){
+        if(!reg.getEliminado())
+        {
             vec[posVec]=reg;
             posVec++;
         }
@@ -474,7 +511,8 @@ void MedicosManager::listarMedicoPorApellido()
 
     cout <<               "Medicos listados por apellido"                << endl;
 
-    for (int i=0; i<cantActivos; i++){
+    for (int i=0; i<cantActivos; i++)
+    {
         mostrarMedico(vec[i]);
         cout <<"----------"<< endl;
 
@@ -491,27 +529,33 @@ void MedicosManager::listarMedicoPorEspecialidad()
 
     Medicos *vec;
     vec= new Medicos[cantActivos];
-    if(vec==nullptr){
+    if(vec==nullptr)
+    {
         cout << "Error" << endl;
         return;
     }
 
     int posVec=0;
 
-    for(int i=0;i<cantidadTotal;i++){
+    for(int i=0; i<cantidadTotal; i++)
+    {
         reg=_repoMedicos.leer(i);
 
-        if(!reg.getEliminado()){
+        if(!reg.getEliminado())
+        {
             vec[posVec]=reg;
             posVec++;
         }
     }
 
-    for(int i=0;i<cantActivos-1;i++){
+    for(int i=0; i<cantActivos-1; i++)
+    {
 
-        for(int j=i+1;j<cantActivos;j++){
+        for(int j=i+1; j<cantActivos; j++)
+        {
 
-            if(strcmp(vec[i].getEspecialidad(),vec[j].getEspecialidad())>0){
+            if(strcmp(vec[i].getEspecialidad(),vec[j].getEspecialidad())>0)
+            {
 
                 aux=vec[i];
                 vec[i]=vec[j];
@@ -554,7 +598,7 @@ int MedicosManager::recuperarIdMedico (const char* dni)
 void MedicosManager::modificarMedico()
 {
     char nombre[30], apellido[30], dni [9], especialidad[30], matricula[15],
-     telefono[15], domicilio[30], email[30];
+         telefono[15], domicilio[30], email[30];
     Fecha fechaNacimiento, hoy;
     hoy.setHoy();
     float honorarios;
@@ -565,11 +609,13 @@ void MedicosManager::modificarMedico()
 
 
 
-    do{
+    do
+    {
         valido = true;
         cout << "Ingrese el DNI del medico a modificar: ";
         cargarCadena(dni,9);
-        if(!dniValido(dni)){
+        if(!dniValido(dni))
+        {
             valido=false;
         }
         if (cancelacionUsuario(dni))
@@ -577,11 +623,13 @@ void MedicosManager::modificarMedico()
             system("pause");
             return;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "DNI invalido. Intente nuevamente..." << endl;
         }
 
-    }while(!valido);
+    }
+    while(!valido);
 
 
 
@@ -620,44 +668,57 @@ void MedicosManager::modificarMedico()
         cout << "0-Guardar y salir" << endl;
         cout << "-----------------------------" << endl;
         cin>>opcion;
-        cin.ignore();
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+        }
         switch(opcion)
         {
         case 1:
-            do{
+            do
+            {
                 system("cls");
                 valido=true;
                 cout << "Nombre: ";
                 valido=cargarCadena(nombre,30);
 
-                if(!soloLetras(nombre)){
+                if(!soloLetras(nombre))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Nombre invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             todoMayuscula(nombre);
             m.setNombre(nombre);
 
             break;
         case 2:
-            do{
+            do
+            {
                 system("cls");
                 valido=true;
                 cout << "Apellido: ";
                 valido=cargarCadena(apellido,30);
 
-                if(!soloLetras(apellido)){
+                if(!soloLetras(apellido))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Apellido invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             todoMayuscula(apellido);
             m.setApellido(apellido);
@@ -682,45 +743,53 @@ void MedicosManager::modificarMedico()
             m.setFechaNacimiento(fechaNacimiento);
             break;
         case 4:
-             do{
+            do
+            {
                 valido = true;
 
                 system("cls");
                 cout << "DNI: ";
                 valido=cargarCadena(dni,9);
 
-                if(!dniValido(dni)){
+                if(!dniValido(dni))
+                {
                     cout << "DNI invalido. Vuelva a intentarlo..." << endl;
                     system("pause");
                     valido = false;
                 }
                 else if(strcmp(dni, m.getDni()) != 0 &&
-                        _repoMedicos.buscarCoincidenciaDni(dni)){
+                        _repoMedicos.buscarCoincidenciaDni(dni))
+                {
                     cout << "Ya existe un paciente con este DNI." << endl;
                     system("pause");
                     valido = false;
                 }
 
-            }while(!valido);
+            }
+            while(!valido);
 
             m.setDni(dni);
 
             break;
         case 5:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Domicilio: ";
                 valido=cargarCadena(domicilio,30);
 
-                if(!letrasYNumeros(domicilio)){
+                if(!letrasYNumeros(domicilio))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Domicilio invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             todoMayuscula(domicilio);
             m.setDomicilio(domicilio);
@@ -728,36 +797,43 @@ void MedicosManager::modificarMedico()
             break;
 
         case 6:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Telefono: ";
                 valido=cargarCadena(telefono,15);
 
-                if(!soloNumeros(telefono)){
+                if(!soloNumeros(telefono))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Telefono invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             m.setTelefono(telefono);
 
             break;
         case 7:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Email: ";
                 valido=cargarCadena(email,30);
 
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Email invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             todoMayuscula(email);
             m.setEmail(email);
@@ -769,7 +845,12 @@ void MedicosManager::modificarMedico()
                 valido = true;
                 cout << "Valor consulta: " ;
                 cin >> honorarios;
-                cin.ignore();
+                if(cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(10000,'\n');
+
+                }
 
                 valido = validacionImportes (honorarios);
 
@@ -792,6 +873,12 @@ void MedicosManager::modificarMedico()
                     cout << "0. para cancelar carga. " << endl;
                     mostrarDiaAgenda(i);
                     cin >> opcion;
+                    if(cin.fail())
+                    {
+                        cin.clear();
+                        cin.ignore(10000,'\n');
+
+                    }
 
                     switch (opcion)
                     {
@@ -826,7 +913,12 @@ void MedicosManager::modificarMedico()
                 mostrarEspecialidades();
                 cout << "Elija una especialidad: " << endl;
                 cin >> opcion;
-                cin.ignore();
+                if(cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(10000,'\n');
+
+                }
                 valido = cargarEspecialidad(opcion,especialidad);
             }
             while(!valido);
@@ -835,37 +927,38 @@ void MedicosManager::modificarMedico()
             break;
 
         case 11:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Matricula: ";
                 valido=cargarCadena(matricula,15);
 
-                if(!soloNumeros(matricula)){
+                if(!soloNumeros(matricula))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Matricula invalida. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             m.setMatricula(matricula);
 
         case 12:
-            {
+        {
             int seleccion;
             cout << "El estado actual es ";
-            if(m.getEliminado()){
+            if(m.getEliminado())
+            {
                 cout << "Inactivo." << endl;
                 do
                 {
                     valido=true;
                     cout <<"Desea activarlo nuevamente? 1.SI/2.NO" << endl;
-                    if (cin.peek() == '\n')
-                    {
-                        cin.ignore();
-                    }
                     cin>>seleccion;
                     if(cin.fail())
                     {
@@ -882,18 +975,22 @@ void MedicosManager::modificarMedico()
                     cout << "OPERACION CANCELADA..."<< endl;
                     system("pause");
                     return;
-                }else{
+                }
+                else
+                {
                     m.setEliminado(false);
                 }
 
-            }else{
+            }
+            else
+            {
                 cout << "Activo. No se aceptan modificaciones." << endl;
             }
 
             system("pause");
 
             break;
-            }
+        }
         case 13:
             cout << "MODIFICACION CANCELADA...." << endl;
             cout << "NO SE GUARDARON CAMBIOS... " << endl;

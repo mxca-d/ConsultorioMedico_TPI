@@ -22,47 +22,59 @@ void PacienteManager::altaPaciente()
 
     cout << "-------------------PACIENTES-------------------" << endl;
     cout << "INGRESE 0 PARA CANCELAR LA OPERACION..." << endl <<endl;
-    do{
+    do
+    {
 
         valido=true;
         cout << "Nombre: ";
         valido=cargarCadena(nombre,30);
-        if(cancelacionUsuario(nombre)){
+        if(cancelacionUsuario(nombre))
+        {
             system("pause");
             return;
         }
-        if(!soloLetras(nombre)){
+        if(!soloLetras(nombre))
+        {
             valido=false;
 
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "Nombre invalido. Vuelva a intentarlo..."<< endl;
             system("pause");
-        }else{
+        }
+        else
+        {
             valido=true;
         }
-    }while(!valido);
+    }
+    while(!valido);
 
     todoMayuscula(nombre);
     p.setNombre(nombre);
 
-    do{
+    do
+    {
         valido=true;
         cout << "Apellido: ";
         valido=cargarCadena(apellido,30);
-        if(cancelacionUsuario(apellido)){
+        if(cancelacionUsuario(apellido))
+        {
             system("pause");
             return;
         }
 
-        if(!soloLetras(apellido)){
+        if(!soloLetras(apellido))
+        {
             valido=false;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "Apellido invalido. Vuelva a intentarlo..."<< endl;
             system("pause");
         }
-    }while(!valido);
+    }
+    while(!valido);
 
     todoMayuscula(apellido);
     p.setApellido(apellido);
@@ -78,117 +90,151 @@ void PacienteManager::altaPaciente()
             cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
             system("pause");
 
-        }else if(!fechaNacimiento.esMenor(hoy)){
+        }
+        else if(!fechaNacimiento.esMenor(hoy))
+        {
             cout << "Fecha invalida. Vuelva a intentarlo..."<< endl;
             fechaValida=false;
             system("pause");
         }
 
-    }while(!fechaValida);
+    }
+    while(!fechaValida);
 
     p.setFechaNacimiento(fechaNacimiento);
 
-    do{
+    do
+    {
         valido = true;
         cout << "DNI: ";
         valido=cargarCadena(dni,9);
-        if(cancelacionUsuario(dni)){
+        if(cancelacionUsuario(dni))
+        {
             system("pause");
             return;
         }
-        if(!dniValido(dni)){
+        if(!dniValido(dni))
+        {
             valido=false;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "DNI invalido. Vuelva a intentarlo..."<< endl;
             valido=false;
             system("pause");
-        }else if(repoPaciente.buscarCoincidenciaDni(dni)){
+        }
+        else if(repoPaciente.buscarCoincidenciaDni(dni))
+        {
             cout << "Ya existe un paciente con ese DNI..." << endl;
             system("pause");
             valido=false;
         }
 
 
-    }while(!valido);
+    }
+    while(!valido);
 
     p.setDni(dni);
 
-    do{
+    do
+    {
         valido = true;
         cout << "Domicilio: ";
         valido=cargarCadena(domicilio,30);
-        if(cancelacionUsuario(domicilio)){
+        if(cancelacionUsuario(domicilio))
+        {
             system("pause");
             return;
         }
-        if(!letrasYNumeros(domicilio)){
+        if(!letrasYNumeros(domicilio))
+        {
             valido=false;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "Domicilio invalido. Vuelva a intentarlo..."<< endl;
             system("pause");
         }
-    }while(!valido);
+    }
+    while(!valido);
 
     todoMayuscula(domicilio);
     p.setDomicilio(domicilio);
 
-    do{
+    do
+    {
         valido = true;
         cout << "Telefono: ";
         valido=cargarCadena(telefono,15);
-        if(cancelacionUsuario(telefono)){
+        if(cancelacionUsuario(telefono))
+        {
             system("pause");
             return;
         }
-        if(!soloNumeros(telefono)){
+        if(!soloNumeros(telefono))
+        {
             valido=false;
         }
 
-        if(!valido){
+        if(!valido)
+        {
             cout << "Telefono invalido. Vuelva a intentarlo..."<< endl;
             system("pause");
         }
-    }while(!valido);
+    }
+    while(!valido);
 
     p.setTelefono(telefono);
 
-    do{
+    do
+    {
         valido = true;
         cout << "Email: ";
         valido=cargarCadena(email,30);
-        if(cancelacionUsuario(email)){
+        if(cancelacionUsuario(email))
+        {
             system("pause");
             return;
         }
         cout << endl;
-        if(!valido){
+        if(!valido)
+        {
             cout << "Email invalido. Vuelva a intentarlo..."<< endl;
             system("pause");
         }
-    }while(!valido);
+    }
+    while(!valido);
 
     todoMayuscula(email);
     p.setEmail(email);
 
 
-    do{
+    do
+    {
         valido=true;
         cout << "Obra Social: ";
         managerObraSocial.listarObrasSociales();
         cout << "Ingresar ID de la obra social a la que pertenezca:" << endl;
         cin>> opcionObraSocial;
-        if(cancelacionUsuario(opcionObraSocial)){
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+        }
+        if(cancelacionUsuario(opcionObraSocial))
+        {
             system("pause");
             return;
         }
-        if(!repoObraSocial.buscarCoincidenciaId(opcionObraSocial)){
+        if(!repoObraSocial.buscarCoincidenciaId(opcionObraSocial))
+        {
             valido=false;
             cout << "ID invalido. Vuelva a intentarlo..."<< endl;
             system("pause");
         }
-    }while(!valido);
+    }
+    while(!valido);
 
     regObraSocial=repoObraSocial.leer(repoObraSocial.buscarPorId(opcionObraSocial));
 
@@ -220,20 +266,24 @@ void PacienteManager::bajaPaciente()
     bool valido;
 
     int pos;
-    do{
+    do
+    {
         system("cls");
         valido=true;
         cout << "Ingrese el DNI del paciente a dar de baja:";
         valido=cargarCadena(dni,9);
-        if(!dniValido(dni)){
+        if(!dniValido(dni))
+        {
             valido=false;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "DNI invalido. Vuelva a intentar..." << endl;
             system("pause");
         }
 
-    }while(!valido);
+    }
+    while(!valido);
 
     cout << endl;
 
@@ -279,6 +329,12 @@ void PacienteManager::modificarPaciente()
 
     cout << "Ingrese el DNI del paciente a modificar:";
     cin>>dniBusqueda;
+    if(cin.fail())
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+
+    }
     cout << endl;
 
     pos=repoPaciente.buscarPorDni(dniBusqueda);
@@ -313,43 +369,57 @@ void PacienteManager::modificarPaciente()
         cout << "0-Guardar y salir" << endl;
         cout << "-----------------------------" << endl;
         cin>>opcion;
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+        }
         switch(opcion)
         {
         case 1:
-            do{
+            do
+            {
                 system("cls");
                 valido=true;
                 cout << "Nombre: ";
                 valido=cargarCadena(nombre,30);
 
-                if(!soloLetras(nombre)){
+                if(!soloLetras(nombre))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Nombre invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             todoMayuscula(nombre);
             p.setNombre(nombre);
 
             break;
         case 2:
-            do{
+            do
+            {
                 system("cls");
                 valido=true;
                 cout << "Apellido: ";
                 valido=cargarCadena(apellido,30);
 
-                if(!soloLetras(apellido)){
+                if(!soloLetras(apellido))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Apellido invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             todoMayuscula(apellido);
             p.setApellido(apellido);
@@ -374,99 +444,123 @@ void PacienteManager::modificarPaciente()
 
             break;
         case 4:
-            do{
+            do
+            {
                 valido = true;
 
                 system("cls");
                 cout << "DNI: ";
                 valido=cargarCadena(dni,9);
 
-                if(!dniValido(dni)){
+                if(!dniValido(dni))
+                {
                     cout << "DNI invalido. Vuelva a intentarlo..." << endl;
                     system("pause");
                     valido = false;
                 }
                 else if(strcmp(dni, p.getDni()) != 0 &&
-                        repoPaciente.buscarCoincidenciaDni(dni)){
+                        repoPaciente.buscarCoincidenciaDni(dni))
+                {
                     cout << "Ya existe un paciente con este DNI." << endl;
                     system("pause");
                     valido = false;
                 }
 
-            }while(!valido);
+            }
+            while(!valido);
 
             p.setDni(dni);
 
             break;
         case 5:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Domicilio: ";
                 valido=cargarCadena(domicilio,30);
 
-                if(!letrasYNumeros(domicilio)){
+                if(!letrasYNumeros(domicilio))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Domicilio invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             todoMayuscula(domicilio);
             p.setDomicilio(domicilio);
 
             break;
         case 6:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Telefono: ";
                 valido=cargarCadena(telefono,15);
 
-                if(!soloNumeros(telefono)){
+                if(!soloNumeros(telefono))
+                {
                     valido=false;
                 }
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Telefono invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             p.setTelefono(telefono);
             break;
 
         case 7:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Email: ";
                 valido=cargarCadena(email,30);
 
-                if(!valido){
+                if(!valido)
+                {
                     cout << "Email invalido. Vuelva a intentarlo..."<< endl;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
             todoMayuscula(email);
             p.setEmail(email);
             break;
 
         case 8:
-            do{
+            do
+            {
                 system("cls");
                 valido = true;
                 cout << "Obra Social: ";
                 managerObraSocial.listarObrasSociales();
                 cout << "Ingresar ID de la obra social a la que pertenezca:" << endl;
                 cin>> opcionObraSocial;
-                if(!repoObraSocial.buscarCoincidenciaId(opcionObraSocial)){
+                if(cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(10000,'\n');
+
+                }
+                if(!repoObraSocial.buscarCoincidenciaId(opcionObraSocial))
+                {
                     cout << "ID invalido. Vuelva a intentarlo..."<< endl;
                     valido=false;
                     system("pause");
                 }
-            }while(!valido);
+            }
+            while(!valido);
 
             regObraSocial=repoObraSocial.leer(repoObraSocial.buscarPorId(opcionObraSocial));
 
@@ -476,19 +570,17 @@ void PacienteManager::modificarPaciente()
             break;
 
         case 9:
-            {
+        {
             int seleccion;
             cout << "El estado actual es ";
-            if(p.getEliminado()){
+            if(p.getEliminado())
+            {
                 cout << "Inactivo." << endl;
                 do
                 {
                     valido=true;
                     cout <<"Desea activarlo nuevamente? 1.SI/2.NO" << endl;
-                    if (cin.peek() == '\n')
-                    {
-                        cin.ignore();
-                    }
+
                     cin>>seleccion;
                     if(cin.fail())
                     {
@@ -505,18 +597,22 @@ void PacienteManager::modificarPaciente()
                     cout << "OPERACION CANCELADA..."<< endl;
                     system("pause");
                     return;
-                }else{
+                }
+                else
+                {
                     p.setEliminado(false);
                 }
 
-            }else{
+            }
+            else
+            {
                 cout << "Activo. No se aceptan modificaciones." << endl;
             }
 
             system("pause");
 
             break;
-            }
+        }
         case 10:
             cout << "MODIFICACION CANCELADA...." << endl;
             cout << "NO SE GUARDARON CAMBIOS... " << endl;
@@ -578,7 +674,12 @@ void PacienteManager::BuscarPorId()
 
     cout << "Ingrese el ID: ";
     cin >> id;
+    if(cin.fail())
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
 
+    }
     int posicion = repoPaciente.buscarPorId(id);
     if (posicion >= 0)
     {
@@ -595,18 +696,22 @@ void PacienteManager::BuscarPorDni()
 {
     char dni[9];
     bool valido;
-    do{
+    do
+    {
         valido = true;
         cout << "Ingrese el DNI: ";
         cargarCadena(dni,9);
-        if(!dniValido(dni)){
+        if(!dniValido(dni))
+        {
             valido=false;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "DNI invalido. Intente nuevamente..." << endl;
         }
 
-    }while(!valido);
+    }
+    while(!valido);
 
     int posicion = repoPaciente.buscarPorDni(dni);
     if (posicion >= 0)
