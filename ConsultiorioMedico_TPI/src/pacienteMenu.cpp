@@ -8,7 +8,7 @@ PacienteMenu::PacienteMenu(){
 }
 
 
-void PacienteMenu::mostrarOpciones(){///ABM PARA EL MENU DE ADMIN NO, NO?
+void PacienteMenu::mostrarOpciones(){
 
     cout <<"-----------MENU PACIENTES-----------"<<endl;
     cout << "1-LISTAR PACIENTES" << endl;
