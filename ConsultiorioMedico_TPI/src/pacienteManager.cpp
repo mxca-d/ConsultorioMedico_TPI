@@ -243,7 +243,7 @@ void PacienteManager::altaPaciente()
 
     cout << endl <<endl;
 
-    p.setIdPaciente(repoPaciente.getCantidadRegistros()+1);
+    p.setIdPaciente(repoPaciente.getCantidadRegistros()+101);
     p.setEliminado(false);
 
     if(repoPaciente.guardar(p))
@@ -352,7 +352,6 @@ void PacienteManager::modificarPaciente()
     int opcion;
     do
     {
-        system("cls");
 
         cout << "-----------------------------" << endl;
         cout << "Seleccionar que campo desea cambiar:" << endl;
