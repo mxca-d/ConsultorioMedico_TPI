@@ -5,7 +5,7 @@ using namespace std;
 
 MenuAdministrador::MenuAdministrador()
 {
-    setCantidadOpciones(7);
+    setCantidadOpciones(8);
 }
 
 void MenuAdministrador::mostrarOpciones()

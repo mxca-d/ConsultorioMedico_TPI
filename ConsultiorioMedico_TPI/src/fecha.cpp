@@ -278,30 +278,9 @@ void Fecha::mostrar(){
 
 }
 
-/*Fecha Fecha::obtenerFechaBase(int opcion){///NUEVO METODO
 
 
-
-    switch(opcion){
-
-    case 1:
-        return Fecha(5,1,2026);
-    case 2:
-        return Fecha(6,1,2026);
-    case 3:
-        return Fecha(7,1,2026);
-    case 4:
-        return Fecha(8,1,2026);
-    case 5:
-        return Fecha(9,1,2026);
-
-    }
-
-}*/
-
-
-bool Fecha::esMenor(Fecha fecha2){///NUEVO METODO
-
+bool Fecha::esMenor(Fecha fecha2){
 
     bool menor = false;
 
@@ -344,28 +323,4 @@ bool Fecha::esIgual(Fecha fecha2){
 }
 
 
-/*void Fecha::obtenerDias(int opcion, Fecha *dias, Fecha hoy){
 
-    Fecha aux = obtenerFechaBase(opcion);
-    hoy.agregarDias(1);
-
-    while(aux.esMenor(hoy)){
-
-       aux.agregarDias(7);
-
-    }
-
-    for(int i=0;i<4;i++){
-
-
-        dias[i]=aux;
-        aux.agregarDias(7);
-
-
-
-    }
-
-
-}
-
-*/
