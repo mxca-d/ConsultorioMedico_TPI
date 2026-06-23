@@ -238,7 +238,7 @@ void mostrarEspecialidades(){
     cout << "1- CLINICA MEDICA" << endl;
     cout << "2- CARDIOLOGIA" << endl;
     cout << "3- PEDIATRIA" << endl;
-    cout << "4- TRAUMATOLOGIA" << endl;
+    cout << "4- DERMATOLOGIA" << endl;
     cout << "5- KINESIOLOGIA" << endl;
 }
 
