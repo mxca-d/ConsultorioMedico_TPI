@@ -193,7 +193,7 @@ int PacienteArchivo::getCantidadRegistros(){
     if (archivo == NULL) {
         return 0;
     }
-    fseek(archivo,sizeof(Paciente),2);
+    fseek(archivo,0,2);
     int bytes= ftell(archivo);
 
     fclose(archivo);

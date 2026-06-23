@@ -207,7 +207,7 @@ void Fecha::restarDia(){
 }
 
 
-std::string Fecha::toString(){
+string Fecha::toString(){
 
     string textoDia, textoMes, textoAnio, textoCompleto;
 
