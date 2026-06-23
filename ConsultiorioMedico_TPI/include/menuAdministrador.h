@@ -7,6 +7,7 @@
 #include "historialMenu.h"
 #include "informesMenu.h"
 #include "arancelMenu.h"
+#include "turnoMenu.h"
 
 class MenuAdministrador: public Menu {
 public:
@@ -22,5 +23,6 @@ private:
     HistorialMenu _HistorialMenu;
     InformesMenu _informesMenu;
     ArancelMenu _menuArancel;
+    TurnoMenu _turnoMenu;
 
 };

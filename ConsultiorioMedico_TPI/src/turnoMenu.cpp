@@ -1,14 +1,17 @@
 #include <iostream>
 #include "turnoMenu.h"
+#include "utils.h"
 
 using namespace std;
 
-TurnoMenu::TurnoMenu(){
+TurnoMenu::TurnoMenu()
+{
 
     setCantidadOpciones(10);
 }
 
-void TurnoMenu::mostrarOpciones(){
+void TurnoMenu::mostrarOpciones()
+{
 
     cout <<"-----------MENU TURNOS-----------"<<endl;
     cout << "1-LISTAR TURNOS" << endl;
@@ -26,9 +29,11 @@ void TurnoMenu::mostrarOpciones(){
 }
 
 
-void TurnoMenu::ejecutarOpcion(int opcion){
+void TurnoMenu::ejecutarOpcion(int opcion)
+{
 
-    switch(opcion){
+    switch(opcion)
+    {
 
     case 1:
         _managerTurno.listarTurnos();
@@ -37,7 +42,18 @@ void TurnoMenu::ejecutarOpcion(int opcion){
         _managerTurno.listarTurnoPendientePorPaciente();
         break;
     case 3:
-       // _managerTurno.listarTurnoPendientePorMedico();
+        char dni[9];
+        bool valido;
+        cout << "DNI MEDICO: ";
+        valido = cargarCadena(dni,9);
+        if (valido && dniValido(dni))
+        {
+            _managerTurno.listarTurnoPendientePorMedico(dni);
+        }
+        else
+        {
+            cout << "Ingreso invalido.." << endl;
+        }
         break;
     case 4:
         _managerTurno.listarPorPaciente();

@@ -17,7 +17,8 @@ void MenuAdministrador::mostrarOpciones()
     cout << "4- OBRA SOCIALES"<<endl;
     cout << "5- ARANCELES" << endl;
     cout << "6- HISTORIALES" << endl;
-    cout << "7- INFORMES" << endl;
+    cout << "7- TURNOS" << endl;
+    cout << "8- INFORMES" << endl;
     cout << "0- SALIR"<<endl;
     cout << "------------------------"<<endl;
 }
@@ -47,6 +48,9 @@ void MenuAdministrador::ejecutarOpcion(int opcion)
         _HistorialMenu.run();
         break;
     case 7:
+        _turnoMenu.run();
+        break;
+    case 8:
         _informesMenu.run();
         break;
     case 0:

@@ -26,7 +26,7 @@ bool HistorialManager::cargarHistorial(Turno turno)
     cout << "Paciente : " << paciente.getNombre()<< " " << paciente.getApellido() << endl;
     cout << "Medico :" << medico.getNombre()<< " " << medico.getApellido() << endl;
     cout << "Fecha :";
-        turno.getFechaTurno().mostrar();
+    turno.getFechaTurno().mostrar();
     cout <<endl;
     cout << "---------------------------------------------------------------" << endl;
 
@@ -36,10 +36,12 @@ bool HistorialManager::cargarHistorial(Turno turno)
         system("cls");
         cout << "Ingresar diagnostico:" << endl << endl;
         valido=cargarCadena(diagnostico,100);
-        if(!letrasYNumeros(diagnostico)){
+        if(!letrasYNumeros(diagnostico))
+        {
             valido=false;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "Diagnostico invalido. Intente nuevamente..." << endl;
             system("pause");
         }
@@ -111,20 +113,24 @@ void HistorialManager::modificarHistorial()
     cout << "Fecha :" <<historial.getFecha().toString() << endl;
     cout << "---------------------------------------------------------------" << endl;
     cout << "Ingresar la modificacion del diagnostico:" << endl << endl;
-    do{
+    do
+    {
         system("cls");
         valido=true;
         valido=cargarCadena(diagnostico,100);
-        if(!letrasYNumeros(diagnostico)){
+        if(!letrasYNumeros(diagnostico))
+        {
             valido=false;
         }
-        if(!valido){
+        if(!valido)
+        {
             cout << "Diagnostico invalido. Intente nuevamente..."<< endl;
             system("pause");
         }
 
 
-    }while(!valido);
+    }
+    while(!valido);
 
     todoMayuscula(diagnostico);
 
@@ -279,62 +285,71 @@ void HistorialManager::listarPacienteHistorial()
     Historial historial;
     Medicos medico;
     MedicosArchivos repoMedico;
-    bool ingresar = true;
+    bool tuvoHistorial = false;
 
 
-    do{
+    do
+    {
         system("cls");
         cout << "INGRESAR DNI PACIENTE A CONSULTAR: ";
         cargarCadena(dni,9);
-        if(!dniValido(dni)){
+        if(!dniValido(dni))
+        {
             cout << "Dni invalido. Intente nuevamente..." << endl;
             system("pause");
         }
 
-    }while(!dniValido(dni));
+    }
+    while(!dniValido(dni));
 
 
-        posPacientes = repoPaciente.buscarPorDni(dni);
+    posPacientes = repoPaciente.buscarPorDni(dni);
 
-        if(posPacientes == -1)
+    if(posPacientes == -1)
+    {
+        cout << "DNI NO ENCONTRADO..." << endl;
+        return;
+    }
+    else
+    {
+
+        paciente = repoPaciente.leer(posPacientes);
+
+        cantHistorial = repoHistorial.getCantidadRegistros();
+
+        for(int i=0; i<cantHistorial; i++)
         {
-            cout << "DNI NO ENCONTRADO..." << endl;
-            return;
-        }
-        else
-        {
 
-            paciente = repoPaciente.leer(posPacientes);
-
-            cantHistorial = repoHistorial.getCantidadRegistros();
-
-            for(int i=0; i<cantHistorial; i++)
+            if(paciente.getEliminado()==false)
             {
-
-                if(paciente.getEliminado()==false)
+                historial = repoHistorial.leer(i);
+                if(historial.getIdPaciente()==paciente.getIdPaciente())
                 {
-                    historial = repoHistorial.leer(i);
-                    if(historial.getIdPaciente()==paciente.getIdPaciente())
-                    {
 
-                        cout << "Paciente: " << paciente.getNombre() << " " << paciente.getApellido() << endl;
+                    cout << "Paciente: " << paciente.getNombre() << " " << paciente.getApellido() << endl;
 
-                        medico= repoMedico.leer(repoMedico.buscarPorId(historial.getIdMedico()));
+                    medico= repoMedico.leer(repoMedico.buscarPorId(historial.getIdMedico()));
 
-                        cout << "Medico: " << medico.getNombre() << " " << medico.getApellido() << endl;
-                        cout << "Especialidad: " << medico.getEspecialidad() << endl;
-                        cout << "Fecha: " << historial.getFecha().toString() << endl;
-                        cout << "--------------------------" << endl;
-                        cout << historial.getDiagnostico() << endl;
-                        cout << endl << endl;
-                        cout << "--------------------------------------------------------------" << endl;
-
-                    }
+                    cout << "Medico: " << medico.getNombre() << " " << medico.getApellido() << endl;
+                    cout << "Especialidad: " << medico.getEspecialidad() << endl;
+                    cout << "Fecha: " << historial.getFecha().toString() << endl;
+                    cout << "--------------------------" << endl;
+                    cout << historial.getDiagnostico() << endl;
+                    cout << endl << endl;
+                    cout << "--------------------------------------------------------------" << endl;
+                    tuvoHistorial = true;
 
                 }
 
             }
+
         }
+
+        if (!tuvoHistorial)
+        {
+            cout << "PACIENTE NO POSEE HISTORIAL MEDICO..." << endl;
+        }
+    }
 
 
 

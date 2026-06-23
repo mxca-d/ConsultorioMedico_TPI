@@ -405,7 +405,7 @@
 1779742994 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\historialarchivo.h
 	"Historial.h"
 
-1782050094 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
+1782245965 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\historialmanager.cpp
 	<iostream>
 	"historialManager.h"
 	"utils.h"
@@ -521,7 +521,7 @@
 1781908905 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\pacientearchivo.h
 	"paciente.h"
 
-1782239739 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemanager.cpp
+1782243971 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\pacientemanager.cpp
 	<iostream>
 	<cstdio>
 	"PacienteManager.h"
@@ -571,9 +571,10 @@
 	"medicosManager.h"
 	"historialManager.h"
 
-1781873843 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomenu.cpp
+1782244788 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\turnomenu.cpp
 	<iostream>
 	"turnoMenu.h"
+	"utils.h"
 
 1781873843 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\turnomenu.h
 	"turnoManager.h"
@@ -632,12 +633,12 @@
 	"medicosManager.h"
 	"medicosArchivo.h"
 
-1781873843 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuadministrador.cpp
+1782244283 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menuadministrador.cpp
 	<iostream>
 	"menuAdministrador.h"
 	"usuariosManager.h"
 
-1781575053 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menuadministrador.h
+1782244283 c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\include\menuadministrador.h
 	"menu.h"
 	"usuariosMenu.h"
 	"medicoMenu.h"
@@ -646,6 +647,7 @@
 	"historialMenu.h"
 	"informesMenu.h"
 	"arancelMenu.h"
+	"turnoMenu.h"
 
 1782050094 source:c:\users\dm\documents\github\consultoriomedico_tpi\consultioriomedico_tpi\src\menurecepcionista.cpp
 	<iostream>
